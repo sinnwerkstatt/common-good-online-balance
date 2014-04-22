@@ -1,0 +1,68 @@
+{% load i18n cms_tags menu_tags sekizai_tags static %}
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:site_name" content="flashpoll"/>
+    <meta property="og:title"
+          content="{% if request.current_page.get_menu_title %} &raquo; {{ request.current_page.get_menu_title }}{% endif %}"/>
+    <meta property="og:description" content=""/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    {% block pagetitle %}
+        <title>flashpoll{% if request.current_page.get_menu_title %} &raquo;
+            {{ request.current_page.get_menu_title }}{% endif %}</title>
+    {% endblock %}
+    <link rel="icon" href="{% static "favicon.ico" %}"/>
+
+    <link href="{% static 'css/vendor/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--[if IE]>
+    <link href="{% static 'css/ie.css' %}" media="screen, projection" rel="stylesheet" type="text/css"/>
+    <![endif]-->
+
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    {% render_block "css" %}
+    {% block css %}{% endblock css %}
+
+    {% block extrahead %}{% endblock extrahead %}
+</head>
+
+<body class="{% block body_class %}{% endblock body_class %}">
+{% block navigation %}{% endblock %}
+
+<div class="container site-container">
+    <div class="row">
+        <div class="col-lg-12">
+            {% block base_content %}{% endblock %}
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+{% block javascript %}
+<!--
+<script src='http://127.0.0.1:3000/socket.io/socket.io.js'></script>
+<script src='http://127.0.0.1:3001/browser-sync-client.min.js'></script>
+-->
+<script type="text/javascript" src="{% static 'js/vendor/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+{% endblock javascript %}
+{% render_block 'js' %}
+
+</body>
+</html>

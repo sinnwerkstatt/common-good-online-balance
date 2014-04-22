@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+
+# Python
+*.pyc
+*.egg-info
+
+# dev
+bower_components
+node_modules
+.sass-cache
+
+# SQLite3 database:
+*.db
+
+# IDE
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Project files
+ecg_balancing/settings.py
+media/files/*
+static-collected/*

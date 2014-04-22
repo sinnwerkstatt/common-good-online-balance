@@ -1,0 +1,26 @@
+{% load cms_tags menu_tags %}
+{# Add to your template with {% show_menu 0 100 0 100 "your_folder/main_menu.html" %} #}
+{% spaceless %}
+    <ul class="nav navbar-nav">
+        {% for child in children %}
+            <li class="dropdown">
+                <a class="{% if child.attr.reverse_id %}{{ child.attr.reverse_id }}{% endif %}
+                            {% if child.selected %} selected{% endif %}
+                            {% if child.ancestor %} ancestor{% endif %}
+                            {% if child.children %} dropdown-toggle{% endif %}"
+                   {% if child.children %}data-toggle="dropdown"{% endif %}
+                   href="{{ child.get_absolute_url }}"
+                   data-toggle="dropdown">{{ child.get_menu_title }} <b class="caret"></b></a>
+                {% if child.children %}
+                    <ul class="dropdown-menu" role="menu">
+                        {% with child.children as children_l1 %}
+                            {% for child_l1 in children_l1 %}
+                                <li><a href="{{ child_l1.get_absolute_url }}">{{ child_l1.get_menu_title }}</a></li>
+                            {% endfor %}
+                        {% endwith %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endspaceless %}
