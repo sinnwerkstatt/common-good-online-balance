@@ -1,4 +1,4 @@
-ecg_balancing
-=========================
+ecg-balancing
+=============
 
-ECG Balancing
+ECG Online Balancing App (GWÖ Online Bilanzierung)
