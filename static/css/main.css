@@ -12,11 +12,36 @@
 /* Font Sizes */
 /* Borders */
 /* Buttons */
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 40px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  padding-top: 10px;
+  border-top: 1px solid #EEEEEE;
+  font-size: 12px;
+  background-color: white;
+  color: #a2a2a2;
+}
+
+/* Bootstrap Adjustments */
 .breadcrumb {
   padding: 0;
 }
 
-/* Bootstrap Adjustments */
 .navbar a.navbar-brand {
   padding: 5px;
 }

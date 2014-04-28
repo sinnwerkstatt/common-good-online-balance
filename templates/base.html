@@ -40,20 +40,23 @@
 <body class="{% block body_class %}{% endblock body_class %}">
 {% include 'topmenu.html' %}
 
-
-<div class="container site-container">
-  <div class="row">
-    <div class="col-lg-12">
-      <ul class="breadcrumb hidden-print">
-        {% block breadcrumb %}
-        {% show_breadcrumb "menu/breadcrumb.html" %}
-        {% endblock breadcrumb %}
-      </ul>
-      {% block base_content %}{% endblock %}
+<div id="wrap">
+  <div class="container site-container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb hidden-print">
+          {% block breadcrumb %}
+          {% show_breadcrumb "menu/breadcrumb.html" %}
+          {% endblock breadcrumb %}
+        </ul>
+        {% block base_content %}{% endblock %}
+      </div>
     </div>
   </div>
+  <!-- /.container -->
 </div>
-<!-- /.container -->
+
+{% include 'footer.html' %}
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
