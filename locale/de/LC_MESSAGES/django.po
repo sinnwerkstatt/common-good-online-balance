@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-28 14:47+0200\n"
+"POT-Creation-Date: 2014-04-28 15:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,10 +22,18 @@ msgstr ""
 msgid "ECG Online Bilanzierung"
 msgstr "GWÖ Online Bilanzierung"
 
-#: templates/topmenu.html:21
+#: templates/topmenu.html:10
+msgid "Companies"
+msgstr "Unternehmen"
+
+#: templates/topmenu.html:23
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/topmenu.html:22
+#: templates/topmenu.html:24
 msgid "Logout"
 msgstr "Ausloggen"
+
+#: templates/topmenu.html:28
+msgid "Login"
+msgstr "Login"
