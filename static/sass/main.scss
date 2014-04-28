@@ -2,3 +2,6 @@
 
 @import "fonts";
 @import "general";
+
+$pesticide-debug: false;
+@import "vendor/pesticide";

@@ -11,6 +11,12 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
+            options: {
+                livereload: true
+            },
+            livereload: {
+                files: ['**/*.html', '**/*.js']
+            },
             sass: {
                 files: '**/*.s[ac]ss',
                 tasks: ['sass:dev']
@@ -24,13 +30,32 @@ module.exports = function (grunt) {
                     /* lineNumbers: true */
                 },
                 files: {
-                    'static/css/main.css': base + '/sass/main.scss'
-                    //'forum/static/forum/css/main.css': 'forum/' + base + '/forum/sass/main.scss',
+                    'static/css/main.css': base + '/sass/main.scss',
+                    'static/css/bootstrap3-ecg.css': base + '/sass/vendor/bootstrap/bootstrap.scss'
+                }
+            }
+        },
+        browser_sync: {
+            dev: {
+                bsFiles: {
+                    src : [
+                        base + 'css/main.css',
+                        'templates/*.html',
+                    ]
+                },
+                options: {
+                    watchTask: true,
+                    ghostMode: {
+                        clicks: true,
+                        scroll: true,
+                        links: true,
+                        forms: true
+                    }
                 }
             }
         }
     });
     grunt.registerTask('default', [
-        'sass', 'watch'
+        'sass', 'browser_sync', 'watch'
     ]);
 };

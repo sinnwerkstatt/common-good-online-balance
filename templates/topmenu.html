@@ -1,0 +1,33 @@
+{% load i18n thumbnail static cms_tags menu_tags sekizai_tags %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <ul class="nav navbar-nav navbar-left group-top-dropdown-menu">
+          <li><a class="navbar-brand" href="{% page_url 'startpage' %}">
+            <img class="img-responsive" src="{% static 'images/ecg-seeds_30h.png'%}" alt=""/></a>
+          </li>
+          <li><a href="{% page_url 'startpage' %}">{% trans "ECG Online Bilanzierung" %}</a></li>
+        <li><a href="#">Unternehmen</a></li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <span class="icon-search header-icon pull-left"></span>
+        <!--<img class="avatar-img avatar-top-menu" src="{% thumbnail request.user.cosinnus_profile.avatar 40x40 crop=smart %}"/>-->
+        {% if request.user.is_authenticated %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            FullName <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu main-menu-colors">
+            <li><a href="{% page_url 'profile' %}">{% trans "Profile" %}</a></li>
+            <li><a href="/logout">{% trans "Logout" %}</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li><a href="/login">{% trans "Login" %}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

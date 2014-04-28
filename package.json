@@ -4,7 +4,7 @@
     "description": "ECG Balancing",
     "main": "Gruntfile.js",
     "author": "Sinnwerkstatt",
-    "license": "none",
+    "license": "MIT",
     "readmeFilename": "README.md",
     "devDependencies": {
         "grunt-contrib-watch": "~0.4.4",
@@ -14,6 +14,7 @@
         "grunt-contrib-connect": "~0.3.0",
         "grunt-open": "~0.2.0",
         "grunt-contrib-concat": "~0.3.0",
-        "grunt": "~0.4.1"
+        "grunt": "~0.4.1",
+        "grunt-browser-sync": "~0.6.2"
     }
 }

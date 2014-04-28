@@ -23,7 +23,7 @@
     {% endblock %}
     <link rel="icon" href="{% static "favicon.ico" %}"/>
 
-    <link href="{% static 'css/vendor/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap3-ecg.css' %}" rel="stylesheet">
 
     <!--[if IE]>
     <link href="{% static 'css/ie.css' %}" media="screen, projection" rel="stylesheet" type="text/css"/>
@@ -37,7 +37,7 @@
 </head>
 
 <body class="{% block body_class %}{% endblock body_class %}">
-{% block navigation %}{% endblock %}
+{% include 'topmenu.html' %}
 
 <div class="container site-container">
     <div class="row">
@@ -63,6 +63,12 @@
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 {% endblock javascript %}
 {% render_block 'js' %}
+
+{% if SETTINGS.DEBUG %}
+<!--<script src='//192.168.1.170:3000/socket.io/socket.io.js'></script>-->
+<!--<script>var ___socket___ = io.connect('http://192.168.1.170:3000');</script>-->
+<!--<script src='//192.168.1.170:3001/client/browser-sync-client.0.6.2.js'></script>-->
+{% endif %}
 
 </body>
 </html>
