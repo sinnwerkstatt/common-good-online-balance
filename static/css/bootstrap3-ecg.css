@@ -4378,10 +4378,8 @@ input[type="button"].btn-block {
 }
 
 .breadcrumb {
-  padding: 8px 15px;
   margin-bottom: 20px;
   list-style: none;
-  background-color: whitesmoke;
   border-radius: 4px;
 }
 .breadcrumb > li {

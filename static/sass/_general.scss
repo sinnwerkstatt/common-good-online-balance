@@ -1,5 +1,9 @@
 @import "variables";
 
+.breadcrumb {
+    padding: 0;
+}
+
 /* Bootstrap Adjustments */
 
 .navbar a.navbar-brand {
@@ -13,30 +17,22 @@
   padding-bottom: 20px;
 }
 
-.breadcrumb {
-  padding: 0px 15px 8px 15px;
-  margin-bottom: 20px;
-  list-style: none;
-  border-radius: 4px;
-  font-size: 10px;
-}
-
 .breadcrumb > li {
   display: inline-block;
 }
 
 .breadcrumb > li + li:before {
   padding: 0 5px;
-  color: $grey-darkest;
+  color: $grey-middle-light;
   content: "\003E";
 }
 
 .breadcrumb > .active {
-  color: $grey-darkest;
+  color: $grey-middle-light;
 }
 
 .breadcrumb a {
-  color: $grey-darkest;
+  color: $grey-middle-light;
 }
 
 /* GENERAL */

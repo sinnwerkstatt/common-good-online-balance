@@ -9,48 +9,55 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta property="og:site_name" content="flashpoll"/>
-    <meta property="og:title"
-          content="{% if request.current_page.get_menu_title %} &raquo; {{ request.current_page.get_menu_title }}{% endif %}"/>
-    <meta property="og:description" content=""/>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta property="og:site_name" content="flashpoll"/>
+  <meta property="og:title"
+        content="{% if request.current_page.get_menu_title %} &raquo; {{ request.current_page.get_menu_title }}{% endif %}"/>
+  <meta property="og:description" content=""/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    {% block pagetitle %}
-        <title>flashpoll{% if request.current_page.get_menu_title %} &raquo;
-            {{ request.current_page.get_menu_title }}{% endif %}</title>
-    {% endblock %}
-    <link rel="icon" href="{% static "favicon.ico" %}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  {% block pagetitle %}
+  <title>flashpoll{% if request.current_page.get_menu_title %} &raquo;
+    {{ request.current_page.get_menu_title }}{% endif %}</title>
+  {% endblock %}
+  <link rel="icon" href="{% static " favicon.ico
+  " %}"/>
 
-    <link href="{% static 'css/bootstrap3-ecg.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap3-ecg.css' %}" rel="stylesheet">
 
-    <!--[if IE]>
-    <link href="{% static 'css/ie.css' %}" media="screen, projection" rel="stylesheet" type="text/css"/>
-    <![endif]-->
+  <!--[if IE]>
+  <link href="{% static 'css/ie.css' %}" media="screen, projection" rel="stylesheet" type="text/css"/>
+  <![endif]-->
 
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
-    {% render_block "css" %}
-    {% block css %}{% endblock css %}
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  {% render_block "css" %}
+  {% block css %}{% endblock css %}
 
-    {% block extrahead %}{% endblock extrahead %}
+  {% block extrahead %}{% endblock extrahead %}
 </head>
 
 <body class="{% block body_class %}{% endblock body_class %}">
 {% include 'topmenu.html' %}
 
+
 <div class="container site-container">
-    <div class="row">
-        <div class="col-lg-12">
-            {% block base_content %}{% endblock %}
-        </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <ul class="breadcrumb hidden-print">
+        {% block breadcrumb %}
+        {% show_breadcrumb "menu/breadcrumb.html" %}
+        {% endblock breadcrumb %}
+      </ul>
+      {% block base_content %}{% endblock %}
     </div>
+  </div>
 </div>
 <!-- /.container -->
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+  your browser</a> to improve your experience.</p>
 <![endif]-->
 
 {% block javascript %}

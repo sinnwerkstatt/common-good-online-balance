@@ -1,5 +1,7 @@
 {% for ance in ancestors %}
+<!--{% if not forloop.first %}-->
 <li{% if forloop.last %} class="active"{% endif %}>
-<a href="{{ ance.get_absolute_url }}">{{ ance.get_menu_title|upper }}</a>
+<a href="{{ ance.get_absolute_url }}">{{ ance.get_menu_title }}</a>
 </li>
+<!--{% endif %}-->
 {% endfor %}
