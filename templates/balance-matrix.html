@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n menu_tags %}
+
+{% block page_title %}{% trans "Company name" %}{% endblock %}
+
+{% block base_content %}
+<div class="row">
+    {{ block.super }}
+    <div class="col-md-8">
+      <h1>GWÖ Matrix</h1>
+
+      {% get_current_language as LANGUAGE_CODE %}
+
+      Language: {{ LANGUAGE_CODE }}
+      <div id="gwoe-matrix-container" class="container container-page"></div>
+
+    </div>
+<div>
+{% endblock base_content %}
