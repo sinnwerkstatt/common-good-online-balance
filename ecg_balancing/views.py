@@ -2,22 +2,43 @@
 from __future__ import unicode_literals
 
 from django.core.urlresolvers import reverse
-from django.http import (Http404, HttpResponse, HttpResponseNotFound,
-    HttpResponseRedirect, StreamingHttpResponse)
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ungettext, ugettext_lazy as _
-from django.views.generic import (View, TemplateView)
+from django.views.generic import CreateView, DetailView, UpdateView, ListView
+from django.contrib.auth.models import User
 
+from ecg_balancing.models import *
 
-class BalanceMatrixView(TemplateView):
+class CompanyListView(ListView):
+	model = Company
 
-    template_name = 'balance-matrix.html'
+class UserDetailView(DetailView):
+	model = User
 
-    def get_context_data(self, **kwargs):
-        context = super(BalanceMatrixView, self).get_context_data(**kwargs)
+class UserUpdateView(UpdateView):
+	model = User
 
-        context.update({
-            'TODOaddsomething': 'tothedashboard'
-        })
+class CompanyDetailView(DetailView):
+	model = Company
 
-        return context
+class CompanyUpdateView(UpdateView):
+	model = Company
+
+class CompanyBalanceDetailView(DetailView):
+	model = CompanyBalance
+
+class CompanyBalanceCreateView(CreateView):
+	model = CompanyBalance
+
+class CompanyBalanceUpdateView(UpdateView):
+	model = CompanyBalance
+
+class CompanyBalanceIndicatorDetailView(DetailView):
+	model = CompanyBalanceIndicator
+
+class CompanyBalanceIndicatorCreateView(CreateView):
+	model = CompanyBalanceIndicator
+
+class CompanyBalanceIndicatorUpdateView(UpdateView):
+	model = CompanyBalanceIndicator
+
