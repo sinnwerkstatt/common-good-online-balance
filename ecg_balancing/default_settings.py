@@ -169,6 +169,7 @@ INSTALLED_APPS = (
 
 LANGUAGES = [
     ('de', 'Deutsch'),
+    ('en', 'English'),
 ]
 
 # A sample logging configuration. The only tangible logging

@@ -117,6 +117,47 @@ img.right {
   clear: both;
 }
 
+/* Colors */
+/* Font Sizes */
+/* Borders */
+/* Buttons */
+.ecg-violet {
+  background-color: #c54d94;
+  color: white;
+}
+
+.ecg-green {
+  color: #cccb98;
+}
+
+.ecg-green-bg {
+  background-color: #cccb98;
+  color: white;
+}
+
+.ecg-green-b {
+  color: #cccb98;
+  font-weight: bold;
+}
+
+.ecg-blue {
+  color: #99cccc;
+}
+
+.ecg-blue-b {
+  color: #99cccc;
+  font-weight: bold;
+}
+
+.negative-color {
+  color: #de6b3c;
+}
+
+.negative-color-b {
+  color: #de6b3c;
+  font-weight: bold;
+}
+
 /*
     pesticide v0.1.0 . @mrmrs . MIT
 */

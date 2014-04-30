@@ -1,0 +1,38 @@
+@import "variables";
+
+.ecg-violet {
+  background-color: $violet-color;
+  color: $white;
+}
+
+.ecg-green {
+  color: $ecg-olive-color;
+}
+
+.ecg-green-bg {
+  background-color: $ecg-olive-color;
+  color: $white;
+}
+
+.ecg-green-b {
+  color: $ecg-olive-color;
+  font-weight: bold;
+}
+
+.ecg-blue {
+  color: $ecg-turquoise-color;
+}
+
+.ecg-blue-b {
+  color: $ecg-turquoise-color;
+  font-weight: bold;
+}
+
+.negative-color {
+  color: $negative-color;
+}
+
+.negative-color-b {
+  color: $negative-color;
+  font-weight: bold;
+}

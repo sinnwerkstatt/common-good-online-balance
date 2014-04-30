@@ -1,22 +1,20 @@
-{% load i18n cms_tags menu_tags sekizai_tags static %}
-
-<div id="gwoe-matrix" class="bubble display-none">
+<div id="ecg-matrix" class="bubble">
 
     <div class="bootstrap-table whitebg unselectable">
 
         <div class="row row-border dheader-style js-equal-height">
             <div class="row-cell col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <span class="gwoe-green">{% trans "Value" %}</span> / <span class="gwoe-blue">{% trans "Stakeholder" %}</span>
+                <span class="ecg-green">{valueName}</span> / <span class="ecg-blue">{stakeholdersName|s}</span>
             </div>
-            <div class="row-cell gwoe-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{% trans "Human Dignity" %}</div>
-            <div class="row-cell gwoe-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{% trans "Cooperation and Solidarity" %}</div>
-            <div class="row-cell gwoe-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{% trans "Ecological Sustainability" %}</div>
-            <div class="row-cell gwoe-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{% trans "Social Justice" %}</div>
-            <div class="row-cell last-cell gwoe-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{% trans "Democratic Co-determination and Transparency" %}</div>
+            <div class="row-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[0]|s}</div>
+            <div class="row-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[1]|s}</div>
+            <div class="row-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[2]|s}</div>
+            <div class="row-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[3]|s}</div>
+            <div class="row-cell last-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[4]|s}</div>
         </div>
 
         <div class="row row-border js-equal-height clear-both">
-            <div class="row-cell dheader-style gwoe-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 {stakeholders[0].shortcode}) {stakeholders[0].name|s}
             </div>
             <div class="row-cell indicator-cell last-cell ind-trigger col-lg-10 col-md-10 col-sm-10 col-xs-10"
@@ -25,7 +23,6 @@
                     {stakeholders[0].values[0].shortcode}) {stakeholders[0].values[0].title|s}
                 </div>
                 <div class="indicator-description">
-                    {stakeholders[0].values[0].content|s}
                 </div>
                 <div class="indicator-points">
                     {stakeholders[0].values[0].points}
@@ -34,7 +31,7 @@
         </div>
 
         <div class="row row-border js-equal-height">
-            <div class="row-cell dheader-style gwoe-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 {stakeholders[1].shortcode}) {stakeholders[1].name|s}
             </div>
             <div class="row-cell indicator-cell last-cell ind-trigger col-lg-10 col-md-10 col-sm-10 col-xs-10"
@@ -43,7 +40,6 @@
                     {stakeholders[1].values[0].shortcode}) {stakeholders[1].values[0].title|s}
                 </div>
                 <div class="indicator-description">
-                    {stakeholders[1].values[0].content|s}
                 </div>
                 <div class="indicator-points">
                     {stakeholders[1].values[0].points}
@@ -52,19 +48,17 @@
         </div>
 
         <div class="row row-border js-equal-height">
-            <div class="row-cell dheader-style gwoe-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 {stakeholders[2].shortcode}) {stakeholders[2].name|s}
             </div>
 
             {#stakeholders[2].values}
-            <div class="row-cell indicator-cell {@if cond="
-            {$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2"
-            data-modal="matrix-{shortcodeSlug}">
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            data-modal='matrix-{shortcodeSlug}'>
                 <div class="indicator-title">
                     {shortcode}) {title|s}
                 </div>
                 <div class="indicator-description">
-                    {content|s}
                 </div>
                 <div class="indicator-points">
                     {points}
@@ -74,18 +68,16 @@
         </div>
 
         <div class="row row-border js-equal-height">
-            <div class="row-cell dheader-style gwoe-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 {stakeholders[3].shortcode}) {stakeholders[3].name|s}
             </div>
             {#stakeholders[3].values}
-            <div class="row-cell indicator-cell {@if cond="
-            {$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2"
-            data-modal="matrix-{shortcodeSlug}">
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            data-modal='matrix-{shortcodeSlug}'>
                 <div class="indicator-title">
                     {shortcode}) {title|s}
                 </div>
                 <div class="indicator-description">
-                    {content|s}
                 </div>
                 <div class="indicator-points">
                     {points}
@@ -95,21 +87,19 @@
         </div>
 
         <div class="row row-border js-equal-height">
-            <div class="row-cell dheader-style gwoe-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 {stakeholders[4].shortcode}) {stakeholders[4].name|s}
                 <div class="matrix-group-explanation">
                     {stakeholders[4].explanation|s}
                 </div>
             </div>
             {#stakeholders[4].values}
-            <div class="row-cell indicator-cell {@if cond="
-            {$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2"
-            data-modal="matrix-{shortcodeSlug}">
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            data-modal='matrix-{shortcodeSlug}'>
                 <div class="indicator-title">
                     {shortcode}) {title|s}
                 </div>
                 <div class="indicator-description">
-                    {content|s}
                 </div>
                 <div class="indicator-points">
                     {points}
@@ -123,8 +113,7 @@
                 {negativeCriteriaName|s}
             </div>
             {#negativeCriteria}
-            <div class="row-cell indicator-cell {@if cond="
-            {$idx} == 4"}last-cell {/if}col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}col-lg-2 col-md-2 col-sm-2 col-xs-2'>
                 {#values}
                 <div class="negative-container ind-trigger" data-modal="matrix-{shortcodeSlug}">
                     <div class="negative-points">

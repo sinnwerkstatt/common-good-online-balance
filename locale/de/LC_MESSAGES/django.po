@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 12:36+0200\n"
+"POT-Creation-Date: 2014-04-30 12:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,11 +60,13 @@ msgstr ""
 msgid "Name"
 msgstr "Name"
 
-#: ecg_balancing/models.py:67 templates/ecg-matrix-overview.html:9
+#: ecg_balancing/models.py:67
+#: ecg_balancing/templates/ecg_balancing/dustjs/company_balance_overview.html:7
 msgid "Stakeholder"
 msgstr "Berührungsgruppe"
 
-#: ecg_balancing/models.py:68 templates/ecg-matrix-overview.html:9
+#: ecg_balancing/models.py:68
+#: ecg_balancing/templates/ecg_balancing/dustjs/company_balance_overview.html:7
 msgid "Value"
 msgstr "Wert"
 
@@ -396,33 +398,32 @@ msgid "User Roles"
 msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/company_balance_detail.html:4
-#, fuzzy
-msgid "Company name"
-msgstr "Unternehmen"
+msgid "ECG Balance"
+msgstr "GWÖ Bilanz"
+
+#: ecg_balancing/templates/ecg_balancing/dustjs/company_balance_overview.html:9
+msgid "Human Dignity"
+msgstr "Menschenwürde"
+
+#: ecg_balancing/templates/ecg_balancing/dustjs/company_balance_overview.html:10
+msgid "Cooperation and Solidarity"
+msgstr "Solidarity"
+
+#: ecg_balancing/templates/ecg_balancing/dustjs/company_balance_overview.html:11
+msgid "Ecological Sustainability"
+msgstr "Ökologische Nachhaltigkeit"
+
+#: ecg_balancing/templates/ecg_balancing/dustjs/company_balance_overview.html:12
+msgid "Social Justice"
+msgstr "Soziale Gerechtigkeit"
+
+#: ecg_balancing/templates/ecg_balancing/dustjs/company_balance_overview.html:13
+msgid "Democratic Co-determination and Transparency"
+msgstr "Demokratische Mitbestimmung & Transparenz"
 
 #: templates/base.html:21
 msgid "ECG Balancing"
 msgstr "GWÖ Online Bilanzierung"
-
-#: templates/ecg-matrix-overview.html:11
-msgid "Human Dignity"
-msgstr "Menschenwürde"
-
-#: templates/ecg-matrix-overview.html:12
-msgid "Cooperation and Solidarity"
-msgstr "Solidarity"
-
-#: templates/ecg-matrix-overview.html:13
-msgid "Ecological Sustainability"
-msgstr "Ökologische Nachhaltigkeit"
-
-#: templates/ecg-matrix-overview.html:14
-msgid "Social Justice"
-msgstr "Soziale Gerechtigkeit"
-
-#: templates/ecg-matrix-overview.html:15
-msgid "Democratic Co-determination and Transparency"
-msgstr "Demokratische Mitbestimmung & Transparenz"
 
 #: templates/footer.html:5
 msgid "Legal notice"
@@ -443,3 +444,7 @@ msgstr "Ausloggen"
 #: templates/topmenu.html:28
 msgid "Login"
 msgstr "Login"
+
+#, fuzzy
+#~ msgid "Company name"
+#~ msgstr "Unternehmen"

@@ -1,0 +1,81 @@
+
+/* Indicator Pages */
+
+.indicator-page-title {
+  display: inline-block;
+  padding: 0 0 0 15px !important;
+  color: $ecg-olive-color;
+}
+
+.indicator-page-title h2 {
+  display: inline;
+  font-weight: bold;
+}
+
+.indicator-table-legend {
+  padding-bottom: 10px;
+}
+
+.indicator-table-details {
+  padding-top: 20px;
+}
+
+.basic-level-bg {
+  background-color: $basic-level-color;
+}
+
+.subindicator-header {
+  border-top: $border-medium-size solid $grey-border !important;
+}
+
+.basic-level-header {
+  border-top: $border-medium-size solid $basic-level-color !important;
+}
+
+.basic-level-bg {
+  background-color: $basic-level-color;
+}
+
+.basic-level-bg-text {
+  background-color: $basic-level-color;
+  color: $grey-dark;
+}
+
+.advanced-level-header {
+  border-top: $border-medium-size solid $advanced-level-color !important;
+}
+
+.advanced-level-bg {
+  background-color: $advanced-level-color;
+}
+
+.advanced-level-bg-text {
+  background-color: $advanced-level-color;
+  color: $grey-dark;
+}
+
+.experienced-level-header {
+  border-top: $border-medium-size solid $experienced-level-color !important;
+}
+
+.experienced-level-bg {
+  background-color: $experienced-level-color;
+}
+
+.experienced-level-bg-text {
+  background-color: $experienced-level-color;
+  color: $white;
+}
+
+.model-level-header {
+  border-top: $border-medium-size solid $model-level-color !important;
+}
+
+.model-level-bg {
+  background-color: $model-level-color;
+}
+
+.model-level-bg-text {
+  background-color: $model-level-color;
+  color: $white;
+}

@@ -1,0 +1,136 @@
+<div id="ecg-matrix" class="bubble">
+
+    <div class="bootstrap-table whitebg unselectable">
+
+        <div class="row row-border dheader-style js-equal-height">
+            <div class="row-cell col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <span class="ecg-green">{valueName}</span> / <span class="ecg-blue">{stakeholdersName|s}</span>
+            </div>
+            <div class="row-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[0]|s}</div>
+            <div class="row-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[1]|s}</div>
+            <div class="row-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[2]|s}</div>
+            <div class="row-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[3]|s}</div>
+            <div class="row-cell last-cell ecg-green col-lg-2 col-md-2 col-sm-2 col-xs-2">{values[4]|s}</div>
+        </div>
+
+        <div class="row row-border js-equal-height clear-both">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                {stakeholders[0].shortcode}) {stakeholders[0].name|s}
+            </div>
+            <div class="row-cell indicator-cell last-cell ind-trigger col-lg-10 col-md-10 col-sm-10 col-xs-10"
+                 data-modal="matrix-{stakeholders[0].values[0].shortcodeSlug}">
+                <div class="indicator-title">
+                    {stakeholders[0].values[0].shortcode}) {stakeholders[0].values[0].title|s}
+                </div>
+                <div class="indicator-description">
+                </div>
+                <div class="indicator-points">
+                    {stakeholders[0].values[0].points}
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-border js-equal-height">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                {stakeholders[1].shortcode}) {stakeholders[1].name|s}
+            </div>
+            <div class="row-cell indicator-cell last-cell ind-trigger col-lg-10 col-md-10 col-sm-10 col-xs-10"
+                 data-modal="matrix-{stakeholders[1].values[0].shortcodeSlug}">
+                <div class="indicator-title">
+                    {stakeholders[1].values[0].shortcode}) {stakeholders[1].values[0].title|s}
+                </div>
+                <div class="indicator-description">
+                    {stakeholders[1].values[0].content|s} 2222
+                </div>
+                <div class="indicator-points">
+                    {stakeholders[1].values[0].points}
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-border js-equal-height">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                {stakeholders[2].shortcode}) {stakeholders[2].name|s}
+            </div>
+
+            {#stakeholders[2].values}
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            data-modal='matrix-{shortcodeSlug}'>
+                <div class="indicator-title">
+                    {shortcode}) {title|s}
+                </div>
+                <div class="indicator-description">
+                </div>
+                <div class="indicator-points">
+                    {points}
+                </div>
+            </div>
+            {/stakeholders[2].values}
+        </div>
+
+        <div class="row row-border js-equal-height">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                {stakeholders[3].shortcode}) {stakeholders[3].name|s}
+            </div>
+            {#stakeholders[3].values}
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            data-modal='matrix-{shortcodeSlug}'>
+                <div class="indicator-title">
+                    {shortcode}) {title|s}
+                </div>
+                <div class="indicator-description">
+                </div>
+                <div class="indicator-points">
+                    {points}
+                </div>
+            </div>
+            {/stakeholders[3].values}
+        </div>
+
+        <div class="row row-border js-equal-height">
+            <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                {stakeholders[4].shortcode}) {stakeholders[4].name|s}
+                <div class="matrix-group-explanation">
+                    {stakeholders[4].explanation|s}
+                </div>
+            </div>
+            {#stakeholders[4].values}
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            data-modal='matrix-{shortcodeSlug}'>
+                <div class="indicator-title">
+                    {shortcode}) {title|s}
+                </div>
+                <div class="indicator-description">
+                </div>
+                <div class="indicator-points">
+                    {points}
+                </div>
+            </div>
+            {/stakeholders[4].values}
+        </div>
+
+        <div class="row row-border js-equal-height">
+            <div class="row-cell dheader-style negative-color-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                {negativeCriteriaName|s}
+            </div>
+            {#negativeCriteria}
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}col-lg-2 col-md-2 col-sm-2 col-xs-2'>
+                {#values}
+                <div class="negative-container ind-trigger" data-modal="matrix-{shortcodeSlug}">
+                    <div class="negative-points">
+                        {points}
+                    </div>
+                    <div class="negative-content">
+                        {titleShort|s}
+                    </div>
+                </div>
+                {/values}
+            </div>
+            {/negativeCriteria}
+        </div>
+
+    </div>
+    <!-- end of matrix table -->
+
+</div>
+<!-- end of bubble -->

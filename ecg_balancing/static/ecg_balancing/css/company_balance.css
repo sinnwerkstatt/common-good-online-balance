@@ -1,0 +1,453 @@
+.img-link {
+  /* remove outline for Firefox */
+  outline: none;
+  -moz-outline-style: none;
+}
+
+.img-link:focus {
+  /* remove outline for Firefox */
+  outline: none;
+  -moz-outline-style: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-end {
+  clear: both;
+}
+
+.center {
+  text-align: center;
+}
+
+.word-wrap {
+  -moz-hyphens: auto;
+  word-wrap: break-word;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  /* No support for these yet, use at own risk */
+  -o-user-select: none;
+  user-select: none;
+}
+
+.display-none {
+  display: none;
+}
+
+/* Colors */
+/* Font Sizes */
+/* Borders */
+/* Buttons */
+.container {
+  -moz-box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container:before, .container:after {
+  content: " ";
+  display: table;
+}
+
+.container:after {
+  clear: both;
+}
+
+.pagehead {
+  /*border-bottom: 1px solid $border-color;*/
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.bubble {
+  padding: 3px;
+  background: none repeat scroll 0% 0% #eeeeee;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.bubble-inner {
+  border: 1px solid #cccccc;
+  background-color: white;
+}
+
+.bubble-inner .meta {
+  padding: 5px;
+  border-bottom: 1px solid #cccccc;
+  text-shadow: 0px 1px 0px white;
+  background-color: #f8f8f8;
+  background-image: linear-gradient(#fefefe, #f8f8f8);
+  background-repeat: repeat-x;
+}
+
+.bubble-contents {
+  margin-bottom: 23px;
+}
+
+.vmiddle {
+  vertical-align: middle;
+}
+
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Colors */
+/* Font Sizes */
+/* Borders */
+/* Buttons */
+table {
+  border-collapse: separate;
+}
+
+/* CSS Bootstrap Div Table */
+/* Layout */
+.bootstrap-table {
+  position: relative;
+}
+
+.row {
+  overflow: hidden;
+  position: relative;
+  margin: 0px !important;
+}
+
+.row-cell {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+}
+
+/* Style */
+.bootstrap-table {
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.row-border {
+  border-top: 1px solid #CCCCCC;
+}
+
+.row-cell {
+  border-left: 1px solid #CCCCCC;
+}
+
+.last-row {
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.last-cell {
+  border-right: 1px solid #CCCCCC;
+}
+
+.matrix-table-legend {
+  border: 3px double #ccc;
+  padding: 0.5em;
+  font-size: 12px;
+}
+
+.matrix-table-legend-dt {
+  font-weight: bold;
+  color: green;
+}
+
+.matrix-table-legend-dt:after {
+  content: ":";
+}
+
+.indicator-cell {
+  position: relative;
+}
+
+.indicator-cell a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.indicator-title {
+  font-weight: bold;
+}
+
+.indicator-description {
+  font-size: 12px;
+  padding-bottom: 20px;
+}
+
+.indicator-points {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0px 5px;
+  color: #cccb98;
+  font-weight: bold;
+}
+
+.negative-container {
+  margin-bottom: 15px;
+}
+
+.negative-content {
+  font-size: 12px;
+  color: #7b7c7f;
+  -moz-hyphens: auto;
+  word-wrap: break-word;
+}
+
+.negative-points {
+  float: right;
+  margin-left: 10px;
+  color: #de6b3c;
+  font-weight: bold;
+}
+
+/* CSS Div Table */
+.dtable {
+  display: table;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.dtable-row {
+  display: table-row;
+}
+
+.dheader-style {
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0px 1px 0px #FFFFFF;
+  background-color: #f8f8f8;
+  background-image: linear-gradient(#fefefe, #f8f8f8);
+  background-repeat: repeat-x;
+}
+
+.dheader-style-border-l {
+  border-left: 1px solid #E5E5E5;
+}
+
+.dtable-cell {
+  display: table-cell;
+  vertical-align: top;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 4px 6px;
+}
+
+.dtable-last-cell {
+  border-right: none;
+}
+
+.col-1-6 {
+  width: 16.66667%;
+}
+
+.col-5-6 {
+  width: 83.33334%;
+}
+
+/* Indicator Pages */
+.indicator-page-title {
+  display: inline-block;
+  padding: 0 0 0 15px !important;
+  color: #cccb98;
+}
+
+.indicator-page-title h2 {
+  display: inline;
+  font-weight: bold;
+}
+
+.indicator-table-legend {
+  padding-bottom: 10px;
+}
+
+.indicator-table-details {
+  padding-top: 20px;
+}
+
+.basic-level-bg {
+  background-color: #e8b809;
+}
+
+.subindicator-header {
+  border-top: 4px solid #d8d8d8 !important;
+}
+
+.basic-level-header {
+  border-top: 4px solid #e8b809 !important;
+}
+
+.basic-level-bg {
+  background-color: #e8b809;
+}
+
+.basic-level-bg-text {
+  background-color: #e8b809;
+  color: #5c5c5c;
+}
+
+.advanced-level-header {
+  border-top: 4px solid #fff101 !important;
+}
+
+.advanced-level-bg {
+  background-color: #fff101;
+}
+
+.advanced-level-bg-text {
+  background-color: #fff101;
+  color: #5c5c5c;
+}
+
+.experienced-level-header {
+  border-top: 4px solid #a3cf9a !important;
+}
+
+.experienced-level-bg {
+  background-color: #a3cf9a;
+}
+
+.experienced-level-bg-text {
+  background-color: #a3cf9a;
+  color: white;
+}
+
+.model-level-header {
+  border-top: 4px solid #40ae49 !important;
+}
+
+.model-level-bg {
+  background-color: #40ae49;
+}
+
+.model-level-bg-text {
+  background-color: #40ae49;
+  color: white;
+}
+
+.container-page {
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.container-header {
+  padding-bottom: 25px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.container-header {
+  text-align: center;
+}
+
+.indicator-page-title {
+  display: inline-block;
+  padding: 0 0 0 15px !important;
+}
+
+.indicator-page-title h2 {
+  display: inline;
+}
+
+.cke_editable {
+  padding: 1px 10px 1px 10px;
+  top: 23px;
+}
+
+.back-to-matrix {
+  float: left;
+  display: inline-block;
+}
+
+/* GENERAL - Start */
+.divcontainer:before,
+.divcontainer:after {
+  content: "";
+  display: table;
+}
+
+.divcontainer:after {
+  clear: both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.divcontainer {
+  zoom: 1;
+}
+
+/* end -------------- */
+.page-wrapper {
+  padding: 0 px 30px 5% 30px;
+}
+
+#header-container {
+  margin-bottom: 45px;
+}
+
+.main-page-introtext {
+  padding-bottom: 50px;
+}
+
+.main-page-container-link-title {
+  font-size: 4rem;
+}
+
+.main-page-container-link :hover {
+  text-decoration: none;
+}
+
+.main-page-container-link-description,
+.main-page-container-link-description:hover {
+  color: #666666;
+}
+
+.whitebg {
+  background-color: #fefefe;
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: none;
+  }
+}
+#footer-container {
+  clear: both;
+  float: right;
+  padding: 200px 0px 30px 0px;
+  color: #cccccc;
+}
+
+#footer-contents > a {
+  color: #99cccc;
+}
+
+.clear-both {
+  clear: both;
+}
+
+/* Action */
+.ind-trigger {
+  cursor: pointer;
+}
+
+/* NEW STYLES */
+#ecg-matrix-container {
+  padding-bottom: 50px;
+}

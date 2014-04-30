@@ -7,5 +7,7 @@
     "jquery": "~1.10.2"
   },
   "devDependencies": {
+    "dustjs-linkedin": "~2.3.4",
+    "dustjs-linkedin-helpers": "~1.2.0"
   }
 }

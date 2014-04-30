@@ -1,0 +1,55 @@
+/* Colors */
+$color-lighten-percentage: 30%;
+
+$grey: #CCCCCC;
+$grey-middle: #555555;
+$grey-middle-light: lighten($grey-middle, $color-lighten-percentage);
+$grey-border: #D8D8D8;
+$grey-light: #FEFEFE;
+$grey-light-darker: #F8F8F8;
+$grey-light-border: #E5E5E5;
+$grey-dark: #5C5C5C;
+$grey-darkest: #414141;
+
+$border-color: #EEEEEE;
+$bubble-border-color: #CCCCCC;
+
+$white: #FFFFFF;
+$black: #000000;
+
+$ecg-turquoise-color: #99CCCC;
+$ecg-olive-color: #CCCB98;
+$ecg-green2: #94BE4E;
+
+$negative-color: #DE6B3C;
+$negative-content-color: #7B7C7F;
+$basic-level-color: #E8B809;
+$advanced-level-color: #FFF101;
+$experienced-level-color: #A3CF9A;
+$model-level-color: #40AE49;
+
+$violet-color: #C54D94;
+
+/* Font Sizes */
+$font-size: 14px;
+$font-size-smaller: 12px;
+
+/* Borders */
+$border-medium-size: 4px;
+
+/* Buttons */
+$button-lighten-percentage: 20%;
+
+$primary-color: #60B044;
+$primary-lighter-color: lighten($primary-color, $button-lighten-percentage);
+$primary-border-color: darken($primary-color, 2%);
+
+$primary-hover-color: darken($primary-color, 4%);
+$primary-hover-lighter-color: lighten($primary-hover-color, $button-lighten-percentage);
+$primary-hover-border-color: darken($primary-hover-color, 2%);
+
+$primary-hover-color: darken($primary-color, 4%);
+$primary-selected-color: darken($primary-color, 10%);
+
+$primary-disabled-border-1-color: lighten($primary-color, 6%);
+$primary-disabled-border-2-color: darken($primary-color, 8%);
