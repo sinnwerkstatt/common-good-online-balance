@@ -203,7 +203,7 @@ class Company(models.Model):
         verbose_name_plural = _('Companies')
 
     def __unicode__(self):
-        return self.title
+        return self.name
 
     def get_absolute_url(self):
         path = reverse('company-detail', args=[self.pk])
@@ -214,7 +214,11 @@ class CompanyBalance(models.Model):
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='company_balances',
                               null=False,
                               blank=False)
+    company = models.ForeignKey('ecg_balancing.Company', verbose_name=_(u'Company'), related_name='balance',
+                              null=False,
+                              blank=False)
 
+    year = models.DateTimeField(_('Year'), blank=True, null=True)
     start_date = models.DateTimeField(_('Start Date'), blank=True, null=True)
     end_date = models.DateTimeField(_('End Date'), blank=True, null=True)
 
@@ -230,7 +234,11 @@ class CompanyBalance(models.Model):
         verbose_name_plural = _('Year Balances')
 
     def __unicode__(self):
-        return self.name
+        return '%s:%s:%s' % (
+            unicode(self.company),
+            unicode(self.matrix),
+            unicode(self.year)
+        )
 
 class CompanyBalanceIndicator(models.Model):
     company_balance = models.ForeignKey('ecg_balancing.CompanyBalance',

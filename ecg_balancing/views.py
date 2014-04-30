@@ -1,44 +1,52 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404
-from django.utils.translation import ungettext, ugettext_lazy as _
 from django.views.generic import CreateView, DetailView, UpdateView, ListView
-from django.contrib.auth.models import User
 
 from ecg_balancing.models import *
 
+
 class CompanyListView(ListView):
-	model = Company
+    model = Company
+
 
 class UserDetailView(DetailView):
-	model = User
+    model = User
+
 
 class UserUpdateView(UpdateView):
-	model = User
+    model = User
+
 
 class CompanyDetailView(DetailView):
-	model = Company
+    model = Company
+
 
 class CompanyUpdateView(UpdateView):
-	model = Company
+    model = Company
+
 
 class CompanyBalanceDetailView(DetailView):
-	model = CompanyBalance
+    model = CompanyBalance
+    template_name = 'ecg_balancing/company_balance_detail.html'
+
 
 class CompanyBalanceCreateView(CreateView):
-	model = CompanyBalance
+    model = CompanyBalance
+
 
 class CompanyBalanceUpdateView(UpdateView):
-	model = CompanyBalance
+    model = CompanyBalance
+
 
 class CompanyBalanceIndicatorDetailView(DetailView):
-	model = CompanyBalanceIndicator
+    model = CompanyBalanceIndicator
+
 
 class CompanyBalanceIndicatorCreateView(CreateView):
-	model = CompanyBalanceIndicator
+    model = CompanyBalanceIndicator
+
 
 class CompanyBalanceIndicatorUpdateView(UpdateView):
-	model = CompanyBalanceIndicator
+    model = CompanyBalanceIndicator
 
