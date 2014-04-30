@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-29 13:48+0200\n"
+"POT-Creation-Date: 2014-04-30 12:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,21 +20,21 @@ msgstr ""
 
 #: ecg_balancing/models.py:36
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: ecg_balancing/models.py:38 ecg_balancing/models.py:74
 #: ecg_balancing/models.py:184
 msgid "Email"
-msgstr ""
+msgstr "E-Mail"
 
 #: ecg_balancing/models.py:41 ecg_balancing/models.py:62
 #: ecg_balancing/models.py:214
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #: ecg_balancing/models.py:42
 msgid "Matrices"
-msgstr ""
+msgstr "Matrizen"
 
 #: ecg_balancing/models.py:55
 msgid "Value 1"
@@ -58,15 +58,15 @@ msgstr ""
 
 #: ecg_balancing/models.py:66 ecg_balancing/models.py:175
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: ecg_balancing/models.py:67 templates/ecg-matrix-overview.html:9
 msgid "Stakeholder"
-msgstr ""
+msgstr "Berührungsgruppe"
 
 #: ecg_balancing/models.py:68 templates/ecg-matrix-overview.html:9
 msgid "Value"
-msgstr ""
+msgstr "Wert"
 
 #: ecg_balancing/models.py:69
 msgid "Max Evaluation"
@@ -76,13 +76,13 @@ msgstr ""
 msgid "Parent Indicator"
 msgstr ""
 
-#: ecg_balancing/models.py:77 ecg_balancing/models.py:241
+#: ecg_balancing/models.py:77 ecg_balancing/models.py:249
 msgid "Indicator"
-msgstr ""
+msgstr "Indikator"
 
 #: ecg_balancing/models.py:78
 msgid "Indicators"
-msgstr ""
+msgstr "Indikatoren"
 
 #: ecg_balancing/models.py:121
 msgid "Aerospace and Defense"
@@ -197,7 +197,7 @@ msgid "Travel and Leisure"
 msgstr ""
 
 #: ecg_balancing/models.py:149 ecg_balancing/models.py:202
-#: ecg_balancing/models.py:266
+#: ecg_balancing/models.py:217 ecg_balancing/models.py:274
 #, fuzzy
 msgid "Company"
 msgstr "Unternehmen"
@@ -310,111 +310,119 @@ msgstr ""
 msgid "Companies"
 msgstr "Unternehmen"
 
-#: ecg_balancing/models.py:218
+#: ecg_balancing/models.py:221
+msgid "Year"
+msgstr ""
+
+#: ecg_balancing/models.py:222
 msgid "Start Date"
 msgstr ""
 
-#: ecg_balancing/models.py:219
+#: ecg_balancing/models.py:223
 msgid "End Date"
 msgstr ""
 
-#: ecg_balancing/models.py:221
+#: ecg_balancing/models.py:225
 #, fuzzy
 msgid "Peer Companies"
 msgstr "Unternehmen"
 
-#: ecg_balancing/models.py:222
+#: ecg_balancing/models.py:226
 msgid "Auditor"
 msgstr ""
 
-#: ecg_balancing/models.py:223
+#: ecg_balancing/models.py:227
 msgid "The Company and Common Good"
 msgstr ""
 
-#: ecg_balancing/models.py:224
+#: ecg_balancing/models.py:228
 msgid "Prospect"
 msgstr ""
 
-#: ecg_balancing/models.py:225
+#: ecg_balancing/models.py:229
 msgid "Balance process description"
 msgstr ""
 
-#: ecg_balancing/models.py:229
+#: ecg_balancing/models.py:233
 msgid "Year Balance"
 msgstr ""
 
-#: ecg_balancing/models.py:230
+#: ecg_balancing/models.py:234
 msgid "Year Balances"
 msgstr ""
 
-#: ecg_balancing/models.py:237
+#: ecg_balancing/models.py:245
 msgid "Company Balance"
 msgstr ""
 
-#: ecg_balancing/models.py:245
+#: ecg_balancing/models.py:253
 msgid "Description"
 msgstr ""
 
-#: ecg_balancing/models.py:246
+#: ecg_balancing/models.py:254
 msgid "Evaluation"
 msgstr ""
 
-#: ecg_balancing/models.py:249
+#: ecg_balancing/models.py:257
 msgid "Company Balance Indicator"
 msgstr ""
 
-#: ecg_balancing/models.py:250
+#: ecg_balancing/models.py:258
 msgid "Company Balance Indicators"
 msgstr ""
 
-#: ecg_balancing/models.py:262
+#: ecg_balancing/models.py:270
 msgid "Admin"
 msgstr ""
 
-#: ecg_balancing/models.py:263
+#: ecg_balancing/models.py:271
 msgid "Guest"
 msgstr ""
 
-#: ecg_balancing/models.py:267
+#: ecg_balancing/models.py:275
 msgid "User"
 msgstr ""
 
-#: ecg_balancing/models.py:268
+#: ecg_balancing/models.py:276
 msgid "Role"
 msgstr ""
 
-#: ecg_balancing/models.py:271
+#: ecg_balancing/models.py:279
 msgid "User Role"
 msgstr ""
 
-#: ecg_balancing/models.py:272
+#: ecg_balancing/models.py:280
 msgid "User Roles"
 msgstr ""
 
-#: templates/balance-matrix.html:4
+#: ecg_balancing/templates/ecg_balancing/company_balance_detail.html:4
 #, fuzzy
 msgid "Company name"
 msgstr "Unternehmen"
 
+#: templates/base.html:21
+msgid "ECG Balancing"
+msgstr "GWÖ Online Bilanzierung"
+
 #: templates/ecg-matrix-overview.html:11
 msgid "Human Dignity"
-msgstr ""
+msgstr "Menschenwürde"
 
 #: templates/ecg-matrix-overview.html:12
 msgid "Cooperation and Solidarity"
-msgstr ""
+msgstr "Solidarity"
 
 #: templates/ecg-matrix-overview.html:13
 msgid "Ecological Sustainability"
-msgstr ""
+msgstr "Ökologische Nachhaltigkeit"
 
 #: templates/ecg-matrix-overview.html:14
 msgid "Social Justice"
-msgstr ""
+msgstr "Soziale Gerechtigkeit"
 
 #: templates/ecg-matrix-overview.html:15
 msgid "Democratic Co-determination and Transparency"
-msgstr ""
+msgstr "Demokratische Mitbestimmung & Transparenz"
 
 #: templates/footer.html:5
 msgid "Legal notice"

@@ -18,11 +18,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   {% block pagetitle %}
-  <title>flashpoll{% if request.current_page.get_menu_title %} &raquo;
+  <title>{% trans "ECG Balancing" %}{% if request.current_page.get_menu_title %} &raquo;
     {{ request.current_page.get_menu_title }}{% endif %}</title>
   {% endblock %}
-  <link rel="icon" href="{% static " favicon.ico
-  " %}"/>
+  <link rel="icon" href="{% static 'images/ecg-seeds_30h.png' %}"/>
 
   <link href="{% static 'css/bootstrap3-ecg.css' %}" rel="stylesheet">
 
