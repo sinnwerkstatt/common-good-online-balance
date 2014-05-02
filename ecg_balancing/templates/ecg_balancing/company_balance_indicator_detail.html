@@ -10,15 +10,13 @@
 {% block page_title %}{{ object.indicator }} - {{ object.company_balance.company }} - {% trans 'ECG Balance'%} {{ object.company_balance.year|date:"Y" }}{% endblock %}
 
 {% block base_content %}
-<div class="text-center">
+<div class="indicator-page-header text-center">
   <h1>{{ object.company_balance.company }}</h1>
   <h2>{% trans 'ECG Balance'%} {{ object.company_balance.year|date:"Y" }}</h2>
 </div>
-<br/>
-<br/>
 
-<div class="meta-indicator-title center ecg-green">
-  {{ object.indicator }} - Titel des Indikators kommt hier
+<div class="indicator-page-title center ecg-green">
+  <h2>{{ object.indicator }} - Titel des Indikators kommt hier</h2>
 </div>
 <div class="indicator-editor-container bubble">
     <div class="bubble-inner">

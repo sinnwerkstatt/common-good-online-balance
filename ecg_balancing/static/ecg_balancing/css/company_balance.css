@@ -259,10 +259,13 @@ table {
 }
 
 /* Indicator Pages */
+.indicator-page-header {
+  margin-bottom: 30px;
+}
+
 .indicator-page-title {
-  display: inline-block;
-  padding: 0 0 0 15px !important;
   color: #cccb98;
+  margin-bottom: 5px;
 }
 
 .indicator-page-title h2 {
@@ -373,15 +376,6 @@ table {
 
 .container-header {
   text-align: center;
-}
-
-.indicator-page-title {
-  display: inline-block;
-  padding: 0 0 0 15px !important;
-}
-
-.indicator-page-title h2 {
-  display: inline;
 }
 
 .cke_editable {

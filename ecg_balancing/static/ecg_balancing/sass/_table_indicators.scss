@@ -1,10 +1,14 @@
 
 /* Indicator Pages */
 
+
+.indicator-page-header {
+  margin-bottom: 30px;
+}
+
 .indicator-page-title {
-  display: inline-block;
-  padding: 0 0 0 15px !important;
   color: $ecg-olive-color;
+  margin-bottom: 5px;
 }
 
 .indicator-page-title h2 {
