@@ -1,0 +1,74 @@
+@import "variables";
+
+.button {
+  display: inline-block;
+  position: relative;
+  padding: 7px 15px;
+  font-size: 13px;
+  font-weight: bold;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: #EAEAEA;
+  background-image: linear-gradient(#FAFAFA, #EAEAEA);
+  background-repeat: repeat-x;
+  border-color: #DDDDDD #DDDDDD #C5C5C5;
+  border-image: none;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  outline: medium none;
+  color: #333333;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.898);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.button:disabled,
+.button:disabled:hover,
+.button.disabled,
+.button.disabled:hover {
+  background-color: #E5E5E5;
+  background-image: none;
+  border-color: #C5C5C5;
+  box-shadow: none;
+  color: #666666;
+  opacity: 0.5;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.898);
+  cursor: default;
+}
+
+.button.primary {
+  background-color: $primary-color;
+  background-image: linear-gradient($primary-lighter-color, $primary-color);
+  background-repeat: repeat-x;
+  border-color: $primary-border-color;
+  color: $white;
+  text-shadow: 0 -1px 0 rgba($black, 0.25);
+}
+
+.button.primary:hover {
+  background-color: $primary-hover-color;
+  background-image: linear-gradient($primary-hover-lighter-color, $primary-hover-color);
+  background-repeat: repeat-x;
+  border-color: $primary-hover-border-color;
+  color: $white;
+}
+
+.button.primary:active,
+.button.primary.selected, {
+  background-color: $primary-hover-color;
+  background-image: none;
+  border-color: $primary-selected-color;
+}
+
+.button.primary:disabled,
+.button.primary:disabled:hover,
+.button.primary.disabled,
+.button.primary.disabled:hover {
+  background-color: $primary-color;
+  background-image: linear-gradient($primary-lighter-color, $primary-color);
+  background-repeat: repeat-x;
+  border-color: $primary-disabled-border-1-color $primary-disabled-border-1-color $primary-disabled-border-2-color;
+  color: $white;
+  text-shadow: 0 -1px 0 rgba($black, 0.25);
+}

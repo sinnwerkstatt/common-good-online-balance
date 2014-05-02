@@ -41,6 +41,7 @@ class CompanyBalanceUpdateView(UpdateView):
 
 class CompanyBalanceIndicatorDetailView(DetailView):
     model = CompanyBalanceIndicator
+    template_name = 'ecg_balancing/company_balance_indicator_detail.html'
 
 
 class CompanyBalanceIndicatorCreateView(CreateView):

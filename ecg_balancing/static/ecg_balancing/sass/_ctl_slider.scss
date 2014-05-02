@@ -1,0 +1,49 @@
+//.ctl-horizontal.flat {
+//  margin: 21px 20px 10px 0px !important;
+//}
+//
+//.ctl-box.flat > .ctl-handle {
+//  background-color: #16a085;
+//  box-shadow: 0 0 0px 3px #16A085;
+//}
+//
+//.ctl-box.flat > .ctl-meter {
+//  background-color: #263330;
+//}
+//
+//.ctl-horizontal.flat > .ctl-input, .ctl-horizontal.flat > .ctl-number {
+//  right: -40px !important;
+//  top: -18px !important;
+//}
+//
+//$ctl-slider-number-width: 2ex;
+//
+//.ctl-box.flat > .ctl-number {
+//  width: $ctl-slider-number-width !important;
+//  max-width: $ctl-slider-number-width !important;
+//  min-width: $ctl-slider-number-width !important;
+//}
+//
+//.ctl-box.flat > .ctl-input {
+//  max-width: $ctl-slider-number-width !important;
+//  min-width: $ctl-slider-number-width !important;
+//}
+
+.company-balance-indicator-slider {
+  width: 140px; // enough for 3 letters
+  padding-right: 25px;
+
+  .form-control:focus {
+    border-color: #CCCCCC;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.075);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.075);
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  /* Chrome- and Safari-specific CSS here*/
+  .company-balance-indicator-slider .form-control{
+    height: auto;
+  }
+}

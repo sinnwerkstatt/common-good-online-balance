@@ -51,12 +51,14 @@ class Indicator(models.Model):
     ECG_VALUE_3 = '3'
     ECG_VALUE_4 = '4'
     ECG_VALUE_5 = '5'
+    ECG_VALUE_ALL = '0'
     ECG_VALUES = (
         (ECG_VALUE_1, _('Value 1')),
         (ECG_VALUE_2, _('Value 2')),
         (ECG_VALUE_3, _('Value 3')),
         (ECG_VALUE_4, _('Value 4')),
         (ECG_VALUE_5, _('Value 5')),
+        (ECG_VALUE_ALL, _('All')),
     )
 
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='indicators',
@@ -69,8 +71,8 @@ class Indicator(models.Model):
     max_evaluation = models.IntegerField(_('Max Evaluation'))
 
     parent = models.ForeignKey('ecg_balancing.Indicator', verbose_name=_(u'Parent Indicator'), related_name='parent_indicator',
-                              null=False,
-                              blank=False)
+                              null=True,
+                              blank=True)
     contact = models.EmailField(_('Email'), blank=True, null=True)
 
     class Meta:
@@ -78,7 +80,10 @@ class Indicator(models.Model):
         verbose_name_plural = _('Indicators')
 
     def __unicode__(self):
-        return self.title
+        return '%s%s' % (
+            unicode(self.stakeholder).upper(),
+            unicode(self.ecg_value)
+        )
 
 
 # -------------------------------- COMPANY MODELS --------------------------------
@@ -237,7 +242,7 @@ class CompanyBalance(models.Model):
         return '%s:%s:%s' % (
             unicode(self.company),
             unicode(self.matrix),
-            unicode(self.year)
+            unicode(self.year.year)
         )
 
 class CompanyBalanceIndicator(models.Model):
@@ -250,8 +255,8 @@ class CompanyBalanceIndicator(models.Model):
                             null=False,
                             blank=False)
 
-    description = models.CharField(_('Description'), max_length=255, blank=True, null=True)
-    evaluation = models.IntegerField(_('Evaluation'))
+    description = models.TextField(_('Description'), blank=True, null=True)
+    evaluation = models.IntegerField(_('Evaluation'), default=0)
 
     class Meta:
         verbose_name = _('Company Balance Indicator')

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags %}
+{% load static from staticfiles %}
+
+{% block css %}
+{{ block.super }}
+<link href="{% static 'ecg_balancing/css/company_balance.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block page_title %}{{ object.indicator }} - {{ object.company_balance.company }} - {% trans 'ECG Balance'%} {{ object.company_balance.year|date:"Y" }}{% endblock %}
+
+{% block base_content %}
+<div class="text-center">
+  <h1>{{ object.company_balance.company }}</h1>
+  <h2>{% trans 'ECG Balance'%} {{ object.company_balance.year|date:"Y" }}</h2>
+  <h2>{{ object.indicator }}</h2>
+</div>
+
+
+<div class="indicator-editor-container bubble">
+    <div class="bubble-inner">
+        <div class="meta">&nbsp;
+          <button type="button" class="button primary pull-right">Speichern</button>
+          <div id="company-balance-indicator-xx-slider" class="company-balance-indicator-slider pull-right">
+            <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
+            <input id="company-balance-indicator-xx-points" type="text" value="0" name="demo1" class="center">
+          </div>
+          <br/>
+        </div>
+
+        <div class="bubble-contents">
+            <textarea name="company-balance-indicator-xx-editor">
+                <h2>Editieren Sie diesen Indikator</h2>
+
+                <p>Einfach:</p>
+                <ul>
+                    <li>darauf klicken</li>
+                    <li>editieren</li>
+                </ul>
+            </textarea>
+        </div>
+
+    </div>
+</div>
+
+{% endblock base_content %}
+
+
+{% block javascript %}
+{{ block.super }}
+<script src="{% static 'ecg_balancing/js/vendor/ckeditor/ckeditor.js' %}"></script>
+<!--<script src="{% static 'ecg_balancing/js/vendor/ctl.singlefile.experimental.min.js' %}"></script>-->
+<script src="{% static 'ecg_balancing/js/vendor/bootstrap.touchspin.js' %}"></script>
+<script src="{% static 'ecg_balancing/js/company_balance_indicator_detail.js' %}"></script>
+{% endblock javascript %}
