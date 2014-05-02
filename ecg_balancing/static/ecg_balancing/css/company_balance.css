@@ -88,7 +88,7 @@
 
 .bubble-inner .meta {
   height: 43px;
-  padding: 5px;
+  padding: 5px 5px 20px 5px;
   border-bottom: 1px solid #cccccc;
   text-shadow: 0px 1px 0px white;
   background-color: #f8f8f8;
@@ -336,6 +336,10 @@ table {
 .model-level-bg-text {
   background-color: #40ae49;
   color: white;
+}
+
+.meta-indicator-title {
+  font-size: 30px;
 }
 
 .company-balance-indicator-slider {

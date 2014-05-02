@@ -13,13 +13,16 @@
 <div class="text-center">
   <h1>{{ object.company_balance.company }}</h1>
   <h2>{% trans 'ECG Balance'%} {{ object.company_balance.year|date:"Y" }}</h2>
-  <h2>{{ object.indicator }}</h2>
 </div>
+<br/>
+<br/>
 
-
+<div class="meta-indicator-title center ecg-green">
+  {{ object.indicator }} - Titel des Indikators kommt hier
+</div>
 <div class="indicator-editor-container bubble">
     <div class="bubble-inner">
-        <div class="meta">&nbsp;
+        <div class="meta">
           <button type="button" class="button primary pull-right">Speichern</button>
           <div id="company-balance-indicator-xx-slider" class="company-balance-indicator-slider pull-right">
             <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
