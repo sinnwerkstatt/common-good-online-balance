@@ -7,7 +7,7 @@
 <link href="{% static 'ecg_balancing/css/company_balance.css' %}" rel="stylesheet">
 {% endblock css %}
 
-{% block page_title %}{{ object.indicator }} - {{ object.company_balance.company }} - {% trans 'ECG Balance'%} {{ object.company_balance.year|date:"Y" }}{% endblock %}
+{% block page_title %}{{ object.indicator|upper }} - {{ object.company_balance.company }} - {% trans 'ECG Balance'%} {{ object.company_balance.year|date:"Y" }}{% endblock %}
 
 {% block base_content %}
 <div class="indicator-page-header text-center">
@@ -15,25 +15,21 @@
   <h2>{% trans 'ECG Balance'%} {{ object.company_balance.year|date:"Y" }}</h2>
 </div>
 
-<div class="indicator-page-title center ecg-green">
-  <h2>{{ object.indicator }} - Titel des Indikators kommt hier</h2>
-</div>
+<h2 class="indicator-page-title center ecg-green">{{ object.indicator|upper }} - Titel des Indikators kommt hier</h2>
 <div class="indicator-editor-container bubble">
     <div class="bubble-inner">
         <div class="meta">
           <button type="button" class="button primary pull-right">Speichern</button>
-          <div id="company-balance-indicator-xx-slider" class="company-balance-indicator-slider pull-right">
+          <div id="company-balance-indicator-{{object.indicator}}-0-slider" class="company-balance-indicator-slider pull-right">
             <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
-            <input id="company-balance-indicator-xx-points" type="text" value="0" name="demo1" class="center">
+            <input id="company-balance-indicator-{{object.indicator}}-0-points" type="text" value="0" name="demo1" class="center">
           </div>
           <br/>
         </div>
 
         <div class="bubble-contents">
-            <textarea name="company-balance-indicator-xx-editor">
-                <h2>Editieren Sie diesen Indikator</h2>
-
-                <p>Einfach:</p>
+            <textarea name="company-balance-indicator-{{object.indicator}}-0-editor">
+                <p>Editieren Sie diesen Indikator:</p>
                 <ul>
                     <li>darauf klicken</li>
                     <li>editieren</li>
@@ -44,6 +40,33 @@
     </div>
 </div>
 
+{% for subindicator in subindicators %}
+<h3 class="subindicator-title ecg-green" data-position="{{ subindicator.subindicator_number }}"></h3>
+<div class="indicator-editor-container bubble">
+    <div class="bubble-inner">
+        <div class="meta">
+          <button type="button" class="button primary pull-right">Speichern</button>
+          <div id="company-balance-indicator-{{subindicator.slugify}}-slider" class="company-balance-indicator-slider pull-right">
+            <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
+            <input id="company-balance-indicator-{{subindicator.slugify}}-points" type="text" value="0" name="demo1" class="center">
+          </div>
+          <br/>
+        </div>
+
+        <div class="bubble-contents">
+            <textarea name="company-balance-indicator-{{subindicator.slugify}}-editor">
+                <p>Editieren Sie diesen Indikator</p>
+                <ul>
+                    <li>darauf klicken</li>
+                    <li>editieren</li>
+                </ul>
+            </textarea>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+
 {% endblock base_content %}
 
 
@@ -52,5 +75,11 @@
 <script src="{% static 'ecg_balancing/js/vendor/ckeditor/ckeditor.js' %}"></script>
 <!--<script src="{% static 'ecg_balancing/js/vendor/ctl.singlefile.experimental.min.js' %}"></script>-->
 <script src="{% static 'ecg_balancing/js/vendor/bootstrap.touchspin.js' %}"></script>
+{% get_current_language as LANGUAGE_CODE %}
+<script src="{% static 'js/data/indicators' %}/{{ LANGUAGE_CODE }}/ecg-indicators-{{ object.indicator }}-data_{{ LANGUAGE_CODE }}.js"></script>
+
+<script type="text/javascript">
+
+</script>
 <script src="{% static 'ecg_balancing/js/company_balance_indicator_detail.js' %}"></script>
 {% endblock javascript %}

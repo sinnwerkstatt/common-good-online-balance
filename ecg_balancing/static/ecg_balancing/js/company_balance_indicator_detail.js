@@ -82,25 +82,56 @@ var ckeditor_config = {
     // minimumChangeMilliseconds : 200
 };
 
+// activate indicator editor
+var indicatorShortCodeSlug = indicator.shortcodeSlug;
 
-var editorId = 'company-balance-indicator-xx-editor';
+var indicatorPrefixId = 'company-balance-indicator-'+indicatorShortCodeSlug+'-0';
+var editorId = indicatorPrefixId+'-editor';
 CKEDITOR.disableAutoInline = true;
 CKEDITOR.inline(editorId, ckeditor_config);
 
-//var inputElement = document.getElementById('ohai');
-//var slider = new Ctl(inputElement);
-
-var pointsEl = $("#company-balance-indicator-xx-points")
-
-pointsEl.TouchSpin({
+// activate indicator evaluation
+var touchSpinSettings = {
     min: 0,
-    max: 90,
-    step: 1,
+    max: 100,
+    step: 10,
     decimals: 0,
     boostat: 3,
     maxboostedstep: 10
-});
-
+};
+var pointsEl = $('#'+indicatorPrefixId+'-points');
+pointsEl.TouchSpin(touchSpinSettings);
 pointsEl.on('change', function(e) {
     console.log('new points: ' + e.target.value);
+});
+
+$('.subindicator-title').each(function(e) {
+    var $this = $(this);
+    var position = $this.data('position');
+    var title = indicator.shortcode + '.' + position;
+
+    $.each(indicator.table.subindicators, function( index, subindicator ) {
+        if (subindicator.position === position+'') {
+            $this.html(title + ' - ' + subindicator.title);
+        }
+    });
+
+});
+
+// activate subindicators
+$.each(indicator.table.subindicators, function( index, subindicator ) {
+    var subIdPrefix = 'company-balance-indicator-'+indicatorShortCodeSlug+'-'+subindicator.position;
+    console.log( index + ": " + subIdPrefix );
+
+    // activate editor
+    var editorId = subIdPrefix+'-editor';
+    CKEDITOR.disableAutoInline = true;
+    CKEDITOR.inline(editorId, ckeditor_config);
+
+    // activate evaluation
+    pointsEl = $('#'+subIdPrefix+'-points');
+    pointsEl.TouchSpin(touchSpinSettings);
+    pointsEl.on('change', function(e) {
+        console.log('new points: ' + e.target.value);
+    });
 });

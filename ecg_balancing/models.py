@@ -68,11 +68,13 @@ class Indicator(models.Model):
     title = models.CharField(_('Name'), max_length=255)
     stakeholder = models.CharField(_('Stakeholder'), max_length=1, choices=STAKEHOLDERS)
     ecg_value = models.CharField(_('Value'), max_length=1, choices=ECG_VALUES)
+    subindicator_number = models.IntegerField(_('Subindicator Number'), help_text=_('Enter only for a subindicator, an indicator with a parent.'))
     max_evaluation = models.IntegerField(_('Max Evaluation'))
 
     parent = models.ForeignKey('ecg_balancing.Indicator', verbose_name=_(u'Parent Indicator'), related_name='parent_indicator',
                               null=True,
                               blank=True)
+
     contact = models.EmailField(_('Email'), blank=True, null=True)
 
     class Meta:
@@ -80,11 +82,30 @@ class Indicator(models.Model):
         verbose_name_plural = _('Indicators')
 
     def __unicode__(self):
-        return '%s%s' % (
-            unicode(self.stakeholder).upper(),
-            unicode(self.ecg_value)
-        )
+        if  self.parent is None:
+            return '%s%s' % (
+                unicode(self.stakeholder),
+                unicode(self.ecg_value)
+            )
+        else:
+            return '%s%s.%s' % (
+                unicode(self.stakeholder),
+                unicode(self.ecg_value),
+                unicode(self.subindicator_number)
+            )
 
+    def slugify(self):
+        if  self.parent is None:
+            return '%s%s' % (
+                unicode(self.stakeholder),
+                unicode(self.ecg_value)
+            )
+        else:
+            return '%s%s-%s' % (
+                unicode(self.stakeholder),
+                unicode(self.ecg_value),
+                unicode(self.subindicator_number)
+            )
 
 # -------------------------------- COMPANY MODELS --------------------------------
 

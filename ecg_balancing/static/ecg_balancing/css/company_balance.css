@@ -266,10 +266,6 @@ table {
 .indicator-page-title {
   color: #cccb98;
   margin-bottom: 5px;
-}
-
-.indicator-page-title h2 {
-  display: inline;
   font-weight: bold;
 }
 
@@ -343,6 +339,10 @@ table {
 
 .meta-indicator-title {
   font-size: 30px;
+}
+
+.subindicator-title {
+  padding-top: 30px;
 }
 
 .company-balance-indicator-slider {

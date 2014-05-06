@@ -43,6 +43,13 @@ class CompanyBalanceIndicatorDetailView(DetailView):
     model = CompanyBalanceIndicator
     template_name = 'ecg_balancing/company_balance_indicator_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(CompanyBalanceIndicatorDetailView, self).get_context_data(**kwargs)
+        # TODO: simplify the query?
+        subindicators = Indicator.objects.filter(parent=self.object.indicator).all().order_by('subindicator_number').all()
+        context['subindicators'] = subindicators
+        return context
+
 
 class CompanyBalanceIndicatorCreateView(CreateView):
     model = CompanyBalanceIndicator
