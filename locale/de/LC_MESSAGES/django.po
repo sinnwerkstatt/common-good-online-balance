@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 18:16+0200\n"
+"POT-Creation-Date: 2014-05-08 00:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -287,30 +287,37 @@ msgid "Fax Number"
 msgstr "Faxnummer"
 
 #: ecg_balancing/models.py:215
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:104
 msgid "Industry"
 msgstr "Industrie"
 
 #: ecg_balancing/models.py:216
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:107
 msgid "Activities"
 msgstr "Tätigkeiten"
 
 #: ecg_balancing/models.py:217
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:110
 msgid "Number of employees"
 msgstr "Anzahl der Mitarbeiter"
 
 #: ecg_balancing/models.py:218
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:113
 msgid "Revenue"
 msgstr "Umsatz"
 
 #: ecg_balancing/models.py:220
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:119
 msgid "Foundation Date"
 msgstr "Gründungsdatum"
 
 #: ecg_balancing/models.py:221
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:122
 msgid "Owners"
 msgstr "Inhaber"
 
 #: ecg_balancing/models.py:222
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:125
 msgid "Managing Directors"
 msgstr "Geschäftsführer"
 
@@ -319,7 +326,7 @@ msgid "Model Creation Date"
 msgstr ""
 
 #: ecg_balancing/models.py:229 ecg_balancing/models.py:297
-#: ecg_balancing/templates/ecg_balancing/user_profile.html:36
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:36
 #: templates/topmenu.html:11
 msgid "Companies"
 msgstr "Unternehmen"
@@ -413,21 +420,50 @@ msgstr ""
 #: ecg_balancing/templates/ecg_balancing/company_balance_detail.html:15
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:10
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:15
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:58
 msgid "ECG Balance"
 msgstr "GWÖ Bilanz"
 
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:25
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:55
+#: ecg_balancing/templates/ecg_balancing/company_update.html:45
 msgid "Save"
 msgstr "Speichern"
 
-#: ecg_balancing/templates/ecg_balancing/user_profile.html:19
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:18
+#: ecg_balancing/templates/ecg_balancing/company_update.html:10
+#: ecg_balancing/templates/ecg_balancing/company_update.html:35
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:34
+#: ecg_balancing/templates/ecg_balancing/user_update.html:10
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:54
+#, fuzzy
+msgid "ECG Balances"
+msgstr "GWÖ Bilanz"
+
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:65
+#, fuzzy
+msgid "Create ECG Balance"
+msgstr "GWÖ Bilanz"
+
+#: ecg_balancing/templates/ecg_balancing/company_update.html:18
+#: ecg_balancing/templates/ecg_balancing/user_update.html:18
+msgid "Back"
+msgstr "Zurück"
+
+#: ecg_balancing/templates/ecg_balancing/company_update.html:41
+msgid "Please fill out"
+msgstr "bitte ausfüllen"
+
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:19
 msgid "Upload profile photo"
 msgstr "Profilbild hochladen"
 
-#: ecg_balancing/templates/ecg_balancing/user_profile.html:34
-msgid "Edit"
-msgstr "Bearbeiten"
+#: ecg_balancing/templates/ecg_balancing/user_update.html:21
+msgid "Edit profile"
+msgstr "Profil bearbeiten"
 
 #: templates/base.html:21
 msgid "ECG Balancing"
