@@ -8,15 +8,7 @@
 
 .profile-company-logo > .glyphicon {
   width: 100px;
-  font-size: 7em;
-}
-
-.glyphicon.glyphicon-grey {
-  color: $grey;
-
-  &:hover {
-    color: $grey-middle-light;
-  }
+  font-size: 5em;
 }
 
 .profile-user-name {
@@ -41,11 +33,14 @@
 }
 
 .profile-company-header {
-  margin-bottom: $distance-big;
+  padding-bottom: $distance-normal;
+  margin-bottom: $distance-biggest;
+  border-bottom: 1px solid $grey-light-border;
 }
 
 .profile-company-logo {
   float: left;
+  height: 100px;
 }
 
 .profile-company-details {

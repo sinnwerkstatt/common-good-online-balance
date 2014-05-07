@@ -197,6 +197,17 @@ img.right {
   user-select: none;
 }
 
+.glyphicon.glyphicon-grey {
+  color: #cccccc;
+}
+.glyphicon.glyphicon-grey:hover {
+  color: #a2a2a2;
+}
+
+.glyphicon.glyphicon-greyer {
+  color: #a2a2a2;
+}
+
 /* Colors */
 /* Font Sizes */
 /* Borders */

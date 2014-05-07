@@ -172,3 +172,18 @@ img.right {
   -o-user-select: none;
   user-select: none;
 }
+
+
+
+.glyphicon.glyphicon-grey {
+  color: $grey;
+
+  &:hover {
+    color: $grey-middle-light;
+  }
+}
+
+
+.glyphicon.glyphicon-greyer {
+  color: $grey-middle-light;
+}

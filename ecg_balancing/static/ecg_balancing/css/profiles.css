@@ -11,14 +11,7 @@
 
 .profile-company-logo > .glyphicon {
   width: 100px;
-  font-size: 7em;
-}
-
-.glyphicon.glyphicon-grey {
-  color: #cccccc;
-}
-.glyphicon.glyphicon-grey:hover {
-  color: #a2a2a2;
+  font-size: 5em;
 }
 
 .profile-user-name {
@@ -42,11 +35,14 @@
 }
 
 .profile-company-header {
-  margin-bottom: 15px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .profile-company-logo {
   float: left;
+  height: 100px;
 }
 
 .profile-company-details {
