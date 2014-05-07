@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 12:25+0200\n"
+"POT-Creation-Date: 2014-05-07 18:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -209,7 +209,7 @@ msgid "Travel and Leisure"
 msgstr ""
 
 #: ecg_balancing/models.py:175 ecg_balancing/models.py:228
-#: ecg_balancing/models.py:243 ecg_balancing/models.py:300
+#: ecg_balancing/models.py:243 ecg_balancing/models.py:308
 #, fuzzy
 msgid "Company"
 msgstr "Unternehmen"
@@ -254,7 +254,7 @@ msgstr ""
 msgid "More than 500.000 USD"
 msgstr ""
 
-#: ecg_balancing/models.py:202
+#: ecg_balancing/models.py:202 ecg_balancing/models.py:295
 msgid "Image"
 msgstr "Bild"
 
@@ -318,7 +318,9 @@ msgstr "Geschäftsführer"
 msgid "Model Creation Date"
 msgstr ""
 
-#: ecg_balancing/models.py:229 templates/topmenu.html:10
+#: ecg_balancing/models.py:229 ecg_balancing/models.py:297
+#: ecg_balancing/templates/ecg_balancing/user_profile.html:36
+#: templates/topmenu.html:11
 msgid "Companies"
 msgstr "Unternehmen"
 
@@ -383,27 +385,27 @@ msgstr ""
 msgid "Company Balance Indicators"
 msgstr ""
 
-#: ecg_balancing/models.py:296
+#: ecg_balancing/models.py:304
 msgid "Admin"
 msgstr ""
 
-#: ecg_balancing/models.py:297
+#: ecg_balancing/models.py:305
 msgid "Guest"
 msgstr ""
 
-#: ecg_balancing/models.py:301
+#: ecg_balancing/models.py:309
 msgid "User"
-msgstr ""
+msgstr "Benutzer"
 
-#: ecg_balancing/models.py:302
+#: ecg_balancing/models.py:310
 msgid "Role"
 msgstr ""
 
-#: ecg_balancing/models.py:305
+#: ecg_balancing/models.py:313
 msgid "User Role"
 msgstr ""
 
-#: ecg_balancing/models.py:306
+#: ecg_balancing/models.py:314
 msgid "User Roles"
 msgstr ""
 
@@ -414,6 +416,19 @@ msgstr ""
 msgid "ECG Balance"
 msgstr "GWÖ Bilanz"
 
+#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:25
+#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:55
+msgid "Save"
+msgstr "Speichern"
+
+#: ecg_balancing/templates/ecg_balancing/user_profile.html:19
+msgid "Upload profile photo"
+msgstr "Profilbild hochladen"
+
+#: ecg_balancing/templates/ecg_balancing/user_profile.html:34
+msgid "Edit"
+msgstr "Bearbeiten"
+
 #: templates/base.html:21
 msgid "ECG Balancing"
 msgstr "GWÖ Online Bilanzierung"
@@ -422,19 +437,19 @@ msgstr "GWÖ Online Bilanzierung"
 msgid "Legal notice"
 msgstr "Impressum"
 
-#: templates/topmenu.html:9
+#: templates/topmenu.html:10
 msgid "ECG Online Bilanzierung"
 msgstr "GWÖ Online Bilanzierung"
 
-#: templates/topmenu.html:23
+#: templates/topmenu.html:24
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/topmenu.html:24
+#: templates/topmenu.html:25
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: templates/topmenu.html:28
+#: templates/topmenu.html:29
 msgid "Login"
 msgstr "Login"
 
