@@ -87,13 +87,16 @@
 }
 
 .bubble-inner .meta {
-  height: 43px;
-  padding: 5px 5px 20px 5px;
+  padding: 10px 0px 10px 0px;
   border-bottom: 1px solid #cccccc;
   text-shadow: 0px 1px 0px white;
   background-color: #f8f8f8;
   background-image: linear-gradient(#fefefe, #f8f8f8);
   background-repeat: repeat-x;
+}
+
+.meta-left h3 {
+  display: inline;
 }
 
 .vmiddle {
@@ -341,8 +344,12 @@ table {
   font-size: 30px;
 }
 
-.subindicator-title {
-  padding-top: 30px;
+.indicator-editor-container {
+  margin-top: 30px;
+}
+
+.bubble-contents > .cke_textarea_inline {
+  margin-top: 42px;
 }
 
 .company-balance-indicator-slider {

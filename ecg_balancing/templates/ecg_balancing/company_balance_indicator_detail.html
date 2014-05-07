@@ -18,13 +18,16 @@
 <h2 class="indicator-page-title center ecg-green">{{ object.indicator|upper }} - Titel des Indikators kommt hier</h2>
 <div class="indicator-editor-container bubble">
     <div class="bubble-inner">
-        <div class="meta">
-          <button type="button" class="button primary pull-right">Speichern</button>
-          <div id="company-balance-indicator-{{object.indicator}}-0-slider" class="company-balance-indicator-slider pull-right">
-            <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
-            <input id="company-balance-indicator-{{object.indicator}}-0-points" type="text" value="0" name="demo1" class="center">
+        <div class="row meta">
+          <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
           </div>
-          <br/>
+          <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <button type="button" class="button primary pull-right">Speichern</button>
+            <div id="company-balance-indicator-{{object.indicator}}-0-slider" class="company-balance-indicator-slider pull-right">
+              <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
+              <input id="company-balance-indicator-{{object.indicator}}-0-points" type="text" value="0" name="demo1" class="center">
+            </div>
+          </div>
         </div>
 
         <div class="bubble-contents">
@@ -41,16 +44,20 @@
 </div>
 
 {% for subindicator in subindicators %}
-<h3 class="subindicator-title ecg-green" data-position="{{ subindicator.subindicator_number }}"></h3>
+
 <div class="indicator-editor-container bubble">
     <div class="bubble-inner">
-        <div class="meta">
-          <button type="button" class="button primary pull-right">Speichern</button>
-          <div id="company-balance-indicator-{{subindicator.slugify}}-slider" class="company-balance-indicator-slider pull-right">
-            <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
-            <input id="company-balance-indicator-{{subindicator.slugify}}-points" type="text" value="0" name="demo1" class="center">
+        <div class="row meta">
+          <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <h3 class="subindicator-title ecg-green" data-position="{{ subindicator.subindicator_number }}"></h3>
           </div>
-          <br/>
+          <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <button type="button" class="button primary pull-right">Speichern</button>
+            <div id="company-balance-indicator-{{subindicator.slugify}}-slider" class="company-balance-indicator-slider pull-right">
+              <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
+              <input id="company-balance-indicator-{{subindicator.slugify}}-points" type="text" value="0" name="demo1" class="center">
+            </div>
+          </div>
         </div>
 
         <div class="bubble-contents">

@@ -21,11 +21,11 @@
           </a>
           <ul class="dropdown-menu main-menu-colors">
             <li><a href="{% page_url 'profile' %}">{% trans "Profile" %}</a></li>
-            <li><a href="/logout">{% trans "Logout" %}</a></li>
+            <li><a href="/accounts/logout">{% trans "Logout" %}</a></li>
           </ul>
         </li>
         {% else %}
-        <li><a href="/login">{% trans "Login" %}</a></li>
+        <li><a href="/accounts/login">{% trans "Login" %}</a></li>
         {% endif %}
       </ul>
     </div>

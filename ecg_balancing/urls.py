@@ -21,9 +21,11 @@ urlpatterns = patterns('',
     #url(r'^balance$', BalanceMatrixView.as_view(), name='balance'),
     #url(r'^balance$', BalanceMatrixView.as_view(), name='balance'),
 
-	url(r'^companies$', CompanyListView.as_view(), name='companies'),
+    # /sinnwerkstatt/2014/c1
+
 	url(r'^profile$', login_required(UserDetailView.as_view()), name='profile'),
 	url(r'^profile/update$', login_required(UserUpdateView.as_view()), name='update-profile'),
+	url(r'^companies$', CompanyListView.as_view(), name='companies'),
 	url(r'^company/(?P<pk>.*?)/update$', login_required(CompanyUpdateView.as_view()), name='update-company'),
 	url(r'^company/(?P<pk>.*?)$', login_required(CompanyDetailView.as_view()), name='company'),
 	url(r'^balance/create$', login_required(CompanyBalanceCreateView.as_view()), name='create-balance'),
