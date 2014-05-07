@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load static from staticfiles %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block page_title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
+
+{% block base_content %}
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 profile-company-header clearfix">
+      <a href="{% url 'update-company' object.pk %}" class="button pull-right">
+        <span class="glyphicon glyphicon-pencil"></span>
+        {% trans "Edit" %}
+      </a>
+
+      <div class="profile-company-logo">
+        {% if object.logo %}
+          <img src="{% thumbnail object.logo 100x0 crop=scale upscale %}" alt=""/>
+        {% else %}
+          <a href="{% url 'update-company' object.pk %}" class="glyphicon glyphicon-picture glyphicon-grey"></a>
+        {% endif %}
+      </div>
+      <div class="profile-company-details">
+        <h1 class="profile-company-details-name">{{ object.name }}</h1>
+
+        <div class="profile-company-details-important">
+      <span class="profile-company-details-item">
+        <span class="glyphicon glyphicon-map-marker"></span>
+        {{ object.city }}, {{ object.country }}
+      </span>
+      <span class="profile-company-details-item">
+        <span class="glyphicon glyphicon-link"></span>
+        <a href="{{ object.website }}">{{ object.website }}</a>
+      </span>
+      <span class="profile-company-details-item">
+        <span class="glyphicon glyphicon-envelope"></span>
+        <a href="mailto:{{ object.email }}">{{ object.email }}</a>
+      </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8 profile-company-tabs">
+      {% if object.balance.all %}
+        {% trans "ECG Balances" %}:
+        <ul>
+          {% for balance in object.balance.all %}
+            <li class="company-balance-item">
+              <a href="{% url 'balance' balance.pk %}">{% trans "ECG Balance" %} {{ balance.year.year }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <a href="{% url 'update-company' object.pk %}" class="button primary">
+          <span class="glyphicon glyphicon-pencil"></span>
+          {% trans "Create ECG Balance" %}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+
+      <div class="company-data-item">
+        {% if object.name %}
+          {{ object.name }}<br/>
+        {% endif %}
+        {% if object.name %}
+          {{ object.street }}<br/>
+        {% endif %}
+        {% if object.name %}
+          {{ object.zipcode }} {{ object.city }}<br/>
+        {% endif %}
+        {% if object.name %}
+          {{ object.country }}<br/>
+        {% endif %}
+        {% if object.name %}
+          <a href="{{ object.website }}">{{ object.website }}</a><br/>
+        {% endif %}
+      </div>
+
+      <div class="company-data-item">
+        {% if object.email %}
+          {% trans "Email" %}: <a href="mailto:{{ object.email }}">{{ object.email }}</a><br/>
+        {% endif %}
+        {% if object.phone %}
+          {% trans "Phone" %}: {{ object.phone }}<br/>
+        {% endif %}
+        {% if object.fax %}
+          {% trans "Fax" %}: {{ object.fax }}<br/>
+        {% endif %}
+      </div>
+
+      <div class="company-data-item">
+        {% if object.industry %}
+          {% trans "Industry" %}: {{ object.industry }}<br/>
+        {% endif %}
+        {% if object.activities %}
+          {% trans "Activities" %}: {{ object.activities }}<br/>
+        {% endif %}
+        {% if object.employees_number %}
+          {% trans "Number of employees" %}: {{ object.employees_number }}<br/>
+        {% endif %}
+        {% if object.revenue %}
+          {% trans "Revenue" %}: {{ object.revenue }}<br/>
+        {% endif %}
+      </div>
+
+      <div class="company-data-item">
+        {% if object.foundation_date %}
+          {% trans "Foundation Date" %}: {{ object.foundation_date.year }}<br/>
+        {% endif %}
+        {% if object.owners %}
+          {% trans "Owners" %}: {{ object.owners }}<br/>
+        {% endif %}
+        {% if object.managing_directors %}
+          {% trans "Managing Directors" %}: {{ object.managing_directors }}<br/>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock base_content %}

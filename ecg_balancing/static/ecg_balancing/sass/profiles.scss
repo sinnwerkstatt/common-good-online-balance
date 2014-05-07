@@ -4,6 +4,14 @@
   width: 230px;
   height: 230px;
   font-size: 15em;
+}
+
+.profile-company-logo > .glyphicon {
+  width: 100px;
+  font-size: 7em;
+}
+
+.glyphicon.glyphicon-grey {
   color: $grey;
 
   &:hover {
@@ -30,4 +38,49 @@
     margin-right: $distance-small;
     color: $grey;
   }
+}
+
+.profile-company-header {
+  margin-bottom: $distance-big;
+}
+
+.profile-company-logo {
+  float: left;
+}
+
+.profile-company-details {
+  float: left;
+  margin-left: $distance-bigger;
+}
+
+.profile-company-details-name {
+  margin-top: 15px;
+  font-size: 2.5em;
+}
+
+.profile-company-details-item {
+  margin-right: $distance-big;
+  font-size: 0.87em;
+  color: $grey-dark;
+
+  a {
+    color: $grey-dark;
+  }
+}
+
+.profile-company-details-item {
+  .glyphicon {
+    color: $grey;
+  }
+}
+
+.profile-company-tabs {
+}
+
+.profile-company-tab-panes {
+  margin-left: $distance-bigger;
+}
+
+.company-data-item {
+  margin-bottom: $distance-bigger;
 }
