@@ -1,3 +1,8 @@
+/* Colors */
+/* Font Sizes */
+/* Borders */
+/* Buttons */
+/* Distances */
 /* @import must be at top of file, otherwise CSS will not work */
 /*
 @font-face {
@@ -12,6 +17,7 @@
 /* Font Sizes */
 /* Borders */
 /* Buttons */
+/* Distances */
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -195,6 +201,7 @@ img.right {
 /* Font Sizes */
 /* Borders */
 /* Buttons */
+/* Distances */
 .ecg-violet {
   background-color: #c54d94;
   color: white;
@@ -236,6 +243,7 @@ img.right {
 /* Font Sizes */
 /* Borders */
 /* Buttons */
+/* Distances */
 .button {
   display: inline-block;
   position: relative;
@@ -245,10 +253,10 @@ img.right {
   vertical-align: middle;
   white-space: nowrap;
   cursor: pointer;
-  background-color: #EAEAEA;
-  background-image: linear-gradient(#fafafa, #eaeaea);
+  background-color: #eaeaea;
+  background-image: linear-gradient(white, #eaeaea);
   background-repeat: repeat-x;
-  border-color: #DDDDDD #DDDDDD #C5C5C5;
+  border-color: #e5e5e5;
   border-image: none;
   border-radius: 3px;
   border-style: solid;
@@ -259,11 +267,28 @@ img.right {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
+.button:hover {
+  background-color: #e0e0e0;
+  background-image: linear-gradient(white, #e0e0e0);
+  background-repeat: repeat-x;
+  border-color: #dbdbdb;
+  color: #333333;
+  text-decoration: none;
+}
+
+.button:active,
+.button.selected {
+  background-color: #e0e0e0;
+  background-image: none;
+  border-color: #d1d1d1;
+  text-decoration: none;
+}
+
 .button:disabled,
 .button:disabled:hover,
 .button.disabled,
 .button.disabled:hover {
-  background-color: #E5E5E5;
+  background-color: #eaeaea;
   background-image: none;
   border-color: #C5C5C5;
   box-shadow: none;
@@ -314,4 +339,8 @@ img.right {
 */
 #wrap {
   padding-bottom: 60px;
+}
+
+.button > .glyphicon {
+  margin-right: 5px;
 }

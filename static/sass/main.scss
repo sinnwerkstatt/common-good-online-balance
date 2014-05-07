@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+@import "variables";
 @import "fonts";
 @import "general";
 @import "colors";
@@ -10,4 +11,8 @@ $pesticide-debug: false;
 
 #wrap {
   padding-bottom: 60px;
+}
+
+.button > .glyphicon {
+  margin-right: $distance-small;
 }

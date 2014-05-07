@@ -22,7 +22,7 @@
           <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
           </div>
           <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <button type="button" class="button primary pull-right">Speichern</button>
+            <button type="button" class="button primary pull-right">{% trans "Save" %}</button>
             <div id="company-balance-indicator-{{object.indicator}}-0-slider" class="company-balance-indicator-slider pull-right">
               <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
               <input id="company-balance-indicator-{{object.indicator}}-0-points" type="text" value="0" name="demo1" class="center">
@@ -52,7 +52,7 @@
             <h3 class="subindicator-title ecg-green" data-position="{{ subindicator.subindicator_number }}"></h3>
           </div>
           <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <button type="button" class="button primary pull-right">Speichern</button>
+            <button type="button" class="button primary pull-right">{% trans "Save" %}</button>
             <div id="company-balance-indicator-{{subindicator.slugify}}-slider" class="company-balance-indicator-slider pull-right">
               <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
               <input id="company-balance-indicator-{{subindicator.slugify}}-points" type="text" value="0" name="demo1" class="center">

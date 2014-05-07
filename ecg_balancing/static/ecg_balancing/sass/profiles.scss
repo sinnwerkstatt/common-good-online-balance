@@ -1,5 +1,16 @@
 @import "variables";
 
+.profile-user-avatar-empty {
+  width: 230px;
+  height: 230px;
+  font-size: 15em;
+  color: $grey;
+
+  &:hover {
+    color: $grey-middle-light;
+  }
+}
+
 .profile-user-name {
   padding-top: $distance-normal;
   font-size: 2em;
