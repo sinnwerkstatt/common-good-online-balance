@@ -1,0 +1,24 @@
+/* Colors */
+/* Font Sizes */
+/* Borders */
+/* Buttons */
+/* Distances */
+.profile-user-name {
+  padding-top: 10px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.profile-user-details {
+  margin-top: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 1px solid #e5e5e5;
+  color: #5c5c5c;
+}
+.profile-user-details .glyphicon {
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+  color: #cccccc;
+}

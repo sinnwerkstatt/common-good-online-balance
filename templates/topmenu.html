@@ -1,4 +1,5 @@
 {% load i18n thumbnail static cms_tags menu_tags sekizai_tags %}
+
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -20,7 +21,7 @@
             {{ request.user.get_full_name }} <b class="caret"></b>
           </a>
           <ul class="dropdown-menu main-menu-colors">
-            <li><a href="{% page_url 'profile' %}">{% trans "Profile" %}</a></li>
+            <li><a href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
             <li><a href="/accounts/logout">{% trans "Logout" %}</a></li>
           </ul>
         </li>

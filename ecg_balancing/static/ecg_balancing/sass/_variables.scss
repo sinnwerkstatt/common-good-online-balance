@@ -31,6 +31,8 @@ $model-level-color: #40AE49;
 $violet-color: #C54D94;
 
 /* Font Sizes */
+$font-size-bigger: 18px;
+$font-size-big: 16px;
 $font-size: 14px;
 $font-size-smaller: 12px;
 
@@ -53,3 +55,7 @@ $primary-selected-color: darken($primary-color, 10%);
 
 $primary-disabled-border-1-color: lighten($primary-color, 6%);
 $primary-disabled-border-2-color: darken($primary-color, 8%);
+
+/* Distances */
+$distance-small: 5px;
+$distance-normal: 10px;

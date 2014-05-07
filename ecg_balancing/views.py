@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.views.generic import CreateView, DetailView, UpdateView, ListView
+from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView
 
 from ecg_balancing.models import *
 
@@ -10,8 +10,8 @@ class CompanyListView(ListView):
     model = Company
 
 
-class UserDetailView(DetailView):
-    model = User
+class UserDetailView(TemplateView):
+    template_name = 'ecg_balancing/user_profile.html'
 
 
 class UserUpdateView(UpdateView):

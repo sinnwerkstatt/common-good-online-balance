@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import datetime
 
 from django.contrib.sites.models import Site
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -289,6 +289,14 @@ class CompanyBalanceIndicator(models.Model):
             unicode(self.indicator)
         )
 
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, editable=False, related_name='profile')
+    avatar = models.ImageField(_('Image'), blank=True, null=True, upload_to='profiles-upload')
+
+    companies = models.ManyToManyField('ecg_balancing.Company', verbose_name=_('Companies'), blank=True, null=True)
+
+
 class UserRole(models.Model):
     ROLE_CHOICE_ADMIN = 'admin'
     ROLE_CHOICE_GUEST = 'guest'
@@ -298,7 +306,7 @@ class UserRole(models.Model):
     )
 
     company = models.ForeignKey('ecg_balancing.Company', verbose_name=_('Company'))
-    user = models.ForeignKey(User, verbose_name=_('User'))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('User'))
     role = models.CharField(_('Role'), max_length=5, choices=ROLE_CHOICES)
 
     class Meta:

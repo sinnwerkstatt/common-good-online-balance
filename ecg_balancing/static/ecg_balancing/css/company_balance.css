@@ -1,58 +1,8 @@
-.img-link {
-  /* remove outline for Firefox */
-  outline: none;
-  -moz-outline-style: none;
-}
-
-.img-link:focus {
-  /* remove outline for Firefox */
-  outline: none;
-  -moz-outline-style: none;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-.img-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.header-end {
-  clear: both;
-}
-
-.center {
-  text-align: center;
-}
-
-.word-wrap {
-  -moz-hyphens: auto;
-  word-wrap: break-word;
-}
-
-.unselectable {
-  -webkit-user-select: none;
-  /* Chrome all / Safari all */
-  -moz-user-select: none;
-  /* Firefox all */
-  -ms-user-select: none;
-  /* IE 10+ */
-  /* No support for these yet, use at own risk */
-  -o-user-select: none;
-  user-select: none;
-}
-
-.display-none {
-  display: none;
-}
-
 /* Colors */
 /* Font Sizes */
 /* Borders */
 /* Buttons */
+/* Distances */
 .container {
   -moz-box-sizing: border-box;
   margin-left: auto;
@@ -109,10 +59,62 @@
   margin-right: auto;
 }
 
+.img-link {
+  /* remove outline for Firefox */
+  outline: none;
+  -moz-outline-style: none;
+}
+
+.img-link:focus {
+  /* remove outline for Firefox */
+  outline: none;
+  -moz-outline-style: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-end {
+  clear: both;
+}
+
+.center {
+  text-align: center;
+}
+
+.word-wrap {
+  -moz-hyphens: auto;
+  word-wrap: break-word;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  /* No support for these yet, use at own risk */
+  -o-user-select: none;
+  user-select: none;
+}
+
+.display-none {
+  display: none;
+}
+
 /* Colors */
 /* Font Sizes */
 /* Borders */
 /* Buttons */
+/* Distances */
 table {
   border-collapse: separate;
 }

@@ -42,7 +42,8 @@ module.exports = function (grunt) {
                 files: {
                     'static/css/main.css': base + '/sass/main.scss',
                     'static/css/bootstrap3-ecg.css': base + '/sass/vendor/bootstrap/bootstrap.scss',
-                    'ecg_balancing/static/ecg_balancing/css/company_balance.css': 'ecg_balancing/static/ecg_balancing/sass/company_balance.scss'
+                    'ecg_balancing/static/ecg_balancing/css/company_balance.css': 'ecg_balancing/static/ecg_balancing/sass/company_balance.scss',
+                    'ecg_balancing/static/ecg_balancing/css/profiles.css': 'ecg_balancing/static/ecg_balancing/sass/profiles.scss'
                 }
             }
         },

@@ -21,9 +21,32 @@ body {
   height: $footer-height;
   padding-top: 10px;
   border-top: 1px solid #EEEEEE;
-  font-size: $font-size-smaller;
+  font-size: 0.75rem;
   background-color: $white;
   color: $grey-middle-light;
+}
+
+/* Font-Sizes
+-------------------------------------------------- */
+html {
+  font-size: $font-size;
+}
+@media (max-width: 900px) {
+  html { font-size: $font-size-smaller; }
+}
+@media (max-width: 400px) {
+  html { font-size: $font-size-smallest; }
+}
+
+/* Type will scale with modules */
+h1 {
+  font-size: 3em;
+}
+h2 {
+  font-size: 2.5em;
+}
+h3 {
+  font-size: 2em;
 }
 
 
@@ -86,7 +109,22 @@ img.right {
   margin-right: auto;
 }
 
+.img-link {
+  /* remove outline for Firefox */
+  outline: none;
+  -moz-outline-style: none;
+}
+.img-link:focus {
+  /* remove outline for Firefox */
+  outline: none;
+  -moz-outline-style: none;
+}
+
 .displaynone {
+  display: none;
+}
+
+.display-none {
   display: none;
 }
 
@@ -106,4 +144,31 @@ img.right {
 
 .clearboth {
   clear: both;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.header-end {
+  clear: both;
+}
+
+.center {
+  text-align: center;
+}
+
+.word-wrap {
+  -moz-hyphens: auto;
+  word-wrap: break-word;
+}
+
+.unselectable {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+
+  /* No support for these yet, use at own risk */
+  -o-user-select: none;
+  user-select: none;
 }
