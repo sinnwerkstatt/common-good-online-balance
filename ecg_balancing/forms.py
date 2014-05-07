@@ -10,8 +10,8 @@ from ecg_balancing.models import UserProfile, Company
 
 class UserProfileForm(forms.ModelForm):
     helper = FormHelper()
-    helper.label_class = 'clearboth pad-top-s textalignright col-lg-3 col-md-3'
-    helper.field_class = 'pad-bottom col-lg-9 col-md-9'
+    helper.label_class = 'clearboth textalignright col-lg-2 col-md-2'
+    helper.field_class = 'col-lg-5 col-md-5'
     helper.form_tag = False
 
     class Meta:

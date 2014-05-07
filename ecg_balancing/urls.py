@@ -23,7 +23,7 @@ urlpatterns = patterns('',
 
     # /sinnwerkstatt/2014/c1
 
-	url(r'^user/(?P<pk>.*?)/$', login_required(UserDetailView.as_view()), name='user'),
+	url(r'^user/(?P<pk>.*?)/$', login_required(UserDetailView.as_view()), name='user-detail'),
 	url(r'^user/(?P<pk>.*?)/update$', login_required(UserUpdateView.as_view()), name='user-update'),
 	url(r'^companies$', CompanyListView.as_view(), name='companies'),
 	url(r'^company/(?P<pk>.*?)/$', login_required(CompanyDetailView.as_view()), name='company-detail'),

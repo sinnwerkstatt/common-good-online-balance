@@ -12,7 +12,7 @@ class CompanyListView(ListView):
 
 
 class UserDetailView(TemplateView):
-    template_name = 'ecg_balancing/user.html'
+    template_name = 'ecg_balancing/user_detail.html'
 
 
 class UserUpdateView(UpdateView):

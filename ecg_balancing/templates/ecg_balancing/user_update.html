@@ -3,29 +3,37 @@
 {% load static from staticfiles %}
 
 {% block css %}
-{{ block.super }}
-<link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
 {% endblock css %}
 
 {% block page_title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
 
 {% block base_content %}
-<div class="row">
+  <div class="row">
 
-<form enctype="multipart/form-data" method="post" action="{% url "forum-entry-create" %}">
-  {% csrf_token %}
-  {% crispy form %}
-  <div class="clearboth pad-top-s textalignright col-lg-3 col-md-3"></div>
-  <div class="pad-bottom col-lg-9 col-md-9">
-      * - bitte ausfüllen.
-  </div>
-  <div class="clearboth col-lg-3 col-md-3">&nbsp;</div>
-  <div class="pad-bottom col-lg-9 col-md-9">
-      <input type="submit" name="submit" value="neuen Beitrag erstellen" class="btn btn-lg btn-green" />
-  </div>
-</form>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <a href="{% url 'user-detail' object.pk %}" class="button pull-right">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        {% trans "Back" %}
+      </a>
 
-</div>
+      <form enctype="multipart/form-data" method="post" action="{% url "user-update" user.pk %}">
+        {% csrf_token %}
+        {% crispy form %}
+        <div class="clearboth pad-top-s textalignright col-lg-3 col-md-3"></div>
+        <div class="pad-bottom col-lg-9 col-md-9">
+          * - bitte ausfüllen.
+        </div>
+        <div class="clearboth col-lg-3 col-md-3">&nbsp;</div>
+        <div class="pad-bottom col-lg-9 col-md-9">
+          <input type="submit" name="submit" value="neuen Beitrag erstellen" class="btn btn-lg btn-green"/>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
 
 
 
