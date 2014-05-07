@@ -31,28 +31,35 @@ body {
 html {
   font-size: $font-size;
 }
+
 @media (max-width: 900px) {
-  html { font-size: $font-size-smaller; }
+  html {
+    font-size: $font-size-smaller;
+  }
 }
+
 @media (max-width: 400px) {
-  html { font-size: $font-size-smallest; }
+  html {
+    font-size: $font-size-smallest;
+  }
 }
 
 /* Type will scale with modules */
 h1 {
   font-size: 3em;
 }
+
 h2 {
   font-size: 2.5em;
 }
+
 h3 {
   font-size: 2em;
 }
 
-
 /* Bootstrap Adjustments */
 .breadcrumb {
-    padding: 0;
+  padding: 0;
 }
 
 .navbar a.navbar-brand {
@@ -114,6 +121,7 @@ img.right {
   outline: none;
   -moz-outline-style: none;
 }
+
 .img-link:focus {
   /* remove outline for Firefox */
   outline: none;
@@ -177,6 +185,31 @@ img.right {
   user-select: none;
 }
 
+/* FORMS */
+
+.page-form {
+  padding-top: $distance-bigger;
+}
+
+.form-group {
+  padding-bottom: $distance-normal;
+
+  .controls {
+    margin-bottom: $distance-normal;
+  }
+}
+
+.control-label {
+  padding-top: 8px;
+
+  .asteriskField {
+    padding-left: 2px;
+  }
+}
+
+.asteriskField {
+  color: $red;
+}
 
 
 .glyphicon.glyphicon-grey {
@@ -187,7 +220,10 @@ img.right {
   }
 }
 
-
 .glyphicon.glyphicon-greyer {
   color: $grey-middle-light;
+}
+
+.last-form-element {
+  padding-bottom: $distance-biggest;
 }

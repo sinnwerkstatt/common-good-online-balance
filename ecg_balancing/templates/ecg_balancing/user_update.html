@@ -7,7 +7,7 @@
   <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
 {% endblock css %}
 
-{% block page_title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
+{% block page_title %}{% trans "Edit" %} - {{ user.first_name }} {{ user.last_name }}{% endblock %}
 
 {% block base_content %}
   <div class="row">
@@ -18,7 +18,8 @@
         {% trans "Back" %}
       </a>
 
-      <form enctype="multipart/form-data" method="post" action="{% url "user-update" user.pk %}">
+      <h3>{% trans "Edit profile" %}</h3>
+      <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "user-update" user.pk %}">
         {% csrf_token %}
         {% crispy form %}
         <div class="clearboth pad-top-s textalignright col-lg-3 col-md-3"></div>

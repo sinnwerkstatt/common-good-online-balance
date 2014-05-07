@@ -201,6 +201,29 @@ img.right {
   user-select: none;
 }
 
+/* FORMS */
+.page-form {
+  padding-top: 20px;
+}
+
+.form-group {
+  padding-bottom: 10px;
+}
+.form-group .controls {
+  margin-bottom: 10px;
+}
+
+.control-label {
+  padding-top: 8px;
+}
+.control-label .asteriskField {
+  padding-left: 2px;
+}
+
+.asteriskField {
+  color: #bd2c00;
+}
+
 .glyphicon.glyphicon-grey {
   color: #cccccc;
 }
@@ -210,6 +233,10 @@ img.right {
 
 .glyphicon.glyphicon-greyer {
   color: #a2a2a2;
+}
+
+.last-form-element {
+  padding-bottom: 30px;
 }
 
 /* Colors */
