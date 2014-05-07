@@ -13,7 +13,7 @@
 
   <div class="row profile-company-header clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <a href="{% url 'update-company' object.pk %}" class="button pull-right">
+      <a href="{% url 'company-update' object.pk %}" class="button pull-right">
         <span class="glyphicon glyphicon-pencil"></span>
         {% trans "Edit" %}
       </a>
@@ -22,7 +22,7 @@
         {% if object.logo %}
           <img src="{% thumbnail object.logo 100x0 crop=scale upscale %}" alt=""/>
         {% else %}
-          <a href="{% url 'update-company' object.pk %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
+          <a href="{% url 'company-update' object.pk %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
         {% endif %}
       </div>
       <div class="profile-company-details">
@@ -43,6 +43,7 @@
       </span>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -59,8 +60,8 @@
           {% endfor %}
         </ul>
       {% else %}
-        <a href="{% url 'update-company' object.pk %}" class="button primary">
-          <span class="glyphicon glyphicon-pencil"></span>
+        <a href="{% url 'company-update' object.pk %}" class="button primary">
+          <span class="glyphicon glyphicon-icon-eye-open"></span>
           {% trans "Create ECG Balance" %}
         </a>
       {% endif %}

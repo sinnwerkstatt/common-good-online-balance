@@ -16,7 +16,7 @@
     {% if user.profile.avatar %}
     <img src="{% thumbnail user.profile.avatar 230x0 crop=scale upscale %}"/>
     {% else %}
-    <a class="glyphicon glyphicon-user glyphicon-grey profile-user-avatar-empty" href="{% url 'update-user' user.pk %}" title="{% trans "Upload profile photo" %}">
+    <a class="glyphicon glyphicon-user glyphicon-grey profile-user-avatar-empty" href="{% url 'user-update' user.pk %}" title="{% trans "Upload profile photo" %}">
     </a>
     {% endif %}
   </div>
@@ -29,13 +29,13 @@
   </div>
 </div>
 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-  <a href="{% url 'update-user' user.pk %}" class="button pull-right">
+  <a href="{% url 'user-update' user.pk %}" class="button pull-right">
     <span class="glyphicon glyphicon-pencil"></span>
     {% trans "Edit" %}
   </a>
   <h4>{% trans "Companies" %}:</h4>
   {% for company in user.profile.companies.all %}
-    <a href="{% url 'company' company.pk %}">{{ company }}</a>
+    <a href="{% url 'company-detail' company.pk %}">{{ company }}</a>
   {% endfor %}
 </div>
 </div>

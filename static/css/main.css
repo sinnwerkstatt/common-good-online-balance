@@ -180,6 +180,10 @@ img.right {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .word-wrap {
   -moz-hyphens: auto;
   word-wrap: break-word;

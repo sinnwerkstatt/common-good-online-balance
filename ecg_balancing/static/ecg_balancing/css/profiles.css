@@ -75,3 +75,19 @@
 .company-data-item {
   margin-bottom: 20px;
 }
+
+/* FORMS */
+.form-group {
+  padding-bottom: 10px;
+}
+.form-group .controls {
+  margin-bottom: 10px;
+}
+
+.control-label {
+  padding-top: 8px;
+}
+.control-label .asteriskField {
+  padding-left: 2px;
+  color: #bd2c00;
+}

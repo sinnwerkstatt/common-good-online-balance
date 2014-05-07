@@ -79,3 +79,21 @@
 .company-data-item {
   margin-bottom: $distance-bigger;
 }
+
+/* FORMS */
+.form-group {
+  padding-bottom: $distance-normal;
+
+  .controls {
+    margin-bottom: $distance-normal;
+  }
+}
+
+.control-label {
+  padding-top: 8px;
+
+  .asteriskField {
+    padding-left: 2px;
+    color: $red;
+  }
+}

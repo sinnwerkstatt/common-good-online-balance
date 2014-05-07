@@ -24,15 +24,15 @@ urlpatterns = patterns('',
     # /sinnwerkstatt/2014/c1
 
 	url(r'^user/(?P<pk>.*?)/$', login_required(UserDetailView.as_view()), name='user'),
-	url(r'^user/(?P<pk>.*?)/update$', login_required(UserUpdateView.as_view()), name='update-user'),
+	url(r'^user/(?P<pk>.*?)/update$', login_required(UserUpdateView.as_view()), name='user-update'),
 	url(r'^companies$', CompanyListView.as_view(), name='companies'),
-	url(r'^company/(?P<pk>.*?)/update$', login_required(CompanyUpdateView.as_view()), name='update-company'),
-	url(r'^company/(?P<pk>.*?)$', login_required(CompanyDetailView.as_view()), name='company'),
-	url(r'^balance/create$', login_required(CompanyBalanceCreateView.as_view()), name='create-balance'),
-	url(r'^balance/(?P<pk>.*?)/update$', login_required(CompanyBalanceUpdateView.as_view()), name='update-balance'),
+	url(r'^company/(?P<pk>.*?)/$', login_required(CompanyDetailView.as_view()), name='company-detail'),
+	url(r'^company/(?P<pk>.*?)/update$', login_required(CompanyUpdateView.as_view()), name='company-update'),
+	url(r'^balance/create$', login_required(CompanyBalanceCreateView.as_view()), name='balance-create'),
+	url(r'^balance/(?P<pk>.*?)/update$', login_required(CompanyBalanceUpdateView.as_view()), name='balance-update'),
 	url(r'^balance/(?P<pk>.*?)$', login_required(CompanyBalanceDetailView.as_view()), name='balance'),
-	url(r'^indicator/create$', login_required(CompanyBalanceIndicatorCreateView.as_view()), name='create-indicator'),
-	url(r'^indicator/(?P<pk>.*?)/update$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='update-indicator'),
+	url(r'^indicator/create$', login_required(CompanyBalanceIndicatorCreateView.as_view()), name='indicator-create'),
+	url(r'^indicator/(?P<pk>.*?)/update$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='indicator-update'),
 	url(r'^indicator/(?P<pk>.*?)$', login_required(CompanyBalanceIndicatorDetailView.as_view()), name='indicator'),
 
     # leave at the end

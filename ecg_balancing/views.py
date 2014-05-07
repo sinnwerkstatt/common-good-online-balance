@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView
-from ecg_balancing.forms import UserProfileForm
+from ecg_balancing.forms import UserProfileForm, CompanyForm
 
 from ecg_balancing.models import *
 
@@ -27,6 +27,8 @@ class CompanyDetailView(DetailView):
 
 class CompanyUpdateView(UpdateView):
     model = Company
+    form_class = CompanyForm
+    template_name = 'ecg_balancing/company_update.html'
 
 
 class CompanyBalanceDetailView(DetailView):

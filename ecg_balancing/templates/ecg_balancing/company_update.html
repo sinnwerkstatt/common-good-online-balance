@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
+{% load static from staticfiles %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block page_title %}{% trans "Edit" %} - {{ object.name }}{% endblock %}
+
+{% block base_content %}
+
+  <div class="row profile-company-header clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <a href="{% url 'company-detail' object.pk %}" class="button pull-right">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        {% trans "Back" %}
+      </a>
+
+      <div class="profile-company-logo">
+        {% if object.logo %}
+          <img src="{% thumbnail object.logo 100x0 crop=scale upscale %}" alt=""/>
+        {% else %}
+          <a href="{% url 'company-update' object.pk %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
+        {% endif %}
+      </div>
+      <div class="profile-company-details">
+        <h1 class="profile-company-details-name">{{ object.name }}</h1>
+      </div>
+
+    </div>
+  </div>
+
+  <h3>{% trans "Edit" %}</h3>
+  <form enctype="multipart/form-data" method="post" action="{% url "company-update" object.pk %}">
+    {% csrf_token %}
+    {% crispy form %}
+    <div class="clearboth pad-top-s text-right col-lg-3 col-md-3"></div>
+    <div class="pad-bottom col-lg-9 col-md-9">
+      * - bitte ausfüllen.
+    </div>
+    <div class="clearboth col-lg-2 col-md-2">&nbsp;</div>
+    <div class="pad-bottom col-lg-5 col-md-5">
+      <input type="submit" name="submit" value="{% trans "Save" %}" class="button primary"/>
+    </div>
+  </form>
+
+{% endblock base_content %}
