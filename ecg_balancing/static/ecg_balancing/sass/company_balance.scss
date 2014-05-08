@@ -52,7 +52,7 @@ $page-width: 980px;
 /* end -------------- */
 
 .page-wrapper {
-  padding: 0 px 30px 5% 30px;
+  padding: 0px 30px 5% 30px;
 }
 
 #header-container {
@@ -108,6 +108,19 @@ $page-width: 980px;
 }
 
 /* NEW STYLES */
+
+.ecg-matrix-header {
+  max-width: 600px;
+  margin-bottom: $distance-biggest;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.company-detail-link {
+  display: block;
+}
+
 #ecg-matrix-container {
   padding-bottom: 50px;
 }
+

@@ -9,6 +9,7 @@ from ecg_balancing.models import *
 
 class CompanyListView(ListView):
     model = Company
+    template_name = 'ecg_balancing/companies_list.html'
 
 
 class UserDetailView(TemplateView):

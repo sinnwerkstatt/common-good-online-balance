@@ -175,6 +175,15 @@ img.right {
   word-wrap: break-word;
 }
 
+.no-decoration {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .unselectable {
   -webkit-user-select: none; /* Chrome all / Safari all */
   -moz-user-select: none; /* Firefox all */
@@ -183,6 +192,22 @@ img.right {
   /* No support for these yet, use at own risk */
   -o-user-select: none;
   user-select: none;
+}
+
+.centered-text-to-img {
+  position: relative;
+  top: 5px;
+  font-size: 2em;
+}
+
+.centered-text-to-no-img {
+  position: relative;
+  top: 25px;
+  font-size: 2em;
+}
+
+.space-left {
+  margin-left: $distance-big;
 }
 
 /* FORMS */

@@ -439,14 +439,12 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:54
-#, fuzzy
 msgid "ECG Balances"
-msgstr "GWÖ Bilanz"
+msgstr "GWÖ-Bilanzen"
 
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:65
-#, fuzzy
 msgid "Create ECG Balance"
-msgstr "GWÖ Bilanz"
+msgstr "GWÖ-Bilanz"
 
 #: ecg_balancing/templates/ecg_balancing/company_update.html:18
 #: ecg_balancing/templates/ecg_balancing/user_update.html:18

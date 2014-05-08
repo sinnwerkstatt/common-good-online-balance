@@ -82,6 +82,11 @@ var ckeditor_config = {
     // minimumChangeMilliseconds : 200
 };
 
+
+// set indicator name
+$('.js-indicator-page-title-inner').html(indicator.shortcode + ' - ' + indicator.name);
+
+
 // activate indicator editor
 var indicatorShortCodeSlug = indicator.shortcodeSlug;
 

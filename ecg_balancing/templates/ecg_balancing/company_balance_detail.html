@@ -1,35 +1,46 @@
 {% extends "base.html" %}
-{% load i18n cms_tags menu_tags sekizai_tags %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail %}
 {% load static from staticfiles %}
 
 {% block css %}
-{{ block.super }}
-<link href="{% static 'ecg_balancing/css/company_balance.css' %}" rel="stylesheet">
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/company_balance.css' %}" rel="stylesheet">
 {% endblock css %}
 
-{% block page_title %}{{ object.company }} - {% trans 'ECG Balance'%} {{ object.year|date:"Y" }}{% endblock %}
+{% block page_title %}{% trans 'ECG Balance' %} {{ object.year }} - {{ object.company }}{% endblock %}
 
 {% block base_content %}
-<div class="text-center">
-  <h1>{{ object.company }}</h1>
-  <h2>{% trans 'ECG Balance'%} {{ object.year|date:"Y" }}</h2>
-</div>
 
-{% get_current_language as LANGUAGE_CODE %}
-<div id="ecg-matrix-container" class="container container-page">
-  {% with 'ecg_balancing/dustjs/company_balance_overview-output_'|add:LANGUAGE_CODE|add:'.html' as matrix_html %}
-  {% include matrix_html %}
-  {% endwith %}
-</div>
+  <div class="ecg-matrix-header bubble">
+    <div class="bubble-inner unselectable">
+      <a href="{% url 'company-detail' object.company.slug %}" class="company-detail-link no-decoration center clearfix">
+
+        {% if object.company.logo %}
+          <img class="" src="{% thumbnail object.company.logo 100x0 crop=scale upscale %}" alt=""/>
+        {% endif %}
+        <span class="centered-text-to-img">{{ object.company }}</span>
+      </a>
+      <a href="{% url 'balance-detail' company_slug=object.company.slug balance_year=object.year %}" class="no-decoration center">
+        <h2>{% trans 'ECG Balance' %} {{ object.year }}</h2>
+      </a>
+    </div>
+  </div>
+
+  {% get_current_language as LANGUAGE_CODE %}
+  <div id="ecg-matrix-container" class="container container-page">
+    {% with 'ecg_balancing/dustjs/company_balance_overview-output_'|add:LANGUAGE_CODE|add:'.html' as matrix_html %}
+      {% include matrix_html %}
+    {% endwith %}
+  </div>
 
 {% endblock base_content %}
 
 
 {% block javascript %}
-{{ block.super }}
-<script src="{% static 'ecg_balancing/js/utils.js' %}"></script>
-<script type="text/javascript">
-var indicatorBaseUrl = location.href;
-</script>
-<script src="{% static 'ecg_balancing/js/company_balance_detail.js' %}"></script>
+  {{ block.super }}
+  <script src="{% static 'ecg_balancing/js/utils.js' %}"></script>
+  <script type="text/javascript">
+    var indicatorBaseUrl = location.href;
+  </script>
+  <script src="{% static 'ecg_balancing/js/company_balance_detail.js' %}"></script>
 {% endblock javascript %}

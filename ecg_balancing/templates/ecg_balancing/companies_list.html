@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load static from staticfiles %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block page_title %}{% trans "Companies" %}{% endblock %}
+
+{% block base_content %}
+
+  {% for company in object_list %}
+
+    <a href="{% url 'company-detail' company.slug %}" class="company-detail-link no-decoration center clearfix">
+      {% if company.logo %}
+        <img class="" src="{% thumbnail company.logo 100x0 crop=scale upscale %}" alt=""/>
+        <span class="centered-text-to-img space-left">{{ company }}</span>
+      {% else %}
+        <span class="no-logo-space">&nbsp;</span>
+        <span class="centered-text-to-no-img space-left">{{ company }}</span>
+      {% endif %}
+    </a>
+
+  {% endfor %}
+
+
+{% endblock base_content %}

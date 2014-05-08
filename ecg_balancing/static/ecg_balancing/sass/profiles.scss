@@ -6,9 +6,16 @@
   font-size: 15em;
 }
 
+$company-logo-width: 100px;
 .profile-company-logo > .glyphicon {
-  width: 100px;
+  width: $company-logo-width;
   font-size: 5em;
+}
+
+.no-logo-space {
+  float: left;
+  width: $company-logo-width;
+  height: $company-logo-width;
 }
 
 .profile-user-name {
