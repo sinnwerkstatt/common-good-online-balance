@@ -107,6 +107,8 @@ class Indicator(models.Model):
                 unicode(self.subindicator_number)
             )
 
+
+
 # -------------------------------- COMPANY MODELS --------------------------------
 
 
@@ -199,6 +201,7 @@ class Company(models.Model):
     )
 
     name = models.CharField(_('Name'), max_length=255)
+    slug = models.SlugField(_('Slug'), max_length=50, unique=True)
     logo = models.ImageField(_('Image'), blank=True, null=True, upload_to='company-upload')
 
     street = models.CharField(_('Street'), max_length=50, blank=False)
@@ -244,7 +247,7 @@ class CompanyBalance(models.Model):
                               null=False,
                               blank=False)
 
-    year = models.DateTimeField(_('Year'), blank=True, null=True)
+    year = models.SmallIntegerField(_('Year'), max_length=4, blank=True, null=True)
     start_date = models.DateTimeField(_('Start Date'), blank=True, null=True)
     end_date = models.DateTimeField(_('End Date'), blank=True, null=True)
 
@@ -263,7 +266,7 @@ class CompanyBalance(models.Model):
         return '%s:%s:%s' % (
             unicode(self.company),
             unicode(self.matrix),
-            unicode(self.year.year)
+            unicode(self.year)
         )
 
 class CompanyBalanceIndicator(models.Model):

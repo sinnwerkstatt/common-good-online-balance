@@ -28,5 +28,8 @@
 {% block javascript %}
 {{ block.super }}
 <script src="{% static 'ecg_balancing/js/utils.js' %}"></script>
+<script type="text/javascript">
+var indicatorBaseUrl = location.origin + '{% url 'indicator-detail' 1 %}'.slice(0, -1);
+</script>
 <script src="{% static 'ecg_balancing/js/company_balance_detail.js' %}"></script>
 {% endblock javascript %}

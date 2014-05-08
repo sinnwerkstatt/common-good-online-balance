@@ -35,6 +35,14 @@ class CompanyBalanceDetailView(DetailView):
     model = CompanyBalance
     template_name = 'ecg_balancing/company_balance_detail.html'
 
+    def get_object(self, queryset=None):
+        # Use a custom queryset if provided; this is required for subclasses
+        # like DateDetailView
+        if queryset is None:
+            queryset = self.get_queryset()
+
+        return queryset.get(company__slug=self.kwargs.get('slug'), year=self.kwargs.get('balance_year'))
+
 
 class CompanyBalanceCreateView(CreateView):
     model = CompanyBalance
