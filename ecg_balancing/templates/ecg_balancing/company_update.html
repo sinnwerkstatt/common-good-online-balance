@@ -22,7 +22,7 @@
         {% if object.logo %}
           <img src="{% thumbnail object.logo 100x0 crop=scale upscale %}" alt=""/>
         {% else %}
-          <a href="{% url 'company-update' object.pk %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
+          <a href="{% url 'company-update' object.slug %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
         {% endif %}
       </div>
       <div class="profile-company-details">

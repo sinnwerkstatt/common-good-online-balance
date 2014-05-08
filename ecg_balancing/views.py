@@ -31,6 +31,13 @@ class CompanyUpdateView(UpdateView):
     form_class = CompanyForm
     template_name = 'ecg_balancing/company_update.html'
 
+    def get_success_url(self):
+        if 'slug' in self.kwargs:
+            slug = self.kwargs['slug']
+            return reverse('company-detail', kwargs={'slug': slug})
+        else:
+            return super(CompanyUpdateView, self).get_success_url()
+
 
 class CompanyBalanceDetailView(DetailView):
     model = CompanyBalance
