@@ -7,8 +7,6 @@ $(".ind-trigger").each(function() {
     var dataModal = $this.attr("data-modal"); // 'matrix-id'
     var indicatorId = dataModal.substring(7, dataModal.length);
 
-    console.log('indicatorId: ' + indicatorId);
-
     $this.on('click', function(e) {
         location.href = indicatorBaseUrl + indicatorId;
     });

@@ -13,7 +13,7 @@
 
   <div class="row profile-company-header clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <a href="{% url 'company-update' object.pk %}" class="button pull-right">
+      <a href="{% url 'company-update' object.slug %}" class="button pull-right">
         <span class="glyphicon glyphicon-pencil"></span>
         {% trans "Edit" %}
       </a>
@@ -22,7 +22,7 @@
         {% if object.logo %}
           <img src="{% thumbnail object.logo 100x0 crop=scale upscale %}" alt=""/>
         {% else %}
-          <a href="{% url 'company-update' object.pk %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
+          <a href="{% url 'company-update' object.slug %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
         {% endif %}
       </div>
       <div class="profile-company-details">
@@ -55,12 +55,12 @@
         <ul>
           {% for balance in object.balance.all %}
             <li class="company-balance-item">
-              <a href="{% url 'balance-detail' slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
+              <a href="{% url 'balance-detail' company_slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
             </li>
           {% endfor %}
         </ul>
       {% else %}
-        <a href="{% url 'company-update' object.pk %}" class="button primary">
+        <a href="{% url 'company-update' object.slug %}" class="button primary">
           <span class="glyphicon glyphicon-plus"></span>
           {% trans "Create ECG Balance" %}
         </a>

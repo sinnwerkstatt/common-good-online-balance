@@ -35,7 +35,7 @@
   </a>
   <h4>{% trans "Companies" %}:</h4>
   {% for company in user.profile.companies.all %}
-    <a href="{% url 'company-detail' company.pk %}">{{ company }}</a>
+    <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
   {% endfor %}
 </div>
 </div>

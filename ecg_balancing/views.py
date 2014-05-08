@@ -41,7 +41,7 @@ class CompanyBalanceDetailView(DetailView):
         if queryset is None:
             queryset = self.get_queryset()
 
-        return queryset.get(company__slug=self.kwargs.get('slug'), year=self.kwargs.get('balance_year'))
+        return queryset.get(company__slug=self.kwargs.get('company_slug'), year=self.kwargs.get('balance_year'))
 
 
 class CompanyBalanceCreateView(CreateView):
@@ -62,6 +62,24 @@ class CompanyBalanceIndicatorDetailView(DetailView):
         subindicators = Indicator.objects.filter(parent=self.object.indicator).all().order_by('subindicator_number').all()
         context['subindicators'] = subindicators
         return context
+
+    def get_object(self, queryset=None):
+        # Use a custom queryset if provided; this is required for subclasses
+        # like DateDetailView
+        if queryset is None:
+            queryset = self.get_queryset()
+
+        indicatorId = self.kwargs.get('indicator_id')
+        indicatorStakeholder = indicatorId[:1]
+        indicatorValue = indicatorId[1:]
+
+        return queryset.get(
+            company_balance__company__slug=self.kwargs.get('company_slug'),
+            company_balance__year=self.kwargs.get('balance_year'),
+            indicator__stakeholder=indicatorStakeholder,
+            indicator__ecg_value=indicatorValue,
+            indicator__parent=None
+            )
 
 
 class CompanyBalanceIndicatorCreateView(CreateView):

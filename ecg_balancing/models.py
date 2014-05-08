@@ -51,14 +51,12 @@ class Indicator(models.Model):
     ECG_VALUE_3 = '3'
     ECG_VALUE_4 = '4'
     ECG_VALUE_5 = '5'
-    ECG_VALUE_ALL = '0'
     ECG_VALUES = (
         (ECG_VALUE_1, _('Value 1')),
         (ECG_VALUE_2, _('Value 2')),
         (ECG_VALUE_3, _('Value 3')),
         (ECG_VALUE_4, _('Value 4')),
         (ECG_VALUE_5, _('Value 5')),
-        (ECG_VALUE_ALL, _('All')),
     )
 
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='indicators',

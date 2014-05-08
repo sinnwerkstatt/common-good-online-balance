@@ -13,7 +13,7 @@
 
   <div class="row profile-company-header clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <a href="{% url 'company-detail' object.pk %}" class="button pull-right">
+      <a href="{% url 'company-detail' object.slug %}" class="button pull-right">
         <span class="glyphicon glyphicon-chevron-left"></span>
         {% trans "Back" %}
       </a>
@@ -33,7 +33,7 @@
   </div>
 
   <h3>{% trans "Edit" %}</h3>
-  <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-update" object.pk %}">
+  <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-update" object.slug %}">
     {% csrf_token %}
     {% crispy form %}
     <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>
