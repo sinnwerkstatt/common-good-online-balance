@@ -8,6 +8,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db import models
+from django.db.models import signals
 from django.db.models.signals import post_save
 from django.template.loader import get_template
 from django.template.loader import render_to_string
@@ -58,6 +59,14 @@ class Indicator(models.Model):
         (ECG_VALUE_4, _('Value 4')),
         (ECG_VALUE_5, _('Value 5')),
     )
+    RELEVANCE_LOW = 'low'
+    RELEVANCE_MIDDLE = 'middle'
+    RELEVANCE_HIGH = 'high'
+    RELEVANCE_VALUES = (
+        (RELEVANCE_LOW, _('Low')),
+        (RELEVANCE_MIDDLE, _('Middle')),
+        (RELEVANCE_HIGH, _('High'))
+    )
 
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='indicators',
                               null=False,
@@ -66,12 +75,22 @@ class Indicator(models.Model):
     title = models.CharField(_('Name'), max_length=255)
     stakeholder = models.CharField(_('Stakeholder'), max_length=1, choices=STAKEHOLDERS)
     ecg_value = models.CharField(_('Value'), max_length=1, choices=ECG_VALUES)
-    subindicator_number = models.IntegerField(_('Subindicator Number'), help_text=_('Enter only for a subindicator, an indicator with a parent.'))
-    max_evaluation = models.IntegerField(_('Max Evaluation'))
+    max_evaluation = models.IntegerField(_('Max Evaluation'),
+                                            help_text=_('Only for an indicator, without a parent.'),
+                                            null=True,
+                                            blank=True)
 
     parent = models.ForeignKey('ecg_balancing.Indicator', verbose_name=_(u'Parent Indicator'), related_name='parent_indicator',
                               null=True,
                               blank=True)
+    subindicator_number = models.IntegerField(_('Subindicator Number'),
+                                                help_text=_('Only for a subindicator, an indicator with a parent.'),
+                                                null=True,
+                                                blank=True)
+    relevance = models.CharField(_('Relevance'), max_length=10, choices=RELEVANCE_VALUES,
+                                        help_text=_('Only for a subindicator, an indicator with a parent.'),
+                                                null=True,
+                                                blank=True)
 
     contact = models.EmailField(_('Email'), blank=True, null=True)
 
@@ -244,8 +263,17 @@ class CompanyBalance(models.Model):
     company = models.ForeignKey('ecg_balancing.Company', verbose_name=_(u'Company'), related_name='balance',
                               null=False,
                               blank=False)
+    STATUS_CHOICE_STARTED = 'started'
+    STATUS_CHOICE_FINISHED = 'finished'
+    STATUS_CHOICE_AUDITED = 'audited'
+    STATUS_CHOICE = (
+        (STATUS_CHOICE_STARTED, _('Started')),
+        (STATUS_CHOICE_FINISHED, _('Finished')),
+        (STATUS_CHOICE_AUDITED, _('Audited'))
+    )
+    status = models.CharField(_('Status'), max_length=255, choices=STATUS_CHOICE, null=False, blank=False)
 
-    year = models.SmallIntegerField(_('Year'), max_length=4, blank=True, null=True)
+    year = models.SmallIntegerField(_('Year'), max_length=4)
     start_date = models.DateTimeField(_('Start Date'), blank=True, null=True)
     end_date = models.DateTimeField(_('End Date'), blank=True, null=True)
 
@@ -266,6 +294,16 @@ class CompanyBalance(models.Model):
             unicode(self.matrix),
             unicode(self.year)
         )
+
+
+def create_company_balance(**kwargs):
+    balance = kwargs.get('instance')
+    indicators = Indicator.objects.all()
+    for indicator in indicators:
+        print "Indicator", indicator
+
+signals.post_save.connect(create_company_balance, sender=CompanyBalance)
+
 
 class CompanyBalanceIndicator(models.Model):
     company_balance = models.ForeignKey('ecg_balancing.CompanyBalance',
@@ -293,8 +331,8 @@ class CompanyBalanceIndicator(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, editable=False, related_name='profile')
-    avatar = models.ImageField(_('Image'), blank=True, null=True, upload_to='profiles-upload')
 
+    avatar = models.ImageField(_('Image'), blank=True, null=True, upload_to='profiles-upload')
     companies = models.ManyToManyField('ecg_balancing.Company', verbose_name=_('Companies'), blank=True, null=True)
 
 

@@ -18,31 +18,7 @@
         {% trans "Edit" %}
       </a>
 
-      <div class="profile-company-logo">
-        {% if object.logo %}
-          <img src="{% thumbnail object.logo 100x0 crop=scale upscale %}" alt=""/>
-        {% else %}
-          <a href="{% url 'company-update' object.slug %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
-        {% endif %}
-      </div>
-      <div class="profile-company-details">
-        <h1 class="profile-company-details-name">{{ object.name }}</h1>
-
-        <div class="profile-company-details-important">
-      <span class="profile-company-details-item">
-        <span class="glyphicon glyphicon-map-marker"></span>
-        {{ object.city }}, {{ object.country }}
-      </span>
-      <span class="profile-company-details-item">
-        <span class="glyphicon glyphicon-link"></span>
-        <a href="{{ object.website }}">{{ object.website }}</a>
-      </span>
-      <span class="profile-company-details-item">
-        <span class="glyphicon glyphicon-envelope"></span>
-        <a href="mailto:{{ object.email }}">{{ object.email }}</a>
-      </span>
-        </div>
-      </div>
+      {% include 'ecg_balancing/includes/company_header.html' with company=object %}
 
     </div>
   </div>
@@ -60,7 +36,7 @@
           {% endfor %}
         </ul>
       {% else %}
-        <a href="{% url 'company-update' object.slug %}" class="button primary">
+        <a href="{% url 'balance-create' object.slug %}" class="button primary">
           <span class="glyphicon glyphicon-plus"></span>
           {% trans "Create ECG Balance" %}
         </a>

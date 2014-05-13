@@ -32,8 +32,8 @@ urlpatterns = patterns('',
 
     # Indicators: /sinnwerkstatt/2014/c1
 	#url(r'^indicator/create$', login_required(CompanyBalanceIndicatorCreateView.as_view()), name='indicator-create'),
-	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/(?P<indicator_id>.*)$', login_required(CompanyBalanceIndicatorDetailView.as_view()), name='indicator-detail'),
-	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/(?P<indicator_id>.*)/update$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='indicator-update'),
+	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/(?P<indicator_id>[\w.]*)$', login_required(CompanyBalanceIndicatorDetailView.as_view()), name='indicator-detail'),
+	url(r'^indicator/(?P<pk>[\d]*)/update$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='indicator-update'),
 
 
     # leave at the end

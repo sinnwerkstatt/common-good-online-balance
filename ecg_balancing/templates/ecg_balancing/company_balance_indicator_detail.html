@@ -61,35 +61,43 @@
 
   {% for subindicator in subindicators %}
 
-    <div class="indicator-editor-container bubble">
-      <div class="bubble-inner">
-        <div class="row meta">
-          <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
-            <h3 class="subindicator-title ecg-green" data-position="{{ subindicator.subindicator_number }}"></h3>
-          </div>
-          <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <button type="button" class="button primary pull-right">{% trans "Save" %}</button>
-            <div id="company-balance-indicator-{{ subindicator.slugify }}-slider"
-                 class="company-balance-indicator-slider pull-right">
-              <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
-              <input id="company-balance-indicator-{{ subindicator.slugify }}-points" type="text" value="0" name="demo1"
-                     class="center">
+    <form method="POST" action="{% url 'indicator-update' pk=subindicator.indicator.pk %}">
+      {% csrf_token %}
+      <div class="indicator-editor-container bubble">
+        <div class="bubble-inner">
+          <div class="row meta">
+            <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
+              <h3 class="subindicator-title ecg-green" data-position="{{ subindicator.indicator.subindicator_number }}"></h3>
+            </div>
+            <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <button type="submit" class="button primary pull-right">{% trans "Save" %}</button>
+              <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
+                   class="company-balance-indicator-slider pull-right">
+                <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
+                       value="{{ subindicator.evaluation }}"
+                       name="indicator-points"
+                       class="center">
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="bubble-contents">
-          <textarea name="company-balance-indicator-{{ subindicator.slugify }}-editor">
-            <p>Editieren Sie diesen Indikator</p>
-            <ul>
+          <div class="bubble-contents">
+            <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
+              {% if subindicator.description %}
+                {{ subindicator.description }}
+              {% else %}
+              <p>Editieren Sie diesen Indikator</p>
+              <ul>
               <li>darauf klicken</li>
               <li>editieren</li>
-            </ul>
-          </textarea>
-        </div>
+              </ul>
+              {% endif %}
+            </textarea>
+          </div>
 
+        </div>
       </div>
-    </div>
+    </form>
   {% endfor %}
 
 {% endblock base_content %}

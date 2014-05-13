@@ -1,0 +1,28 @@
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
+{% load static from staticfiles %}
+
+<div class="profile-company-logo">
+  {% if company.logo %}
+    <img src="{% thumbnail company.logo 100x0 crop=scale upscale %}" alt=""/>
+  {% else %}
+    <a href="{% url 'company-update' company.slug %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
+  {% endif %}
+</div>
+<div class="profile-company-details">
+  <h1 class="profile-company-details-name">{{ company.name }}</h1>
+
+  <div class="profile-company-details-important">
+      <span class="profile-company-details-item">
+        <span class="glyphicon glyphicon-map-marker"></span>
+        {{ company.city }}, {{ company.country }}
+      </span>
+      <span class="profile-company-details-item">
+        <span class="glyphicon glyphicon-link"></span>
+        <a href="{{ company.website }}">{{ company.website }}</a>
+      </span>
+      <span class="profile-company-details-item">
+        <span class="glyphicon glyphicon-envelope"></span>
+        <a href="mailto:{{ company.email }}">{{ company.email }}</a>
+      </span>
+  </div>
+</div>
