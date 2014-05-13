@@ -88,7 +88,7 @@ $('.js-indicator-page-title-inner').html(indicator.shortcode + ' - ' + indicator
 // activate indicator editor
 var indicatorShortCodeSlug = indicator.shortcodeSlug;
 
-var indicatorPrefixId = 'company-balance-indicator-'+indicatorShortCodeSlug+'-0';
+var indicatorPrefixId = 'company-balance-indicator-'+indicatorShortCodeSlug;
 var editorId = indicatorPrefixId+'-editor';
 CKEDITOR.disableAutoInline = true;
 CKEDITOR.inline(editorId, ckeditor_config);
