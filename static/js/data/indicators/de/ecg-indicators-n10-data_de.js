@@ -1,0 +1,6 @@
+indicator = {
+    shortcode: 'N10',
+    shortcodeSlug: 'n10',
+    name: 'Arbeitsrechtliches Fehlverhalten seitens des Unternehmens',
+    points: -200
+};

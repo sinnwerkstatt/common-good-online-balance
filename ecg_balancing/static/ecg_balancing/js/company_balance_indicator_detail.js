@@ -1,5 +1,3 @@
-console.log('company balance Inicator JS');
-
 var ckeditor_config = {
     // Define changes to default configuration here.
     // For the complete reference:
@@ -104,39 +102,52 @@ var touchSpinSettings = {
     boostat: 3,
     maxboostedstep: 10
 };
+
+if (indicator.shortcodeSlug.indexOf('n') == 0) { // if negative criteria
+    touchSpinSettings.min = indicator.points;
+    touchSpinSettings.max = 0
+}
+
 var pointsEl = $('#'+indicatorPrefixId+'-points');
 pointsEl.TouchSpin(touchSpinSettings);
 pointsEl.on('change', function(e) {
     console.log('new points: ' + e.target.value);
 });
 
-$('.subindicator-title').each(function(e) {
-    var $this = $(this);
-    var position = $this.data('position');
-    var title = indicator.shortcode + '.' + position;
 
-    $.each(indicator.table.subindicators, function( index, subindicator ) {
-        if (subindicator.position === position+'') {
-            $this.html(title + ' - ' + subindicator.title);
-        }
+// if not negative criteria
+if (indicator.shortcodeSlug.indexOf('n') != 0) {
+
+    $('.subindicator-title').each(function(e) {
+        var $this = $(this);
+        var position = $this.data('position');
+        var title = indicator.shortcode + '.' + position;
+
+        $.each(indicator.table.subindicators, function( index, subindicator ) {
+            if (subindicator.position === position+'') {
+                $this.html(title + ' - ' + subindicator.title);
+            }
+        });
+
     });
 
-});
+    if (typeof indicator.table !== 'undefined') {
+        // activate subindicators
+        $.each(indicator.table.subindicators, function( index, subindicator ) {
+            var subIdPrefix = 'company-balance-indicator-'+indicatorShortCodeSlug+'-'+subindicator.position;
+            console.log( index + ": " + subIdPrefix );
 
-// activate subindicators
-$.each(indicator.table.subindicators, function( index, subindicator ) {
-    var subIdPrefix = 'company-balance-indicator-'+indicatorShortCodeSlug+'-'+subindicator.position;
-    console.log( index + ": " + subIdPrefix );
+            // activate editor
+            var editorId = subIdPrefix+'-editor';
+            CKEDITOR.disableAutoInline = true;
+            CKEDITOR.inline(editorId, ckeditor_config);
 
-    // activate editor
-    var editorId = subIdPrefix+'-editor';
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.inline(editorId, ckeditor_config);
-
-    // activate evaluation
-    pointsEl = $('#'+subIdPrefix+'-points');
-    pointsEl.TouchSpin(touchSpinSettings);
-    pointsEl.on('change', function(e) {
-        console.log('new points: ' + e.target.value);
-    });
-});
+            // activate evaluation
+            pointsEl = $('#'+subIdPrefix+'-points');
+            pointsEl.TouchSpin(touchSpinSettings);
+            pointsEl.on('change', function(e) {
+                console.log('new points: ' + e.target.value);
+            });
+        });
+    }
+}

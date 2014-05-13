@@ -269,7 +269,6 @@ table {
 }
 
 .indicator-page-title {
-  color: #cccb98;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -355,7 +354,7 @@ table {
 }
 
 .company-balance-indicator-slider {
-  width: 140px;
+  width: 145px;
   padding-right: 25px;
 }
 .company-balance-indicator-slider .form-control:focus {

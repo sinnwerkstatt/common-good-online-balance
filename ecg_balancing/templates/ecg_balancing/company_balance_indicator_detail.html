@@ -29,7 +29,8 @@
     </div>
   </div>
 
-  <h2 class="indicator-page-title center ecg-green"><span class="js-indicator-page-title-inner"></span></h2>
+
+  <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}"><span class="js-indicator-page-title-inner"></span></h2>
   <div class="indicator-editor-container bubble">
     <div class="bubble-inner">
       <div class="row meta">

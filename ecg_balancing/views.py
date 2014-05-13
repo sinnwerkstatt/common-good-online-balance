@@ -103,17 +103,31 @@ class CompanyBalanceIndicatorDetailView(DetailView):
         if queryset is None:
             queryset = self.get_queryset()
 
+        company_slug = self.kwargs.get('company_slug')
+        balance_year = self.kwargs.get('balance_year')
+
         indicatorId = self.kwargs.get('indicator_id')
         indicatorStakeholder = indicatorId[:1]
-        indicatorValue = indicatorId[1:2]
 
-        return queryset.get(
-            company_balance__company__slug=self.kwargs.get('company_slug'),
-            company_balance__year=self.kwargs.get('balance_year'),
-            indicator__stakeholder=indicatorStakeholder,
-            indicator__ecg_value=indicatorValue,
-            indicator__parent=None
-        )
+        if indicatorId.startswith('n'): # negative indicator
+            indicatorValue = indicatorId[1:]
+            return queryset.get(
+                company_balance__company__slug=company_slug,
+                company_balance__year=balance_year,
+                indicator__stakeholder=indicatorStakeholder,
+                indicator__subindicator_number=indicatorValue,
+                indicator__parent=None
+            )
+
+        else:
+            indicatorValue = indicatorId[1:2]
+            return queryset.get(
+                company_balance__company__slug=company_slug,
+                company_balance__year=balance_year,
+                indicator__stakeholder=indicatorStakeholder,
+                indicator__ecg_value=indicatorValue,
+                indicator__parent=None
+            )
 
 
 class CompanyBalanceIndicatorCreateView(CreateView):

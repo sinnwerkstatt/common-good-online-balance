@@ -30,6 +30,7 @@ STAKEHOLDERS = (
     ('c', 'c'),
     ('d', 'd'),
     ('e', 'e'),
+    ('n', 'n'),
 )
 
 
@@ -99,7 +100,12 @@ class Indicator(models.Model):
         verbose_name_plural = _('Indicators')
 
     def __unicode__(self):
-        if  self.parent is None:
+        if self.stakeholder.startswith('n'):
+            return '%s%s' % (
+                unicode(self.stakeholder),
+                unicode(self.subindicator_number)
+            )
+        elif self.parent is None:
             return '%s%s' % (
                 unicode(self.stakeholder),
                 unicode(self.ecg_value)
@@ -112,7 +118,12 @@ class Indicator(models.Model):
             )
 
     def slugify(self):
-        if  self.parent is None:
+        if self.stakeholder.startswith('n'):
+            return '%s%s' % (
+                unicode(self.stakeholder),
+                unicode(self.subindicator_number)
+            )
+        elif self.parent is None:
             return '%s%s' % (
                 unicode(self.stakeholder),
                 unicode(self.ecg_value)
@@ -298,11 +309,24 @@ class CompanyBalance(models.Model):
 
 def create_company_balance(**kwargs):
     balance = kwargs.get('instance')
+
+    # create company balance indicators
+    company_balance_indicators = []
+
     indicators = Indicator.objects.all()
     for indicator in indicators:
-        print "Indicator", indicator
+        company_balance_indicators.append(CompanyBalanceIndicator(company_balance=balance, indicator=indicator))
+
+    CompanyBalanceIndicator.objects.bulk_create(company_balance_indicators)
+
+
+#def delete_company_balance(**kwargs):
+#    balance = kwargs.get('instance')
+#    print balance
+
 
 signals.post_save.connect(create_company_balance, sender=CompanyBalance)
+#signals.post_delete.connect(delete_company_balance, sender=CompanyBalance)
 
 
 class CompanyBalanceIndicator(models.Model):
