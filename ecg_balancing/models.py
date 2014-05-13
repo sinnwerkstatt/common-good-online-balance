@@ -68,6 +68,11 @@ class Indicator(models.Model):
         (RELEVANCE_MIDDLE, _('Middle')),
         (RELEVANCE_HIGH, _('High'))
     )
+    RELEVANCE_MAPPING = {
+        RELEVANCE_LOW: 1,
+        RELEVANCE_MIDDLE: 2,
+        RELEVANCE_HIGH: 3
+    }
 
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='indicators',
                               null=False,
@@ -211,10 +216,12 @@ class Company(models.Model):
     ACTIVITY_CHOICES = (
         (ACTIVITY_CHOICE_EXAMPLE, _('Example')),
     )
+    EMPLOYEES_NUMBER_CHOICE_ONE = 'one'
     EMPLOYEES_NUMBER_CHOICE_SMALL = 'small'
     EMPLOYEES_NUMBER_CHOICE_MEDIUM = 'medium'
     EMPLOYEES_NUMBER_CHOICE_LARGE = 'large'
     EMPLOYEES_NUMBER_CHOICES = (
+        (EMPLOYEES_NUMBER_CHOICE_ONE, _('1 employee')),
         (EMPLOYEES_NUMBER_CHOICE_SMALL, _('1-10 employees')),
         (EMPLOYEES_NUMBER_CHOICE_MEDIUM, _('11-50 employees')),
         (EMPLOYEES_NUMBER_CHOICE_LARGE, _('More than 50 employees'))
@@ -245,7 +252,7 @@ class Company(models.Model):
     # TODO: all 4 should be choices
     industry = models.CharField(_('Industry'), max_length=255, choices=INDUSTRY_CHOICES, blank=True, null=True)
     activities = models.CharField(_('Activities'), max_length=255, choices=ACTIVITY_CHOICES, blank=True, null=True)
-    employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES, blank=True, null=True)
+    employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
     revenue = models.CharField(_('Revenue'), max_length=255, choices=REVENUE_CHOICES, blank=True, null=True)
 
     foundation_date = models.DateTimeField(_('Foundation Date'), blank=True, null=True)

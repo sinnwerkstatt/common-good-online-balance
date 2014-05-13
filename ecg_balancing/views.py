@@ -153,16 +153,67 @@ class CompanyBalanceIndicatorUpdateView(UpdateView):
         raise Exception, "here"
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        indicatorId = self.object.indicator.slugify()
+        companyBalanceIndicator = self.get_object()
+        indicatorId = companyBalanceIndicator.indicator.slugify()
 
         post = self.request.POST
-        indicatorPoints = post.get('indicator-points')
+        indicatorPoints = int(post.get('indicator-points'))
         indicatorText = post.get('company-balance-indicator-%s-editor' % indicatorId)
 
-        self.object.evaluation = indicatorPoints
-        self.object.description = indicatorText
-        self.object.save()
+        companyBalanceIndicator.evaluation = indicatorPoints
+        companyBalanceIndicator.description = indicatorText
+        companyBalanceIndicator.save()
+
+        parent = companyBalanceIndicator.indicator.parent
+        if parent:
+            companyBalanceSubIndicators = CompanyBalanceIndicator.objects.filter(company_balance=companyBalanceIndicator.company_balance, indicator__parent=parent)
+
+            subindicators_points_sum = 0
+            for companyBalanceSubIndicator in companyBalanceSubIndicators:
+
+                companyBalanceSubIndicatorPoints = 0
+                if companyBalanceSubIndicator is companyBalanceIndicator:
+                    companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(indicatorPoints, companyBalanceIndicator, companyBalanceSubIndicators)
+                else:
+                    companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(companyBalanceSubIndicator.evaluation, companyBalanceSubIndicator, companyBalanceSubIndicators)
+
+                subindicators_points_sum += companyBalanceSubIndicatorPoints
+
+            sum_percentage = round (( float(subindicators_points_sum) / parent.max_evaluation), 2) * 100
+            rounded_sum_percentage = round(sum_percentage, -1)
+            final_points = int ((rounded_sum_percentage * parent.max_evaluation) / 100)
+
+            # set the company balance indicator points
+            parentCBIndicator = CompanyBalanceIndicator.objects.get(company_balance=companyBalanceIndicator.company_balance, indicator=parent)
+            parentCBIndicator.evaluation = final_points
+            parentCBIndicator.save()
+
+        self.object = companyBalanceIndicator
 
         return HttpResponseRedirect(self.get_success_url())
         #raise Exception, self.request.POST
+
+    def calculate_subindicator_points(self, subindicatorPercentage, companyBalanceSubindicator, companyBalanceSubIndicators):
+
+        """
+
+        @param subindicatorPercentage: the subindicator percentage points
+        @param companyBalanceSubindicator: the company balance sub indicator
+        @param companyBalanceSubIndicators: all subindicators
+        @return: @rtype: the calculated points for the subindicator
+        """
+        relevance_mapping = Indicator.RELEVANCE_MAPPING
+        subindicator_relevance = relevance_mapping[companyBalanceSubindicator.indicator.relevance]
+        subindicators_relevances_sum = 0
+
+        # Subindicator Points = Prozent * Indicator MaxPoints * (high,3/middle,3/low,1,/no,0) / (3  + 2 + 1)
+
+        # calculate the subindicator points
+        for companyBalanceSubIndicator in companyBalanceSubIndicators:
+            subindicators_relevances_sum += relevance_mapping[companyBalanceSubIndicator.indicator.relevance]
+
+        parent = companyBalanceSubindicator.indicator.parent
+        subindicator_area_points = parent.max_evaluation * (float (subindicator_relevance) / float(subindicators_relevances_sum) )
+        subindicator_calculated_points = int (round ((float(subindicatorPercentage) / 100) * subindicator_area_points))
+
+        return subindicator_calculated_points

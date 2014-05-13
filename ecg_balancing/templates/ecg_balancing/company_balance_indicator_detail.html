@@ -43,14 +43,19 @@
           </div>
           <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <button type="submit" class="button primary pull-right">{% trans "Save" %}</button>
-            <div id="company-balance-indicator-{{ object.indicator }}-0-slider"
-                 class="company-balance-indicator-slider pull-right">
-              <!--<input id="ohai" type="number" theme="flat" label="Punkte" min="0" max="90" step="1" class=" ctl-input" style="width: 2ex;">-->
-              <input id="company-balance-indicator-{{ object.indicator.slugify }}-points" type="text"
-                     value="{{ object.evaluation }}"
-                     name="indicator-points"
-                     class="center">
-            </div>
+            {% ifnotequal object.indicator.stakeholder 'n' %}
+              <div class="company-balance-indicator-points pull-right">
+                {{ object.evaluation }} / {{ object.indicator.max_evaluation }}
+              </div>
+            {% else %}
+              <div id="company-balance-indicator-{{ object.indicator }}-0-slider"
+                   class="company-balance-indicator-slider pull-right">
+                <input id="company-balance-indicator-{{ object.indicator.slugify }}-points" type="text"
+                       value="{{ object.evaluation }}"
+                       name="indicator-points"
+                       class="center">
+              </div>
+            {% endifnotequal %}
           </div>
         </div>
 
@@ -74,7 +79,7 @@
 
   {% for subindicator in subindicators %}
 
-    <form method="POST" action="{% url 'indicator-update' pk=subindicator.indicator.pk %}">
+    <form method="POST" action="{% url 'indicator-update' pk=subindicator.pk %}">
       {% csrf_token %}
       <div class="indicator-editor-container bubble">
         <div class="bubble-inner">

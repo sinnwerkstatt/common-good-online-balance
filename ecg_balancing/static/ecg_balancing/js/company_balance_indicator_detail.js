@@ -97,7 +97,7 @@ CKEDITOR.inline(editorId, ckeditor_config);
 var touchSpinSettings = {
     min: 0,
     max: 100,
-    step: 10,
+    step: 1,
     decimals: 0,
     boostat: 3,
     maxboostedstep: 10
@@ -105,7 +105,8 @@ var touchSpinSettings = {
 
 if (indicator.shortcodeSlug.indexOf('n') == 0) { // if negative criteria
     touchSpinSettings.min = indicator.points;
-    touchSpinSettings.max = 0
+    touchSpinSettings.max = 0;
+    touchSpinSettings.step = 10;
 }
 
 var pointsEl = $('#'+indicatorPrefixId+'-points');
@@ -114,6 +115,14 @@ pointsEl.on('change', function(e) {
     console.log('new points: ' + e.target.value);
 });
 
+var touchSpinSubindicatorSettings = {
+    min: 0,
+    max: 100,
+    step: 10,
+    decimals: 0,
+    boostat: 3,
+    maxboostedstep: 10
+};
 
 // if not negative criteria
 if (indicator.shortcodeSlug.indexOf('n') != 0) {
@@ -144,7 +153,7 @@ if (indicator.shortcodeSlug.indexOf('n') != 0) {
 
             // activate evaluation
             pointsEl = $('#'+subIdPrefix+'-points');
-            pointsEl.TouchSpin(touchSpinSettings);
+            pointsEl.TouchSpin(touchSpinSubindicatorSettings);
             pointsEl.on('change', function(e) {
                 console.log('new points: ' + e.target.value);
             });
