@@ -64,7 +64,7 @@ indicator = {
                 ]
             },
             {
-                title: 'Gemeinwohlorientierte Veranlagung<a href="file:///C:/Users/chrisruether/Dropbox/Redaktionsteam/Matrix4.1-Indikatoren/B1-Ethisches-Finanzmanagement-GH/B1_4_1_Endversion_nach%20Korrektur.docx#_ftn3" title="" class="external-link" rel="nofollow">[3]</a>',
+                title: 'Gemeinwohlorientierte Veranlagung',
                 relevance: 'high',
                 position: '3',
                 developmentTracks: [

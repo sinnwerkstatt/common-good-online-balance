@@ -46,6 +46,11 @@ class CompanyBalanceDetailView(DetailView):
     model = CompanyBalance
     template_name = 'ecg_balancing/company_balance_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(CompanyBalanceDetailView, self).get_context_data(**kwargs)
+        context['indicators'] = self.object.company_balance.filter(indicator__parent=None).order_by('indicator__stakeholder')
+        return context
+
     def get_object(self, queryset=None):
         # Use a custom queryset if provided; this is required for subclasses
         # like DateDetailView
