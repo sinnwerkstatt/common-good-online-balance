@@ -315,16 +315,19 @@ class CompanyBalance(models.Model):
 
 
 def create_company_balance(**kwargs):
-    balance = kwargs.get('instance')
+    created = kwargs.get('created')
 
-    # create company balance indicators
-    company_balance_indicators = []
+    if created:
+        balance = kwargs.get('instance')
 
-    indicators = Indicator.objects.all()
-    for indicator in indicators:
-        company_balance_indicators.append(CompanyBalanceIndicator(company_balance=balance, indicator=indicator))
+        # create company balance indicators
+        company_balance_indicators = []
 
-    CompanyBalanceIndicator.objects.bulk_create(company_balance_indicators)
+        indicators = Indicator.objects.all()
+        for indicator in indicators:
+            company_balance_indicators.append(CompanyBalanceIndicator(company_balance=balance, indicator=indicator))
+
+        CompanyBalanceIndicator.objects.bulk_create(company_balance_indicators)
 
 
 #def delete_company_balance(**kwargs):
