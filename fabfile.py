@@ -3,11 +3,11 @@ from fabvenv import virtualenv
 
 
 def staging():
-    env.hosts = ['deploy_hosts_user@example.com']
-    env.path = '/var/www/vhosts/example.com/staging.example.com'
+    env.hosts = ['ecg@sinnwerkstatt.com']
+    env.path = '/srv/ecg.sinnwerkstatt.com/ecg-balancing'
     env.push_branch = 'master'
     env.push_remote = 'origin'
-    env.virtualenv_path = '/var/www/vhosts/example.com/stagingenv/'
+    env.virtualenv_path = '/srv/ecg.sinnwerkstatt.com/ecgenv'
 
 
 def production():
@@ -36,8 +36,8 @@ def deploy():
         with virtualenv(env.virtualenv_path):
             run("python manage.py syncdb")
             run("python manage.py migrate")
-            run("python manage.py collectstatic")
-            run("supervisorctl reload staging.example.com")
+            run("python manage.py collectstatic --noinput")
+            run("supervisorctl restart ecg")
 
 
 def syncdb():
