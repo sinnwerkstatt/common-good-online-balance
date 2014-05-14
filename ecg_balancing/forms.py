@@ -62,3 +62,31 @@ class CompanyBalanceForm(forms.ModelForm):
             raise forms.ValidationError(_('There is an existing balance for the year %s. Please enter another year.'%year))
 
         return cleaned_data
+
+
+class CompanyBalanceEditForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.label_class = 'clearboth text-right col-lg-2 col-md-2'
+    helper.field_class = 'col-lg-5 col-md-5'
+    helper.form_tag = False
+
+    class Meta:
+        model = CompanyBalance
+        fields = ('matrix', 'year', 'status', 'start_date', 'end_date', 'peer_companies', 'auditor', 'common_good',
+                  'prospect', 'process_description', 'company')
+
+    def __init__(self, *args, **kwargs):
+        super(CompanyBalanceEditForm, self).__init__(*args, **kwargs)
+        self.fields['company'].widget = forms.HiddenInput()
+
+    def clean(self):
+        cleaned_data = super(CompanyBalanceEditForm, self).clean()
+        year = cleaned_data.get("year")
+        company = cleaned_data.get("company")
+
+        if (self.instance.year != year):
+            existing_balance = CompanyBalance.objects.filter(company=company, year=year)
+            if existing_balance.exists():
+                raise forms.ValidationError(_('There is an existing balance for the year %s. Please enter another year.'%year))
+
+        return cleaned_data

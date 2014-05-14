@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
+{% load static from staticfiles %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/company_balance.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block page_title %}{% trans "Edit ECG Balance" %} {{ object.year }} - {{ object.company }}{% endblock %}
+
+{% block base_content %}
+
+  <a href="{% url 'balance-detail' object.company.slug object.year %}" class="button pull-right">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    {% trans "Back" %}
+  </a>
+
+  <div class="ecg-matrix-header bubble">
+    <div class="bubble-inner unselectable">
+      <a href="{% url 'company-detail' object.company.slug %}"
+         class="company-detail-link no-decoration center clearfix">
+
+        {% if object.company.logo %}
+          <img class="" src="{% thumbnail object.company.logo 100x0 crop=scale upscale %}" alt=""/>
+        {% endif %}
+        <span class="centered-text-to-img">{{ object.company }}</span>
+      </a>
+      <a href="{% url 'balance-detail' company_slug=object.company.slug balance_year=object.year %}"
+         class="no-decoration center">
+        <h2>{% trans 'ECG Balance' %} {{ object.year }}</h2>
+      </a>
+    </div>
+  </div>
+
+  <h3>{% trans "Edit ECG Balance" %}</h3>
+
+  <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "balance-update" object.company.slug object.year %}">
+    {% csrf_token %}
+    {% crispy form %}
+    <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>
+    <div class="last-form-element col-lg-5 col-md-5">
+      <span class="asteriskField">*</span> - {% trans "Please fill out" %}
+    </div>
+    <div class="clearboth col-lg-2 col-md-2">&nbsp;</div>
+    <div class="pad-bottom col-lg-5 col-md-5">
+      <input type="submit" name="submit" value="{% trans "Save" %}" class="button primary"/>
+    </div>
+  </form>
+
+{% endblock base_content %}

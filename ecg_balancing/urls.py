@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     # Balances: /company/balance_year
 	url(r'^company/(?P<company_slug>[\w-]*)/balance/create$', login_required(CompanyBalanceCreateView.as_view()), name='balance-create'),
 	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/$', login_required(CompanyBalanceDetailView.as_view()), name='balance-detail'),
-	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/update/$', login_required(CompanyBalanceDetailView.as_view()), name='balance-update'),
+	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/update/$', login_required(CompanyBalanceUpdateView.as_view()), name='balance-update'),
 
     # Indicators: /sinnwerkstatt/2014/c1
 	#url(r'^indicator/create$', login_required(CompanyBalanceIndicatorCreateView.as_view()), name='indicator-create'),

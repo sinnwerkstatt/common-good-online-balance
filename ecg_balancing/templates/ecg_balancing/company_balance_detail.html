@@ -11,10 +11,14 @@
 
 {% block base_content %}
 
-  {{ balances }}
+  <a href="{% url 'balance-update' company_slug=object.company.slug balance_year=object.year %}" class="button pull-right">
+    <span class="glyphicon glyphicon-pencil"></span>
+    {% trans "Edit" %}
+  </a>
 
   <div class="ecg-matrix-header bubble">
     <div class="bubble-inner unselectable">
+
       <a href="{% url 'company-detail' object.company.slug %}"
          class="company-detail-link no-decoration center clearfix">
 

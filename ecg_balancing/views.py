@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 
 from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView
-from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm
+from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm
 
 from ecg_balancing.models import *
 
@@ -86,6 +86,19 @@ class CompanyBalanceCreateView(CreateView):
 
 class CompanyBalanceUpdateView(UpdateView):
     model = CompanyBalance
+    template_name = 'ecg_balancing/company_balance_update.html'
+    form_class = CompanyBalanceEditForm
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        return queryset.get(company__slug=self.kwargs.get('company_slug'), year=self.kwargs.get('balance_year'))
+
+    def get_success_url(self):
+        return reverse('balance-detail', kwargs={
+            'company_slug': self.object.company.slug,
+            'balance_year': self.object.year
+        })
 
 
 class CompanyBalanceIndicatorDetailView(DetailView):
