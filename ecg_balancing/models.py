@@ -317,6 +317,7 @@ class CompanyBalance(models.Model):
 def create_company_balance(**kwargs):
     created = kwargs.get('created')
 
+    # create indicators only when the balance is created, not when it is saved
     if created:
         balance = kwargs.get('instance')
 
