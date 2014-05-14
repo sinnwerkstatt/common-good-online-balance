@@ -98,6 +98,7 @@ class Indicator(models.Model):
                                                 null=True,
                                                 blank=True)
 
+    editor = models.CharField(_('Editor'),  max_length=30, blank=True, null=True)
     contact = models.EmailField(_('Email'), blank=True, null=True)
 
     class Meta:
