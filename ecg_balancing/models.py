@@ -2,17 +2,10 @@
 from __future__ import unicode_literals
 import datetime
 
-from django.contrib.sites.models import Site
-from django.contrib.auth.models import User, AbstractUser
-from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db import models
 from django.db.models import signals
-from django.db.models.signals import post_save
-from django.template.loader import get_template
-from django.template.loader import render_to_string
-from django.template import Context
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -381,7 +374,7 @@ class UserRole(models.Model):
     )
 
     company = models.ForeignKey('ecg_balancing.Company', verbose_name=_('Company'))
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('User'))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('User'), related_name='role')
     role = models.CharField(_('Role'), max_length=5, choices=ROLE_CHOICES)
 
     class Meta:

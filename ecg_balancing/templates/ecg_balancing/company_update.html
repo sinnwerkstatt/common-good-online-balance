@@ -22,7 +22,8 @@
         {% if object.logo %}
           <img src="{% thumbnail object.logo 100x0 crop=scale upscale %}" alt=""/>
         {% else %}
-          <a href="{% url 'company-update' object.slug %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
+          <a href="{% url 'company-update' object.slug %}"
+             class="glyphicon glyphicon-picture glyphicon-grey center"></a>
         {% endif %}
       </div>
       <div class="profile-company-details">
@@ -32,18 +33,23 @@
     </div>
   </div>
 
-  <h3>{% trans "Edit" %}</h3>
-  <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-update" object.slug %}">
-    {% csrf_token %}
-    {% crispy form %}
-    <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>
-    <div class="last-form-element col-lg-5 col-md-5">
-      <span class="asteriskField">*</span> - {% trans "Please fill out" %}
-    </div>
-    <div class="clearboth col-lg-2 col-md-2">&nbsp;</div>
-    <div class="pad-bottom col-lg-5 col-md-5">
-      <input type="submit" name="submit" value="{% trans "Save" %}" class="button primary"/>
-    </div>
-  </form>
+  {% if not is_admin %}
+    {% trans "You don't have the rights to edit the company" %}
+  {% else %}
+
+    <h3>{% trans "Edit" %}</h3>
+    <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-update" object.slug %}">
+      {% csrf_token %}
+      {% crispy form %}
+      <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>
+      <div class="last-form-element col-lg-5 col-md-5">
+        <span class="asteriskField">*</span> - {% trans "Please fill out" %}
+      </div>
+      <div class="clearboth col-lg-2 col-md-2">&nbsp;</div>
+      <div class="pad-bottom col-lg-5 col-md-5">
+        <input type="submit" name="submit" value="{% trans "Save" %}" class="button primary"/>
+      </div>
+    </form>
+  {% endif %}
 
 {% endblock base_content %}

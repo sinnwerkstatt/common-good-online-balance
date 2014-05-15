@@ -11,35 +11,38 @@
 
 {% block base_content %}
 
-  <a href="{% url 'balance-update' company_slug=object.company.slug balance_year=object.year %}" class="button pull-right">
-    <span class="glyphicon glyphicon-pencil"></span>
-    {% trans "Edit" %}
-  </a>
-
-  <div class="ecg-matrix-header bubble">
-    <div class="bubble-inner unselectable">
-
-      <a href="{% url 'company-detail' object.company.slug %}"
-         class="company-detail-link no-decoration center clearfix">
-
-        {% if object.company.logo %}
-          <img class="" src="{% thumbnail object.company.logo 100x0 crop=scale upscale %}" alt=""/>
-        {% endif %}
-        <span class="centered-text-to-img">{{ object.company }}</span>
+    {% if is_admin %}
+      <a href="{% url 'balance-update' company_slug=object.company.slug balance_year=object.year %}"
+         class="button pull-right">
+        <span class="glyphicon glyphicon-pencil"></span>
+        {% trans "Edit" %}
       </a>
-      <a href="{% url 'balance-detail' company_slug=object.company.slug balance_year=object.year %}"
-         class="no-decoration center">
-        <h2>{% trans 'ECG Balance' %} {{ object.year }}</h2>
-      </a>
+    {% endif %}
+
+    <div class="ecg-matrix-header bubble">
+      <div class="bubble-inner unselectable">
+
+        <a href="{% url 'company-detail' object.company.slug %}"
+           class="company-detail-link no-decoration center clearfix">
+
+          {% if object.company.logo %}
+            <img class="" src="{% thumbnail object.company.logo 100x0 crop=scale upscale %}" alt=""/>
+          {% endif %}
+          <span class="centered-text-to-img">{{ object.company }}</span>
+        </a>
+        <a href="{% url 'balance-detail' company_slug=object.company.slug balance_year=object.year %}"
+           class="no-decoration center">
+          <h2>{% trans 'ECG Balance' %} {{ object.year }}</h2>
+        </a>
+      </div>
     </div>
-  </div>
 
-  {% get_current_language as LANGUAGE_CODE %}
-  <div id="ecg-matrix-container" class="container container-page">
-    {% with 'ecg_balancing/dustjs/company_balance_overview-output_'|add:LANGUAGE_CODE|add:'.html' as matrix_html %}
-      {% include matrix_html %}
-    {% endwith %}
-  </div>
+    {% get_current_language as LANGUAGE_CODE %}
+    <div id="ecg-matrix-container" class="container container-page">
+      {% with 'ecg_balancing/dustjs/company_balance_overview-output_'|add:LANGUAGE_CODE|add:'.html' as matrix_html %}
+        {% include matrix_html %}
+      {% endwith %}
+    </div>
 
 {% endblock base_content %}
 
@@ -50,10 +53,11 @@
   <script type="text/javascript">
     var indicatorBaseUrl = location.href;
     var indicatorPoints = {
-      {% for indicator in indicators %}
-        {{ indicator.indicator.slugify }}: {{ indicator.evaluation }},
-      {% endfor %}
-    };
+    {% for indicator in indicators %}
+      {{ indicator.indicator.slugify }}: {{ indicator.evaluation }},
+    {% endfor %}
+    }
+    ;
 
   </script>
   <script src="{% static 'ecg_balancing/js/company_balance_detail.js' %}"></script>

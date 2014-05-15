@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load static from staticfiles %}
+
+{% block page_title %}{% trans 'No Access' %}{% endblock %}
+
+{% block base_content %}
+
+  {% trans "You don't have access to the company" %} {{ company_name }}.
+
+{% endblock base_content %}

@@ -34,89 +34,135 @@
     <span class="js-indicator-page-title-inner"></span></h2>
 
 
-  <form method="POST" action="{% url 'indicator-update' pk=object.pk %}">
+  {% if is_admin %}
+    <form method="POST" action="{% url 'indicator-update' pk=object.pk %}">
     {% csrf_token %}
-    <div class="indicator-editor-container bubble">
-      <div class="bubble-inner">
-        <div class="row meta">
-          <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
+  {% endif %}
+<div class="indicator-editor-container bubble">
+  <div class="bubble-inner">
+    <div class="row meta">
+      <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
+      </div>
+      <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        {% if is_admin %}
+          <button type="submit" class="button primary pull-right">{% trans "Save" %}</button>
+        {% endif %}
+        {% ifnotequal object.indicator.stakeholder 'n' %}
+          <div class="company-balance-indicator-points pull-right">
+            {{ object.evaluation }} / {{ object.indicator.max_evaluation }}
           </div>
-          <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <button type="submit" class="button primary pull-right">{% trans "Save" %}</button>
-            {% ifnotequal object.indicator.stakeholder 'n' %}
-              <div class="company-balance-indicator-points pull-right">
-                {{ object.evaluation }} / {{ object.indicator.max_evaluation }}
-              </div>
-            {% else %}
-              <div id="company-balance-indicator-{{ object.indicator }}-0-slider"
-                   class="company-balance-indicator-slider pull-right">
-                <input id="company-balance-indicator-{{ object.indicator.slugify }}-points" type="text"
-                       value="{{ object.evaluation }}"
-                       name="indicator-points"
-                       class="center">
-              </div>
-            {% endifnotequal %}
-          </div>
-        </div>
+        {% else %}
+          {% if not is_admin %}
+            <div class="company-balance-indicator-points pull-right">
+              {{ object.evaluation }}
+            </div>
+          {% else %}
+            <div id="company-balance-indicator-{{ object.indicator }}-0-slider"
+                 class="company-balance-indicator-slider pull-right">
+              <input id="company-balance-indicator-{{ object.indicator.slugify }}-points" type="text"
+                     value="{{ object.evaluation }}"
+                     name="indicator-points"
+                     class="center">
+            </div>
+          {% endif %}
+        {% endifnotequal %}
+      </div>
+    </div>
 
-        <div class="bubble-contents">
-          <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-editor">
-            {% if object.description %}
-              {{ object.description }}
+    <div class="bubble-contents">
+      {% if is_admin %}
+        <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-editor">
+          {% if object.description %}
+            {{ object.description|safe }}
+          {% else %}
+            <p>Editieren Sie diesen Indikator</p>
+            <ul>
+              <li>darauf klicken</li>
+              <li>editieren</li>
+            </ul>
+          {% endif %}
+        </textarea>
+      {% else %}
+        <div class="company-balance-indicator-text">
+          {% if object.description %}
+            {{ object.description|safe }}
+          {% else %}
+            <br/>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% if is_admin %}
+  </form>
+{% endif %}
+
+  {% for subindicator in subindicators %}
+
+    {% if is_admin %}
+      <form method="POST" action="{% url 'indicator-update' pk=subindicator.pk %}">
+      {% csrf_token %}
+    {% endif %}
+  <div class="indicator-editor-container bubble">
+    <div class="bubble-inner">
+      <div class="row meta">
+        <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <h3 class="subindicator-title ecg-green"
+              data-position="{{ subindicator.indicator.subindicator_number }}"></h3>
+        </div>
+        <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          {% if is_admin %}
+            <button type="submit" class="button primary pull-right">{% trans "Save" %}</button>
+          {% endif %}
+          {% if not is_admin %}
+            <div class="company-balance-indicator-points pull-right">
+              {{ subindicator.evaluation }} %
+            </div>
+          {% else %}
+            <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
+                 class="company-balance-indicator-slider pull-right">
+              <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
+                     value="{{ subindicator.evaluation }}"
+                     name="indicator-points"
+                     class="center">
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="bubble-contents">
+        {% if is_admin %}
+          <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
+            {% if subindicator.description %}
+              {{ subindicator.description|safe }}
             {% else %}
-              <p>Editieren Sie diesen Indikator:</p>
+              <p>Editieren Sie diesen Indikator</p>
               <ul>
                 <li>darauf klicken</li>
                 <li>editieren</li>
               </ul>
             {% endif %}
           </textarea>
-        </div>
-
+        {% else %}
+          <div class="company-balance-indicator-text">
+            {% if subindicator.description %}
+              {{ subindicator.description|safe }}
+            {% else %}
+              <br/>
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
+
     </div>
-  </form>
+  </div>
 
-  {% for subindicator in subindicators %}
-
-    <form method="POST" action="{% url 'indicator-update' pk=subindicator.pk %}">
-      {% csrf_token %}
-      <div class="indicator-editor-container bubble">
-        <div class="bubble-inner">
-          <div class="row meta">
-            <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
-              <h3 class="subindicator-title ecg-green"
-                  data-position="{{ subindicator.indicator.subindicator_number }}"></h3>
-            </div>
-            <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <button type="submit" class="button primary pull-right">{% trans "Save" %}</button>
-              <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
-                   class="company-balance-indicator-slider pull-right">
-                <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
-                       value="{{ subindicator.evaluation }}"
-                       name="indicator-points"
-                       class="center">
-              </div>
-            </div>
-          </div>
-
-          <div class="bubble-contents">
-            <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
-              {% if subindicator.description %}
-                {{ subindicator.description }}
-              {% else %}
-                <p>Editieren Sie diesen Indikator</p>
-                <ul>
-                  <li>darauf klicken</li>
-                  <li>editieren</li>
-                </ul>
-              {% endif %}
-            </textarea>
-          </div>
-
-        </div>
-      </div>
+  {% if is_admin %}
     </form>
+  {% endif %}
   {% endfor %}
 
 {% endblock base_content %}
@@ -132,7 +178,7 @@
       src="{% static 'js/data/indicators' %}/{{ LANGUAGE_CODE }}/ecg-indicators-{{ object.indicator }}-data_{{ LANGUAGE_CODE }}.js"></script>
 
   <script type="text/javascript">
-
+    var is_admin = {% if is_admin %}true{% else %}false{% endif %};
   </script>
   <script src="{% static 'ecg_balancing/js/company_balance_indicator_detail.js' %}"></script>
 {% endblock javascript %}

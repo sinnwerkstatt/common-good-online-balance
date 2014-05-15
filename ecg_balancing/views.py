@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView
 from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm
@@ -25,11 +26,46 @@ class UserUpdateView(UpdateView):
     template_name = 'ecg_balancing/user_update.html'
 
 
-class CompanyDetailView(DetailView):
+class UserRoleMixin(object):
+    """provides the variables 'has_company_access', 'is_admin' and 'is_guest' in the context. Requires the URL parameters 'company_slug' or 'slug' """
+
+    def get_context_data(self, **kwargs):
+        context = super(UserRoleMixin, self).get_context_data(**kwargs)
+
+        if self.request.user.is_authenticated():
+            company_slug = self.kwargs.get('company_slug')
+            if company_slug is None:
+                company_slug = self.kwargs.get('slug')
+
+            company = Company.objects.get(slug=company_slug)
+
+            try:
+                userrole = UserRole.objects.get(user=self.request.user, company=company)
+                context['has_company_access'] = True
+                context['is_admin'] = (userrole.role == 'admin')
+                context['is_guest'] = (userrole.role == 'guest')
+            except:
+                context['has_company_access'] = False
+                context['company_name'] = company.name
+
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        has_company_access = context['has_company_access']
+        if not has_company_access:
+            return render_to_response('ecg_balancing/company_no_access.html',
+                                      context,
+                                      context_instance=RequestContext(self.request))
+
+        else:
+            return super(UserRoleMixin, self).render_to_response(context, **response_kwargs)
+
+
+class CompanyDetailView(UserRoleMixin, DetailView):
     model = Company
 
 
-class CompanyUpdateView(UpdateView):
+class CompanyUpdateView(UserRoleMixin, UpdateView):
     model = Company
     form_class = CompanyForm
     template_name = 'ecg_balancing/company_update.html'
@@ -42,13 +78,14 @@ class CompanyUpdateView(UpdateView):
             return super(CompanyUpdateView, self).get_success_url()
 
 
-class CompanyBalanceDetailView(DetailView):
+class CompanyBalanceDetailView(UserRoleMixin, DetailView):
     model = CompanyBalance
     template_name = 'ecg_balancing/company_balance_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(CompanyBalanceDetailView, self).get_context_data(**kwargs)
         context['indicators'] = self.object.company_balance.filter(indicator__parent=None).order_by('indicator__stakeholder')
+        #raise Exception, self.request.user.role
         return context
 
     def get_object(self, queryset=None):
@@ -60,7 +97,8 @@ class CompanyBalanceDetailView(DetailView):
         return queryset.get(company__slug=self.kwargs.get('company_slug'), year=self.kwargs.get('balance_year'))
 
 
-class CompanyBalanceCreateView(CreateView):
+
+class CompanyBalanceCreateView(UserRoleMixin, CreateView):
     model = CompanyBalance
     template_name = 'ecg_balancing/company_balance_create.html'
     form_class = CompanyBalanceForm
@@ -84,7 +122,7 @@ class CompanyBalanceCreateView(CreateView):
                                                  }))
 
 
-class CompanyBalanceUpdateView(UpdateView):
+class CompanyBalanceUpdateView(UserRoleMixin, UpdateView):
     model = CompanyBalance
     template_name = 'ecg_balancing/company_balance_update.html'
     form_class = CompanyBalanceEditForm
@@ -101,7 +139,7 @@ class CompanyBalanceUpdateView(UpdateView):
         })
 
 
-class CompanyBalanceIndicatorDetailView(DetailView):
+class CompanyBalanceIndicatorDetailView(UserRoleMixin, DetailView):
     model = CompanyBalanceIndicator
     template_name = 'ecg_balancing/company_balance_indicator_detail.html'
 
@@ -148,10 +186,11 @@ class CompanyBalanceIndicatorDetailView(DetailView):
             )
 
 
-class CompanyBalanceIndicatorCreateView(CreateView):
+class CompanyBalanceIndicatorCreateView(UserRoleMixin, CreateView):
     model = CompanyBalanceIndicator
 
 
+# TODO: add UserRoleMixin for CompanyBalanceIndicatorUpdateView? URL needs 'company_slug' or 'slug'
 class CompanyBalanceIndicatorUpdateView(UpdateView):
     model = CompanyBalanceIndicator
 
