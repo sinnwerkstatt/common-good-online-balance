@@ -216,10 +216,12 @@ class CompanyBalanceIndicatorUpdateView(UpdateView):
         indicatorId = companyBalanceIndicator.indicator.slugify()
 
         post = self.request.POST
-        indicatorPointsPost = post.get('indicator-points')
         indicatorText = post.get('company-balance-indicator-%s-editor' % indicatorId)
-        companyBalanceIndicator.description = indicatorText
+        if indicatorText:
+            companyBalanceIndicator.description = indicatorText
 
+        indicatorPointsPost = post.get('indicator-points')
+        indicatorPoints = 0
         if indicatorPointsPost:
             indicatorPoints = int(indicatorPointsPost)
             companyBalanceIndicator.evaluation = indicatorPoints
