@@ -196,10 +196,16 @@ class CompanyBalanceIndicatorUpdateView(UpdateView):
     model = CompanyBalanceIndicator
 
     def get_success_url(self):
+
+        # if subindicator is updated, redirect to the parent indicator URL
+        indicator = self.object.indicator
+        if indicator.parent:
+            indicator = indicator.parent
+
         return reverse('indicator-detail', kwargs={
             'company_slug': self.object.company_balance.company.slug,
             'balance_year': self.object.company_balance.year,
-            'indicator_id': self.object.indicator
+            'indicator_id': indicator
         })
 
     def form_valid(self, form):
