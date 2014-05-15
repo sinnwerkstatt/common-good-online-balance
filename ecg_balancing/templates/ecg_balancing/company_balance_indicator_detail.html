@@ -33,9 +33,8 @@
   <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}">
     <span class="js-indicator-page-title-inner"></span></h2>
 
-
   {% if is_admin %}
-    <form method="POST" action="{% url 'indicator-update' pk=object.pk %}">
+    <form method="POST" action="{% url 'indicator-update' company_slug=object.company_balance.company.slug pk=object.pk %}">
     {% csrf_token %}
   {% endif %}
 <div class="indicator-editor-container bubble">
@@ -103,7 +102,7 @@
   {% for subindicator in subindicators %}
 
     {% if is_admin %}
-      <form method="POST" action="{% url 'indicator-update' pk=subindicator.pk %}">
+      <form method="POST" action="{% url 'indicator-update' company_slug=object.company_balance.company.slug pk=subindicator.pk %}">
       {% csrf_token %}
     {% endif %}
   <div class="indicator-editor-container bubble">

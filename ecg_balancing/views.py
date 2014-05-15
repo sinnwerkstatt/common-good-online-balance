@@ -192,7 +192,7 @@ class CompanyBalanceIndicatorCreateView(UserRoleMixin, CreateView):
 
 
 # TODO: add UserRoleMixin for CompanyBalanceIndicatorUpdateView? URL needs 'company_slug' or 'slug'
-class CompanyBalanceIndicatorUpdateView(UpdateView):
+class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
     model = CompanyBalanceIndicator
 
     def get_success_url(self):
@@ -207,9 +207,6 @@ class CompanyBalanceIndicatorUpdateView(UpdateView):
             'balance_year': self.object.company_balance.year,
             'indicator_id': indicator
         })
-
-    def form_valid(self, form):
-        raise Exception, "here"
 
     def post(self, request, *args, **kwargs):
         companyBalanceIndicator = self.get_object()
