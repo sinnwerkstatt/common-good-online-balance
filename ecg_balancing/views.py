@@ -216,11 +216,14 @@ class CompanyBalanceIndicatorUpdateView(UpdateView):
         indicatorId = companyBalanceIndicator.indicator.slugify()
 
         post = self.request.POST
-        indicatorPoints = int(post.get('indicator-points'))
+        indicatorPointsPost = post.get('indicator-points')
         indicatorText = post.get('company-balance-indicator-%s-editor' % indicatorId)
-
-        companyBalanceIndicator.evaluation = indicatorPoints
         companyBalanceIndicator.description = indicatorText
+
+        if indicatorPointsPost:
+            indicatorPoints = int(indicatorPointsPost)
+            companyBalanceIndicator.evaluation = indicatorPoints
+
         companyBalanceIndicator.save()
 
         parent = companyBalanceIndicator.indicator.parent
