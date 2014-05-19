@@ -22,6 +22,7 @@
         {% endif %}
         <span class="centered-text-to-img">{{ object.company_balance.company }}</span>
       </a>
+      <span class="pull-right">({{ object.company_balance.points }})</span>
       <a href="{% url 'balance-detail' company_slug=object.company_balance.company.slug balance_year=object.company_balance.year %}"
          class="no-decoration center">
         <h2>{% trans 'ECG Balance' %} {{ object.company_balance.year }}</h2>

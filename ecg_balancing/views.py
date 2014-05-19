@@ -251,6 +251,11 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
 
         self.object = companyBalanceIndicator
 
+        ## update Balance Points
+        balance = companyBalanceIndicator.company_balance
+        balance.points = self.calculate_balance_points(balance)
+        balance.save()
+
         return HttpResponseRedirect(self.get_success_url())
         #raise Exception, self.request.POST
 
@@ -278,3 +283,20 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
         subindicator_calculated_points = int (round ((float(subindicatorPercentage) / 100) * subindicator_area_points))
 
         return subindicator_calculated_points
+
+
+    def calculate_balance_points(self, balance):
+
+        """
+
+        @param balance: the company balance
+        @return: @rtype: the calculated balance points
+        """
+        calculated_points = 0
+        balance_indicators = CompanyBalanceIndicator.objects.filter(company_balance=balance, indicator__parent=None)
+        for balance_indicator in balance_indicators:
+            balance_indicator_evaluation = balance_indicator.evaluation
+            if balance_indicator_evaluation != 0:
+                calculated_points += balance_indicator_evaluation
+
+        return calculated_points

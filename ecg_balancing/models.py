@@ -284,6 +284,7 @@ class CompanyBalance(models.Model):
         (STATUS_CHOICE_AUDITED, _('Audited'))
     )
     status = models.CharField(_('Status'), max_length=255, choices=STATUS_CHOICE, null=False, blank=False)
+    points = models.SmallIntegerField(_('Points'), max_length=4, default=0)
 
     year = models.SmallIntegerField(_('Year'), max_length=4)
     start_date = models.DateTimeField(_('Start Date'), blank=True, null=True)

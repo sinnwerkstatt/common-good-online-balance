@@ -32,6 +32,7 @@
         </a>
         <a href="{% url 'balance-detail' company_slug=object.company.slug balance_year=object.year %}"
            class="no-decoration center">
+          <span class="pull-right">({{ object.points }})</span>
           <h2>{% trans 'ECG Balance' %} {{ object.year }}</h2>
         </a>
       </div>
