@@ -1,6 +1,15 @@
 {% extends "base-page.html" %}
-{% load cms_tags static sekizai_tags %}
+{% load i18n cms_tags static sekizai_tags %}
 
 {% block base_content %}
-  <p>Start page Content</p>
+
+  {% if user.is_authenticated %}
+    {% trans "Hi " %} <a href="{% url 'user-detail' user.pk %}">{{ user.first_name }} {{ user.last_name }}</a>
+
+  {% else %}
+    <a href="{% url 'django.contrib.auth.views.login' %}" class="button primary">{% trans "Login" %}</a>
+
+  {% endif %}
+
+
 {% endblock %}
