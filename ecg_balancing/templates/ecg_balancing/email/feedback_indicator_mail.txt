@@ -1,0 +1,3 @@
+Feedback von {{ sender_name }} <{{ sender_email }}> zum Indikator {{ indicator|upper }}:
+
+{{ message }}

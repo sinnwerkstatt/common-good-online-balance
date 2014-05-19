@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
+{% load static from staticfiles %}
+
+{% block page_title %}{% trans "Send Indicator Feedback" %}{% endblock %}
+
+{% block base_content %}
+
+  {% trans "Thank You! Your feedback has been sent to the ECG editors team." %}
+  <br/>
+  <br/>
+
+  <a href="{{ request.GET.url }}" class="button">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    {% trans "Back to ECG Balance" %}
+  </a>
+
+{% endblock base_content %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
+{% load static from staticfiles %}
+
+{% block page_title %}{% trans "Send Indicator Feedback" %}{% endblock %}
+
+{% block base_content %}
+
+  <a href="{{ url }}" class="button pull-right">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    {% trans "Back" %}
+  </a>
+
+  <h3>{{ indicator|upper }}: {% trans "Send Indicator Feedback" %}</h3>
+
+  <form class="page-form" enctype="multipart/form-data" method="post"
+        action="{% url "feedback-indicator" object.indicator  %}?url={{ url }}">
+    {% csrf_token %}
+    {% crispy form %}
+    <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>
+    <div class="last-form-element col-lg-5 col-md-5">
+      <span class="asteriskField">*</span> - {% trans "Please fill out" %}
+    </div>
+    <div class="clearboth col-lg-2 col-md-2">&nbsp;</div>
+    <div class="pad-bottom col-lg-5 col-md-5">
+      <input type="submit" name="submit" value="{% trans "Send Feedback" %}" class="button primary"/>
+    </div>
+  </form>
+
+{% endblock base_content %}

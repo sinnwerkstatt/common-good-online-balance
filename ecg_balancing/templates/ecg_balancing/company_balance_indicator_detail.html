@@ -34,6 +34,13 @@
   <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}">
     <span class="js-indicator-page-title-inner"></span></h2>
 
+  <div class="feedback-container clearfix">
+    <a href="{% url 'feedback-indicator' object.indicator %}?url={{ request.get_full_path }}" class="button pull-right">
+      <span class="glyphicon glyphicon-envelope"></span>
+      {% trans "Send Feedback" %}
+    </a>
+  </div>
+
   {% if is_admin %}
     <form method="POST" action="{% url 'indicator-update' company_slug=object.company_balance.company.slug pk=object.pk %}">
     {% csrf_token %}

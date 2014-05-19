@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from crispy_forms.layout import Layout, HTML
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
-from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance
+from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator
 
 
 class IndicatorForm(forms.ModelForm):
@@ -90,3 +89,22 @@ class CompanyBalanceEditForm(forms.ModelForm):
                 raise forms.ValidationError(_('There is an existing balance for the year %s. Please enter another year.'%year))
 
         return cleaned_data
+
+
+
+class FeedbackIndicatorForm(forms.ModelForm):
+    indicator = forms.CharField(widget=forms.HiddenInput())
+
+    helper = FormHelper()
+    helper.label_class = 'clearboth text-right col-lg-2 col-md-2'
+    helper.field_class = 'col-lg-5 col-md-5'
+    helper.form_tag = False
+
+    class Meta:
+        model = FeedbackIndicator
+        exclude = ['receiver_name', 'receiver_email']
+
+    def clean_indicator(self):
+        data = self.cleaned_data['indicator']
+        data = Indicator.objects.get(pk=data)
+        return data

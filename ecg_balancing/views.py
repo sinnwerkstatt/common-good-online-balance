@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
+from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import RequestContext, Context
+from django.template.loader import get_template
 
-from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView
-from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm
+from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView, FormView
+from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm, FeedbackIndicatorForm
 
 from ecg_balancing.models import *
 
@@ -77,6 +79,16 @@ class CompanyUpdateView(UserRoleMixin, UpdateView):
             return reverse('company-detail', kwargs={'slug': slug})
         else:
             return super(CompanyUpdateView, self).get_success_url()
+
+
+def getIndicatorStakeholder(indicatorId):
+    return indicatorId[:1]
+
+def getIndicatorValue(indicatorId):
+    if indicatorId.startswith('n'): # negative indicator
+        return indicatorId[1:]
+    else:
+        return indicatorId[1:2]
 
 
 class CompanyBalanceDetailView(UserRoleMixin, DetailView):
@@ -164,10 +176,10 @@ class CompanyBalanceIndicatorDetailView(UserRoleMixin, DetailView):
         balance_year = self.kwargs.get('balance_year')
 
         indicatorId = self.kwargs.get('indicator_id')
-        indicatorStakeholder = indicatorId[:1]
+        indicatorStakeholder = getIndicatorStakeholder(indicatorId)
+        indicatorValue = getIndicatorValue(indicatorId)
 
         if indicatorId.startswith('n'): # negative indicator
-            indicatorValue = indicatorId[1:]
             return queryset.get(
                 company_balance__company__slug=company_slug,
                 company_balance__year=balance_year,
@@ -177,7 +189,6 @@ class CompanyBalanceIndicatorDetailView(UserRoleMixin, DetailView):
             )
 
         else:
-            indicatorValue = indicatorId[1:2]
             return queryset.get(
                 company_balance__company__slug=company_slug,
                 company_balance__year=balance_year,
@@ -300,3 +311,72 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
                 calculated_points += balance_indicator_evaluation
 
         return calculated_points
+
+
+class FeedbackIndicatorFormView(FormView):
+    form_class = FeedbackIndicatorForm
+    template_name = 'ecg_balancing/feedback_indicator_form.html'
+    indicator = None
+
+    def get(self, request, *args, **kwargs):
+
+        indicatorId = kwargs.get("indicator_id")
+        indicatorStakeholder = getIndicatorStakeholder(indicatorId)
+        indicatorValue = getIndicatorValue(indicatorId)
+
+        if indicatorId.startswith('n'): # negative indicator
+            self.indicator = Indicator.objects.get(stakeholder=indicatorStakeholder, subindicator_number=indicatorValue, parent=None)
+        else:
+            self.indicator = Indicator.objects.get(stakeholder=indicatorStakeholder, ecg_value=indicatorValue, parent=None)
+
+        return super(FeedbackIndicatorFormView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(FeedbackIndicatorFormView, self).get_context_data(**kwargs)
+        context.update({
+            "indicator": self.indicator,
+            "url": self.request.REQUEST['url'],
+        })
+        return context
+
+    def get_initial(self, **kwargs):
+        initial = super(FeedbackIndicatorFormView, self).get_initial()
+        if self.request.method == "GET":
+            initial.update({
+                "indicator": self.indicator.pk,
+            })
+
+        return initial
+
+    def form_valid(self, form):
+        feedback_indicator = form.save()
+        self.send_mail(feedback_indicator)
+        return super(FeedbackIndicatorFormView, self).form_valid(form)
+
+    def send_mail(self, feedback_indicator):
+        # render attachment pdf
+        plaintext = get_template('ecg_balancing/email/feedback_indicator_mail.txt')
+        html = get_template('ecg_balancing/email/feedback_indicator_mail.html')
+        context = Context({
+            "sender_name": feedback_indicator.sender_name,
+            "sender_email": feedback_indicator.sender_email,
+            "message": feedback_indicator.message,
+            "indicator": feedback_indicator.indicator,
+        })
+        text_content = plaintext.render(context)
+        html_content = html.render(context)
+        msg = EmailMultiAlternatives(
+            _('[ECG] New Feedback for Indicator %s'%(str(feedback_indicator.indicator).upper())),
+            text_content,
+            settings.FEEDBACK_INDICATOR_SENDER_EMAIL,
+            [feedback_indicator.indicator.contact],
+            headers = {'Reply-To': feedback_indicator.sender_email})
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
+    def get_success_url(self):
+        return reverse_lazy('feedback-indicator-success') + '?url=' + self.request.REQUEST['url']
+
+class FeedbackIndicatorSuccessView(TemplateView):
+    template_name = 'ecg_balancing/feedback_indicator_success.html'
+

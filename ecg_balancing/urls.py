@@ -34,6 +34,9 @@ urlpatterns = patterns('',
 	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/(?P<indicator_id>[\w.]*)$', login_required(CompanyBalanceIndicatorDetailView.as_view()), name='indicator-detail'),
 	url(r'^company/(?P<company_slug>[\w-]*)/indicator/(?P<pk>[\d]*)/update$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='indicator-update'),
 
+    url(r'^feedback/indicator/(?P<indicator_id>[\w.]*)$', login_required(FeedbackIndicatorFormView.as_view()), name='feedback-indicator'),
+    url(r'^feedback/success/$', login_required(FeedbackIndicatorSuccessView.as_view()), name='feedback-indicator-success'),
+
 
     # leave at the end
     url(r'^admin/', include(admin.site.urls)),

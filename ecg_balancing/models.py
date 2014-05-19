@@ -387,3 +387,19 @@ class UserRole(models.Model):
             unicode(self.company),
             unicode(self.user)
         )
+
+
+class FeedbackIndicator(models.Model):
+    indicator = models.ForeignKey('ecg_balancing.Indicator', verbose_name=_('Indicator'), related_name="feedback")
+    sender_name = models.CharField(_('Sender Name'), max_length=255)
+    sender_email = models.EmailField(_('Sender Email'))
+    receiver_name = models.CharField(_('Receiver Name'), max_length=255, blank=True, null=True)
+    receiver_email = models.EmailField(_('Receiver Email'), blank=True, null=True)
+    message = models.TextField(_('Feedback'))
+
+    class Meta:
+        verbose_name = _('Feedback Indicator')
+        verbose_name_plural = _('Feedback Indicators')
+
+    def __unicode__(self):
+        return self.sender_name
