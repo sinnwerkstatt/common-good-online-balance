@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 16:00+0200\n"
+"POT-Creation-Date: 2014-05-19 17:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ecg_balancing/forms.py:62 ecg_balancing/forms.py:90
+#: ecg_balancing/forms.py:61 ecg_balancing/forms.py:89
 #, python-format
 msgid ""
 "There is an existing balance for the year %s. Please enter another year."
@@ -507,7 +507,7 @@ msgstr "Feedback-Indikator"
 msgid "Feedback Indicators"
 msgstr "Feedback-Indikatoren"
 
-#: ecg_balancing/views.py:357
+#: ecg_balancing/views.py:369
 #, python-format
 msgid "[ECG] New Feedback for Indicator %s"
 msgstr "[ECG] Neues Feedback für Indikator %s"
@@ -527,6 +527,7 @@ msgstr "Sie haben nicht die Rechte, eine GWÖ-Bilanz zu erstellen"
 #: ecg_balancing/templates/ecg_balancing/company_balance_update.html:48
 #: ecg_balancing/templates/ecg_balancing/company_update.html:46
 #: ecg_balancing/templates/ecg_balancing/feedback_indicator_form.html:22
+#: ecg_balancing/templates/ecg_balancing/login.html:33
 #: ecg_balancing/templates/ecg_balancing/user_update.html:28
 msgid "Please fill out"
 msgstr "bitte ausfüllen"
@@ -606,6 +607,27 @@ msgstr "Danke! Ihr Feedback wurde am GWÖ-Redaktionsteam gesendet."
 msgid "Back to ECG Balance"
 msgstr "Zurück zur GWÖ-Bilanz"
 
+#: ecg_balancing/templates/ecg_balancing/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "Der Benutzername oder das Passwort wurden nicht korrekt eingegeben. Bitte versuchen Sie es noch einmal."
+
+#: ecg_balancing/templates/ecg_balancing/login.html:37
+#: templates/topmenu.html:29
+msgid "Login"
+msgstr "Login"
+
+#: ecg_balancing/templates/ecg_balancing/logout.html:5
+msgid "Thank you for using the site."
+msgstr "Sie sind ausgeloggt."
+
+#: ecg_balancing/templates/ecg_balancing/logout.html:7
+msgid "Log in again"
+msgstr "Erneut anmelden"
+
+#: ecg_balancing/templates/ecg_balancing/logout.html:8
+msgid "Return to the home page"
+msgstr "Zur Hauptseite"
+
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:19
 msgid "Upload profile photo"
 msgstr "Profilbild hochladen"
@@ -633,10 +655,6 @@ msgstr "Profil"
 #: templates/topmenu.html:25
 msgid "Logout"
 msgstr "Ausloggen"
-
-#: templates/topmenu.html:29
-msgid "Login"
-msgstr "Login"
 
 #~ msgid "Human Dignity"
 #~ msgstr "Menschenwürde"
