@@ -8,9 +8,10 @@ from django.db import models
 from django.db.models import signals
 from django.utils.translation import ugettext_lazy as _
 
+from ecg_balancing import fields
+
 
 # -------------------------------- MATRIX MODELS --------------------------------
-
 
 MATRIX_VERSION_4_1 = '4.1'
 MATRIX_VERSIONS = (
@@ -92,7 +93,9 @@ class Indicator(models.Model):
                                                 blank=True)
 
     editor = models.CharField(_('Editor'),  max_length=30, blank=True, null=True)
-    contact = models.EmailField(_('Email'), blank=True, null=True)
+    contact = fields.CommaSeparatedEmailField(_('Email(s)'),
+                                              help_text=_('Multiple emails should be separated with a comma'),
+                                              max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = _('Indicator')
@@ -403,3 +406,4 @@ class FeedbackIndicator(models.Model):
 
     def __unicode__(self):
         return self.sender_name
+
