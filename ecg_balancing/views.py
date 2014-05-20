@@ -28,6 +28,9 @@ class UserUpdateView(UpdateView):
     form_class = UserProfileForm
     template_name = 'ecg_balancing/user_update.html'
 
+    def get_success_url(self):
+        return reverse('user-detail', kwargs={'pk': self.request.user.pk})
+
 
 class UserRoleMixin(object):
     """provides the variables 'has_company_access', 'is_admin' and 'is_guest' in the context. Requires the URL parameters 'company_slug' or 'slug' """
