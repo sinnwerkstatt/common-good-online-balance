@@ -1,6 +1,12 @@
 // set indicator name
 $('.js-indicator-page-title-inner').html(indicator.shortcode + ' - ' + indicator.name);
 
+//$('.save-button-container').affix({
+//      offset: {
+//        top: $('header').height()
+//      }
+//});
+
 
 var is_negative_criteria = indicator.shortcodeSlug.indexOf('n') == 0;
 

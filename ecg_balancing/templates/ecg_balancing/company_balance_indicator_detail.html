@@ -34,26 +34,31 @@
   <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}">
     <span class="js-indicator-page-title-inner"></span></h2>
 
-  <div class="feedback-container clearfix">
-    <a href="{% url 'feedback-indicator' object.indicator %}?url={{ request.get_full_path }}" class="button pull-right">
-      <span class="glyphicon glyphicon-envelope"></span>
-      {% trans "Send Feedback" %}
-    </a>
-  </div>
-
   {% if is_admin %}
-    <form method="POST" action="{% url 'indicator-update' company_slug=object.company_balance.company.slug pk=object.pk %}">
+    <form method="POST"
+          action="{% url 'indicator-update' company_slug=object.company_balance.company.slug pk=object.pk %}">
     {% csrf_token %}
   {% endif %}
+
+<div class="feedback-container clearfix">
+  {% if is_admin %}
+    <div class="save-button-container clearfix pull-left">
+      <button type="submit" class="button primary">{% trans "Save" %}</button>
+    </div>
+  {% endif %}
+  <a href="{% url 'feedback-indicator' object.indicator %}?url={{ request.get_full_path }}" class="button pull-right">
+    <span class="glyphicon glyphicon-envelope"></span>
+    {% trans "Send Feedback" %}
+  </a>
+</div>
+
+
 <div class="indicator-editor-container bubble">
   <div class="bubble-inner">
     <div class="row meta">
       <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
       </div>
       <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        {% if is_admin %}
-          <button type="submit" class="button primary pull-right">{% trans "Save" %}</button>
-        {% endif %}
         {% ifnotequal object.indicator.stakeholder 'n' %}
           <div class="company-balance-indicator-points pull-right">
             {{ object.evaluation }} / {{ object.indicator.max_evaluation }}
@@ -68,7 +73,7 @@
                  class="company-balance-indicator-slider pull-right">
               <input id="company-balance-indicator-{{ object.indicator.slugify }}-points" type="text"
                      value="{{ object.evaluation }}"
-                     name="indicator-points"
+                     name="company-balance-indicator-{{ object.indicator.slugify }}-points"
                      class="center">
             </div>
           {% endif %}
@@ -103,16 +108,8 @@
   </div>
 </div>
 
-{% if is_admin %}
-  </form>
-{% endif %}
+{% for subindicator in subindicators %}
 
-  {% for subindicator in subindicators %}
-
-    {% if is_admin %}
-      <form method="POST" action="{% url 'indicator-update' company_slug=object.company_balance.company.slug pk=subindicator.pk %}">
-      {% csrf_token %}
-    {% endif %}
   <div class="indicator-editor-container bubble">
     <div class="bubble-inner">
       <div class="row meta">
@@ -121,9 +118,6 @@
               data-position="{{ subindicator.indicator.subindicator_number }}"></h3>
         </div>
         <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          {% if is_admin %}
-            <button type="submit" class="button primary pull-right">{% trans "Save" %}</button>
-          {% endif %}
           {% if not is_admin %}
             <div class="company-balance-indicator-points pull-right">
               {{ subindicator.evaluation }} %
@@ -133,7 +127,7 @@
                  class="company-balance-indicator-slider pull-right">
               <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
                      value="{{ subindicator.evaluation }}"
-                     name="indicator-points"
+                     name="company-balance-indicator-{{ subindicator.indicator.slugify }}-percentage"
                      class="center">
             </div>
           {% endif %}
@@ -167,10 +161,11 @@
     </div>
   </div>
 
-  {% if is_admin %}
-    </form>
-  {% endif %}
-  {% endfor %}
+{% endfor %}
+
+{% if is_admin %}
+  </form>
+{% endif %}
 
 {% endblock base_content %}
 

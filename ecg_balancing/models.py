@@ -12,6 +12,7 @@ from ecg_balancing import fields
 
 
 # -------------------------------- MATRIX MODELS --------------------------------
+from ecg_balancing.managers import CompanyBalanceIndicatorManager
 
 MATRIX_VERSION_4_1 = '4.1'
 MATRIX_VERSIONS = (
@@ -251,6 +252,8 @@ class Company(models.Model):
     activities = models.CharField(_('Activities'), max_length=255, choices=ACTIVITY_CHOICES, blank=True, null=True)
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
     revenue = models.CharField(_('Revenue'), max_length=255, choices=REVENUE_CHOICES, blank=True, null=True)
+    #profit = models.CharField(_('Profit'), max_length=255, blank=True, null=True)
+    #affiliates = models.CharField(_('Affiliates'), max_length=255, blank=True, null=True)
 
     foundation_date = models.DateTimeField(_('Foundation Date'), blank=True, null=True)
     owners = models.CharField(_('Owners'), max_length=255, blank=True, null=True)
@@ -350,6 +353,8 @@ class CompanyBalanceIndicator(models.Model):
 
     description = models.TextField(_('Description'), blank=True, null=True)
     evaluation = models.IntegerField(_('Evaluation'), default=0)
+
+    objects = CompanyBalanceIndicatorManager()
 
     class Meta:
         verbose_name = _('Company Balance Indicator')

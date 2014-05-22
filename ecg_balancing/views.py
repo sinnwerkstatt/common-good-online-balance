@@ -205,7 +205,6 @@ class CompanyBalanceIndicatorCreateView(UserRoleMixin, CreateView):
     model = CompanyBalanceIndicator
 
 
-# TODO: add UserRoleMixin for CompanyBalanceIndicatorUpdateView? URL needs 'company_slug' or 'slug'
 class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
     model = CompanyBalanceIndicator
 
@@ -224,44 +223,70 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
 
     def post(self, request, *args, **kwargs):
         companyBalanceIndicator = self.get_object()
-        indicatorId = companyBalanceIndicator.indicator.slugify()
+        indicator = companyBalanceIndicator.indicator
+        indicatorId = indicator.slugify()
 
         post = self.request.POST
-        indicatorText = post.get('company-balance-indicator-%s-editor' % indicatorId)
+        inputFieldFormat = '%s-%s-%s'
+        inputFieldPrefix = 'company-balance-indicator'
+        editorFieldSuffix = 'editor'
+        pointsFieldSuffix = 'points'
+        percentageFieldSuffix = 'percentage'
+
+        # set main indicator text
+        indicatorText = post.get(inputFieldFormat % (inputFieldPrefix, indicatorId, editorFieldSuffix))
         if indicatorText:
             companyBalanceIndicator.description = indicatorText
 
-        indicatorPointsPost = post.get('indicator-points')
-        indicatorPoints = 0
-        if indicatorPointsPost:
-            indicatorPoints = int(indicatorPointsPost)
-            companyBalanceIndicator.evaluation = indicatorPoints
+        # set main indicator points, for negative indicators
+        indicatorPoints = post.get(inputFieldFormat % (inputFieldPrefix, indicatorId, pointsFieldSuffix))
+        if indicatorPoints:
+            companyBalanceIndicator.evaluation = int(indicatorPoints)
 
+        # save main indicator
         companyBalanceIndicator.save()
 
-        parent = companyBalanceIndicator.indicator.parent
-        if parent:
-            companyBalanceSubIndicators = CompanyBalanceIndicator.objects.filter(company_balance=companyBalanceIndicator.company_balance, indicator__parent=parent)
+        # save the subindicators text and points, if there is a parent (not negative indicator)
+        # and calculate the indicator points
+        subindicators = companyBalanceIndicator.indicator.parent_indicator.all()
+        if subindicators:
 
+            subindicatorsIds = []
+            subindicatorsPks = []
+
+            for subindicator in subindicators:
+                subindicatorsIds.append(subindicator.slugify())
+                subindicatorsPks.append(subindicator.pk)
+
+            companyBalanceSubIndicators = CompanyBalanceIndicator.objects.get_by_indicator_pks(subindicatorsPks)
+            companyBalanceSubIndicatorsDict = dict([(obj.indicator.pk, obj) for obj in companyBalanceSubIndicators])
+
+            for subindicator in subindicators:
+
+                subindicatorId = subindicator.slugify()
+                subindicatorText = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, editorFieldSuffix))
+                subindicatorPercentage = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, percentageFieldSuffix))
+
+                ## save the subindicator
+                companyBalanceSubIndicator = companyBalanceSubIndicatorsDict[subindicator.pk]
+                companyBalanceSubIndicator.description = subindicatorText
+                companyBalanceSubIndicator.evaluation = subindicatorPercentage
+                companyBalanceSubIndicator.save()
+
+
+            # calculate the points for this subindicator
             subindicators_points_sum = 0
             for companyBalanceSubIndicator in companyBalanceSubIndicators:
-
-                companyBalanceSubIndicatorPoints = 0
-                if companyBalanceSubIndicator is companyBalanceIndicator:
-                    companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(indicatorPoints, companyBalanceIndicator, companyBalanceSubIndicators)
-                else:
-                    companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(companyBalanceSubIndicator.evaluation, companyBalanceSubIndicator, companyBalanceSubIndicators)
-
+                companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(companyBalanceSubIndicator.evaluation, companyBalanceSubIndicator, companyBalanceSubIndicators)
                 subindicators_points_sum += companyBalanceSubIndicatorPoints
 
-            sum_percentage = round (( float(subindicators_points_sum) / parent.max_evaluation), 2) * 100
+            sum_percentage = round (( float(subindicators_points_sum) / indicator.max_evaluation), 2) * 100
             rounded_sum_percentage = round(sum_percentage, -1)
-            final_points = int ((rounded_sum_percentage * parent.max_evaluation) / 100)
+            final_points = int ((rounded_sum_percentage * indicator.max_evaluation) / 100)
 
             # set the company balance indicator points
-            parentCBIndicator = CompanyBalanceIndicator.objects.get(company_balance=companyBalanceIndicator.company_balance, indicator=parent)
-            parentCBIndicator.evaluation = final_points
-            parentCBIndicator.save()
+            companyBalanceIndicator.evaluation = final_points
+            companyBalanceIndicator.save()
 
         self.object = companyBalanceIndicator
 
@@ -271,7 +296,6 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
         balance.save()
 
         return HttpResponseRedirect(self.get_success_url())
-        #raise Exception, self.request.POST
 
     def calculate_subindicator_points(self, subindicatorPercentage, companyBalanceSubindicator, companyBalanceSubIndicators):
 
@@ -297,7 +321,6 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
         subindicator_calculated_points = int (round ((float(subindicatorPercentage) / 100) * subindicator_area_points))
 
         return subindicator_calculated_points
-
 
     def calculate_balance_points(self, balance):
 

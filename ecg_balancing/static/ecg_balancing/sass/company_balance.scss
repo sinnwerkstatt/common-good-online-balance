@@ -136,3 +136,21 @@ $page-width: 980px;
 .feedback-container {
   margin-top: $distance-big;
 }
+
+@media (min-width: 979px) {
+  .save-button-container.affix-top {
+    position: static;
+  	margin-top:25px;
+  	width:228px;
+  }
+
+  .save-button-container.affix {
+    position: fixed;
+    top:25px;
+    width:228px;
+  }
+}
+
+.affix,.affix-top {
+   position:static;
+}
