@@ -20,12 +20,12 @@ MATRIX_VERSIONS = (
 )
 
 STAKEHOLDERS = (
-    ('a', 'a'),
-    ('b', 'b'),
-    ('c', 'c'),
-    ('d', 'd'),
-    ('e', 'e'),
-    ('n', 'n'),
+    ('a', _('Suppliers')),
+    ('b', _('Investors')),
+    ('c', _('Employees, including business owners')),
+    ('d', _('Customers, Products, Services, Business Partners')),
+    ('e', _('Social Environment: Region, electorate, future generations, civil society, fellow human beings, animals and plants')),
+    ('n', _('Negative Criteria')),
 )
 
 
@@ -49,11 +49,11 @@ class Indicator(models.Model):
     ECG_VALUE_4 = '4'
     ECG_VALUE_5 = '5'
     ECG_VALUES = (
-        (ECG_VALUE_1, _('Value 1')),
-        (ECG_VALUE_2, _('Value 2')),
-        (ECG_VALUE_3, _('Value 3')),
-        (ECG_VALUE_4, _('Value 4')),
-        (ECG_VALUE_5, _('Value 5')),
+        (ECG_VALUE_1, _('Human Dignity')),
+        (ECG_VALUE_2, _('Cooperation and Solidarity')),
+        (ECG_VALUE_3, _('Ecological Sustainability')),
+        (ECG_VALUE_4, _('Social Justice')),
+        (ECG_VALUE_5, _('Democratic Co-determination and Transparency')),
     )
     RELEVANCE_LOW = 'low'
     RELEVANCE_MIDDLE = 'middle'
@@ -92,6 +92,10 @@ class Indicator(models.Model):
                                         help_text=_('Only for a subindicator, an indicator with a parent.'),
                                                 null=True,
                                                 blank=True)
+    sole_proprietorship = models.BooleanField(_('Applicable for sole proprietorship?'), default=True)
+
+
+
 
     editor = models.CharField(_('Editor'),  max_length=30, blank=True, null=True)
     contact = fields.CommaSeparatedEmailField(_('Email(s)'),
