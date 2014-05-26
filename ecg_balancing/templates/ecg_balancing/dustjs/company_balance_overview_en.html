@@ -115,7 +115,8 @@
             {#negativeCriteria}
             <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}col-lg-2 col-md-2 col-sm-2 col-xs-2'>
                 {#values}
-                <div class='negative-container {@if cond="{soleProprietorship}"}{:else}no-sole-proprietorship{/if} ind-trigger" data-modal="matrix-{shortcodeSlug}'>
+                <div class='negative-container {@if cond="{soleProprietorship}"}{:else}no-sole-proprietorship {/if}ind-trigger'
+                    data-modal='matrix-{shortcodeSlug}'>
                     <div class="negative-points">
                         {points}
                     </div>
