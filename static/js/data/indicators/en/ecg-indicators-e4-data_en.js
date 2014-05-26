@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'e4',
     name: 'Gemeinwohlorientierte Gewinn-Verteilung',
     points: 60,
+    soleProprietorship: false,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Außen-Ausschüttung',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Gemeinwohl-orientierte Gewinnverwendung: Ausschüttung and Arbeit-Gebende“, Stärkung des Eigenkapitals sowie ökosoziale Reinvestitionen',
                 relevance: 'high',
                 position: '2',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [

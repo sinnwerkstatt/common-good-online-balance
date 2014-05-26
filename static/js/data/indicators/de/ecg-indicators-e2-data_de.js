@@ -4,14 +4,16 @@ indicator = {
     shortcodeSlug: 'e2',
     name: 'Beitrag zum Gemeinwesen',
     points: 40,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
         subindicators: [
             {
-                title: 'Leistungen[5]',
+                title: 'Leistungen',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Wirkungen',
                 relevance: 'high',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'Intensität',
                 relevance: 'low',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

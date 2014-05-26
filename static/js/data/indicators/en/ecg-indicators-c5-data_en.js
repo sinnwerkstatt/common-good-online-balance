@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'c5',
     name: 'Innerbetriebliche Transparenz und Demokratie',
     points: 90,
+    soleProprietorship: false,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Grad der Transparenz',
                 relevance: 'low',
                 position: '1',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Legitimierung der Führungskräfte',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'Mitbestimmung bei Grundsatz- und Rahmen- Entscheidungen',
                 relevance: 'high',
                 position: '3',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -93,6 +97,7 @@ indicator = {
                 title: 'Mit-Eigentum der MitarbeiterInnen',
                 relevance: 'middle',
                 position: '4',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [

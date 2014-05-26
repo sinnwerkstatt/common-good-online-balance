@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'c1',
     points: 90,
     name: 'Arbeitsplatzqualität und Gleichstellung',
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -38,6 +39,7 @@ indicator = {
                 title: 'Mitarbeiterorientierte Organisationskultur und -strukturen',
                 relevance: 'middle',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -65,6 +67,7 @@ indicator = {
                 title: 'Faire Beschäftigungs- und Entgeltpolitik',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -100,6 +103,7 @@ indicator = {
                 title: 'Arbeitsschutz und Gesundheitsförderung einschließlich Work-life-Balance/flexible Arbeitszeiten',
                 relevance: 'middle',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -127,6 +131,7 @@ indicator = {
                 title: 'Gleichstellung und Diversität',
                 relevance: 'middle',
                 position: '4',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [

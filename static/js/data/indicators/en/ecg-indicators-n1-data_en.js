@@ -3,5 +3,5 @@ indicator = {
     shortcodeSlug: 'n1',
     name: 'Verletzung der ILO-Arbeitsrechte / Normen / Menschenrechte',
     points: -200,
-    content: ''
+    soleProprietorship: true
 };

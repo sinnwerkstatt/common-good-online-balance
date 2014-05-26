@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'e3',
     name: 'Reduktion ökologischer Auswirkungen',
     points: 70,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: '1. Absolute Auswirkungen1<br/><br/>Das Unternehmen ...',
                 relevance: 'middle',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: '2. Relative Auswirkungen:<br/><br/>Im Branchenvergleich liegt das Unternehmen bzgl. Stand der Technik und Gesetzesvorgaben ...',
                 relevance: 'high',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: '3. Management und Strategie<br/><br/>Das Unternehmen …',
                 relevance: 'high',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

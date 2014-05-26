@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'c2',
     name: 'Gerechte Verteilung der Erwerbsarbeit',
     points: 50,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Senkung der Normalarbeitszeit',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Erhöhung des Anteils der Teilzeit-Arbeitsmodelle (bei adäquater Bezahlung)',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'Bewusster Umgang mit (Lebens-) Arbeitszeit',
                 relevance: 'low',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

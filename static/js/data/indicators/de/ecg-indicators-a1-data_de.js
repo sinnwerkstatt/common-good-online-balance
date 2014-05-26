@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'a1',
     points: 90,
     name: 'Ethisches Beschaffungswesen',
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Regionale, ökologische und soziale Aspekte/höherwertiger Alternativen werden … berücksichtigt',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Aktive Auseinandersetzung mit den Auswirkungen zugekaufter P/D und Prozesse zur Sicherstellung sowie Ausmaß und Form der Nachweisführung',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'Strukturelle Rahmenbedingungen zur fairen Preisbildung',
                 relevance: 'low',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

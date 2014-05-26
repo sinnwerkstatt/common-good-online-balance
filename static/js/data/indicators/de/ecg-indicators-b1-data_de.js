@@ -4,15 +4,16 @@ indicator = {
     shortcodeSlug: 'b1',
     points: 30,
     name: 'Ethisches Finanzmanagement',
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
-
     table: {
         subindicators: [
             {
                 title: 'Institutionalisierung',
                 relevance: 'middle',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -40,6 +41,7 @@ indicator = {
                 title: 'Ethisch-nachhaltige Qualität des Finanzdienstleisters',
                 relevance: 'low',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -67,6 +69,7 @@ indicator = {
                 title: 'Gemeinwohlorientierte Veranlagung',
                 relevance: 'high',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -94,6 +97,7 @@ indicator = {
                 title: 'Gemeinwohlorientierte Unternehmens-finanzierung',
                 relevance: 'low',
                 position: '4',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

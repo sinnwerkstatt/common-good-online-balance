@@ -17,7 +17,7 @@
             <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 {stakeholders[0].shortcode}) {stakeholders[0].name|s}
             </div>
-            <div class="row-cell indicator-cell last-cell ind-trigger col-lg-10 col-md-10 col-sm-10 col-xs-10"
+            <div class='row-cell indicator-cell last-cell {@if cond="{stakeholders[0].values[0].soleProprietorship}"}{:else}no-sole-proprietorship{/if} ind-trigger col-lg-10 col-md-10 col-sm-10 col-xs-10'
                  data-modal="matrix-{stakeholders[0].values[0].shortcodeSlug}">
                 <div class="indicator-title">
                     {stakeholders[0].values[0].shortcode}) {stakeholders[0].values[0].title|s}
@@ -34,7 +34,7 @@
             <div class="row-cell dheader-style ecg-blue-b col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 {stakeholders[1].shortcode}) {stakeholders[1].name|s}
             </div>
-            <div class="row-cell indicator-cell last-cell ind-trigger col-lg-10 col-md-10 col-sm-10 col-xs-10"
+            <div class='row-cell indicator-cell last-cell {@if cond="{stakeholders[1].values[0].soleProprietorship}"}{:else}no-sole-proprietorship{/if} ind-trigger col-lg-10 col-md-10 col-sm-10 col-xs-10'
                  data-modal="matrix-{stakeholders[1].values[0].shortcodeSlug}">
                 <div class="indicator-title">
                     {stakeholders[1].values[0].shortcode}) {stakeholders[1].values[0].title|s}
@@ -53,7 +53,7 @@
             </div>
 
             {#stakeholders[2].values}
-            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}{@if cond="{soleProprietorship}"}{:else}no-sole-proprietorship{/if} ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
             data-modal='matrix-{shortcodeSlug}'>
                 <div class="indicator-title">
                     {shortcode}) {title|s}
@@ -72,7 +72,7 @@
                 {stakeholders[3].shortcode}) {stakeholders[3].name|s}
             </div>
             {#stakeholders[3].values}
-            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}{@if cond="{soleProprietorship}"}{:else}no-sole-proprietorship{/if} ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
             data-modal='matrix-{shortcodeSlug}'>
                 <div class="indicator-title">
                     {shortcode}) {title|s}
@@ -94,7 +94,7 @@
                 </div>
             </div>
             {#stakeholders[4].values}
-            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
+            <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}{@if cond="{soleProprietorship}"}{:else}no-sole-proprietorship{/if} ind-trigger col-lg-2 col-md-2 col-sm-2 col-xs-2'
             data-modal='matrix-{shortcodeSlug}'>
                 <div class="indicator-title">
                     {shortcode}) {title|s}
@@ -115,7 +115,7 @@
             {#negativeCriteria}
             <div class='row-cell indicator-cell {@if cond="{$idx} == 4"}last-cell {/if}col-lg-2 col-md-2 col-sm-2 col-xs-2'>
                 {#values}
-                <div class="negative-container ind-trigger" data-modal="matrix-{shortcodeSlug}">
+                <div class='negative-container {@if cond="{soleProprietorship}"}{:else}no-sole-proprietorship{/if} ind-trigger" data-modal="matrix-{shortcodeSlug}'>
                     <div class="negative-points">
                         {points}
                     </div>

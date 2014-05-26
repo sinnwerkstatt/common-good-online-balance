@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'e1',
     name: 'Sinn und Gesellschaftliche Wirkung der Produkte / Dienstleistungen',
     points: 50,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Produkte/ Dienstleistungen decken den Grundbedarf oder dienen der Entwicklung der Menschen/der Gemeinschaft/der Erde  und generieren positiven Nutzen',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Ökologischer und sozialer Vergleich der Produkte/ Dienstleistungen mit Alternativen mit ähnlichem Endnutzen',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

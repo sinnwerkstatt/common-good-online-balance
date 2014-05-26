@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'e5',
     name: 'Gesellschaftliche Transparenz und Mitbestimmung',
     points: 30,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: '1. Transparenz -<br/>Umfang GWÖ- Bericht (hoch)',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: '1. Transparenz -<br/>GRI Level[3]<br/>(wenn kein GWÖ-Bericht)',
                 relevance: 'high',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: '1. Transparenz -<br/>Verifizierung<br/>(wenn kein GWÖ-Bericht)',
                 relevance: 'high',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -93,6 +97,7 @@ indicator = {
                 title: '2. Mitbestimmung -<br/>Art der Mit-bestimmung + Dokumentation',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -120,6 +125,7 @@ indicator = {
                 title: '2. Mitbestimmung -<br/>Umfang der Mitbestimmg + einbezogener Berührungsgruppen',
                 relevance: 'high',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

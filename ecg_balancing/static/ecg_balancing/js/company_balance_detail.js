@@ -2,7 +2,15 @@ console.log('company balance JS');
 
 Utils.applyEqualHeightRecalculate();
 
-$(".ind-trigger").each(function() {
+if (is_sole_proprietorship) {
+    $('.no-sole-proprietorship').each(function () {
+        var $this = $(this);
+        $this.removeClass('ind-trigger');
+        $this.addClass('active');
+    });
+}
+
+$(".ind-trigger").each(function () {
     var $this = $(this);
     var dataModal = $this.attr("data-modal"); // 'matrix-id'
     var indicatorId = dataModal.substring(7, dataModal.length);
@@ -20,7 +28,7 @@ $(".ind-trigger").each(function() {
         $pointsEl.html(curIndicatorPoints);
     }
 
-    $this.on('click', function(e) {
+    $this.on('click', function (e) {
         location.href = indicatorBaseUrl + indicatorId;
     });
 

@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'd1',
     name: 'Ethische Kundenbeziehung',
     points: 50,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Gesamtheit der Maßnahmen für eine ethische Kundenbeziehung (ethisches Marketing + Verkauf)',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Umfang der KundInnen-Mit­bestimmung/gemeinsame Produktentwicklung/Markt-forschung',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'Service-Management ',
                 relevance: 'middle',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -93,6 +97,7 @@ indicator = {
                 title: 'Produkttransparenz[1]',
                 relevance: 'middle',
                 position: '4',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

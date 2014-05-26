@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'c3',
     name: 'Forderung und Förderung ökologischen Verhaltens der MitarbeiterInnen',
     points: 30,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Ernährung während der Arbeitszeit',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Mobilität zum Arbeitsplatz',
                 relevance: 'high',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'Organisationskultur, Sensibilisierung und unternehmensinterne Prozesse',
                 relevance: 'middle',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

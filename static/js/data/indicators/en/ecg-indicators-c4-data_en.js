@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'c4',
     name: 'Gerechte Einkommensverteilung',
     points: 60,
+    soleProprietorship: false,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Innerbetriebliche Bruttoeinkommens-spreizung in Unternehmen',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Mindesteinkommen',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -54,6 +57,7 @@ indicator = {
                 title: 'Transparenz und Institutionalisierung',
                 relevance: 'low',
                 position: '3',
+                soleProprietorship: false,
                 developmentTracks: [
                     {
                         developmentDetails: [

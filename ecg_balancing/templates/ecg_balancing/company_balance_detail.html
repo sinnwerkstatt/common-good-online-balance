@@ -59,6 +59,7 @@
     {% endfor %}
     }
     ;
+    var is_sole_proprietorship = '{{ object.company.is_sole_proprietorship }}' === 'True';
 
   </script>
   <script src="{% static 'ecg_balancing/js/company_balance_detail.js' %}"></script>

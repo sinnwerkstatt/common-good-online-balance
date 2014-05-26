@@ -24,7 +24,8 @@ Data.matrix = {
                     shortcodeSlug : 'a1',
                     title: 'Ethisches Beschaffungsmanagement',
                     content: 'Aktive Auseinandersetzung mit den Risiken zugekaufter Produkte / Dienstleistungen, Berücksichtigung sozialer und ökologischer Aspekte bei der Auswahl von LieferantInnen und DienstleistungsnehmerInnen.',
-                    points: 90
+                    points: 90,
+                    soleProprietorship: true
                 }
             ]
         },
@@ -37,7 +38,8 @@ Data.matrix = {
                     shortcodeSlug : 'b1',
                     title: 'Ethisches Finanzmanagement',
                     content: 'Berücksichtigung sozialer und ökologischer Aspekte bei der Auswahl der Finanzdienstleistungen; gemeinwohlorienterte Veranlagung und Finanzierung',
-                    points: 30
+                    points: 30,
+                    soleProprietorship: true
                 }
             ]
         },
@@ -50,35 +52,40 @@ Data.matrix = {
                     shortcodeSlug : 'c1',
                     title: 'Arbeitsplatz&#8203;qualität und Gleichstellung',
                     content: 'Mitarbeiter&#8203;orientierte Organisations-kultur und –strukturen, Faire Beschäftigungs- und Entgeltpolitik, Arbeitsschutz und Gesundheits&#8203;förderung einschließlich Work-Life-Balance/flexible Arbeitszeiten, Gleichstellung und Diversität',
-                    points: 90
+                    points: 90,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'C2',
                     shortcodeSlug : 'c2',
                     title: 'Gerechte Verteilung der Erwerbsarbeit',
                     content: 'Abbau von Überstunden, Verzicht auf All-inclusive-Verträge, Reduktion der Regelarbeitszeit, Beitrag zur Reduktion der Arbeitslosigkeit',
-                    points: 50
+                    points: 50,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'C3',
                     shortcodeSlug : 'c3',
                     title: 'Förderung ökologischen Verhaltens der Mitarbeiter&#8203;Innen',
                     content: 'Aktive Förderung eines nachhaltigen Lebensstils der MitarbeiterInnen (Mobilität, Ernährung), Weiterbildung und Bewusstsein schaffende Maßnahmen, nachhaltige Organisationskultur',
-                    points: 30
+                    points: 30,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'C4',
                     shortcodeSlug : 'c4',
                     title: 'Gerechte Verteilung des Einkommens',
                     content: 'Geringe innerbetriebliche Einkommens&#8203;spreizung (netto), Einhaltung von Mindest&#8203;einkommen und Höchst&#8203;einkommen',
-                    points: 60
+                    points: 60,
+                    soleProprietorship: false
                 },
                 {
                     shortcode : 'C5',
                     shortcodeSlug : 'c5',
                     title: 'Inner&#8203;betriebliche Demokratie und Transparenz',
                     content: 'Umfassende innerbetriebliche Transparenz, Wahl der Führungskräfte durch die Mitarbeiter, konsensuale Mitbestimmung bei Grundsatz- und Rahmen&#8203;entscheidungen, Übergabe Eigentum an MitarbeiterInnen. Z.B. Soziokratie',
-                    points: 90
+                    points: 90,
+                    soleProprietorship: false
                 }
             ]
         },
@@ -91,35 +98,40 @@ Data.matrix = {
                     shortcodeSlug : 'd1',
                     title: 'Ethische Kunden&#8203;beziehung',
                     content: 'Ethischer Umgang mit KundInnen, KundInnen&#8203;orientierung/ - mitbestimmung, gemeinsame Produkt&#8203;entwicklung, hohe Servicequalität, hohe Produkt&#8203;transparenz',
-                    points: 50
+                    points: 50,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'D2',
                     shortcodeSlug : 'd2',
                     title: 'Solidarität mit Mit&#8203;unternehmen',
                     content: 'Weitergabe von Information, Know-how, Arbeitskräften, Aufträgen, zinsfreien Krediten; Beteiligung an kooperativem Marketing und kooperativer Krisenbewältigung',
-                    points: 70
+                    points: 70,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'D3',
                     shortcodeSlug : 'd3',
                     title: 'Ökologische Gestaltung der Produkte und Dienst&#8203;leistungen',
                     content: 'Angebot ökologisch höherwertiger Produkte / Dienstleistungen; Bewusstsein schaffende Maßnahmen; Berücksichtigung ökologischer Aspekte bei der KundInnenwahl',
-                    points: 90
+                    points: 90,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'D4',
                     shortcodeSlug : 'd4',
                     title: 'Soziale Gestaltung der Produkte und Dienst&#8203;leistungen',
                     content: 'Informationen / Produkten / Dienstleistungen für benachteiligte KundInnen-Gruppen. Unterstützung förderungs&#8203;würdiger Marktstrukturen.',
-                    points: 30
+                    points: 30,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'D5',
                     shortcodeSlug : 'd5',
                     title: 'Erhöhung der sozialen und ökologischen Branchen&#8203;standards',
                     content: 'Vorbildwirkung, Entwicklung von höheren Standards mit MitbewerberInnen, Lobbying',
-                    points: 30
+                    points: 30,
+                    soleProprietorship: true
                 }
             ]
         },
@@ -133,35 +145,40 @@ Data.matrix = {
                     shortcodeSlug : 'e1',
                     title: 'Sinn und Gesell&#8203;schaftliche Wirkung der Produkte / Dienst&#8203;leistungen',
                     content: 'P/DL decken den Grundbedarf oder dienen der Entwicklung der Menschen / der Gemeinschaft / der Erde und generieren positiven Nutzen.',
-                    points: 50
+                    points: 50,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'E2',
                     shortcodeSlug : 'e2',
                     title: 'Beitrag zum Gemeinwesen',
                     content: 'Gegenseitige Unterstützung und Kooperation durch Finanzmittel, Dienstleistungen, Produkte, Logistik, Zeit, Know-How, Wissen, Kontakte, Einfluss',
-                    points: 40
+                    points: 40,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'E3',
                     shortcodeSlug : 'e3',
                     title: 'Reduktion ökologischer Auswirkungen',
                     content: 'Reduktion der Umwelt&#8203;auswirkungen auf ein zukunftsfähiges Niveau: Ressourcen, Energie & Klima, Emissionen, Abfälle etc.',
-                    points: 70
+                    points: 70,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'E4',
                     shortcodeSlug : 'e4',
                     title: 'Gemeinwohl&#8203;orientierte Gewinn-Verteilung',
                     content: 'Sinkende / keine Gewinn&#8203;ausschüttung an Externe, Ausschüttung an Mitarbeiter, Stärkung des Eigenkapitals, sozial-ökologische Investitionen',
-                    points: 60
+                    points: 60,
+                    soleProprietorship: false
                 },
                 {
                     shortcode : 'E5',
                     shortcodeSlug : 'e5',
                     title: 'Gesellschaft&#8203;liche Transparenz und Mitbestimmung',
                     content: 'Gemeinwohl- oder Nachhaltigkeits&#8203;bericht, Mitbestimmung von regionalen und zivilgesell&#8203;schaftlichen Berührungs&#8203;gruppen',
-                    points: 30
+                    points: 30,
+                    soleProprietorship: true
                 }
             ]
         }
@@ -174,21 +191,24 @@ Data.matrix = {
                     shortcode : 'N1',
                     shortcodeSlug : 'n1',
                     titleShort: 'Verletzung der ILO-Arbeitsnormen / Menschenrechte',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N2',
                     shortcodeSlug : 'n2',
                     titleShort: 'Menschen&#8203;unwürdige Produkte, z.B. Tretminen, Atomstrom, GMO',
                     title: 'Menschenunwürdige Produkte und Dienstleistungen',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N3',
                     shortcodeSlug : 'n3',
                     titleShort: 'Beschaffung bei / Kooperation mit Unternehmen, welche die Menschenwürde verletzen',
                     title: 'Menschenunwürdige Produkte und Dienstbeschaffung bei bzt. Kooperation mit Unternehmen, welche die Menschenwürde verletzen',
-                    points: -150
+                    points: -150,
+                    soleProprietorship: true
                 }
             ]
         },
@@ -199,21 +219,24 @@ Data.matrix = {
                     shortcodeSlug : 'n4',
                     titleShort: 'Feindliche Übernahme',
                     title: 'Feindliche Übernahme',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N5',
                     shortcodeSlug : 'n5',
                     titleShort: 'Sperrpatente',
                     title: 'Sperrpatente',
-                    points: -100
+                    points: -100,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N6',
                     shortcodeSlug : 'n6',
                     titleShort: 'Dumping&#8203;preise',
                     title: 'Dumpingpreise',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 }
             ]
         },
@@ -224,21 +247,24 @@ Data.matrix = {
                     shortcodeSlug : 'n7',
                     titleShort: 'Illegitime Umweltbelastungen',
                     title: 'Illegitime Umweltbelastungen',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N8',
                     shortcodeSlug : 'n8',
                     titleShort: 'Verstöße gegen Umweltauflagen',
                     title: 'Verstöße gegen Umweltauflagen',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N9',
                     shortcodeSlug : 'n9',
                     titleShort: 'Geplante Obsoleszenz (kurze Lebensdauer der Produkte)',
                     title: 'Geplante Obsoleszenz',
-                    points: -100
+                    points: -100,
+                    soleProprietorship: true
                 }
             ]
         },
@@ -249,28 +275,32 @@ Data.matrix = {
                     shortcodeSlug : 'n10',
                     titleShort: 'Arbeits&#8203;rechtliches Fehlverhalten seitens des Unternehmens',
                     title: 'Arbeitsrechtliches Fehlverhalten seitens des Unternehmens',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N11',
                     shortcodeSlug : 'n11',
                     titleShort: 'Arbeitsplatz&#8203;abbau oder Standortverlagerung bei Gewinn',
                     title: 'Arbeitsplatzabbau oder Standortverlagerung trotz Gewinn',
-                    points: -150
+                    points: -150,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N12',
                     shortcodeSlug : 'n12',
                     titleShort: 'Umgehung der Steuerpflicht',
                     title: 'Arbeitsplatzabbau oder Standortverlagerung trotz Gewinn',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N13',
                     shortcodeSlug : 'n13',
                     titleShort: 'Keine unangemessene Verzinsung für nicht mitarbeitende Gesellschafter',
                     title: 'Keine unangemessene Verzinsung für nicht mitarbeitende Gesellschafter',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 }
             ]
         },
@@ -281,32 +311,36 @@ Data.matrix = {
                     shortcodeSlug : 'n14',
                     titleShort: 'Nicht&#8203;offenlegung aller Beteiligungen und Töchter',
                     title: 'Nichtoffenlegung aller Beteiligungen und Töchter',
-                    points: -100
+                    points: -100,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N15',
                     shortcodeSlug : 'n15',
                     titleShort: 'Verhinderung eines Betriebsrats',
                     title: 'Verhinderung eines Betriebsrats',
-                    points: -150
+                    points: -150,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N16',
                     shortcodeSlug : 'n16',
                     titleShort: 'Nicht&#8203;offenlegung aller Finanzflüsse an Lobbies / Eintragung in das EU-Lobbyregister',
                     title: 'Nichtoffenlegung aller Finanzflüsse an Lobbyisten und Lobby-Organisationen / Nichteintragung ins Lobby-Register der EU',
-                    points: -200
+                    points: -200,
+                    soleProprietorship: true
                 },
                 {
                     shortcode : 'N17',
                     shortcodeSlug : 'n17',
                     titleShort: 'Exzessive Einkommensspreizung',
                     title: 'Exzessive Einkommensspreizung',
-                    points: -100
+                    points: -100,
+                    soleProprietorship: true
                 }
             ]
         }
     ]
 };
 
-exports.Data = Data
+exports.Data = Data;

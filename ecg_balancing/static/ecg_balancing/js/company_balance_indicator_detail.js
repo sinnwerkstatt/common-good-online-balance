@@ -10,6 +10,7 @@ $('.js-indicator-page-title-inner').html(indicator.shortcode + ' - ' + indicator
 
 var is_negative_criteria = indicator.shortcodeSlug.indexOf('n') == 0;
 
+// Add subindicator titles
 if (!is_negative_criteria) {
 
     $('.subindicator-title').each(function (e) {
@@ -18,7 +19,8 @@ if (!is_negative_criteria) {
         var title = indicator.shortcode + '.' + position;
 
         $.each(indicator.table.subindicators, function (index, subindicator) {
-            if (subindicator.position === position + '') {
+            if (subindicator.position === position + '' &&
+                (!(is_sole_proprietorship && !subindicator.soleProprietorship))) {
                 $this.html(title + ' - ' + subindicator.title);
             }
         });
@@ -110,7 +112,7 @@ if (is_admin) {
         // minimumChangeMilliseconds : 200
     };
 
-// activate indicator editor
+    // activate indicator editor
     var indicatorShortCodeSlug = indicator.shortcodeSlug;
 
     var indicatorPrefixId = 'company-balance-indicator-' + indicatorShortCodeSlug;
@@ -118,7 +120,7 @@ if (is_admin) {
     CKEDITOR.disableAutoInline = true;
     CKEDITOR.inline(editorId, ckeditor_config);
 
-// activate indicator evaluation
+    // activate indicator evaluation
     var touchSpinSettings = {
         min: 0,
         max: 100,
@@ -149,26 +151,31 @@ if (is_admin) {
         maxboostedstep: 10
     };
 
-// if not negative criteria
+    // if not negative criteria
     if (!is_negative_criteria) {
 
         if (typeof indicator.table !== 'undefined') {
             // activate subindicators
             $.each(indicator.table.subindicators, function (index, subindicator) {
-                var subIdPrefix = 'company-balance-indicator-' + indicatorShortCodeSlug + '-' + subindicator.position;
-                console.log(index + ": " + subIdPrefix);
 
-                // activate editor
-                var editorId = subIdPrefix + '-editor';
-                CKEDITOR.disableAutoInline = true;
-                CKEDITOR.inline(editorId, ckeditor_config);
+                // don't active non-SP subindicator for an SP company
+                if (!(is_sole_proprietorship && !subindicator.soleProprietorship)) {
 
-                // activate evaluation
-                pointsEl = $('#' + subIdPrefix + '-points');
-                pointsEl.TouchSpin(touchSpinSubindicatorSettings);
-                pointsEl.on('change', function (e) {
-                    console.log('new points: ' + e.target.value);
-                });
+                    var subIdPrefix = 'company-balance-indicator-' + indicatorShortCodeSlug + '-' + subindicator.position;
+                    console.log("subindicator " + index + ": " + subIdPrefix);
+
+                    // activate editor
+                    var editorId = subIdPrefix + '-editor';
+                    CKEDITOR.disableAutoInline = true;
+                    CKEDITOR.inline(editorId, ckeditor_config);
+
+                    // activate evaluation
+                    pointsEl = $('#' + subIdPrefix + '-points');
+                    pointsEl.TouchSpin(touchSpinSubindicatorSettings);
+                    pointsEl.on('change', function (e) {
+                        console.log('new points: ' + e.target.value);
+                    });
+                }
             });
         }
     }

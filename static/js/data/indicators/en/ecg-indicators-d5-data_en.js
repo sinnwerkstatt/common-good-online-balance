@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'd5',
     name: 'Erhöhung der sozialen und ökologischen Branchenstandards',
     points: 30,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Kooperation mit MitwerberInnen und Partnern der Wertschöpfungs-kette',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Aktiver Beitrag zur Erhöhung legislativer Standards',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'Reichweite, inhaltliche Breite und Tiefe',
                 relevance: 'high',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

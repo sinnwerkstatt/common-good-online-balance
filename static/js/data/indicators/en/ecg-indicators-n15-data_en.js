@@ -2,5 +2,6 @@ indicator = {
     shortcode: 'N15',
     shortcodeSlug: 'n15',
     name: 'Verhinderung eines Betriebsrats',
-    points: -100
+    points: -100,
+    soleProprietorship: true
 };

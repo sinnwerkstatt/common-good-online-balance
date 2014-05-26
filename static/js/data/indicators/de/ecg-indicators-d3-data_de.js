@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'd3',
     name: 'Ökologische Gestaltung der Produkte und Dienstleistungen',
     points: 90,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Produkte / Dienstleistungen sind im ökol. Vergleich zu Produkt / Dienstleistungen von MitwerberInnen bzw. Alternativen  von gleichem Nutzen',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'SUFFIZIENZ (siehe Exkurs weiter unten): Aktive Gestaltung für eine ökol. Nutzung und suffizienten Konsum',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'KOMMUNIKATION: Aktive Kommunikation ökologischer Aspekte den KundInnen gegenüber',
                 relevance: 'middle',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

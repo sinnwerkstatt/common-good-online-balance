@@ -2,5 +2,6 @@ indicator = {
     shortcode: 'N10',
     shortcodeSlug: 'n10',
     name: 'Arbeitsrechtliches Fehlverhalten seitens des Unternehmens',
-    points: -200
+    points: -200,
+    soleProprietorship: true
 };

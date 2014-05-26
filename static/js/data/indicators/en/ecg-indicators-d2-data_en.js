@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'd2',
     name: 'Solidarität mit Mitunternehmen',
     points: 70,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Offenlegung von Informationen + Weitergabe von Technologie',
                 relevance: 'middle',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -39,6 +41,7 @@ indicator = {
                 title: 'Weitergabe von Arbeitskräften, Aufträgen und Finanzmitteln; kooperative Marktteilnahme',
                 relevance: 'high',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -66,6 +69,7 @@ indicator = {
                 title: 'Kooperatives Marketing ',
                 relevance: 'middle',
                 position: '3',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [

@@ -200,6 +200,13 @@ table {
   font-weight: bold;
 }
 
+.no-sole-proprietorship.active .indicator-title {
+  color: #cccccc;
+}
+.no-sole-proprietorship.active .indicator-points {
+  visibility: hidden;
+}
+
 .negative-container {
   margin-bottom: 15px;
 }

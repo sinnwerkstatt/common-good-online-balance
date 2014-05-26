@@ -110,56 +110,60 @@
 
 {% for subindicator in subindicators %}
 
-  <div class="indicator-editor-container bubble">
-    <div class="bubble-inner">
-      <div class="row meta">
-        <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
-          <h3 class="subindicator-title ecg-green"
-              data-position="{{ subindicator.indicator.subindicator_number }}"></h3>
+  {% if is_sole_proprietorship and not subindicator.indicator.sole_proprietorship %}
+  {% else %}
+
+    <div class="indicator-editor-container bubble">
+      <div class="bubble-inner">
+        <div class="row meta">
+          <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <h3 class="subindicator-title ecg-green"
+                data-position="{{ subindicator.indicator.subindicator_number }}"></h3>
+          </div>
+          <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            {% if not is_admin %}
+              <div class="company-balance-indicator-points pull-right">
+                {{ subindicator.evaluation }} %
+              </div>
+            {% else %}
+              <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
+                   class="company-balance-indicator-slider pull-right">
+                <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
+                       value="{{ subindicator.evaluation }}"
+                       name="company-balance-indicator-{{ subindicator.indicator.slugify }}-percentage"
+                       class="center">
+              </div>
+            {% endif %}
+          </div>
         </div>
-        <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          {% if not is_admin %}
-            <div class="company-balance-indicator-points pull-right">
-              {{ subindicator.evaluation }} %
-            </div>
+
+        <div class="bubble-contents">
+          {% if is_admin %}
+            <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
+              {% if subindicator.description %}
+                {{ subindicator.description|safe }}
+              {% else %}
+                <p>Editieren Sie diesen Indikator</p>
+                <ul>
+                  <li>darauf klicken</li>
+                  <li>editieren</li>
+                </ul>
+              {% endif %}
+            </textarea>
           {% else %}
-            <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
-                 class="company-balance-indicator-slider pull-right">
-              <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
-                     value="{{ subindicator.evaluation }}"
-                     name="company-balance-indicator-{{ subindicator.indicator.slugify }}-percentage"
-                     class="center">
+            <div class="company-balance-indicator-text">
+              {% if subindicator.description %}
+                {{ subindicator.description|safe }}
+              {% else %}
+                <br/>
+              {% endif %}
             </div>
           {% endif %}
         </div>
-      </div>
 
-      <div class="bubble-contents">
-        {% if is_admin %}
-          <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
-            {% if subindicator.description %}
-              {{ subindicator.description|safe }}
-            {% else %}
-              <p>Editieren Sie diesen Indikator</p>
-              <ul>
-                <li>darauf klicken</li>
-                <li>editieren</li>
-              </ul>
-            {% endif %}
-          </textarea>
-        {% else %}
-          <div class="company-balance-indicator-text">
-            {% if subindicator.description %}
-              {{ subindicator.description|safe }}
-            {% else %}
-              <br/>
-            {% endif %}
-          </div>
-        {% endif %}
       </div>
-
     </div>
-  </div>
+  {% endif %}
 
 {% endfor %}
 
@@ -181,6 +185,7 @@
 
   <script type="text/javascript">
     var is_admin = {% if is_admin %}true{% else %}false{% endif %};
+    var is_sole_proprietorship = '{{ is_sole_proprietorship }}' === 'True';
   </script>
   <script src="{% static 'ecg_balancing/js/company_balance_indicator_detail.js' %}"></script>
 {% endblock javascript %}

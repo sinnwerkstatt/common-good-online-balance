@@ -167,6 +167,7 @@ class CompanyBalanceIndicatorDetailView(UserRoleMixin, DetailView):
                                                                indicator__parent=self.object.indicator).all().order_by(
             'indicator__subindicator_number').all()
         context['subindicators'] = subindicators
+        context['is_sole_proprietorship'] = self.object.company_balance.company.is_sole_proprietorship
         return context
 
     def get_object(self, queryset=None):
@@ -223,6 +224,9 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
 
     def post(self, request, *args, **kwargs):
         companyBalanceIndicator = self.get_object()
+        balance = companyBalanceIndicator.company_balance
+        company = companyBalanceIndicator.company_balance.company
+        is_sole_proprietorship = company.is_sole_proprietorship()
         indicator = companyBalanceIndicator.indicator
         indicatorId = indicator.slugify()
 
@@ -254,31 +258,43 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
             subindicatorsIds = []
             subindicatorsPks = []
 
+            # get subindicator Ids and Pks
             for subindicator in subindicators:
-                subindicatorsIds.append(subindicator.slugify())
-                subindicatorsPks.append(subindicator.pk)
+                # skip for SP company and non-SP subindicators
+                if not (is_sole_proprietorship and not subindicator.sole_proprietorship):
+
+                    subindicatorsIds.append(subindicator.slugify())
+                    subindicatorsPks.append(subindicator.pk)
 
             companyBalanceSubIndicators = CompanyBalanceIndicator.objects.get_by_indicator_pks(subindicatorsPks)
             companyBalanceSubIndicatorsDict = dict([(obj.indicator.pk, obj) for obj in companyBalanceSubIndicators])
 
+            # save companyBalanceSubIndicator
             for subindicator in subindicators:
+                # skip for SP company and non-SP subindicators
+                if not (is_sole_proprietorship and not subindicator.sole_proprietorship):
 
-                subindicatorId = subindicator.slugify()
-                subindicatorText = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, editorFieldSuffix))
-                subindicatorPercentage = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, percentageFieldSuffix))
+                    subindicatorId = subindicator.slugify()
+                    subindicatorText = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, editorFieldSuffix))
+                    subindicatorPercentage = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, percentageFieldSuffix))
 
-                ## save the subindicator
-                companyBalanceSubIndicator = companyBalanceSubIndicatorsDict[subindicator.pk]
-                companyBalanceSubIndicator.description = subindicatorText
-                companyBalanceSubIndicator.evaluation = subindicatorPercentage
-                companyBalanceSubIndicator.save()
+                    ## save the subindicator
+                    companyBalanceSubIndicator = companyBalanceSubIndicatorsDict[subindicator.pk]
+                    companyBalanceSubIndicator.description = subindicatorText
+                    companyBalanceSubIndicator.evaluation = subindicatorPercentage
+                    companyBalanceSubIndicator.save()
 
 
             # calculate the points for this subindicator
             subindicators_points_sum = 0
             for companyBalanceSubIndicator in companyBalanceSubIndicators:
-                companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(companyBalanceSubIndicator.evaluation, companyBalanceSubIndicator, companyBalanceSubIndicators)
-                subindicators_points_sum += companyBalanceSubIndicatorPoints
+                # skip for SP company and non-SP subindicators
+                if not (is_sole_proprietorship and not companyBalanceSubIndicator.indicator.sole_proprietorship):
+
+                    companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(
+                        companyBalanceSubIndicator.evaluation, companyBalanceSubIndicator, companyBalanceSubIndicators, is_sole_proprietorship)
+
+                    subindicators_points_sum += companyBalanceSubIndicatorPoints
 
             sum_percentage = round (( float(subindicators_points_sum) / indicator.max_evaluation), 2) * 100
             rounded_sum_percentage = round(sum_percentage, -1)
@@ -291,19 +307,19 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
         self.object = companyBalanceIndicator
 
         ## update Balance Points
-        balance = companyBalanceIndicator.company_balance
-        balance.points = self.calculate_balance_points(balance)
+        balance.points = self.calculate_balance_points(balance, is_sole_proprietorship)
         balance.save()
 
         return HttpResponseRedirect(self.get_success_url())
 
-    def calculate_subindicator_points(self, subindicatorPercentage, companyBalanceSubindicator, companyBalanceSubIndicators):
+    def calculate_subindicator_points(self, subindicatorPercentage, companyBalanceSubindicator, companyBalanceSubIndicators, is_sole_proprietorship):
 
         """
 
         @param subindicatorPercentage: the subindicator percentage points
         @param companyBalanceSubindicator: the company balance sub indicator
         @param companyBalanceSubIndicators: all subindicators
+        @param is_sole_proprietorship: Boolean if the company is sole proprietorship
         @return: @rtype: the calculated points for the subindicator
         """
         relevance_mapping = Indicator.RELEVANCE_MAPPING
@@ -314,7 +330,10 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
 
         # calculate the subindicator points
         for companyBalanceSubIndicator in companyBalanceSubIndicators:
-            subindicators_relevances_sum += relevance_mapping[companyBalanceSubIndicator.indicator.relevance]
+            # skip for SP company and non-SP subindicators
+            if not (is_sole_proprietorship and not companyBalanceSubIndicator.indicator.sole_proprietorship):
+
+                subindicators_relevances_sum += relevance_mapping[companyBalanceSubIndicator.indicator.relevance]
 
         parent = companyBalanceSubindicator.indicator.parent
         subindicator_area_points = parent.max_evaluation * (float (subindicator_relevance) / float(subindicators_relevances_sum) )
@@ -322,11 +341,12 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
 
         return subindicator_calculated_points
 
-    def calculate_balance_points(self, balance):
+    def calculate_balance_points(self, balance, is_sole_proprietorship):
 
         """
 
         @param balance: the company balance
+        @param is_sole_proprietorship: Boolean if the company is sole proprietorship
         @return: @rtype: the calculated balance points
         """
         calculated_points = 0
@@ -335,6 +355,9 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
             balance_indicator_evaluation = balance_indicator.evaluation
             if balance_indicator_evaluation != 0:
                 calculated_points += balance_indicator_evaluation
+
+        if is_sole_proprietorship:
+            calculated_points = int (round (calculated_points * (float (1000) / 790) ))
 
         return calculated_points
 

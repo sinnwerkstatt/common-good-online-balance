@@ -277,6 +277,9 @@ class Company(models.Model):
         path = reverse('company-detail', args=[self.pk])
         return path
 
+    def is_sole_proprietorship(self):
+        return self.employees_number == 'one'
+
 
 class CompanyBalance(models.Model):
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='company_balances',

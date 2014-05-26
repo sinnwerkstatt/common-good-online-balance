@@ -4,6 +4,7 @@ indicator = {
     shortcodeSlug: 'd4',
     name: 'Soziale Gestaltung der Produkte und Dienstleistungen',
     points: 30,
+    soleProprietorship: true,
     goals: {},
     impulsQuestions: {},
     table: {
@@ -12,6 +13,7 @@ indicator = {
                 title: 'Erleichterter Zugang zu Informationen/ Produkten/ Dienstleistungen für benachteiligte KundInnen-Gruppen*',
                 relevance: 'high',
                 position: '1',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
@@ -31,6 +33,7 @@ indicator = {
                 title: 'Förderungswürdige Strukturen** werden durch Vertriebspolitik unterstützt',
                 relevance: 'middle',
                 position: '2',
+                soleProprietorship: true,
                 developmentTracks: [
                     {
                         developmentDetails: [
