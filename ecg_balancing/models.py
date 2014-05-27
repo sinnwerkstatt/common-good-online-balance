@@ -324,6 +324,20 @@ class CompanyBalance(models.Model):
         )
 
 
+    def recalculate_points(self):
+        calculated_points = 0
+        balance_indicators = CompanyBalanceIndicator.objects.filter(company_balance=self, indicator__parent=None)
+        for balance_indicator in balance_indicators:
+            balance_indicator_evaluation = balance_indicator.evaluation
+            if balance_indicator_evaluation != 0:
+                calculated_points += balance_indicator_evaluation
+
+        if self.company.is_sole_proprietorship:
+            calculated_points = int (round (calculated_points * (float (1000) / 790) ))
+
+        self.points = calculated_points
+
+
 def create_company_balance(**kwargs):
     created = kwargs.get('created')
 

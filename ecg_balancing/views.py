@@ -307,7 +307,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
         self.object = companyBalanceIndicator
 
         ## update Balance Points
-        balance.points = self.calculate_balance_points(balance, is_sole_proprietorship)
+        balance.recalculate_points()
         balance.save()
 
         return HttpResponseRedirect(self.get_success_url())
@@ -340,26 +340,6 @@ class CompanyBalanceIndicatorUpdateView(UserRoleMixin, UpdateView):
         subindicator_calculated_points = int (round ((float(subindicatorPercentage) / 100) * subindicator_area_points))
 
         return subindicator_calculated_points
-
-    def calculate_balance_points(self, balance, is_sole_proprietorship):
-
-        """
-
-        @param balance: the company balance
-        @param is_sole_proprietorship: Boolean if the company is sole proprietorship
-        @return: @rtype: the calculated balance points
-        """
-        calculated_points = 0
-        balance_indicators = CompanyBalanceIndicator.objects.filter(company_balance=balance, indicator__parent=None)
-        for balance_indicator in balance_indicators:
-            balance_indicator_evaluation = balance_indicator.evaluation
-            if balance_indicator_evaluation != 0:
-                calculated_points += balance_indicator_evaluation
-
-        if is_sole_proprietorship:
-            calculated_points = int (round (calculated_points * (float (1000) / 790) ))
-
-        return calculated_points
 
 
 class FeedbackIndicatorFormView(FormView):
