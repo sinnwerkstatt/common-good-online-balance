@@ -148,71 +148,73 @@ class Indicator(models.Model):
 
 
 class Company(models.Model):
-    INDUSTRY_CHOICE_AEROSPACE_AND_DEFENSE = 'aerospace_and_defense'
-    INDUSTRY_CHOICE_AUTO = 'auto'
-    INDUSTRY_CHOICE_BANKS_AND_FINANCIAL = 'banks_and_financial'
-    INDUSTRY_CHOICE_BIOTECH_AND_CHEMICALS = 'biotech_and_chemicals'
-    INDUSTRY_CHOICE_COMPUTERS_AND_HARDWARE = 'computers_and_hardware'
-    INDUSTRY_CHOICE_CONSULTING_AND_BUSINESS_SERVICES = 'consulting_and_business_services'
-    INDUSTRY_CHOICE_EDUCATION_AND_SCHOOLS = 'education_and_schools'
-    INDUSTRY_CHOICE_ENERGY_AND_UTILITIES = 'energy_and_utilities'
-    INDUSTRY_CHOICE_ENGINEERING_AND_CONSTRUCTION = 'engineering_and_construction'
-    INDUSTRY_CHOICE_FARMING_AND_AGRICULTURE = 'farming_and_agriculture'
-    INDUSTRY_CHOICE_FASHION_AND_BEAUTY = 'fashion_and_beauty'
-    INDUSTRY_CHOICE_FOOD_AND_BEVERAGES = 'food_and_beverages'
-    INDUSTRY_CHOICE_GOVERNMENTAL_ORGANIZATION = 'governmental_organization'
-    INDUSTRY_CHOICE_HEALTH = 'health'
-    INDUSTRY_CHOICE_INDUSTRIALS = 'industrials'
-    INDUSTRY_CHOICE_INSURANCE = 'insurance'
-    INDUSTRY_CHOICE_INTERNET_AND_SOFTWARE = 'internet_and_software'
-    INDUSTRY_CHOICE_LEGAL = 'legal'
-    INDUSTRY_CHOICE_MEDIA_NEWS_AND_PUBLISHING = 'media_news_and_publishing'
-    INDUSTRY_CHOICE_MINING_AND_MATERIALS = 'mining_and_materials'
-    INDUSTRY_CHOICE_NON_PROFIT = 'non_profit'
-    INDUSTRY_CHOICE_POLITICAL_ORGANIZATION = 'political_organization'
-    INDUSTRY_CHOICE_PROFESSIONAL_SERVICES = 'professional_services'
-    INDUSTRY_CHOICE_RELIGIOUS_ORGANIZATION = 'religious_organization'
-    INDUSTRY_CHOICE_RETAIL_AND_CONSUMER_MERCHANDISE = 'retail_and_consumer_merchandise'
-    INDUSTRY_CHOICE_TELECOMMUNICATIONS = 'telecommunications'
-    INDUSTRY_CHOICE_TRANSPORT_AND_FREIGHT = 'transport_and_freight'
-    INDUSTRY_CHOICE_TRAVEL_AND_LEISURE = 'travel_and_leisure'
-    INDUSTRY_CHOICE_COMPANY = 'company'
-    INDUSTRY_CHOICE_INSTITUTION = 'institution'
-    INDUSTRY_CHOICE_ORGANIZATION = 'organization'
-    INDUSTRY_CHOICE_OTHER = 'other'
+
+    INDUSTRY_CHOICE_AGRICULTURE_FORESTRY_AND_FISHING = 'agriculture_forestry_and_fishing'
+    INDUSTRY_CHOICE_MINING_AND_QUARRYING = 'mining_and_quarrying'
+    INDUSTRY_CHOICE_MANUFACTURING = 'manufacturing'
+    INDUSTRY_CHOICE_ELECTRICITY_GAS_STEAM_AND_AIR_CONDITIONING_SUPPLY = 'electricity_gas_steam_and_air_conditioning_supply'
+    INDUSTRY_CHOICE_WATER_SUPPLY_SEWERAGE_WASTE_MANAGEMENT_AND_REMEDIATION_ACTIVITIES = 'water_supply_sewerage_waste_management_and_remediation_activities'
+    INDUSTRY_CHOICE_CONSTRUCTION = 'construction'
+    INDUSTRY_CHOICE_WHOLESALE_AND_RETAIL_TRADE_REPAIR_OF_MOTOR_VEHICLES_AND_MOTORCYCLES = 'wholesale_and_retail_trade_repair_of_motor_vehicles_and_motorcycles'
+    INDUSTRY_CHOICE_TRANSPORTATION_AND_STORAGE = 'transportation_and_storage'
+    INDUSTRY_CHOICE_ACCOMMODATION_AND_FOOD_SERVICE_ACTIVITIES = 'accommodation_and_food_service_activities'
+    INDUSTRY_CHOICE_CONSULTING_AND_IT_INDUSTRY = 'consulting_and_it_industry'
+    INDUSTRY_CHOICE_FINANCIAL_AND_INSURANCE_ACTIVITIES = 'financial_and_insurance_activities'
+    INDUSTRY_CHOICE_REAL_ESTATE_ACTIVITIES = 'real_estate_activities'
+    INDUSTRY_CHOICE_PROFESSIONAL_SCIENTIFIC_AND_TECHNICAL_SERVICE_ACTIVITIES = 'professional_scientific_and_technical_service_activities'
+    INDUSTRY_CHOICE_ADMINISTRATIVE_AND_SUPPORT_SERVICE_ACTIVITIES = 'administrative_and_support_service_activities'
+    INDUSTRY_CHOICE_PUBLIC_ADMINISTRATION_AND_DEFENCE_COMPULSORY_SOCIAL_SECURITY = 'public_administration_and_defence_compulsory_social_security'
+    INDUSTRY_CHOICE_EDUCATION = 'education'
+    INDUSTRY_CHOICE_HUMAN_HEALTH_AND_SOCIAL_WORK_ACTIVITIES = 'human_health_and_social_work_activities'
+    INDUSTRY_CHOICE_MEDIA_MANAGEMENT_ADVERTISING_AND_MARKET_COMMUNICATION = 'media_management_advertising_and_market_communication'
+    INDUSTRY_CHOICE_OTHER_SERVICE_ACTIVITIES = 'other_service_activities'
+    INDUSTRY_CHOICE_ACTIVITIES_OF_HOUSEHOLDS_AS_EMPLOYERS = 'activities_of_households_as_employers'
+    INDUSTRY_CHOICE_ACTIVITIES_OF_EXTRATERRITORIAL_ORGANISATIONS_AND_BODIES = 'activities_of_extraterritorial_organisations_and_bodies'
+    INDUSTRY_CHOICE_TEXTILES_CLOTHING_SHOE_AND_LEATHER_INDUSTRY = 'textiles_clothing_shoe_and_leather_industry'
+    INDUSTRY_CHOICE_FOOD_INDUSTRIES = 'food_industries'
+    INDUSTRY_CHOICE_CHURCH_AND_RELIGIOUS_INSTITUTIONS = 'church_and_religious_institutions'
+    INDUSTRY_CHOICE_ART_AND_CULTURE = 'art_and_culture'
+    INDUSTRY_CHOICE_RESEARCH_AND_DEVELOPMENT = 'research_and_development'
+    INDUSTRY_CHOICE_LAW_LAWYER_TAX_CONSULTANCY = 'law_lawyer_tax_consultancy'
+    INDUSTRY_CHOICE_METAL_AND_ELECTRICAL_INDUSTRY = 'metal_and_electrical_industry'
+    INDUSTRY_CHOICE_POLITICS_POLITICAL_ACTIONS = 'politics_political_actions'
+    INDUSTRY_CHOICE_GARDENERS_AND_FLORISTS = 'gardeners_and_florists'
+    INDUSTRY_CHOICE_CHARITABLE_ORGANIZATIONS_NGO = 'charitable_organizations_ngo'
+    INDUSTRY_CHOICE_OTHERS = 'others'
+
     INDUSTRY_CHOICES = (
-        (INDUSTRY_CHOICE_AEROSPACE_AND_DEFENSE, _('Aerospace and Defense')),
-        (INDUSTRY_CHOICE_AUTO, _('Auto')),
-        (INDUSTRY_CHOICE_BANKS_AND_FINANCIAL, _('Banks and Financial')),
-        (INDUSTRY_CHOICE_BIOTECH_AND_CHEMICALS, _('Biotech and Chemicals')),
-        (INDUSTRY_CHOICE_COMPUTERS_AND_HARDWARE, _('Computers and Hardware')),
-        (INDUSTRY_CHOICE_CONSULTING_AND_BUSINESS_SERVICES, _('Consulting and Business Services')),
-        (INDUSTRY_CHOICE_EDUCATION_AND_SCHOOLS, _('Education and Schools')),
-        (INDUSTRY_CHOICE_ENERGY_AND_UTILITIES, _('Energy and Utilities')),
-        (INDUSTRY_CHOICE_ENGINEERING_AND_CONSTRUCTION, _('Engineering and Construction')),
-        (INDUSTRY_CHOICE_FARMING_AND_AGRICULTURE, _('Farming and Agriculture')),
-        (INDUSTRY_CHOICE_FASHION_AND_BEAUTY, _('Fashion and Beauty')),
-        (INDUSTRY_CHOICE_FOOD_AND_BEVERAGES, _('Food and Beverages')),
-        (INDUSTRY_CHOICE_GOVERNMENTAL_ORGANIZATION, _('Governmental Organization')),
-        (INDUSTRY_CHOICE_HEALTH, _('Health')),
-        (INDUSTRY_CHOICE_INDUSTRIALS, _('Industrials')),
-        (INDUSTRY_CHOICE_INSURANCE, _('Insurance')),
-        (INDUSTRY_CHOICE_INTERNET_AND_SOFTWARE, _('Internet and Software')),
-        (INDUSTRY_CHOICE_LEGAL, _('Legal')),
-        (INDUSTRY_CHOICE_MEDIA_NEWS_AND_PUBLISHING, _('Media, News and Publishing')),
-        (INDUSTRY_CHOICE_MINING_AND_MATERIALS, _('Mining and Materials')),
-        (INDUSTRY_CHOICE_NON_PROFIT, _('Non-profit')),
-        (INDUSTRY_CHOICE_POLITICAL_ORGANIZATION, _('Political Organization')),
-        (INDUSTRY_CHOICE_PROFESSIONAL_SERVICES, _('Professional Services')),
-        (INDUSTRY_CHOICE_RELIGIOUS_ORGANIZATION, _('Religious Organization')),
-        (INDUSTRY_CHOICE_RETAIL_AND_CONSUMER_MERCHANDISE, _('Retail and Consumer Merchandise')),
-        (INDUSTRY_CHOICE_TELECOMMUNICATIONS, _('Telecommunications')),
-        (INDUSTRY_CHOICE_TRANSPORT_AND_FREIGHT, _('Transport and Freight')),
-        (INDUSTRY_CHOICE_TRAVEL_AND_LEISURE, _('Travel and Leisure')),
-        (INDUSTRY_CHOICE_COMPANY, _('Company')),
-        (INDUSTRY_CHOICE_INSTITUTION, _('Institution')),
-        (INDUSTRY_CHOICE_ORGANIZATION, _('Organization')),
-        (INDUSTRY_CHOICE_OTHER, _('Other'))
+        (INDUSTRY_CHOICE_AGRICULTURE_FORESTRY_AND_FISHING, _('Agriculture, forestry and fishing')),
+        (INDUSTRY_CHOICE_MINING_AND_QUARRYING, _('Mining and quarrying')),
+        (INDUSTRY_CHOICE_MANUFACTURING, _('Manufacturing')),
+        (INDUSTRY_CHOICE_ELECTRICITY_GAS_STEAM_AND_AIR_CONDITIONING_SUPPLY, _('Electricity, gas, steam and air conditioning supply')),
+        (INDUSTRY_CHOICE_WATER_SUPPLY_SEWERAGE_WASTE_MANAGEMENT_AND_REMEDIATION_ACTIVITIES, _('Water supply, sewerage waste management and remediation activities')),
+        (INDUSTRY_CHOICE_CONSTRUCTION, _('Construction')),
+        (INDUSTRY_CHOICE_WHOLESALE_AND_RETAIL_TRADE_REPAIR_OF_MOTOR_VEHICLES_AND_MOTORCYCLES, _('Wholesale and retail trade, repair of motor vehicles and motorcycles')),
+        (INDUSTRY_CHOICE_TRANSPORTATION_AND_STORAGE, _('Transportation and storage')),
+        (INDUSTRY_CHOICE_ACCOMMODATION_AND_FOOD_SERVICE_ACTIVITIES, _('Accommodation and food service activities')),
+        (INDUSTRY_CHOICE_CONSULTING_AND_IT_INDUSTRY, _('Consulting and IT industry')),
+        (INDUSTRY_CHOICE_FINANCIAL_AND_INSURANCE_ACTIVITIES, _('Financial and insurance activities')),
+        (INDUSTRY_CHOICE_REAL_ESTATE_ACTIVITIES, _('Real estate activities')),
+        (INDUSTRY_CHOICE_PROFESSIONAL_SCIENTIFIC_AND_TECHNICAL_SERVICE_ACTIVITIES, _('Professional, scientific and technical service activities')),
+        (INDUSTRY_CHOICE_ADMINISTRATIVE_AND_SUPPORT_SERVICE_ACTIVITIES, _('Administrative and support service activities')),
+        (INDUSTRY_CHOICE_PUBLIC_ADMINISTRATION_AND_DEFENCE_COMPULSORY_SOCIAL_SECURITY, _('Public administration and defence, compulsory, social security')),
+        (INDUSTRY_CHOICE_EDUCATION, _('Education')),
+        (INDUSTRY_CHOICE_HUMAN_HEALTH_AND_SOCIAL_WORK_ACTIVITIES, _('Human health and social work activities')),
+        (INDUSTRY_CHOICE_MEDIA_MANAGEMENT_ADVERTISING_AND_MARKET_COMMUNICATION, _('Media management, advertising and market communication')),
+        (INDUSTRY_CHOICE_OTHER_SERVICE_ACTIVITIES, _('Other service activities')),
+        (INDUSTRY_CHOICE_ACTIVITIES_OF_HOUSEHOLDS_AS_EMPLOYERS, _('Activities of households as employers')),
+        (INDUSTRY_CHOICE_ACTIVITIES_OF_EXTRATERRITORIAL_ORGANISATIONS_AND_BODIES, _('Activities of extraterritorial organisations and bodies')),
+        (INDUSTRY_CHOICE_TEXTILES_CLOTHING_SHOE_AND_LEATHER_INDUSTRY, _('Textiles, clothing, shoe and leather industry')),
+        (INDUSTRY_CHOICE_FOOD_INDUSTRIES, _('Food industries')),
+        (INDUSTRY_CHOICE_CHURCH_AND_RELIGIOUS_INSTITUTIONS, _('Church and religious institutions')),
+        (INDUSTRY_CHOICE_ART_AND_CULTURE, _('Art and culture')),
+        (INDUSTRY_CHOICE_RESEARCH_AND_DEVELOPMENT, _('Research and development')),
+        (INDUSTRY_CHOICE_LAW_LAWYER_TAX_CONSULTANCY, _('Law (lawyer, tax consultancy, ...)')),
+        (INDUSTRY_CHOICE_METAL_AND_ELECTRICAL_INDUSTRY, _('Metal and electrical industry')),
+        (INDUSTRY_CHOICE_POLITICS_POLITICAL_ACTIONS, _('Politics, political actions')),
+        (INDUSTRY_CHOICE_GARDENERS_AND_FLORISTS, _('Gardeners and florists')),
+        (INDUSTRY_CHOICE_CHARITABLE_ORGANIZATIONS_NGO, _('Charitable organizations, NGOs')),
+        (INDUSTRY_CHOICE_OTHERS, _('Others')),
     )
     ACTIVITY_CHOICE_EXAMPLE = 'example'
     ACTIVITY_CHOICES = (
