@@ -32,7 +32,9 @@
 
 
   <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}">
-    <span class="js-indicator-page-title-inner"></span></h2>
+    <span class="js-indicator-page-title-inner"></span></h2></span>
+
+
 
   {% if is_admin %}
     <form method="POST"
@@ -46,9 +48,13 @@
       <button type="submit" class="button primary">{% trans "Save" %}</button>
     </div>
   {% endif %}
-  <a href="{% url 'feedback-indicator' object.indicator %}?url={{ request.get_full_path }}" class="button pull-right">
+  <a href="{% url 'feedback-indicator' object.indicator %}?url={{ request.get_full_path }}" class="button pull-right space-left">
     <span class="glyphicon glyphicon-envelope"></span>
     {% trans "Send Feedback" %}
+  </a>
+  <a href="http://sinnwerkstatt.github.io/gemeinwohl-oekonomie/#matrix-{{object.indicator}}-goals" target="_blank" class="button pull-right">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    {% trans "Indicator Infos" %}
   </a>
 </div>
 
