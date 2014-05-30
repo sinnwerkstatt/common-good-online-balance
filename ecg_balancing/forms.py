@@ -93,7 +93,8 @@ class CompanyBalanceEditForm(forms.ModelForm):
     class Meta:
         model = CompanyBalance
         fields = ('matrix', 'year', 'status', 'start_date', 'end_date', 'peer_companies', 'auditor', 'common_good',
-                  'prospect', 'process_description', 'company')
+                  'worked_hours', 'number_participated_employees', 'process_description', 'internal_communication',
+                  'prospect', 'company')
 
     def __init__(self, *args, **kwargs):
         super(CompanyBalanceEditForm, self).__init__(*args, **kwargs)
