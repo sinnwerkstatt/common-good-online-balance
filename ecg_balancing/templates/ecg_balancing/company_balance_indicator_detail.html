@@ -122,14 +122,17 @@
     <div class="indicator-editor-container bubble">
       <div class="bubble-inner">
         <div class="row meta">
-          <div class="meta-left col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <div class="meta-left col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <h3 class="subindicator-title ecg-green"
                 data-position="{{ subindicator.indicator.subindicator_number }}"></h3>
           </div>
-          <div class="meta-right col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="meta-right col-lg-3 col-md-3 col-sm-12 col-xs-12">
             {% if not is_admin %}
-              <div class="company-balance-indicator-points pull-right">
+              <div class="company-balance-indicator-points pull-right center">
                 {{ subindicator.evaluation }} %
+                <div class="company-balance-indicator-relevance">
+                  ({% trans "Relevance" %}: {{ subindicator.indicator.get_relevance_display }})
+                </div>
               </div>
             {% else %}
               <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
@@ -138,6 +141,9 @@
                        value="{{ subindicator.evaluation }}"
                        name="company-balance-indicator-{{ subindicator.indicator.slugify }}-percentage"
                        class="center">
+                <div class="company-balance-indicator-relevance">
+                  ({% trans "Relevance" %}: {{ subindicator.indicator.get_relevance_display }})
+                </div>
               </div>
             {% endif %}
           </div>
