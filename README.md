@@ -9,3 +9,7 @@ The ECG Balancing is a learning process involving ECG companies, peer companies,
 * Sending automatically relevant notifications to users during the whole process.
 * Publications of ECG balances.
 * other features are possible and will be co-defined during the further development.
+
+## Economy for the Common Good
+
+* Official Website: https://www.ecogood.org/
