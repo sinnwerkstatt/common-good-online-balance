@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'suit', # must be before admin
     'django.contrib.admin',
 
     # Django CMS apps
@@ -165,7 +166,6 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'embed_video',
     'cmsplugin_filer_image',
-    'suit',
 )
 
 LANGUAGES = [
