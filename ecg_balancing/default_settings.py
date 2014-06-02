@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'embed_video',
     'cmsplugin_filer_image',
+    'suit',
 )
 
 LANGUAGES = [
