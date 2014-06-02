@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-30 15:51+0200\n"
+"POT-Creation-Date: 2014-06-02 17:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,7 @@ msgstr "Vorname"
 msgid "Last Name"
 msgstr "Familienname"
 
-#: ecg_balancing/forms.py:82 ecg_balancing/forms.py:111
+#: ecg_balancing/forms.py:82 ecg_balancing/forms.py:112
 #, python-format
 msgid ""
 "There is an existing balance for the year %s. Please enter another year."
@@ -79,6 +79,7 @@ msgid "Version"
 msgstr "Version"
 
 #: ecg_balancing/models.py:35 ecg_balancing/models.py:252
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:19
 msgid "Email"
 msgstr "E-Mail"
 
@@ -158,8 +159,8 @@ msgstr ""
 "Nur für einen Subindikator eintragen, der keinen Elternteil-Indikator hat."
 
 #: ecg_balancing/models.py:91
-#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:134
-#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:145
+#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:135
+#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:146
 msgid "Relevance"
 msgstr "Relevanz"
 
@@ -387,37 +388,37 @@ msgid "Fax Number"
 msgstr "Faxnummer"
 
 #: ecg_balancing/models.py:257
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:83
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:85
 msgid "Industry"
 msgstr "Industrie"
 
 #: ecg_balancing/models.py:258
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:86
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:88
 msgid "Activities"
 msgstr "Tätigkeiten"
 
 #: ecg_balancing/models.py:259
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:89
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:91
 msgid "Number of employees"
 msgstr "Anzahl der Mitarbeiter"
 
 #: ecg_balancing/models.py:260
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:92
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:94
 msgid "Revenue"
 msgstr "Umsatz"
 
 #: ecg_balancing/models.py:264
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:98
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:100
 msgid "Foundation Date"
 msgstr "Gründungsdatum"
 
 #: ecg_balancing/models.py:265
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:101
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:103
 msgid "Owners"
 msgstr "Inhaber"
 
 #: ecg_balancing/models.py:266
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:104
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:106
 msgid "Managing Directors"
 msgstr "Geschäftsführer"
 
@@ -581,14 +582,14 @@ msgstr "Feedback-Indikator"
 msgid "Feedback Indicators"
 msgstr "Feedback-Indikatoren"
 
-#: ecg_balancing/views.py:398
+#: ecg_balancing/views.py:403
 #, python-format
 msgid "[ECG] New Feedback for Indicator %s"
 msgstr "[ECG] Neues Feedback für Indikator %s"
 
 #: ecg_balancing/templates/ecg_balancing/company_balance_create.html:10
 #: ecg_balancing/templates/ecg_balancing/company_balance_create.html:27
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:44
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:45
 msgid "Create ECG Balance"
 msgstr "GWÖ-Bilanz erstellen"
 
@@ -601,7 +602,6 @@ msgstr "Sie haben nicht die Rechte, eine GWÖ-Bilanz zu erstellen"
 #: ecg_balancing/templates/ecg_balancing/company_balance_update.html:48
 #: ecg_balancing/templates/ecg_balancing/company_update.html:46
 #: ecg_balancing/templates/ecg_balancing/feedback_indicator_form.html:22
-#: ecg_balancing/templates/ecg_balancing/login.html:33
 #: ecg_balancing/templates/ecg_balancing/user_update.html:28
 msgid "Please fill out"
 msgstr "bitte ausfüllen"
@@ -619,7 +619,7 @@ msgstr "Speichern"
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:10
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:28
 #: ecg_balancing/templates/ecg_balancing/company_balance_update.html:35
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:37
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:38
 msgid "ECG Balance"
 msgstr "GWÖ Bilanz"
 
@@ -654,7 +654,7 @@ msgstr "GWÖ Bilanz editieren"
 msgid "Back"
 msgstr "Zurück"
 
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:33
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:34
 msgid "ECG Balances"
 msgstr "GWÖ-Bilanzen"
 
@@ -684,29 +684,6 @@ msgstr "Danke! Ihr Feedback wurde am GWÖ-Redaktionsteam gesendet."
 msgid "Back to ECG Balance"
 msgstr "Zurück zur GWÖ-Bilanz"
 
-#: ecg_balancing/templates/ecg_balancing/login.html:7
-msgid "Your username and password didn't match. Please try again."
-msgstr ""
-"Der Benutzername oder das Passwort wurden nicht korrekt eingegeben. Bitte "
-"versuchen Sie es noch einmal."
-
-#: ecg_balancing/templates/ecg_balancing/login.html:37 templates/start.html:10
-#: templates/topmenu.html:29
-msgid "Login"
-msgstr "Login"
-
-#: ecg_balancing/templates/ecg_balancing/logout.html:5
-msgid "Thank you for using the site."
-msgstr "Sie sind ausgeloggt."
-
-#: ecg_balancing/templates/ecg_balancing/logout.html:7
-msgid "Log in again"
-msgstr "Erneut anmelden"
-
-#: ecg_balancing/templates/ecg_balancing/logout.html:8
-msgid "Return to the home page"
-msgstr "Zur Hauptseite"
-
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:19
 msgid "Upload profile photo"
 msgstr "Profilbild hochladen"
@@ -715,7 +692,130 @@ msgstr "Profilbild hochladen"
 msgid "Edit profile"
 msgstr "Profil bearbeiten"
 
-#: templates/base.html:21
+#: ecg_balancing/templates/ecg_balancing/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+"Der Benutzername oder das Passwort wurden nicht korrekt eingegeben. Bitte "
+"versuchen Sie es noch einmal."
+
+#: ecg_balancing/templates/ecg_balancing/registration/login.html:33
+#: templates/start.html:10 templates/topmenu.html:29
+msgid "Login"
+msgstr "Login"
+
+#: ecg_balancing/templates/ecg_balancing/registration/login.html:37
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/logout.html:5
+msgid "Thank you for using the site."
+msgstr "Sie sind ausgeloggt."
+
+#: ecg_balancing/templates/ecg_balancing/registration/logout.html:7
+msgid "Log in again"
+msgstr "Erneut anmelden"
+
+#: ecg_balancing/templates/ecg_balancing/registration/logout.html:8
+msgid "Return to the home page"
+msgstr "Zur Hauptseite"
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:6
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:6
+msgid "Home"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:7
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:7
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:9
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:27
+msgid "Password reset"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:11
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:15
+msgid "Password reset complete"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:17
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:19
+#, fuzzy
+msgid "Log in"
+msgstr "Erneut anmelden"
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:10
+msgid "Enter new password"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:17
+msgid "New password:"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:28
+msgid "Confirm password:"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:38
+msgid "Change my password"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:45
+msgid "Password reset unsuccessful"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:47
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:11
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:15
+msgid "Password reset successful"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:17
+msgid ""
+"We've emailed you instructions for setting your password to the email "
+"address you submitted. You should be receiving it shortly."
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_email.html:8
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_email.html:10
+#, fuzzy
+msgid "Thanks for using our site!"
+msgstr "Sie sind ausgeloggt."
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:11
+msgid ""
+"Enter your email address and we'll email you instructions for setting a new "
+"passwort."
+msgstr "E-Mail-Adresse eingeben und den Anweisungen zum Zurücksetzen des Passworts in der E-Mail folgen."
+
+#: templates/base.html:14 templates/base.html.py:21
 msgid "ECG Balancing"
 msgstr "GWÖ Online Bilanzierung"
 
@@ -725,7 +825,7 @@ msgstr "Impressum"
 
 #: templates/start.html:7
 msgid "Hi "
-msgstr ""
+msgstr "Hallo "
 
 #: templates/topmenu.html:10
 msgid "ECG Online Bilanzierung"

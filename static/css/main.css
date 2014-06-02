@@ -260,7 +260,11 @@ img.right {
 }
 
 .last-form-element {
-  padding-bottom: 30px;
+  padding-bottom: 15px;
+}
+
+.p-top {
+  padding-top: 10px;
 }
 
 /* Colors */

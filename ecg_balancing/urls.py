@@ -13,8 +13,25 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-	(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'ecg_balancing/login.html'}),
-	(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'ecg_balancing/logout.html'}),
+	(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'ecg_balancing/registration/login.html'}),
+	(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'ecg_balancing/registration/logout.html'}),
+
+    url(r'^password_reset/$', 'django.contrib.auth.views.password_reset', {'template_name': 'ecg_balancing/registration/password_reset_form.html'}, name='password_reset'),
+    url(r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done', {'template_name': 'ecg_balancing/registration/password_reset_done.html'}, name='password_reset_done'),
+
+    url(r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
+    url(r'^reset/(?P<uidb36>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        'django.contrib.auth.views.password_reset_confirm',
+        {'template_name': 'ecg_balancing/registration/password_reset_confirm.html'},
+        name='password_reset_confirm'),
+    url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete',
+        {'template_name': 'ecg_balancing/registration/password_reset_done.html'},
+        name='password_reset_complete'),
+
+    url(r'^password_change/$', 'django.contrib.auth.views.password_change', name='password_change'),
+    url(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
+    url(r'^password_change/$', 'django.contrib.auth.views.password_change', {'template_name': 'ecg_balancing/registration/password_change_form.html'}, name='password_change'),
+    url(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name': 'ecg_balancing/registration/password_change_done.html'}, name='password_change_done'),
 
 
 	url(r'^user/(?P<pk>.*)/$', login_required(UserDetailView.as_view()), name='user-detail'),

@@ -10,31 +10,39 @@
   <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
     {% csrf_token %}
 
-    <div id="div_id_username" class="form-group">
+    <div id="div_id_username" class="form-group{% if form.username.errors %} has-error{% endif %}">
       <label for="id_username" class="control-label clearboth text-right col-lg-2 col-md-2">
         {{ form.username.label_tag }}
-    </label>
+      </label>
+
       <div class="controls col-lg-5 col-md-5">
         <input class="textinput textInput form-control" id="id_username" maxlength="255" name="username" type="text">
+        {% if form.username.errors %}
+          <span id="error_1_id_username" class="help-block">{% for error in form.username.errors %}
+            {{ error }}{% endfor %}</span>
+        {% endif %}
       </div>
     </div>
 
-    <div id="div_id_password" class="form-group">
+    <div id="div_id_password" class="form-group{% if form.password.errors %} has-error{% endif %}">
       <label for="id_password" class="control-label clearboth text-right col-lg-2 col-md-2">
         {{ form.password.label_tag }}
-    </label>
-      <div class="controls col-lg-5 col-md-5">
-        <input class="textinput textInput form-control" id="id_password" maxlength="4096" name="password" type="password">
+      </label>
+
+      <div class="controls col-lg-5 col-md-5 last-form-element">
+        <input class="textinput textInput form-control" id="id_password" maxlength="4096" name="password"
+               type="password">
+        {% if form.password.errors %}
+          <span id="error_1_id_password" class="help-block">{% for error in form.password.errors %}
+            {{ error }}{% endfor %}</span>
+        {% endif %}
       </div>
     </div>
 
-    <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>
-    <div class="last-form-element col-lg-5 col-md-5">
-      <span class="asteriskField">*</span> - {% trans "Please fill out" %}
-    </div>
     <div class="clearboth col-lg-2 col-md-2">&nbsp;</div>
     <div class="pad-bottom col-lg-5 col-md-5">
       <input type="submit" name="submit" value="{% trans "Login" %}" class="button primary"/>
+      <a href="{% url 'password_reset' %}" class="pull-right p-top">{% trans 'Forgotten your password or username?' %}</a>
     </div>
     <input type="hidden" name="next" value="{% url 'pages-root' %}"/>
 
