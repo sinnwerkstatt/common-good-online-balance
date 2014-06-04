@@ -35,6 +35,29 @@ class UserCreateView(CreateView):
 class UserDetailView(TemplateView):
     template_name = 'ecg_balancing/user_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+
+        companies_pending = []
+        companies_member = []
+        companies_admin = []
+
+        userroles = UserRole.objects.filter(user=self.request.user)
+        for userrole in userroles:
+            if userrole.role == UserRole.ROLE_CHOICE_PENDING:
+                companies_pending.append(userrole.company)
+            else:
+                if userrole.role == UserRole.ROLE_CHOICE_MEMBER:
+                    companies_member.append(userrole.company)
+                if userrole.role == UserRole.ROLE_CHOICE_ADMIN:
+                    companies_member.append(userrole.company)
+                    companies_admin.append(userrole.company)
+
+        context['companies_pending'] = companies_pending
+        context['companies_member'] = companies_member
+        context['companies_admin'] = companies_admin
+
+        return context
 
 class UserUpdateView(UpdateView):
     model = User

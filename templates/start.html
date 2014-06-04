@@ -7,8 +7,8 @@
     {% trans "Hi " %} <a href="{% url 'user-detail' user.pk %}">{{ user.first_name }} {{ user.last_name }}</a>
 
   {% else %}
-    <a href="{% url 'django.contrib.auth.views.login' %}" class="button primary">{% trans "Login" %}</a>
-
+    <a href="{% url 'login' %}" class="button primary">{% trans "Login" %}</a>
+    <a href="{% url 'register' %}" class="button primary">{% trans "Register" %}</a>
   {% endif %}
 
 

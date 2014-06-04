@@ -397,15 +397,16 @@ class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, editable=False, related_name='profile')
 
     avatar = models.ImageField(_('Image'), blank=True, null=True, upload_to='profiles-upload')
-    companies = models.ManyToManyField('ecg_balancing.Company', verbose_name=_('Companies'), blank=True, null=True)
 
 
 class UserRole(models.Model):
+    ROLE_CHOICE_PENDING = 'pending'
+    ROLE_CHOICE_MEMBER = 'member'
     ROLE_CHOICE_ADMIN = 'admin'
-    ROLE_CHOICE_GUEST = 'guest'
     ROLE_CHOICES = (
+        (ROLE_CHOICE_PENDING, _('Pending')),
+        (ROLE_CHOICE_MEMBER, _('Member')),
         (ROLE_CHOICE_ADMIN, _('Admin')),
-        (ROLE_CHOICE_GUEST, _('Guest')),
     )
 
     company = models.ForeignKey('ecg_balancing.Company', verbose_name=_('Company'))

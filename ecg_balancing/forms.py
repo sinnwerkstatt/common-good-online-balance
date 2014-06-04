@@ -158,7 +158,6 @@ class UserProfileForm(forms.ModelForm):
             'last_name',
             'email',
             'avatar',
-            'companies',
         ]
 
     def save(self, *args, **kw):
