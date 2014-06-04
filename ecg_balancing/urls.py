@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth.decorators import login_required
+from ecg_balancing.forms import UserAccountCreationForm
 
 from ecg_balancing.views import *
 
@@ -15,6 +16,8 @@ urlpatterns = patterns('',
 
 	url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'ecg_balancing/registration/login.html'}, name='login'),
 	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'ecg_balancing/registration/logout.html'}, name='logout'),
+    url(r'^accounts/register/$', UserCreateView.as_view(
+        template_name='ecg_balancing/registration/register.html', form_class=UserAccountCreationForm, success_url='/'), name='register'),
 
     url(r'^password_reset/$', 'django.contrib.auth.views.password_reset',
         {'template_name': 'ecg_balancing/registration/password_reset_form.html'}, name='password_reset'),

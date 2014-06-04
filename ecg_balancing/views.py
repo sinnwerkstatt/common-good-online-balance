@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse_lazy
@@ -17,6 +18,18 @@ from ecg_balancing.models import *
 class CompanyListView(ListView):
     model = Company
     template_name = 'ecg_balancing/companies_list.html'
+
+
+class UserCreateView(CreateView):
+
+    def get_success_url(self):
+        if self.object is not None:
+            user = authenticate(username = self.object.user.username, password = self.request.REQUEST.get('password1'))
+            if user is not None:
+                login(self.request, user)
+                return reverse('user-detail', kwargs={'pk': self.object.user.pk})
+
+        return reverse('user-detail', kwargs={'pk': self.request.user.pk})
 
 
 class UserDetailView(TemplateView):

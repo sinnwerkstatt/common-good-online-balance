@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
@@ -10,6 +12,125 @@ from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance
 class IndicatorForm(forms.ModelForm):
     class Meta:
         model = Indicator
+
+
+class UserCreationForm2(forms.ModelForm):
+    """
+    A form that creates a user, with no privileges, from the given username and
+    password.
+    """
+    error_messages = {
+        'duplicate_username': _("A user with that username already exists."),
+        'password_mismatch': _("The two password fields didn't match."),
+    }
+    username = forms.RegexField(label=_("Username"), max_length=30,
+        regex=r'^[\w.@+-]+$',
+        help_text=_("Required. 30 characters or fewer. Letters, digits and "
+                      "@/./+/-/_ only."),
+        error_messages={
+            'invalid': _("This value may contain only letters, numbers and "
+                         "@/./+/-/_ characters.")})
+    password1 = forms.CharField(label=_("Password"),
+        widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"),
+        widget=forms.PasswordInput,
+        help_text=_("Enter the same password as above, for verification."))
+
+    def clean_username(self):
+        # Since User.username is unique, this check is redundant,
+        # but it sets a nicer error message than the ORM. See #13147.
+        username = self.cleaned_data["username"]
+        try:
+            User._default_manager.get(username=username)
+        except User.DoesNotExist:
+            return username
+        raise forms.ValidationError(self.error_messages['duplicate_username'])
+
+    def clean_password1(self):
+        password1 = self.cleaned_data.get("password1")
+        return password1
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'])
+        return password2
+
+
+class UserAccountCreationForm(UserCreationForm2):
+    error_messages_extended = {
+        'duplicate_email': _("A user with that email already exists."),
+    }
+
+    first_name = forms.CharField(label=_(u'First Name'), max_length=30)
+    last_name = forms.CharField(label=_(u'Last Name'), max_length=30)
+    email = forms.CharField(label=_(u'Email'), max_length=255)
+
+    helper = FormHelper()
+    helper.label_class = 'clearboth text-right col-lg-2 col-md-2'
+    helper.field_class = 'col-lg-5 col-md-5'
+    helper.form_tag = False
+
+    class Meta:
+        model = UserProfile
+
+    def __init__(self, *args, **kwargs):
+        super(UserAccountCreationForm, self).__init__(*args, **kwargs)
+
+        data = kwargs.get('data')
+        if data:
+            if data.get('username'):
+                self.fields['username'].initial = data.get('username')
+            if data.get('first_name'):
+                self.fields['first_name'].initial = data.get('first_name')
+            if data.get('last_name'):
+                self.fields['last_name'].initial = data.get('last_name')
+            if data.get('email'):
+                self.fields['email'].initial = data.get('email')
+
+        self.fields['password1'].required = True
+        self.fields['password2'].required = True
+
+        self.fields.keyOrder = [
+            'first_name',
+            'last_name',
+            'username',
+            'email',
+            'password1',
+            'password2',
+        ]
+
+    def clean_email(self):
+        # Since User.username is unique, this check is redundant,
+        # but it sets a nicer error message than the ORM. See #13147.
+        email = self.cleaned_data["email"]
+        try:
+            User._default_manager.get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise forms.ValidationError(self.error_messages_extended['duplicate_email'])
+
+    def save(self, commit=True, *args, **kwargs):
+
+        # create user object
+        username = self.data['username']
+        email = self.data['email']
+        first_name = self.data['first_name']
+        last_name = self.data['last_name']
+        password = self.data['password1']
+        user = User.objects.create(
+            username=username, email=email, first_name=first_name, last_name=last_name)
+        user.set_password(password)
+        user.save()
+
+        # create userprofile object
+        userprofile = super(UserAccountCreationForm, self).save(commit=False)
+        userprofile.user = user
+        if commit:
+            userprofile.save()
+        return userprofile
 
 
 class UserProfileForm(forms.ModelForm):
