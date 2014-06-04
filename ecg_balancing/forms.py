@@ -15,6 +15,7 @@ class IndicatorForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     first_name = forms.CharField(label=_(u'First Name'), max_length=30)
     last_name = forms.CharField(label=_(u'Last Name'), max_length=30)
+    email = forms.CharField(label=_(u'Email'), max_length=255)
 
     helper = FormHelper()
     helper.label_class = 'clearboth text-right col-lg-2 col-md-2'
@@ -30,9 +31,11 @@ class UserProfileForm(forms.ModelForm):
         super(UserProfileForm, self).__init__(*args, **kw)
         self.fields['first_name'].initial = self.instance.first_name
         self.fields['last_name'].initial = self.instance.last_name
+        self.fields['email'].initial = self.instance.email
         self.fields.keyOrder = [
             'first_name',
             'last_name',
+            'email',
             'avatar',
             'companies',
         ]
@@ -41,6 +44,7 @@ class UserProfileForm(forms.ModelForm):
         super(UserProfileForm, self).save(*args, **kw)
         self.instance.first_name = self.cleaned_data.get('first_name')
         self.instance.last_name = self.cleaned_data.get('last_name')
+        self.instance.email = self.cleaned_data.get('email')
         #self.instance.profile.avatar.file = self.cleaned_data.get('avatar')
         self.instance.save()
 
