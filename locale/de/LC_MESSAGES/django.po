@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-04 13:11+0200\n"
+"POT-Creation-Date: 2014-06-04 18:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,15 +31,60 @@ msgstr "Das Feld ist erforderlich."
 msgid "'%s' is not a valid e-mail address."
 msgstr "'%s' ist nicht valide E-Mail-Adresse."
 
-#: ecg_balancing/forms.py:16
+#: ecg_balancing/forms.py:23
+msgid "A user with that username already exists."
+msgstr ""
+
+#: ecg_balancing/forms.py:24
+msgid "The two password fields didn't match."
+msgstr ""
+
+#: ecg_balancing/forms.py:26
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:33
+#, fuzzy
+msgid "Username"
+msgstr "Benutzer"
+
+#: ecg_balancing/forms.py:28
+msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+
+#: ecg_balancing/forms.py:31
+msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
+msgstr ""
+
+#: ecg_balancing/forms.py:33
+msgid "Password"
+msgstr ""
+
+#: ecg_balancing/forms.py:35
+msgid "Password confirmation"
+msgstr ""
+
+#: ecg_balancing/forms.py:37
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: ecg_balancing/forms.py:60
+msgid "A user with that email already exists."
+msgstr "Ein Benutzer mit dieser E-Mail-Adresse existiert schon."
+
+#: ecg_balancing/forms.py:63 ecg_balancing/forms.py:139
 msgid "First Name"
 msgstr "Vorname"
 
-#: ecg_balancing/forms.py:17
+#: ecg_balancing/forms.py:64 ecg_balancing/forms.py:140
 msgid "Last Name"
 msgstr "Familienname"
 
-#: ecg_balancing/forms.py:82 ecg_balancing/forms.py:112
+#: ecg_balancing/forms.py:65 ecg_balancing/forms.py:141
+#: ecg_balancing/models.py:35 ecg_balancing/models.py:252
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:18
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:46
+msgid "Email"
+msgstr "E-Mail"
+
+#: ecg_balancing/forms.py:209 ecg_balancing/forms.py:239
 #, python-format
 msgid ""
 "There is an existing balance for the year %s. Please enter another year."
@@ -77,11 +122,6 @@ msgstr "Negativ-Kriterien"
 #: ecg_balancing/models.py:33
 msgid "Version"
 msgstr "Version"
-
-#: ecg_balancing/models.py:35 ecg_balancing/models.py:252
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:18
-msgid "Email"
-msgstr "E-Mail"
 
 #: ecg_balancing/models.py:38 ecg_balancing/models.py:72
 #: ecg_balancing/models.py:287
@@ -582,7 +622,7 @@ msgstr "Feedback-Indikator"
 msgid "Feedback Indicators"
 msgstr "Feedback-Indikatoren"
 
-#: ecg_balancing/views.py:403
+#: ecg_balancing/views.py:416
 #, python-format
 msgid "[ECG] New Feedback for Indicator %s"
 msgstr "[ECG] Neues Feedback für Indikator %s"
@@ -801,10 +841,12 @@ msgid "Enter new password"
 msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:16
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:59
 msgid "New password:"
 msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:29
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:72
 msgid "Confirm password:"
 msgstr ""
 
@@ -858,6 +900,20 @@ msgid ""
 msgstr ""
 "E-Mail-Adresse eingeben und den Anweisungen zum Zurücksetzen des Passworts "
 "in der E-Mail folgen."
+
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:4
+#: templates/topmenu.html:30
+msgid "Register"
+msgstr "Anmelden"
+
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:12
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:85
+msgid "Register user"
+msgstr "Benutzer anmelden"
+
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:16
+msgid "First and last name"
+msgstr "Vor- und Nachname"
 
 #: templates/base.html:14 templates/base.html.py:21
 msgid "ECG Balancing"
