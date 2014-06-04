@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 17:19+0200\n"
+"POT-Creation-Date: 2014-06-04 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,7 +79,7 @@ msgid "Version"
 msgstr "Version"
 
 #: ecg_balancing/models.py:35 ecg_balancing/models.py:252
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:19
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:18
 msgid "Email"
 msgstr "E-Mail"
 
@@ -602,7 +602,7 @@ msgstr "Sie haben nicht die Rechte, eine GWÖ-Bilanz zu erstellen"
 #: ecg_balancing/templates/ecg_balancing/company_balance_update.html:48
 #: ecg_balancing/templates/ecg_balancing/company_update.html:46
 #: ecg_balancing/templates/ecg_balancing/feedback_indicator_form.html:22
-#: ecg_balancing/templates/ecg_balancing/user_update.html:28
+#: ecg_balancing/templates/ecg_balancing/user_update.html:29
 msgid "Please fill out"
 msgstr "bitte ausfüllen"
 
@@ -610,7 +610,7 @@ msgstr "bitte ausfüllen"
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:48
 #: ecg_balancing/templates/ecg_balancing/company_balance_update.html:52
 #: ecg_balancing/templates/ecg_balancing/company_update.html:50
-#: ecg_balancing/templates/ecg_balancing/user_update.html:32
+#: ecg_balancing/templates/ecg_balancing/user_update.html:33
 msgid "Save"
 msgstr "Speichern"
 
@@ -692,18 +692,29 @@ msgstr "Profilbild hochladen"
 msgid "Edit profile"
 msgstr "Profil bearbeiten"
 
-#: ecg_balancing/templates/ecg_balancing/registration/login.html:7
+#: ecg_balancing/templates/ecg_balancing/user_update.html:43
+#: ecg_balancing/templates/ecg_balancing/user_update.html:47
+msgid "Change password"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/user_update.html:45
+msgid "To change your password click here"
+msgstr "Um Ihr Passwort zu ändern, klicken Sie bitte hier"
+
+#: ecg_balancing/templates/ecg_balancing/registration/login.html:6
+#: ecg_balancing/templates/ecg_balancing/registration/login.html:46
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:14
+#: templates/start.html:10 templates/topmenu.html:29
+msgid "Login"
+msgstr "Login"
+
+#: ecg_balancing/templates/ecg_balancing/registration/login.html:9
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
 "Der Benutzername oder das Passwort wurden nicht korrekt eingegeben. Bitte "
 "versuchen Sie es noch einmal."
 
-#: ecg_balancing/templates/ecg_balancing/registration/login.html:33
-#: templates/start.html:10 templates/topmenu.html:29
-msgid "Login"
-msgstr "Login"
-
-#: ecg_balancing/templates/ecg_balancing/registration/login.html:37
+#: ecg_balancing/templates/ecg_balancing/registration/login.html:47
 msgid "Forgotten your password or username?"
 msgstr ""
 
@@ -719,70 +730,102 @@ msgstr "Erneut anmelden"
 msgid "Return to the home page"
 msgstr "Zur Hauptseite"
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:6
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:6
-msgid "Home"
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_done.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_done.html:8
+msgid "Password change successful"
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:7
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:4
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:7
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:4
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:9
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:27
-msgid "Password reset"
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_done.html:10
+msgid "Your password was changed."
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:11
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:15
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_done.html:14
+msgid "See your profile"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:16
+msgid "Password change"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:10
+msgid "Back to profile"
+msgstr "Zurück zum Profil"
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:18
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:23
+msgid "Old password"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:37
+msgid "New password"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:51
+msgid "Password (again)"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:65
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:42
+msgid "Change my password"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:8
 msgid "Password reset complete"
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:17
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:10
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:19
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:12
 #, fuzzy
 msgid "Log in"
 msgstr "Erneut anmelden"
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:9
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:29
+msgid "Password reset"
+msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:10
 msgid "Enter new password"
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:17
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:16
 msgid "New password:"
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:28
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:29
 msgid "Confirm password:"
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:38
-msgid "Change my password"
-msgstr ""
-
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:45
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:49
 msgid "Password reset unsuccessful"
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:47
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:51
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:11
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:15
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:8
 msgid "Password reset successful"
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:17
-msgid ""
-"We've emailed you instructions for setting your password to the email "
-"address you submitted. You should be receiving it shortly."
-msgstr ""
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:11
+msgid "Go to your profile"
+msgstr "Dein Profil öffnen"
 
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_email.html:2
 #, python-format
@@ -800,7 +843,6 @@ msgid "Your username, in case you've forgotten:"
 msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_email.html:10
-#, fuzzy
 msgid "Thanks for using our site!"
 msgstr "Sie sind ausgeloggt."
 
@@ -813,7 +855,9 @@ msgstr ""
 msgid ""
 "Enter your email address and we'll email you instructions for setting a new "
 "passwort."
-msgstr "E-Mail-Adresse eingeben und den Anweisungen zum Zurücksetzen des Passworts in der E-Mail folgen."
+msgstr ""
+"E-Mail-Adresse eingeben und den Anweisungen zum Zurücksetzen des Passworts "
+"in der E-Mail folgen."
 
 #: templates/base.html:14 templates/base.html.py:21
 msgid "ECG Balancing"
