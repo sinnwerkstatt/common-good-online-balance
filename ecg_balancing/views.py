@@ -11,7 +11,7 @@ from django.template.loader import get_template
 
 from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView, FormView, RedirectView
 from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm, FeedbackIndicatorForm, \
-    CompanyJoinForm, CompanyJoin
+    CompanyJoinForm
 
 from ecg_balancing.models import *
 
@@ -140,22 +140,21 @@ class CompanyUpdateView(UserRoleRedirectMixin, UpdateView):
 
 
 class CompanyJoinView(CreateView):
-    model = CompanyJoin
+    model = UserRole
     template_name = 'ecg_balancing/company_join.html'
     form_class = CompanyJoinForm
 
-    def get_context_data(self, **kwargs):
-        context = super(CompanyJoinView, self).get_context_data(**kwargs)
-        return context
+    def get_form_kwargs( self ):
+        kwargs = super(CompanyJoinView, self ).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def form_valid(self, form, **kwargs):
-        self.object = form.save(commit=False)
-        self.object.save()
+        self.object = form.save(commit=False, user=self.request.user)
 
-        return HttpResponseRedirect(reverse_lazy('balance-detail',
+        return HttpResponseRedirect(reverse_lazy('user-detail',
                                                  kwargs={
-                                                     'company_slug': self.object.company.slug,
-                                                     'balance_year': self.object.year
+                                                     'pk': self.request.user.pk,
                                                  }))
 
 
@@ -193,7 +192,7 @@ class CompanyAdminView(UserRoleMixin, UpdateView):
                 cur_user_role.role = cur_role_key
                 cur_user_role.save()
 
-        return HttpResponseRedirect(self.get_success_url())
+        return HttpResponseRedirect("%s?success=true" % self.get_success_url())
 
 
 def getIndicatorStakeholder(indicatorId):

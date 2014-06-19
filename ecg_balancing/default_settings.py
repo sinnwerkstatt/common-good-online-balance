@@ -162,11 +162,11 @@ INSTALLED_APPS = (
 
     # External Apps
     'crispy_forms',
+    'django_select2',
     'filer',
     'easy_thumbnails',
     'embed_video',
     'cmsplugin_filer_image',
-    'select2',
 )
 
 LANGUAGES = [

@@ -60,7 +60,7 @@ urlpatterns = patterns('',
 
 
     # leave at the end
-    url(r'^select2/', include('select2.urls')),
+    url(r'^select2/', include('django_select2.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 

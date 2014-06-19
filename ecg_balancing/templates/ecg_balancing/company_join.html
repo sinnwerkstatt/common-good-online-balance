@@ -2,22 +2,39 @@
 {% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
 {% load static from staticfiles %}
 {% load staticfiles %}
+{% load django_select2_tags %}
 
 {% block css %}
   {{ block.super }}
   <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
-  {{ form.media.css }}
+  {% import_django_select2_css %}
+  <!-- For testing importing it again, but with another tag and light=1 -->
+  {% import_django_select2_js_css light=1 %}
+  <style type="text/css">
+    #id_company {
+      width: 100%;
+    }
+  </style>
 {% endblock css %}
 
 {% block page_title %}{{ object.name }}{% endblock %}
 
 {% block base_content %}
 
-
   <h3>{% trans "Join a company" %}</h3>
-  <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-update" object.slug %}">
+
+  <p class="p-top">
+  {% if form.company.errors %}
+    <span id="error_1_id_company" class="alert alert-warning">{% for error in form.company.errors %}
+      {{ error }}{% endfor %}</span>
+  {% endif %}
+  </p>
+
+  <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-join" %}">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="fieldWrapper">
+      {{ form.company }}
+    </div>
     <br/>
     <input type="submit" name="submit" value="{% trans "Join company" %}" class="button primary"/>
   </form>
@@ -26,5 +43,14 @@
 
 {% block javascript %}
   {{ block.super }}
-  {{ form.media.js }}
+  {% import_django_select2_js %}
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#id_company").select2({
+        placeholderOption: 'first',
+        placeholder: '{% trans "Select a company" %}',
+        width: '100%',
+      });
+    });
+  </script>
 {% endblock javascript %}

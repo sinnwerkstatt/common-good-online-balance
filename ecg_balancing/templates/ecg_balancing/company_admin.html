@@ -7,7 +7,7 @@
   <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
 {% endblock css %}
 
-{% block page_title %}{{ object.name }}{% endblock %}
+{% block page_title %}{% trans "Admin" %} - {{ object.company.name }}{% endblock %}
 
 {% block base_content %}
 
@@ -25,6 +25,12 @@
 
     </div>
   </div>
+
+  {% if request.GET.success %}
+    <div class="alert alert-success">
+      {% trans "User roles were successfully updated." %}
+    </div>
+  {% endif %}
 
   <div class="row">
 

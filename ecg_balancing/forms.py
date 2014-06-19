@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from select2.fields import ChoiceField
 
 from crispy_forms.helper import FormHelper
-from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator
+from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator, UserRole
 
 
 class IndicatorForm(forms.ModelForm):
@@ -184,17 +184,34 @@ class CompanyForm(forms.ModelForm):
         exclude = ['model_creation_date']
 
 
-class CompanyJoin(Model):
-    company = models.ForeignKey(Company, verbose_name=_(u'Company'))
-
-
 class CompanyJoinForm(forms.ModelForm):
-    company = ChoiceField(
-            choices=Company.objects.as_choices(),
-            overlay=_('Choose a company ...'))
 
     class Meta:
-        model = CompanyJoin
+        model = UserRole
+        exclude = ['role', 'user']
+
+    def __init__( self, user, *args, **kwargs ):
+        super(CompanyJoinForm, self ).__init__( *args, **kwargs )
+        self.user = user
+
+    def clean_company(self):
+        data = self.cleaned_data['company']
+        existing_role = UserRole.objects.get(company=data, user=self.user)
+        if existing_role:
+            raise forms.ValidationError(
+                _('You already requested membership or you are member of this company.'))
+        else:
+            company = Company.objects.get(pk=data)
+            return company
+
+    def save(self, *args, **kw):
+        user = kw.pop('user')
+        super(CompanyJoinForm, self).save(*args, **kw)
+        company = self.instance.company
+
+
+        user_role = UserRole.objects.create(company=company, user=user, role=UserRole.ROLE_CHOICE_PENDING)
+        return user_role
 
 
 class CompanyBalanceForm(forms.ModelForm):
