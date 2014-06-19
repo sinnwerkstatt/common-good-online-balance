@@ -5,7 +5,6 @@
 /* Distances */
 .profile-user-avatar-empty {
   width: 230px;
-  height: 230px;
   font-size: 15em;
 }
 
@@ -26,6 +25,24 @@
   font-weight: bold;
 }
 
+@media (min-width: 480px) and (max-width: 767px) {
+  .profile-user-avatar-empty {
+    font-size: 10em;
+  }
+
+  .profile-user-name {
+    font-size: 1.1em;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .profile-user-avatar-empty {
+    font-size: 12em;
+  }
+
+  .profile-user-name {
+    font-size: 1.4em;
+  }
+}
 .profile-user-details {
   margin-top: 15px;
   padding-top: 15px;

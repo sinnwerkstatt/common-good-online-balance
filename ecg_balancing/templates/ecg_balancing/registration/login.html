@@ -46,8 +46,14 @@
       <input type="submit" name="submit" value="{% trans "Login" %}" class="button primary"/>
       <a href="{% url 'password_reset' %}" class="pull-right p-top">{% trans 'Forgotten your password or username?' %}</a>
     </div>
-    <input type="hidden" name="next" value="{% url 'pages-root' %}"/>
 
   </form>
 
 {% endblock %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript">
+    $('#id_username').focus()
+  </script>
+{% endblock javascript %}

@@ -3,7 +3,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db import models
+from django.db.models import Model
 from django.utils.translation import ugettext_lazy as _
+from select2.fields import ChoiceField
 
 from crispy_forms.helper import FormHelper
 from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator
@@ -179,6 +182,19 @@ class CompanyForm(forms.ModelForm):
         model = Company
         #fields = ('user.first_name', 'user.last_name', 'user.email')
         exclude = ['model_creation_date']
+
+
+class CompanyJoin(Model):
+    company = models.ForeignKey(Company, verbose_name=_(u'Company'))
+
+
+class CompanyJoinForm(forms.ModelForm):
+    company = ChoiceField(
+            choices=Company.objects.as_choices(),
+            overlay=_('Choose a company ...'))
+
+    class Meta:
+        model = CompanyJoin
 
 
 class CompanyBalanceForm(forms.ModelForm):

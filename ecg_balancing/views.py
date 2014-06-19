@@ -9,8 +9,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext, Context
 from django.template.loader import get_template
 
-from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView, FormView
-from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm, FeedbackIndicatorForm
+from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView, FormView, RedirectView
+from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm, FeedbackIndicatorForm, \
+    CompanyJoinForm, CompanyJoin
 
 from ecg_balancing.models import *
 
@@ -65,6 +66,11 @@ class UserDetailView(DetailView):
         context['companies_admin'] = companies_admin
 
         return context
+
+
+class UserDetailRedirect(RedirectView):
+    def get_redirect_url(self, **kwargs):
+        return reverse('user-detail', args=( {self.request.user.pk} ))
 
 
 class UserUpdateView(UpdateView):
@@ -131,6 +137,26 @@ class CompanyUpdateView(UserRoleRedirectMixin, UpdateView):
             return reverse('company-detail', kwargs={'slug': slug})
         else:
             return super(CompanyUpdateView, self).get_success_url()
+
+
+class CompanyJoinView(CreateView):
+    model = CompanyJoin
+    template_name = 'ecg_balancing/company_join.html'
+    form_class = CompanyJoinForm
+
+    def get_context_data(self, **kwargs):
+        context = super(CompanyJoinView, self).get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form, **kwargs):
+        self.object = form.save(commit=False)
+        self.object.save()
+
+        return HttpResponseRedirect(reverse_lazy('balance-detail',
+                                                 kwargs={
+                                                     'company_slug': self.object.company.slug,
+                                                     'balance_year': self.object.year
+                                                 }))
 
 
 class CompanyAdminView(UserRoleMixin, UpdateView):

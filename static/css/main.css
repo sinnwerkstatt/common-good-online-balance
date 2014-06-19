@@ -267,6 +267,11 @@ img.right {
   width: 49%;
 }
 
+.django-select2.form-control {
+  padding: 0;
+  border: 0;
+}
+
 /* Colors */
 /* Font Sizes */
 /* Borders */

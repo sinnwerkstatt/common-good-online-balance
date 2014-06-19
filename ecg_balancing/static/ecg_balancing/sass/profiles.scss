@@ -2,7 +2,6 @@
 
 .profile-user-avatar-empty {
   width: 230px;
-  height: 230px;
   font-size: 15em;
 }
 
@@ -22,6 +21,24 @@ $company-logo-width: 100px;
   padding-top: $distance-normal;
   font-size: 2em;
   font-weight: bold;
+}
+
+@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+  .profile-user-avatar-empty {
+    font-size: 10em;
+  }
+  .profile-user-name {
+    font-size: 1.1em;
+  }
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  .profile-user-avatar-empty {
+    font-size: 12em;
+  }
+  .profile-user-name {
+    font-size: 1.4em;
+  }
 }
 
 .profile-user-details {

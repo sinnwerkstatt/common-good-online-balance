@@ -12,7 +12,7 @@ from ecg_balancing import fields
 
 
 # -------------------------------- MATRIX MODELS --------------------------------
-from ecg_balancing.managers import CompanyBalanceIndicatorManager
+from ecg_balancing.managers import CompanyBalanceIndicatorManager, CompanyManager
 
 MATRIX_VERSION_4_1 = '4.1'
 MATRIX_VERSIONS = (
@@ -267,6 +267,8 @@ class Company(models.Model):
 
     # object creation date
     model_creation_date = models.DateTimeField(_('Model Creation Date'), default=datetime.datetime.now)
+
+    objects = CompanyManager()
 
     class Meta:
         verbose_name = _('Company')

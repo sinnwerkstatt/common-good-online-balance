@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
+{% load static from staticfiles %}
+{% load staticfiles %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
+  {{ form.media.css }}
+{% endblock css %}
+
+{% block page_title %}{{ object.name }}{% endblock %}
+
+{% block base_content %}
+
+
+  <h3>{% trans "Join a company" %}</h3>
+  <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-update" object.slug %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br/>
+    <input type="submit" name="submit" value="{% trans "Join company" %}" class="button primary"/>
+  </form>
+
+{% endblock base_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  {{ form.media.js }}
+{% endblock javascript %}

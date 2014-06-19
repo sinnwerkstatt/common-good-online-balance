@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth.decorators import login_required
+from django.views.generic import RedirectView
+from django.core.urlresolvers import reverse_lazy
 from ecg_balancing.forms import UserAccountCreationForm
 
 from ecg_balancing.views import *
@@ -16,8 +17,9 @@ urlpatterns = patterns('',
 
 	url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'ecg_balancing/registration/login.html'}, name='login'),
 	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'ecg_balancing/registration/logout.html'}, name='logout'),
+    url(r'^accounts/profile/$', UserDetailRedirect.as_view(url=reverse_lazy('user-detail'))),
     url(r'^accounts/register/$', UserCreateView.as_view(
-        template_name='ecg_balancing/registration/register.html', form_class=UserAccountCreationForm, success_url='/'), name='register'),
+        template_name='ecg_balancing/registration/register.html', form_class=UserAccountCreationForm, success_url='reverse("user-detail")'), name='register'),
 
     url(r'^password_reset/$', 'django.contrib.auth.views.password_reset',
         {'template_name': 'ecg_balancing/registration/password_reset_form.html'}, name='password_reset'),
@@ -36,6 +38,9 @@ urlpatterns = patterns('',
 	url(r'^user/(?P<pk>.*)/update$', login_required(UserUpdateView.as_view()), name='user-update'),
 
 	url(r'^companies$', CompanyListView.as_view(), name='companies'),
+	url(r'^company-join/$', login_required(CompanyJoinView.as_view()), name='company-join'),
+	url(r'^company-create/$', login_required(CompanyDetailView.as_view()), name='company-create'),
+
 	url(r'^company/(?P<slug>[\w-]*)/$', CompanyDetailView.as_view(), name='company-detail'),
 	url(r'^company/(?P<slug>[\w-]*)/update$', login_required(CompanyUpdateView.as_view()), name='company-update'),
 	url(r'^company/(?P<slug>[\w-]*)/admin$', login_required(CompanyAdminView.as_view()), name='company-admin'),
@@ -55,6 +60,7 @@ urlpatterns = patterns('',
 
 
     # leave at the end
+    url(r'^select2/', include('select2.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 
