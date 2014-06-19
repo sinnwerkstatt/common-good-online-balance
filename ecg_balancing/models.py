@@ -411,16 +411,17 @@ class UserRole(models.Model):
 
     company = models.ForeignKey('ecg_balancing.Company', verbose_name=_('Company'))
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('User'), related_name='role')
-    role = models.CharField(_('Role'), max_length=5, choices=ROLE_CHOICES)
+    role = models.CharField(_('Role'), max_length=10, choices=ROLE_CHOICES)
 
     class Meta:
         verbose_name = _('User Role')
         verbose_name_plural = _('User Roles')
 
     def __unicode__(self):
-        return "%s: %s" % (
+        return "%s:%s:%s" % (
             unicode(self.company),
-            unicode(self.user)
+            unicode(self.user),
+            unicode(self.role)
         )
 
 

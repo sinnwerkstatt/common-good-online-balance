@@ -9,7 +9,9 @@
   {% endif %}
 </div>
 <div class="profile-company-details">
-  <h1 class="profile-company-details-name">{{ company.name }}</h1>
+  <h1 class="profile-company-details-name">
+    <a href="{% url 'company-detail' company.slug %}">{{ company.name }}</a>
+  </h1>
 
   <div class="profile-company-details-important">
       <span class="profile-company-details-item">

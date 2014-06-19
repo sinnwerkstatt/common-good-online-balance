@@ -38,6 +38,7 @@ urlpatterns = patterns('',
 	url(r'^companies$', CompanyListView.as_view(), name='companies'),
 	url(r'^company/(?P<slug>[\w-]*)/$', CompanyDetailView.as_view(), name='company-detail'),
 	url(r'^company/(?P<slug>[\w-]*)/update$', login_required(CompanyUpdateView.as_view()), name='company-update'),
+	url(r'^company/(?P<slug>[\w-]*)/admin$', login_required(CompanyAdminView.as_view()), name='company-admin'),
 
     # Balances: /company/balance_year
 	url(r'^company/(?P<company_slug>[\w-]*)/balance/create$', login_required(CompanyBalanceCreateView.as_view()), name='balance-create'),

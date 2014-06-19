@@ -7,30 +7,31 @@
   <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
 {% endblock css %}
 
-{% block page_title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
+{% block page_title %}{{ object.first_name }} {{ object.last_name }}{% endblock %}
 
 {% block base_content %}
+
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
       <div class="profile-user-avatar">
-        {% if user.profile.avatar %}
-          <img src="{% thumbnail user.profile.avatar 230x0 crop=scale upscale %}"/>
+        {% if object.profile.avatar %}
+          <img src="{% thumbnail object.profile.avatar 230x0 crop=scale upscale %}"/>
         {% else %}
           <a class="glyphicon glyphicon-user glyphicon-grey profile-user-avatar-empty"
-             href="{% url 'user-update' user.pk %}" title="{% trans "Upload profile photo" %}">
+             href="{% url 'user-update' object.pk %}" title="{% trans "Upload profile photo" %}">
           </a>
         {% endif %}
       </div>
       <div class="profile-user-name">
-        {{ user.first_name }} {{ user.last_name }}
+        {{ object.first_name }} {{ object.last_name }}
       </div>
       <div class="profile-user-details">
         <span class="glyphicon glyphicon-envelope"></span>
-        <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+        <a href="mailto:{{ object.email }}">{{ object.email }}</a>
       </div>
     </div>
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-      <a href="{% url 'user-update' user.pk %}" class="button pull-right">
+      <a href="{% url 'user-update' object.pk %}" class="button pull-right">
         <span class="glyphicon glyphicon-pencil"></span>
         {% trans "Edit" %}
       </a>
@@ -38,7 +39,7 @@
       {% for company in companies_member %}
         <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
         {% if company in companies_admin %}
-          (<a href="/admin">Admin</a>)
+          (<a href="{% url 'company-admin' company.slug %}">Admin</a>)
         {% endif %}
       {% endfor %}
     </div>

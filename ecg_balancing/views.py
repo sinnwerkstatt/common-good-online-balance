@@ -32,8 +32,15 @@ class UserCreateView(CreateView):
         return reverse('user-detail', kwargs={'pk': self.request.user.pk})
 
 
-class UserDetailView(TemplateView):
+class UserDetailView(DetailView):
+    model = User
     template_name = 'ecg_balancing/user_detail.html'
+
+    def get_object(self, queryset=None):
+        prefix = '/user/'
+        user_id = self.request.path[len(prefix):-1]
+
+        return User.objects.get(pk=user_id)
 
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data(**kwargs)
@@ -42,7 +49,7 @@ class UserDetailView(TemplateView):
         companies_member = []
         companies_admin = []
 
-        userroles = UserRole.objects.filter(user=self.request.user)
+        userroles = UserRole.objects.filter(user=self.get_object())
         for userrole in userroles:
             if userrole.role == UserRole.ROLE_CHOICE_PENDING:
                 companies_pending.append(userrole.company)
@@ -58,6 +65,7 @@ class UserDetailView(TemplateView):
         context['companies_admin'] = companies_admin
 
         return context
+
 
 class UserUpdateView(UpdateView):
     model = User
@@ -85,7 +93,7 @@ class UserRoleMixin(object):
                 userrole = UserRole.objects.get(user=self.request.user, company=company)
                 context['has_company_access'] = True
                 context['is_admin'] = (userrole.role == 'admin')
-                context['is_reading'] = (userrole.role == 'guest')
+                context['is_member'] = (userrole.role == 'member')
             except:
                 context['has_company_access'] = False
                 context['company_name'] = company.name
@@ -123,6 +131,43 @@ class CompanyUpdateView(UserRoleRedirectMixin, UpdateView):
             return reverse('company-detail', kwargs={'slug': slug})
         else:
             return super(CompanyUpdateView, self).get_success_url()
+
+
+class CompanyAdminView(UserRoleMixin, UpdateView):
+    model = UserRole
+    template_name = 'ecg_balancing/company_admin.html'
+
+    def get_object(self, queryset=None):
+        return UserRole.objects.get(company__slug=self.kwargs.get('slug'), user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super(CompanyAdminView, self).get_context_data(**kwargs)
+
+        userroles = UserRole.objects.filter(company=self.object.company)
+        context['userroles'] = userroles
+        context['role_choices'] = UserRole.ROLE_CHOICES
+        return context
+
+    def get_success_url(self):
+        return reverse('company-admin', kwargs={
+            'slug': self.get_object().company.slug
+        })
+
+    def post(self, request, *args, **kwargs):
+        userrole = self.get_object()
+        company = userrole.company
+        userrole_prefix = 'userrole-'
+        for post_parameter in self.request.POST:
+            if post_parameter.startswith(userrole_prefix):
+                cur_user_pk = post_parameter[len(userrole_prefix):]
+                cur_user = User.objects.get(pk=cur_user_pk)
+
+                cur_user_role = UserRole.objects.get(user=cur_user, company=company)
+                cur_role_key = self.request.POST[post_parameter]
+                cur_user_role.role = cur_role_key
+                cur_user_role.save()
+
+        return HttpResponseRedirect(self.get_success_url())
 
 
 def getIndicatorStakeholder(indicatorId):
