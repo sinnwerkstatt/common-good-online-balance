@@ -43,6 +43,7 @@
     <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-update" object.slug %}">
       {% csrf_token %}
       {% crispy form %}
+
       <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>
       <div class="last-form-element col-lg-5 col-md-5">
         <span class="asteriskField">*</span> - {% trans "Please fill out" %}
@@ -55,3 +56,13 @@
   {% endif %}
 
 {% endblock base_content %}
+
+
+{% block javascript %}
+  {{ block.super }}
+
+  <script type="text/javascript">
+    $('#div_id_location_lat').hide();
+    $('#div_id_location_lon').hide();
+  </script>
+{% endblock javascript %}
