@@ -22,9 +22,9 @@
     {{ request.current_page.get_menu_title }}{% endif %}{% endblock %}</title>
 
   <link rel="icon" href="{% static 'images/ecg-seeds_30h.png' %}"/>
+  <script type="text/javascript" src="{% static 'js/vendor/jquery.min.js' %}"></script>
 
   <link href="{% static 'css/bootstrap3-ecg.css' %}" rel="stylesheet">
-
   <!--[if IE]>
   <link href="{% static 'css/ie.css' %}" media="screen, projection" rel="stylesheet" type="text/css"/>
   <![endif]-->
@@ -67,7 +67,6 @@
 <script src='http://127.0.0.1:3000/socket.io/socket.io.js'></script>
 <script src='http://127.0.0.1:3001/browser-sync-client.min.js'></script>
 -->
-<script type="text/javascript" src="{% static 'js/vendor/jquery.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
 {% endblock javascript %}
 {% render_block 'js' %}

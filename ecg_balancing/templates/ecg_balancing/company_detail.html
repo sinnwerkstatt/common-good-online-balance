@@ -14,11 +14,18 @@
   <div class="row profile-company-header clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
+
       {% if is_admin %}
-      <a href="{% url 'company-update' object.slug %}" class="button pull-right">
-        <span class="glyphicon glyphicon-pencil"></span>
-        {% trans "Edit" %}
-      </a>
+        <div class="pull-right">
+          <a href="{% url 'company-update' object.slug %}" class="button">
+            <span class="glyphicon glyphicon-pencil"></span>
+            {% trans "Edit" %}
+          </a><br/>
+          <a href="{% url 'company-admin' object.slug %}" class="button clearboth pull-right m-top">
+            <span class="glyphicon glyphicon-pencil"></span>
+            {% trans "Admin" %}
+          </a>
+        </div>
       {% endif %}
 
       {% include 'ecg_balancing/includes/company_header.html' with company=object %}
@@ -32,7 +39,7 @@
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8">
       {% if has_company_access or not visibility_basic %}
 
-        {% if not is_guest and has_company_access%}
+        {% if not is_guest and has_company_access %}
           {% if object.balance.all %}
             {% trans "ECG Balances" %}:
             <ul>
@@ -56,62 +63,64 @@
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
       {% if has_company_access or not visibility_basic %}
 
-      <div class="company-data-item">
-        {% if object.name %}
-          {{ object.name }}<br/>
-        {% endif %}
-        {% if object.name %}
-          {{ object.street }}<br/>
-        {% endif %}
-        {% if object.name %}
-          {{ object.zipcode }} {{ object.city }}<br/>
-        {% endif %}
-        {% if object.name %}
-          {{ object.country }}<br/>
-        {% endif %}
-        {% if object.name %}
-          <span class="glyphicon glyphicon-link glyphicon-greyer"></span> <a href="{{ object.website }}">{{ object.website }}</a><br/>
-        {% endif %}
-      </div>
+        <div class="company-data-item">
+          {% if object.name %}
+            {{ object.name }}<br/>
+          {% endif %}
+          {% if object.name %}
+            {{ object.street }}<br/>
+          {% endif %}
+          {% if object.name %}
+            {{ object.zipcode }} {{ object.city }}<br/>
+          {% endif %}
+          {% if object.name %}
+            {{ object.country }}<br/>
+          {% endif %}
+          {% if object.name %}
+            <span class="glyphicon glyphicon-link glyphicon-greyer"></span>
+            <a href="{{ object.website }}">{{ object.website }}</a><br/>
+          {% endif %}
+        </div>
 
-      <div class="company-data-item">
-        {% if object.email %}
-          <span class="glyphicon glyphicon-envelope glyphicon-greyer"></span> <a href="mailto:{{ object.email }}">{{ object.email }}</a><br/>
-        {% endif %}
-        {% if object.phone %}
-          <span class="glyphicon glyphicon-earphone glyphicon-greyer"></span>  {{ object.phone }}<br/>
-        {% endif %}
-        {% if object.fax %}
-          <span class="glyphicon glyphicon-print glyphicon-greyer"></span> {{ object.fax }}<br/>
-        {% endif %}
-      </div>
+        <div class="company-data-item">
+          {% if object.email %}
+            <span class="glyphicon glyphicon-envelope glyphicon-greyer"></span>
+            <a href="mailto:{{ object.email }}">{{ object.email }}</a><br/>
+          {% endif %}
+          {% if object.phone %}
+            <span class="glyphicon glyphicon-earphone glyphicon-greyer"></span>  {{ object.phone }}<br/>
+          {% endif %}
+          {% if object.fax %}
+            <span class="glyphicon glyphicon-print glyphicon-greyer"></span> {{ object.fax }}<br/>
+          {% endif %}
+        </div>
 
-      <div class="company-data-item">
-        {% if object.industry %}
-          {% trans "Industry" %}: {{ object.industry }}<br/>
-        {% endif %}
-        {% if object.activities %}
-          {% trans "Activities" %}: {{ object.activities }}<br/>
-        {% endif %}
-        {% if object.employees_number %}
-          {% trans "Number of employees" %}: {{ object.employees_number }}<br/>
-        {% endif %}
-        {% if object.revenue %}
-          {% trans "Revenue" %}: {{ object.revenue }}<br/>
-        {% endif %}
-      </div>
+        <div class="company-data-item">
+          {% if object.industry %}
+            {% trans "Industry" %}: {{ object.industry }}<br/>
+          {% endif %}
+          {% if object.activities %}
+            {% trans "Activities" %}: {{ object.activities }}<br/>
+          {% endif %}
+          {% if object.employees_number %}
+            {% trans "Number of employees" %}: {{ object.employees_number }}<br/>
+          {% endif %}
+          {% if object.revenue %}
+            {% trans "Revenue" %}: {{ object.revenue }}<br/>
+          {% endif %}
+        </div>
 
-      <div class="company-data-item">
-        {% if object.foundation_date %}
-          {% trans "Foundation Date" %}: {{ object.foundation_date.year }}<br/>
-        {% endif %}
-        {% if object.owners %}
-          {% trans "Owners" %}: {{ object.owners }}<br/>
-        {% endif %}
-        {% if object.managing_directors %}
-          {% trans "Managing Directors" %}: {{ object.managing_directors }}<br/>
-        {% endif %}
-      </div>
+        <div class="company-data-item">
+          {% if object.foundation_date %}
+            {% trans "Foundation Date" %}: {{ object.foundation_date.year }}<br/>
+          {% endif %}
+          {% if object.owners %}
+            {% trans "Owners" %}: {{ object.owners }}<br/>
+          {% endif %}
+          {% if object.managing_directors %}
+            {% trans "Managing Directors" %}: {{ object.managing_directors }}<br/>
+          {% endif %}
+        </div>
 
       {% endif %}
     </div>

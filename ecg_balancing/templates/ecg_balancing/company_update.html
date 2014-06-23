@@ -4,6 +4,7 @@
 
 {% block css %}
   {{ block.super }}
+  {{ form.media }}
   <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
 {% endblock css %}
 
@@ -38,6 +39,7 @@
   {% else %}
 
     <h3>{% trans "Edit" %}</h3>
+
     <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-update" object.slug %}">
       {% csrf_token %}
       {% crispy form %}

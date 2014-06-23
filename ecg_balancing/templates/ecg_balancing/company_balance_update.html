@@ -16,10 +16,6 @@
     {% trans "Back" %}
   </a>
 
-  {% if not is_admin %}
-    {% trans "You don't have the rights to create an ECG Balance" %}
-  {% else %}
-
     <div class="ecg-matrix-header bubble">
       <div class="bubble-inner unselectable">
         <a href="{% url 'company-detail' object.company.slug %}"
@@ -52,6 +48,5 @@
         <input type="submit" name="submit" value="{% trans "Save" %}" class="button primary"/>
       </div>
     </form>
-  {% endif %}
 
 {% endblock base_content %}

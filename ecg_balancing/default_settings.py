@@ -167,6 +167,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'embed_video',
     'cmsplugin_filer_image',
+    'osm_field',
 )
 
 LANGUAGES = [

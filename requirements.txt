@@ -9,6 +9,7 @@ django-crispy-forms==1.4.0
 django-embed-video==0.6
 django-endless-pagination==2.0
 django-filer==0.9.5
+django-osm-field==0.1.4
 django-mptt==0.6.0 # required by django-cms
 django_select2==4.2.2
 django-suit==0.2.8

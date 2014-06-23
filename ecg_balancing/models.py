@@ -7,6 +7,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models import signals
 from django.utils.translation import ugettext_lazy as _
+from osm_field.fields import OSMField
 
 from ecg_balancing import fields
 
@@ -254,6 +255,7 @@ class Company(models.Model):
     zipcode = models.PositiveIntegerField(_('ZIP code'), blank=False)
     city = models.CharField(_('City'), max_length=50, blank=False)
     country = models.CharField(_('Country'), max_length=50, blank=False)
+    location = OSMField(_('Location'), blank=True, null=True)
     website = models.CharField(_('Website'), max_length=255, blank=False)
 
     email = models.EmailField(_('Email'))
