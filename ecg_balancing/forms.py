@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Model
 from django.utils.translation import ugettext_lazy as _
-from select2.fields import ChoiceField
 
 from crispy_forms.helper import FormHelper
 from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator, UserRole
