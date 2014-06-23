@@ -36,11 +36,11 @@
 
 
 
-{#  {% if is_admin %}#}
+  {% if can_edit %}
     <form method="POST"
           action="{% url 'indicator-update' company_slug=object.company_balance.company.slug pk=object.pk %}">
     {% csrf_token %}
-{#  {% endif %}#}
+  {% endif %}
 
 <div class="feedback-container clearfix">
   <a href="{% url 'feedback-indicator' object.indicator %}?url={{ request.get_full_path }}" class="button pull-right space-left">
@@ -65,11 +65,11 @@
             {{ object.evaluation }} / {{ object.indicator.max_evaluation }}
           </div>
         {% else %}
-{#          {% if not is_admin %}#}
-{#            <div class="company-balance-indicator-points pull-right">#}
-{#              {{ object.evaluation }}#}
-{#            </div>#}
-{#          {% else %}#}
+          {% if not can_edit %}
+            <div class="company-balance-indicator-points pull-right">
+              {{ object.evaluation }}
+            </div>
+          {% else %}
             <div id="company-balance-indicator-{{ object.indicator }}-0-slider"
                  class="company-balance-indicator-slider pull-right">
               <input id="company-balance-indicator-{{ object.indicator.slugify }}-points" type="text"
@@ -77,13 +77,13 @@
                      name="company-balance-indicator-{{ object.indicator.slugify }}-points"
                      class="center">
             </div>
-{#          {% endif %}#}
+          {% endif %}
         {% endifnotequal %}
       </div>
     </div>
 
     <div class="bubble-contents">
-{#      {% if is_admin %}#}
+      {% if can_edit %}
         <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-editor">
           {% if object.description %}
             {{ object.description|safe }}
@@ -95,15 +95,15 @@
             </ul>
           {% endif %}
         </textarea>
-{#      {% else %}#}
-{#        <div class="company-balance-indicator-text">#}
-{#          {% if object.description %}#}
-{#            {{ object.description|safe }}#}
-{#          {% else %}#}
-{#            <br/>#}
-{#          {% endif %}#}
-{#        </div>#}
-{#      {% endif %}#}
+      {% else %}
+        <div class="company-balance-indicator-text">
+          {% if object.description %}
+            {{ object.description|safe }}
+          {% else %}
+            <br/>
+          {% endif %}
+        </div>
+      {% endif %}
     </div>
 
   </div>
@@ -123,14 +123,14 @@
 
           </div>
           <div class="meta-right col-lg-3 col-md-3 col-sm-12 col-xs-12">
-{#            {% if not is_admin %}#}
-{#              <div class="company-balance-indicator-points pull-right center">#}
-{#                {{ subindicator.evaluation }} %#}
-{#                <div class="company-balance-indicator-relevance">#}
-{#                  ({% trans "Relevance" %}: {{ subindicator.indicator.get_relevance_display }})#}
-{#                </div>#}
-{#              </div>#}
-{#            {% else %}#}
+            {% if not can_edit %}
+              <div class="company-balance-indicator-points pull-right center">
+                {{ subindicator.evaluation }} %
+                <div class="company-balance-indicator-relevance">
+                  ({% trans "Relevance" %}: {{ subindicator.indicator.get_relevance_display }})
+                </div>
+              </div>
+            {% else %}
               <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
                    class="company-balance-indicator-slider pull-right">
                 <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
@@ -141,12 +141,12 @@
                   ({% trans "Relevance" %}: {{ subindicator.indicator.get_relevance_display }})
                 </div>
               </div>
-{#            {% endif %}#}
+            {% endif %}
           </div>
         </div>
 
         <div class="bubble-contents">
-{#          {% if is_admin %}#}
+          {% if can_edit %}
             <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
               {% if subindicator.description %}
                 {{ subindicator.description|safe }}
@@ -158,15 +158,15 @@
                 </ul>
               {% endif %}
             </textarea>
-{#          {% else %}#}
-{#            <div class="company-balance-indicator-text">#}
-{#              {% if subindicator.description %}#}
-{#                {{ subindicator.description|safe }}#}
-{#              {% else %}#}
-{#                <br/>#}
-{#              {% endif %}#}
-{#            </div>#}
-{#          {% endif %}#}
+          {% else %}
+            <div class="company-balance-indicator-text">
+              {% if subindicator.description %}
+                {{ subindicator.description|safe }}
+              {% else %}
+                <br/>
+              {% endif %}
+            </div>
+          {% endif %}
         </div>
 
       </div>
@@ -175,15 +175,15 @@
 
 {% endfor %}
 
-    {#  {% if is_admin %}#}
+  {% if can_edit %}
     <div class="save-button-container clearfix pull-right page-form">
       <button type="submit" class="button primary">{% trans "Save" %}</button>
     </div>
-{#  {% endif %}#}
+  {% endif %}
 
-{#{% if is_admin %}#}
+{% if can_edit %}
   </form>
-{#{% endif %}#}
+{% endif %}
 
 {% endblock base_content %}
 

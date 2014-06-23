@@ -250,7 +250,7 @@ class CompanyBalanceForm(forms.ModelForm):
         return cleaned_data
 
 
-class CompanyBalanceEditForm(forms.ModelForm):
+class CompanyBalanceUpdateForm(forms.ModelForm):
     helper = FormHelper()
     helper.label_class = 'clearboth text-right col-lg-2 col-md-2'
     helper.field_class = 'col-lg-5 col-md-5'
@@ -258,16 +258,16 @@ class CompanyBalanceEditForm(forms.ModelForm):
 
     class Meta:
         model = CompanyBalance
-        fields = ('matrix', 'year', 'status', 'start_date', 'end_date', 'peer_companies', 'auditor', 'common_good',
+        fields = ('matrix', 'year', 'status', 'visibility', 'start_date', 'end_date', 'peer_companies', 'auditor', 'common_good',
                   'worked_hours', 'number_participated_employees', 'process_description', 'internal_communication',
                   'prospect', 'company')
 
     def __init__(self, *args, **kwargs):
-        super(CompanyBalanceEditForm, self).__init__(*args, **kwargs)
+        super(CompanyBalanceUpdateForm, self).__init__(*args, **kwargs)
         self.fields['company'].widget = forms.HiddenInput()
 
     def clean(self):
-        cleaned_data = super(CompanyBalanceEditForm, self).clean()
+        cleaned_data = super(CompanyBalanceUpdateForm, self).clean()
         year = cleaned_data.get("year")
         company = cleaned_data.get("company")
 

@@ -34,27 +34,26 @@
   </div>
 
   <div class="row">
-
-
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8">
-      {% if has_company_access or not visibility_basic %}
+      {% if public_balance_exists or has_company_access %}
 
-        {% if not is_guest and has_company_access %}
-          {% if object.balance.all %}
-            {% trans "ECG Balances" %}:
-            <ul>
-              {% for balance in object.balance.all %}
-                <li class="company-balance-item">
-                  <a href="{% url 'balance-detail' company_slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% else %}
-            <a href="{% url 'balance-create' object.slug %}" class="button primary">
-              <span class="glyphicon glyphicon-plus"></span>
-              {% trans "Create ECG Balance" %}
-            </a>
-          {% endif %}
+        {% if object.balance.all %}
+          <h3>{% trans "ECG Balances" %}</h3>
+          <ul>
+            {% for balance in object.balance.all %}
+              {% if is_guest and balance.visibility != 'public' %}
+              {% else %}
+              <li class="company-balance-item">
+                <a href="{% url 'balance-detail' company_slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
+              </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% else %}
+          <a href="{% url 'balance-create' object.slug %}" class="button primary">
+            <span class="glyphicon glyphicon-plus"></span>
+            {% trans "Create ECG Balance" %}
+          </a>
         {% endif %}
 
       {% endif %}

@@ -327,6 +327,13 @@ class CompanyBalance(models.Model):
     process_description = models.TextField(_('Balance process description'), blank=True, null=True)
     internal_communication = models.TextField(_('How was the balance internally communicated?'), blank=True, null=True)
 
+    VISIBILITY_CHOICE_INTERNAL = 'internal'
+    VISIBILITY_CHOICE_PUBLIC = 'public'
+    VISIBILITY_CHOICE = (
+        (VISIBILITY_CHOICE_INTERNAL, _('Internal')),
+        (VISIBILITY_CHOICE_PUBLIC, _('Public')),
+    )
+    visibility = models.CharField(_('Visibility'), max_length=15, choices=VISIBILITY_CHOICE, default=VISIBILITY_CHOICE_INTERNAL, null=False, blank=False)
 
     class Meta:
         verbose_name = _('Year Balance')
