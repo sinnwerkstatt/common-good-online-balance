@@ -44,9 +44,11 @@
           {% if company in companies_admin %}
             (<a href="{% url 'company-admin' company.slug %}">Admin</a>)
           {% endif %}
+          <br/>
         {% endfor %}
         {% for company in companies_pending %}
-          {{ company }} ({% trans "Membership pending" %})
+          <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
+          ({% trans "Membership pending" %})
         {% endfor %}
         </p>
       {% endif %}

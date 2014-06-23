@@ -213,6 +213,16 @@ class CompanyJoinForm(forms.ModelForm):
         return user_role
 
 
+class CompanyCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Company
+
+    def __init__( self, user, *args, **kwargs ):
+        super(CompanyCreateForm, self ).__init__( *args, **kwargs )
+        self.user = user
+
+
 class CompanyBalanceForm(forms.ModelForm):
     helper = FormHelper()
     helper.label_class = 'clearboth text-right col-lg-2 col-md-2'

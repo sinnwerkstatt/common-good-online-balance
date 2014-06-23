@@ -239,6 +239,13 @@ class Company(models.Model):
         (REVENUE_CHOICE_LARGE, _('More than 500.000 USD'))
     )
 
+    VISIBILITY_CHOICE_BASIC = 'basic'
+    VISIBILITY_CHOICE_ALL = 'all'
+    VISIBILITY_CHOICES = (
+        (VISIBILITY_CHOICE_BASIC, _('Basic - Logo, Name, Website')),
+        (VISIBILITY_CHOICE_ALL, _('Everything')),
+    )
+
     name = models.CharField(_('Name'), max_length=255)
     slug = models.SlugField(_('Slug'), max_length=50, unique=True)
     logo = models.ImageField(_('Image'), blank=True, null=True, upload_to='company-upload')
@@ -264,6 +271,8 @@ class Company(models.Model):
     foundation_date = models.DateTimeField(_('Foundation Date'), blank=True, null=True)
     owners = models.CharField(_('Owners'), max_length=255, blank=True, null=True)
     managing_directors = models.CharField(_('Managing Directors'), max_length=255, blank=True, null=True)
+
+    visibility = models.CharField(_('Visibility'), max_length=10, choices=VISIBILITY_CHOICES, default=VISIBILITY_CHOICE_BASIC)
 
     # object creation date
     model_creation_date = models.DateTimeField(_('Model Creation Date'), default=datetime.datetime.now)

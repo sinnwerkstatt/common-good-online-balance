@@ -28,27 +28,33 @@
 
   <div class="row">
 
-    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8 profile-company-tabs">
-      {% if not is_guest and has_company_access%}
-        {% if object.balance.all %}
-          {% trans "ECG Balances" %}:
-          <ul>
-            {% for balance in object.balance.all %}
-              <li class="company-balance-item">
-                <a href="{% url 'balance-detail' company_slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <a href="{% url 'balance-create' object.slug %}" class="button primary">
-            <span class="glyphicon glyphicon-plus"></span>
-            {% trans "Create ECG Balance" %}
-          </a>
+
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8">
+      {% if has_company_access or not visibility_basic %}
+
+        {% if not is_guest and has_company_access%}
+          {% if object.balance.all %}
+            {% trans "ECG Balances" %}:
+            <ul>
+              {% for balance in object.balance.all %}
+                <li class="company-balance-item">
+                  <a href="{% url 'balance-detail' company_slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <a href="{% url 'balance-create' object.slug %}" class="button primary">
+              <span class="glyphicon glyphicon-plus"></span>
+              {% trans "Create ECG Balance" %}
+            </a>
+          {% endif %}
         {% endif %}
+
       {% endif %}
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+      {% if has_company_access or not visibility_basic %}
 
       <div class="company-data-item">
         {% if object.name %}
@@ -107,6 +113,7 @@
         {% endif %}
       </div>
 
+      {% endif %}
     </div>
   </div>
 

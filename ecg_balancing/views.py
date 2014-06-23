@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse_lazy
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext, Context
@@ -12,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView, FormView, RedirectView
 from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm, FeedbackIndicatorForm, \
-    CompanyJoinForm
+    CompanyJoinForm, CompanyCreateForm
 
 from ecg_balancing.models import *
 
@@ -97,7 +98,7 @@ class UserRoleMixin(object):
             company = Company.objects.get(slug=company_slug)
 
             try:
-                userrole = UserRole.objects.get(user=self.request.user, company=company)
+                userrole = UserRole.objects.get(Q(role=UserRole.ROLE_CHOICE_MEMBER) | Q(role=UserRole.ROLE_CHOICE_ADMIN), user=self.request.user, company=company)
                 context['has_company_access'] = True
                 context['is_admin'] = (userrole.role == 'admin')
                 context['is_member'] = (userrole.role == 'member')
@@ -125,6 +126,13 @@ class UserRoleRedirectMixin(UserRoleMixin):
 
 class CompanyDetailView(UserRoleMixin, DetailView):
     model = Company
+
+    def get_context_data(self, **kwargs):
+        context = super(CompanyDetailView, self).get_context_data(**kwargs)
+
+        visibility = self.object.visibility
+        context['visibility_basic'] = (visibility == Company.VISIBILITY_CHOICE_BASIC)
+        return context
 
 
 class CompanyUpdateView(UserRoleRedirectMixin, UpdateView):
@@ -203,6 +211,31 @@ def send_mail(plaintext_template, html_template, context, subject, from_email, t
         headers = {'Reply-To': reply_to_email})
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+
+
+class CompanyCreateView(CreateView):
+    model = Company
+    template_name = 'ecg_balancing/company_create.html'
+    form_class = CompanyForm
+
+    def form_valid(self, form, **kwargs):
+        self.object = form.save(commit=False)
+        self.object.save()
+
+        company = self.object
+        user_role = UserRole.objects.create(company=company, user=self.request.user, role=UserRole.ROLE_CHOICE_ADMIN)
+
+        return HttpResponseRedirect(reverse_lazy('user-detail',
+                                                 kwargs={
+                                                     'pk': self.request.user.pk,
+                                                 }))
+
+    def get_success_url(self):
+        if 'slug' in self.kwargs:
+            slug = self.kwargs['slug']
+            return reverse('company-detail', kwargs={'slug': slug})
+        else:
+            return super(CompanyCreateView, self).get_success_url()
 
 
 class CompanyAdminView(UserRoleMixin, UpdateView):

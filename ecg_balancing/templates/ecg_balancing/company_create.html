@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
+{% load static from staticfiles %}
+{% load staticfiles %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block page_title %}{{ object.name }}{% endblock %}
+
+{% block base_content %}
+
+  <a href="{% url 'user-detail' request.user.pk %}" class="button pull-right">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    {% trans "Back" %}
+  </a>
+
+  <h3>{% trans "Create a company" %}</h3>
+
+  <p>
+    {% trans "Enter the data of the new company. After sucessful creation of the company, you will become its administrator." %}
+  </p>
+
+  <form class="page-form" enctype="multipart/form-data" method="post"
+        action="{% url "company-create" %}">
+    {% csrf_token %}
+    {% crispy form %}
+    <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>
+    <div class="last-form-element col-lg-5 col-md-5">
+      <span class="asteriskField">*</span> - {% trans "Please fill out" %}
+    </div>
+    <div class="clearboth col-lg-2 col-md-2">&nbsp;</div>
+    <div class="pad-bottom col-lg-5 col-md-5">
+      <input type="submit" name="submit" value="{% trans "Create the company" %}" class="button primary"/>
+    </div>
+  </form>
+
+{% endblock base_content %}
+
+{% block javascript %}
+  {{ block.super }}
+{% endblock javascript %}

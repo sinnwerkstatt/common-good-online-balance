@@ -39,7 +39,7 @@ urlpatterns = patterns('',
 
 	url(r'^companies$', CompanyListView.as_view(), name='companies'),
 	url(r'^company-join/$', login_required(CompanyJoinView.as_view()), name='company-join'),
-	url(r'^company-create/$', login_required(CompanyDetailView.as_view()), name='company-create'),
+	url(r'^company-create/$', login_required(CompanyCreateView.as_view()), name='company-create'),
 
 	url(r'^company/(?P<slug>[\w-]*)/$', CompanyDetailView.as_view(), name='company-detail'),
 	url(r'^company/(?P<slug>[\w-]*)/update$', login_required(CompanyUpdateView.as_view()), name='company-update'),
