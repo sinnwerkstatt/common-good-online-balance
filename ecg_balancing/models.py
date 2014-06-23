@@ -243,7 +243,7 @@ class Company(models.Model):
     VISIBILITY_CHOICE_BASIC = 'basic'
     VISIBILITY_CHOICE_ALL = 'all'
     VISIBILITY_CHOICES = (
-        (VISIBILITY_CHOICE_BASIC, _('Basic - Logo, Name, Website')),
+        (VISIBILITY_CHOICE_BASIC, _('Logo, Name, Website')),
         (VISIBILITY_CHOICE_ALL, _('Everything')),
     )
 
