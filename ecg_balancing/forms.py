@@ -195,20 +195,19 @@ class CompanyJoinForm(forms.ModelForm):
         self.user = user
 
     def clean_company(self):
-        data = self.cleaned_data['company']
-        existing_role = UserRole.objects.get(company=data, user=self.user)
-        if existing_role:
+        company = self.cleaned_data['company']
+        existing_role = UserRole.objects.filter(company=company, user=self.user)
+        if existing_role.exists():
             raise forms.ValidationError(
                 _('You already requested membership or you are member of this company.'))
         else:
-            company = Company.objects.get(pk=data)
+            # company = Company.objects.get(pk=company)
             return company
 
     def save(self, *args, **kw):
         user = kw.pop('user')
         super(CompanyJoinForm, self).save(*args, **kw)
         company = self.instance.company
-
 
         user_role = UserRole.objects.create(company=company, user=user, role=UserRole.ROLE_CHOICE_PENDING)
         return user_role

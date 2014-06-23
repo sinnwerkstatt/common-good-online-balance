@@ -35,23 +35,29 @@
         <span class="glyphicon glyphicon-pencil"></span>
         {% trans "Edit" %}
       </a>
-      {% if companies_member %}
-        <h4>{% trans "Companies" %}:</h4>
-      {% else %}
-        <div class="alert alert-warning pull-left">{% trans "You are not a member of a company." %}</div>
+      <h4>{% trans "Companies" %}:</h4>
 
+      {% if companies_member or companies_pending %}
+        <p>
+        {% for company in companies_member %}
+          <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
+          {% if company in companies_admin %}
+            (<a href="{% url 'company-admin' company.slug %}">Admin</a>)
+          {% endif %}
+        {% endfor %}
+        {% for company in companies_pending %}
+          {{ company }} ({% trans "Membership pending" %})
+        {% endfor %}
+        </p>
+      {% endif %}
+
+      {% if not companies_member %}
+        <div class="alert alert-warning pull-left">{% trans "You are not a member of a company." %}</div>
         <div class="clearboth">
           <a href="{% url 'company-join' %}" class="button">{% trans "Join a company" %}</a>
           <a href="{% url 'company-create' %}" class="button">{% trans "Create a company" %}</a>
         </div>
-
       {% endif %}
-      {% for company in companies_member %}
-        <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
-        {% if company in companies_admin %}
-          (<a href="{% url 'company-admin' company.slug %}">Admin</a>)
-        {% endif %}
-      {% endfor %}
     </div>
   </div>
 

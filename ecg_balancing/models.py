@@ -403,10 +403,12 @@ class UserProfile(models.Model):
 
 class UserRole(models.Model):
     ROLE_CHOICE_PENDING = 'pending'
+    ROLE_CHOICE_NONE = 'none'
     ROLE_CHOICE_MEMBER = 'member'
     ROLE_CHOICE_ADMIN = 'admin'
     ROLE_CHOICES = (
         (ROLE_CHOICE_PENDING, _('Pending')),
+        (ROLE_CHOICE_NONE, _('Not a member')),
         (ROLE_CHOICE_MEMBER, _('Member')),
         (ROLE_CHOICE_ADMIN, _('Admin')),
     )

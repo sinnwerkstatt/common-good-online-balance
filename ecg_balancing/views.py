@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext, Context
 from django.template.loader import get_template
+from django.utils.translation import ugettext_lazy as _
 
 from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView, FormView, RedirectView
 from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceEditForm, FeedbackIndicatorForm, \
@@ -151,11 +152,57 @@ class CompanyJoinView(CreateView):
 
     def form_valid(self, form, **kwargs):
         self.object = form.save(commit=False, user=self.request.user)
+        user_role = self.object
+        company_admins = UserRole.objects.filter(company=user_role.company, role=UserRole.ROLE_CHOICE_ADMIN)
+        admin_emails = []
+        for company_admin in company_admins:
+            company_admin_user = company_admin.user
+            admin_emails.append(company_admin_user.email)
+
+        self.send_mail(user_role, admin_emails)
 
         return HttpResponseRedirect(reverse_lazy('user-detail',
                                                  kwargs={
                                                      'pk': self.request.user.pk,
                                                  }))
+
+    def send_mail(self, user_role, to_emails):
+
+        plaintext_template = 'ecg_balancing/email/company_join_email.txt'
+        html_template = 'ecg_balancing/email/company_join_email.html'
+
+        sender_name = '%s %s'%(user_role.user.first_name, user_role.user.last_name)
+        sender_email = user_role.user.email
+        company_admin_url = self.request.build_absolute_uri(reverse('company-admin',
+                                                 kwargs={
+                                                     'slug': user_role.company.slug,
+                                                 }))
+        context = Context({
+            "sender_name": sender_name,
+            "sender_email": sender_email,
+            "company": user_role.company,
+            "company_admin_url":  company_admin_url
+        })
+        subject = _('[ECG] Membership request by %s'%(sender_name))
+        from_email = settings.FEEDBACK_INDICATOR_SENDER_EMAIL
+
+        send_mail(plaintext_template, html_template, context, subject, from_email, to_emails, sender_email)
+
+
+def send_mail(plaintext_template, html_template, context, subject, from_email, to_emails, reply_to_email):
+
+    plaintext = get_template(plaintext_template)
+    html = get_template(html_template)
+    text_content = plaintext.render(context)
+    html_content = html.render(context)
+    msg = EmailMultiAlternatives(
+        subject,
+        text_content,
+        from_email,
+        to_emails,
+        headers = {'Reply-To': reply_to_email})
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 
 
 class CompanyAdminView(UserRoleMixin, UpdateView):
@@ -168,7 +215,7 @@ class CompanyAdminView(UserRoleMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(CompanyAdminView, self).get_context_data(**kwargs)
 
-        userroles = UserRole.objects.filter(company=self.object.company)
+        userroles = UserRole.objects.filter(company=self.object.company).exclude(user=self.request.user)
         context['userroles'] = userroles
         context['role_choices'] = UserRole.ROLE_CHOICES
         return context
@@ -189,10 +236,49 @@ class CompanyAdminView(UserRoleMixin, UpdateView):
 
                 cur_user_role = UserRole.objects.get(user=cur_user, company=company)
                 cur_role_key = self.request.POST[post_parameter]
-                cur_user_role.role = cur_role_key
-                cur_user_role.save()
+
+                if cur_user_role.role != cur_role_key: # if role not changed, don't do anything
+
+                    # if not member, delete the role
+                    if cur_role_key == UserRole.ROLE_CHOICE_NONE:
+                        self.send_mail(cur_user_role, cur_role_key)
+                        cur_user_role.delete()
+
+                    # if changed pending role
+                    else:
+                        if cur_user_role.role == UserRole.ROLE_CHOICE_PENDING:
+                            self.send_mail(cur_user_role, cur_role_key)
+
+                        cur_user_role.role = cur_role_key
+                        cur_user_role.save()
 
         return HttpResponseRedirect("%s?success=true" % self.get_success_url())
+
+    def send_mail(self, user_role, cur_role_key):
+
+        if cur_role_key == UserRole.ROLE_CHOICE_MEMBER or cur_role_key == UserRole.ROLE_CHOICE_ADMIN:
+            plaintext_template = 'ecg_balancing/email/company_admin_member_email.txt'
+            html_template = 'ecg_balancing/email/company_admin_member_email.html'
+            subject = _("[ECG] Membership for '%s' accepted"%(user_role.company))
+        else:
+            plaintext_template = 'ecg_balancing/email/company_admin_no_member_email.txt'
+            html_template = 'ecg_balancing/email/company_admin_no_member_email.html'
+            subject = _("[ECG] Membership for '%s' rejected"%(user_role.company))
+
+        user_name = '%s %s'%(user_role.user.first_name, user_role.user.last_name)
+        to_email = user_role.user.email
+        user_profile_url = self.request.build_absolute_uri(reverse('user-detail',
+                                             kwargs={
+                                                 'pk': user_role.user.pk,
+                                             }))
+        context = Context({
+            "user_name": user_name,
+            "company": user_role.company,
+            "user_profile_url":  user_profile_url
+        })
+        from_email = settings.FEEDBACK_INDICATOR_SENDER_EMAIL
+
+        send_mail(plaintext_template, html_template, context, subject, from_email, [to_email], self.request.user.email)
 
 
 def getIndicatorStakeholder(indicatorId):

@@ -27,7 +27,7 @@
   </div>
 
   {% if request.GET.success %}
-    <div class="alert alert-success">
+    <div id="alert-box" class="alert alert-success">
       {% trans "User roles were successfully updated." %}
     </div>
   {% endif %}
@@ -70,7 +70,7 @@
               </tbody>
             </table>
 
-            <input type="submit" name="submit" value="{% trans "Save" %}" class="button primary pull-right"/>
+            <input id="submit-btn" type="submit" name="submit" value="{% trans "Save" %}" class="button primary pull-right"/>
 
           </form>
 
@@ -87,3 +87,14 @@
   </div>
 
 {% endblock base_content %}
+
+
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript">
+      $('#submit-btn').on('click', function() {
+        $('#alert-box').hide();
+      });
+  </script>
+{% endblock javascript %}
+

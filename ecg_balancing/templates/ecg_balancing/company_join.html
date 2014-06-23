@@ -23,11 +23,15 @@
 
   <h3>{% trans "Join a company" %}</h3>
 
-  <p class="p-top">
   {% if form.company.errors %}
+  <p class="p-top">
     <span id="error_1_id_company" class="alert alert-warning">{% for error in form.company.errors %}
       {{ error }}{% endfor %}</span>
+  </p>
   {% endif %}
+  
+  <p class="p-top">
+  {% trans "Choose the company you want to join. The company administrator will be informed about your request." %}
   </p>
 
   <form class="page-form" enctype="multipart/form-data" method="post" action="{% url "company-join" %}">
