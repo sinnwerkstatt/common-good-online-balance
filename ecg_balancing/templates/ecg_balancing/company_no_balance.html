@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load static from staticfiles %}
+
+{% block page_title %}{% trans 'No Access' %}{% endblock %}
+
+{% block base_content %}
+
+  {{ company_name }} {% trans "does not have an ECG Balance for this year." %}
+
+{% endblock base_content %}

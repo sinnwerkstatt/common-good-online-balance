@@ -11,6 +11,14 @@
 
 {% block base_content %}
 
+  {% if not_approved %}
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="alert alert-warning">
+      {% trans "This company is not yet approved." %}
+    </div>
+  </div>
+  {% endif %}
+
   <div class="row profile-company-header clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -35,27 +43,29 @@
 
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8">
-      {% if public_balance_exists or has_company_access %}
+      {% if not not_approved %}
+        {% if public_balance_exists or has_company_access %}
 
-        {% if object.balance.all %}
-          <h3>{% trans "ECG Balances" %}</h3>
-          <ul>
-            {% for balance in object.balance.all %}
-              {% if is_guest and balance.visibility != 'public' %}
-              {% else %}
-              <li class="company-balance-item">
-                <a href="{% url 'balance-detail' company_slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
-              </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        {% else %}
-          <a href="{% url 'balance-create' object.slug %}" class="button primary">
-            <span class="glyphicon glyphicon-plus"></span>
-            {% trans "Create ECG Balance" %}
-          </a>
+          {% if object.balance.all %}
+            <h3>{% trans "ECG Balances" %}</h3>
+            <ul>
+              {% for balance in object.balance.all %}
+                {% if is_guest and balance.visibility != 'public' %}
+                {% else %}
+                <li class="company-balance-item">
+                  <a href="{% url 'balance-detail' company_slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
+                </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% else %}
+            <a href="{% url 'balance-create' object.slug %}" class="button primary">
+              <span class="glyphicon glyphicon-plus"></span>
+              {% trans "Create ECG Balance" %}
+            </a>
+          {% endif %}
+
         {% endif %}
-
       {% endif %}
     </div>
 

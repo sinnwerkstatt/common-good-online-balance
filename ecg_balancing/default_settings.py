@@ -231,5 +231,3 @@ ENDLESS_PAGINATION_PREVIOUS_LABEL = '<b>&#9001;</b> Zurück'
 ENDLESS_PAGINATION_NEXT_LABEL = 'Weiter <b>&#9002;</b>'
 
 #AUTH_USER_MODEL = 'ecg_balancing.UserProfile'
-
-FEEDBACK_INDICATOR_SENDER_EMAIL = 'kontakt@sinnwerkstatt.com'

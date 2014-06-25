@@ -37,7 +37,7 @@
       </a>
       <h4>{% trans "Companies" %}:</h4>
 
-      {% if companies_member or companies_pending %}
+      {% if companies_member or companies_pending or companies_not_approved %}
         <p>
         {% for company in companies_member %}
           <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
@@ -49,6 +49,11 @@
         {% for company in companies_pending %}
           <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
           ({% trans "Membership pending" %})
+          <br/>
+        {% endfor %}
+        {% for company in companies_not_approved %}
+          <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
+          ({% trans "Not approved" %})
         {% endfor %}
         </p>
       {% endif %}

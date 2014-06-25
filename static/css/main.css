@@ -267,6 +267,10 @@ img.right {
   margin-top: 10px;
 }
 
+.m-bottom {
+  margin-bottom: 10px;
+}
+
 .width-half {
   width: 49%;
 }

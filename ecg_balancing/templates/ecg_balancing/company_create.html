@@ -21,7 +21,7 @@
   <h3>{% trans "Create a company" %}</h3>
 
   <p>
-    {% trans "Enter the data of the new company. After sucessful creation of the company, you will become its administrator." %}
+    {% trans "Enter the data of the new company. After creating the company an administrator will need to approve it and you will be notified by email." %}
   </p>
 
   <form class="page-form" enctype="multipart/form-data" method="post"
@@ -42,4 +42,8 @@
 
 {% block javascript %}
   {{ block.super }}
+  <script type="text/javascript">
+    $('#div_id_location_lat').hide();
+    $('#div_id_location_lon').hide();
+  </script>
 {% endblock javascript %}

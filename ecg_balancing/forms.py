@@ -180,7 +180,7 @@ class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
         #fields = ('user.first_name', 'user.last_name', 'user.email')
-        exclude = ['model_creation_date']
+        exclude = ['model_creation_date', 'status']
 
 
 class CompanyJoinForm(forms.ModelForm):

@@ -11,8 +11,15 @@
 
 {% block base_content %}
 
-  {% for company in object_list %}
+  {% if request.user.is_staff %}
+    <a href="{% url 'companies-admin' %}" class="button m-bottom alert-warning{% if not not_approved_companies %} disabled{% endif %}">
+      <span class="glyphicon glyphicon-pencil"></span>
+      {% trans "Approve companies" %}
+      {% if not_approved_companies %} <span class="badge">{{ not_approved_companies|length }}</span>{% endif %}
+    </a>
+  {% endif %}
 
+  {% for company in object_list %}
     <a href="{% url 'company-detail' company.slug %}" class="company-detail-link no-decoration center clearfix">
       {% if company.logo %}
         <img class="" src="{% thumbnail company.logo 100x0 crop=scale upscale %}" alt=""/>
@@ -22,7 +29,6 @@
         <span class="centered-text-to-no-img space-left">{{ company }}</span>
       {% endif %}
     </a>
-
   {% endfor %}
 
 

@@ -276,6 +276,14 @@ class Company(models.Model):
 
     visibility = models.CharField(_('Visibility'), max_length=10, choices=VISIBILITY_CHOICES, default=VISIBILITY_CHOICE_BASIC)
 
+    STATUS_CHOICE_NOT_APPROVED = 'not-approved'
+    STATUS_CHOICE_APPROVED = 'approved'
+    STATUS_CHOICES = (
+        (STATUS_CHOICE_NOT_APPROVED, _('Not approved')),
+        (STATUS_CHOICE_APPROVED, _('Approved')),
+    )
+    status = models.CharField(_('Status'), max_length=20, choices=STATUS_CHOICES, default=STATUS_CHOICE_NOT_APPROVED)
+
     # object creation date
     model_creation_date = models.DateTimeField(_('Model Creation Date'), default=datetime.datetime.now)
 

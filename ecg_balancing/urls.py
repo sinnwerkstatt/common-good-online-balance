@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import RedirectView
 from django.core.urlresolvers import reverse_lazy
 from ecg_balancing.forms import UserAccountCreationForm
@@ -37,7 +37,8 @@ urlpatterns = patterns('',
 	url(r'^user/(?P<pk>.*)/$', login_required(UserDetailView.as_view()), name='user-detail'),
 	url(r'^user/(?P<pk>.*)/update$', login_required(UserUpdateView.as_view()), name='user-update'),
 
-	url(r'^companies$', CompanyListView.as_view(), name='companies'),
+	url(r'^companies/$', CompanyListView.as_view(), name='companies'),
+	url(r'^companies/admin$', permission_required('is_staff')(CompaniesAdminView.as_view()), name='companies-admin'),
 	url(r'^company-join/$', login_required(CompanyJoinView.as_view()), name='company-join'),
 	url(r'^company-create/$', login_required(CompanyCreateView.as_view()), name='company-create'),
 

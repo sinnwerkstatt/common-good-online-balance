@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load static from staticfiles %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block page_title %}{% trans "Companies" %}{% endblock %}
+
+{% block base_content %}
+
+  <h1>{% trans "Approve companies" %}</h1>
+  {% if companies %}
+  <p>{% trans "This is a list of newly created companies. If you approve a company, the creator will be notified by email." %}</p>
+  {% endif %}
+
+  {% if request.GET.success %}
+    <div id="alert-box" class="alert alert-success">
+      {% trans "The status of the companies is updated." %}
+    </div>
+  {% endif %}
+
+  {% if companies %}
+    <form class="page-form clearboth" enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>{% trans "Company Name" %}</th>
+          <th>{% trans "Status" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+          <tr>
+            <td>
+              <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
+            </td>
+            <td>
+              <select class="form-control" name="status-{{ company.pk }}">
+                {% for status_choice in status_choices %}
+                  <option value="{{ status_choice.0 }}" {% if status_choice.0 == company.status %}
+                          selected{% endif %} >{{ status_choice.1 }}</option>
+                {% endfor %}
+              </select>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <input id="submit-btn" type="submit" name="submit" value="{% trans "Update status" %}" class="button primary pull-right"/>
+
+    </form>
+  {% else %}
+    {% trans "There are no new companies for approval." %}
+  {% endif %}
+
+
+{% endblock base_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript">
+      $('#submit-btn').on('click', function() {
+        $('#alert-box').hide();
+      });
+  </script>
+{% endblock javascript %}
+
