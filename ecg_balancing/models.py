@@ -96,6 +96,7 @@ class Indicator(models.Model):
     sole_proprietorship = models.BooleanField(_('Applicable for sole proprietorship?'), default=True)
 
 
+    key_figures = models.TextField(_('Key figures'), blank=True, null=True)
 
 
     editor = models.CharField(_('Editor'),  max_length=30, blank=True, null=True)
@@ -406,6 +407,7 @@ class CompanyBalanceIndicator(models.Model):
                             blank=False)
 
     description = models.TextField(_('Description'), blank=True, null=True)
+    key_figures = models.TextField(_('Key figures'), blank=True, null=True)
     evaluation = models.IntegerField(_('Evaluation'), default=0)
 
     objects = CompanyBalanceIndicatorManager()

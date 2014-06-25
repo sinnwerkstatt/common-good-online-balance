@@ -644,6 +644,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
         inputFieldFormat = '%s-%s-%s'
         inputFieldPrefix = 'company-balance-indicator'
         editorFieldSuffix = 'editor'
+        keyfiguresFieldSuffix = 'keyfigures-editor'
         pointsFieldSuffix = 'points'
         percentageFieldSuffix = 'percentage'
 
@@ -686,11 +687,14 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
 
                     subindicatorId = subindicator.slugify()
                     subindicatorText = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, editorFieldSuffix))
+                    subindicatorKeyfiguresText = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, keyfiguresFieldSuffix))
                     subindicatorPercentage = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, percentageFieldSuffix))
 
                     ## save the subindicator
                     companyBalanceSubIndicator = companyBalanceSubIndicatorsDict[subindicator.pk]
                     companyBalanceSubIndicator.description = subindicatorText
+                    if subindicatorKeyfiguresText:
+                        companyBalanceSubIndicator.key_figures = subindicatorKeyfiguresText
                     companyBalanceSubIndicator.evaluation = subindicatorPercentage
                     companyBalanceSubIndicator.save()
 

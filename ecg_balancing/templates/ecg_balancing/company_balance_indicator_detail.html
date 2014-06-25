@@ -169,7 +169,21 @@
           {% endif %}
         </div>
 
+        {% if subindicator.indicator.key_figures %}
+          <div class="bubble-contents" style="border-top: 1px solid black">
+              <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
+                  id="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor">
+                {% if subindicator.key_figures %}
+                  {{ subindicator.key_figures }}
+                {% else %}
+                  {{ subindicator.indicator.key_figures }}
+                {% endif %}
+              </textarea>
+          </div>
+        {% endif %}
+
       </div>
+
     </div>
   {% endif %}
 

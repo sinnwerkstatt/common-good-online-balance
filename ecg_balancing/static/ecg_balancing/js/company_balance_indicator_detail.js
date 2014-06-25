@@ -169,6 +169,13 @@ if (!is_negative_criteria) {
                 CKEDITOR.disableAutoInline = true;
                 CKEDITOR.inline(editorId, ckeditor_config);
 
+                // activate key figures
+                var keyfiguresId = subIdPrefix + '-keyfigures' + '-editor';
+                if (document.getElementById(keyfiguresId) !== null) {
+                    CKEDITOR.disableAutoInline = true;
+                    CKEDITOR.inline(keyfiguresId, ckeditor_config);
+                }
+
                 // activate evaluation
                 pointsEl = $('#' + subIdPrefix + '-points');
                 pointsEl.TouchSpin(touchSpinSubindicatorSettings);
