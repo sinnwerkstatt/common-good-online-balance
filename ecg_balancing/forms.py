@@ -301,9 +301,13 @@ class FeedbackIndicatorForm(forms.ModelForm):
     helper.field_class = 'col-lg-5 col-md-5'
     helper.form_tag = False
 
+    def __init__(self, user, *args, **kw):
+        super(FeedbackIndicatorForm, self).__init__(*args, **kw)
+        self.user = user
+
     class Meta:
         model = FeedbackIndicator
-        exclude = ['receiver_name', 'receiver_email']
+        exclude = ['sender_name', 'sender_email', 'receiver_name', 'receiver_email']
 
     def clean_indicator(self):
         data = self.cleaned_data['indicator']

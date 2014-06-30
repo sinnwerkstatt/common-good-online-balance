@@ -779,6 +779,12 @@ class FeedbackIndicatorFormView(FormView):
     template_name = 'ecg_balancing/feedback_indicator_form.html'
     indicator = None
 
+    def get_form_kwargs( self ):
+        kwargs = super(FeedbackIndicatorFormView, self ).get_form_kwargs()
+        user = self.request.user
+        kwargs['user'] = user
+        return kwargs
+
     def get(self, request, *args, **kwargs):
 
         indicatorId = kwargs.get("indicator_id")
@@ -819,8 +825,8 @@ class FeedbackIndicatorFormView(FormView):
         plaintext = get_template('ecg_balancing/email/feedback_indicator_mail.txt')
         html = get_template('ecg_balancing/email/feedback_indicator_mail.html')
         context = Context({
-            "sender_name": feedback_indicator.sender_name,
-            "sender_email": feedback_indicator.sender_email,
+            "sender_name": '%s %s'%(self.request.user.first_name, self.request.user.last_name),
+            "sender_email": self.request.user.email,
             "message": feedback_indicator.message,
             "indicator": feedback_indicator.indicator,
         })
@@ -831,7 +837,7 @@ class FeedbackIndicatorFormView(FormView):
             text_content,
             settings.FEEDBACK_INDICATOR_SENDER_EMAIL,
             [feedback_indicator.indicator.contact],
-            headers = {'Reply-To': feedback_indicator.sender_email})
+            headers = {'Reply-To': self.request.user.email})
         msg.attach_alternative(html_content, "text/html")
         msg.send()
 
