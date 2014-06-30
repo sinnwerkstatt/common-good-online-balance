@@ -261,11 +261,11 @@ class Company(models.Model):
     fax = models.CharField(_('Fax Number'), max_length=50, blank=True, null=True)
 
     industry = models.CharField(_('Industry'), max_length=255, choices=INDUSTRY_CHOICES, blank=True, null=True)
-    activities = models.CharField(_('Activities'), max_length=255, choices=ACTIVITY_CHOICES, blank=True, null=True)
+    activities = models.CharField(_('Activities'), max_length=255, blank=True, null=True)
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
     revenue = models.CharField(_('Revenue'), max_length=255, choices=REVENUE_CHOICES, blank=True, null=True)
-    #profit = models.CharField(_('Profit'), max_length=255, blank=True, null=True)
-    #affiliates = models.CharField(_('Affiliates'), max_length=255, blank=True, null=True)
+    profit = models.CharField(_('Profit'), max_length=255, choices=REVENUE_CHOICES, blank=True, null=True)
+    affiliates = models.CharField(_('Affiliates'), max_length=255, blank=True, null=True)
 
     foundation_date = models.DateTimeField(_('Foundation Date'), blank=True, null=True)
     owners = models.CharField(_('Owners'), max_length=255, blank=True, null=True)
