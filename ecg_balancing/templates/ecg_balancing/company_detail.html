@@ -106,16 +106,16 @@
 
         <div class="company-data-item">
           {% if object.industry %}
-            {% trans "Industry" %}: {{ object.industry }}<br/>
+            {% trans "Industry" %}: {{ object.get_industry_display }}<br/>
           {% endif %}
           {% if object.activities %}
-            {% trans "Activities" %}: {{ object.activities }}<br/>
+            {% trans "Activities" %}: {{ object.get_activities_display }}<br/>
           {% endif %}
           {% if object.employees_number %}
-            {% trans "Number of employees" %}: {{ object.employees_number }}<br/>
+            {% trans "Number of employees" %}: {{ object.get_employees_number_display }}<br/>
           {% endif %}
           {% if object.revenue %}
-            {% trans "Revenue" %}: {{ object.revenue }}<br/>
+            {% trans "Revenue" %}: {{ object.get_revenue_display }}<br/>
           {% endif %}
         </div>
 
