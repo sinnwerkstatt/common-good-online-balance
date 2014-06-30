@@ -32,6 +32,7 @@ if (!is_negative_criteria) {
 if (can_edit) {
     $('.key-figures-container').each(function(e) {
         var $keyFiguresContainer = $(this);
+        $keyFiguresContainer.addClass('bubble-contents company-balance-indicator-keyfigures');
         if ($keyFiguresContainer.html().trim().length == 0) { // if there is already content, don't add default content
             var indicatorPosition = $keyFiguresContainer.data('indicator-position');
             var indicatorData = null;
@@ -41,7 +42,6 @@ if (can_edit) {
                 indicatorData = indicator;
             }
             if (typeof indicatorData.keyFigures !== 'undefined') {
-                $keyFiguresContainer.addClass('bubble-contents company-balance-indicator-keyfigures');
                 var indicatorSlug = $keyFiguresContainer.data('indicator-slug');
                 var keyFiguresHtml = '<textarea name="company-balance-indicator-'+indicatorSlug+'-keyfigures-editor" ' +
                     'id="company-balance-indicator-'+indicatorSlug+'-keyfigures-editor">'
