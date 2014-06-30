@@ -147,14 +147,12 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        #fields = ('user.first_name', 'user.last_name', 'user.email')
-        #exclude = ['creation_date']
 
     def __init__(self, *args, **kw):
         super(UserProfileForm, self).__init__(*args, **kw)
-        self.fields['first_name'].initial = self.instance.first_name
-        self.fields['last_name'].initial = self.instance.last_name
-        self.fields['email'].initial = self.instance.email
+        self.fields['first_name'].initial = self.instance.user.first_name
+        self.fields['last_name'].initial = self.instance.user.last_name
+        self.fields['email'].initial = self.instance.user.email
         self.fields.keyOrder = [
             'first_name',
             'last_name',
@@ -164,11 +162,10 @@ class UserProfileForm(forms.ModelForm):
 
     def save(self, *args, **kw):
         super(UserProfileForm, self).save(*args, **kw)
-        self.instance.first_name = self.cleaned_data.get('first_name')
-        self.instance.last_name = self.cleaned_data.get('last_name')
-        self.instance.email = self.cleaned_data.get('email')
-        #self.instance.profile.avatar.file = self.cleaned_data.get('avatar')
-        self.instance.save()
+        self.instance.user.first_name = self.cleaned_data.get('first_name')
+        self.instance.user.last_name = self.cleaned_data.get('last_name')
+        self.instance.user.email = self.cleaned_data.get('email')
+        self.instance.user.save()
 
 
 class CompanyForm(forms.ModelForm):

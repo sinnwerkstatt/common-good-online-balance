@@ -211,7 +211,7 @@ class UserDetailRedirect(RedirectView):
 
 
 class UserUpdateView(UpdateView):
-    model = User
+    model = UserProfile
     form_class = UserProfileForm
     template_name = 'ecg_balancing/user_update.html'
 
