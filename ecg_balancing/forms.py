@@ -112,6 +112,8 @@ class UserAccountCreationForm(UserCreationForm2):
             User._default_manager.get(email=email)
         except User.DoesNotExist:
             return email
+        except:
+            raise forms.ValidationError(self.error_messages_extended['duplicate_email'])
         raise forms.ValidationError(self.error_messages_extended['duplicate_email'])
 
     def save(self, commit=True, *args, **kwargs):
