@@ -256,7 +256,7 @@ class Company(models.Model):
     location = OSMField(_('Location'), blank=True, null=True)
     website = models.CharField(_('Website'), max_length=255, blank=False)
 
-    email = models.EmailField(_('Email'))
+    email = models.EmailField(_('Email'), unique=True)
     phone = models.CharField(_('Phone Number'), max_length=50, blank=True, null=True)
     fax = models.CharField(_('Fax Number'), max_length=50, blank=True, null=True)
 
