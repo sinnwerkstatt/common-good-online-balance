@@ -10,7 +10,7 @@ indicator = {
     table: {
         subindicators: [
             {
-                title: '1. Transparenz -<br/>Umfang GWÖ- Bericht (hoch)',
+                title: 'Umfang GWÖ-Bericht (oder GRI-Level Nachhaltigkeitsbericht)',
                 relevance: 'high',
                 position: '1',
                 soleProprietorship: true,
@@ -19,84 +19,28 @@ indicator = {
                         developmentDetails: [
                             {
                                 levels: ['beginner'],
-                                description: 'GWÖ-Bericht mit weniger als drei aussagekräftigen Sätzen zu jedem Subindikator'
+                                description: 'GWÖ-Bericht mit weniger als drei aussagekräftigen Sätzen zu jedem Subindikator / GRI Level C'
                             },
                             {
                                 levels: ['advanced'],
-                                description: 'GWÖ-Bericht mit drei aussagekräftigen Sätzen zu jedem Subindikator'
+                                description: 'GWÖ-Bericht mit drei aussagekräftigen Sätzen zu jedem Subindikator / GRI Level B'
                             },
                             {
                                 levels: ['experienced'],
-                                description: 'Detaillierte Beschreibung jedes Subindikators, direkter Link von der Startseite'
+                                description: 'Detaillierte Beschreibung jedes Subindikators, direkter Link von der Startseite / GRI Level A'
                             },
                             {
                                 levels: ['model'],
-                                description: '+ alle kritischen[2] Aspekte genannt, direkter Link von der Startseite, aktive Werbung für den GWÖ-Bericht'
+                                description: '+ alle kritischen[2] Aspekte genannt, direkter Link von der Startseite, aktive Werbung für den GWÖ-Bericht / GRI Level A und Sector Supplement'
                             }
                         ]
                     }
                 ]
             },
             {
-                title: '1. Transparenz -<br/>GRI Level[3]<br/>(wenn kein GWÖ-Bericht)',
+                title: 'Art der Mitbestimmung und Dokumentation',
                 relevance: 'high',
                 position: '2',
-                soleProprietorship: true,
-                developmentTracks: [
-                    {
-                        developmentDetails: [
-                            {
-                                levels: ['beginner'],
-                                description: 'GRI Level C'
-                            },
-                            {
-                                levels: ['advanced'],
-                                description: 'GRI Level B'
-                            },
-                            {
-                                levels: ['experienced'],
-                                description: 'GRI Level A'
-                            },
-                            {
-                                levels: ['model'],
-                                description: 'GRI Level A und Sector Supplement'
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                title: '1. Transparenz -<br/>Verifizierung<br/>(wenn kein GWÖ-Bericht)',
-                relevance: 'high',
-                position: '3',
-                soleProprietorship: true,
-                developmentTracks: [
-                    {
-                        developmentDetails: [
-                            {
-                                levels: ['beginner'],
-                                description: 'Punktuell, indirekt extern verifiziert'
-                            },
-                            {
-                                levels: ['advanced'],
-                                description: 'Externe Evaluation der Risiken'
-                            },
-                            {
-                                levels: ['experienced'],
-                                description: 'Externe Verifikation aller wesentl. Kriterien, „low level of assurance“ niedriges Niveau'
-                            },
-                            {
-                                levels: ['model'],
-                                description: 'Externe Verifikation aller wesentlicher Kriterien, „high level of assurance“ +  + umfassende Kooperation mit NGOs'
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                title: '2. Mitbestimmung -<br/>Art der Mit-bestimmung + Dokumentation',
-                relevance: 'high',
-                position: '1',
                 soleProprietorship: true,
                 developmentTracks: [
                     {
@@ -122,9 +66,9 @@ indicator = {
                 ]
             },
             {
-                title: '2. Mitbestimmung -<br/>Umfang der Mitbestimmg + einbezogener Berührungsgruppen',
-                relevance: 'high',
-                position: '2',
+                title: 'Umfang der Mitbestimmung und einbezogener Berührungsgruppen',
+                relevance: 'middle',
+                position: '3',
                 soleProprietorship: true,
                 developmentTracks: [
                     {
@@ -147,7 +91,21 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Auflistung der Mitbestimmungsformen im Berichtszeitraum</caption>'+
+	                '<thead><tr>'+
+	                '<th scope="col">Art der Entscheidung</th>'+
+	                '<th scope="col">Eingebundene Berührungsgruppen</th>'+
+	                '<th scope="col">Wer hat wie entschieden?</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td></tr><tr>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td></tr></tbody></table>'
             }
         ]
     },

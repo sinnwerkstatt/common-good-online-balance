@@ -35,7 +35,10 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Durchschnittliche Arbeitszeit je Beschäftigen: </p>'+
+                    '<p>Quote der All-Inclusive-Arbeitsverträge: </p>'+
+                    '<p>Geleistete Überstunden je MitarbeiterIn: </p>'
             },
             {
                 title: 'Erhöhung des Anteils der Teilzeit-Arbeitsmodelle (bei adäquater Bezahlung)',
@@ -63,7 +66,10 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Zeitarbeitsquote: </p>'+
+                    '<p>Teilzeitquote: </p>'+
+                    '<p>Neueinstellungen: </p>'
             },
             {
                 title: 'Bewusster Umgang mit (Lebens-) Arbeitszeit',

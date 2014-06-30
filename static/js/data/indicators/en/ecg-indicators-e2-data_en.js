@@ -35,7 +35,8 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Wie hoch ist der geldwerter Umfang aller Maßnahmen (in % vom Jahresumsatz bzw. der bezahlten oder verrechenbaren Jahresarbeitszeit)? </p>'
             },
             {
                 title: 'Wirkungen',

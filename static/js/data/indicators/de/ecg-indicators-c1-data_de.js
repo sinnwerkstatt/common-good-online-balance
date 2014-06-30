@@ -61,7 +61,8 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Durchschnittlich in Anspruch genommene Fortbildungszeit pro MitarbeiterIn pro Jahr, nach Geschlecht und Beschäftigtengruppe (Grobeinteilung nach Position im Unternehmen): </p>'
             },
             {
                 title: 'Faire Beschäftigungs- und Entgeltpolitik',
@@ -125,7 +126,9 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Anzahl der Arbeitsunfälle, Langzeitkrankenstände und Frühpensionierungen infolge Arbeitsunfähigkeit nach Beschäftigtengruppe: </p>'+
+                    '<p>Durchschnittlicher Zeitumfang der in Anspruch genommenen Angebote zur freiwilligen, betrieblichen physischen und psychischen Gesundheitsvorsorge pro MitarbeiterIn pro Jahr, nach Geschlecht und Beschäftigtengruppe: </p>'
             },
             {
                 title: 'Gleichstellung und Diversität',
@@ -153,7 +156,10 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Fluktuation nach Altersgruppe, Geschlecht, sowie weiteren Diversitätskriterien (gegebenenfalls auch nach Niederlassung): </p>'+
+                    '<p>Rückkehrquote (ab 12 Monate nach Wiedereinstieg) nach Elternkarenz nach Geschlecht: </p>'+
+                    '<p>Anteil von Frauen im gebärfähigen Alter bei Beförderungen: </p>'
             }
         ]
     },
@@ -162,5 +168,8 @@ indicator = {
     bestPractices: {},
     implementationHelp: {},
     moreinfo: {},
-    footnotes: {}
+    footnotes: {},
+    keyFigures: '<p>Aufschlüsselung aller Beschäftigten nach Beschäftigtengruppe, Beschäftigungsverhältnis (Art des Arbeitsvertrages) und nach Geschlecht: </p>'+
+        '<p>Fehlzeiten nach Beschäftigtengruppen und – wenn anwendbar – Standort, im Branchenvergleich: </p>'+
+        '<p>Hierarchieebenen mit Anzahl der Mitarbeitern pro Hierarchiebene und Diversitätskennzahlen (Frauenquote/ Behindertenquote): </p>'
 };

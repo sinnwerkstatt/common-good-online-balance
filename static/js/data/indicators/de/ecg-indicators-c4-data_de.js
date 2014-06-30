@@ -51,7 +51,8 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Wie hoch ist das Mindesteinkommen im Unternehmen und ist es bezogen auf die Lebenserhaltungskosten der Region auskömmlich?: </p>'
             },
             {
                 title: 'Transparenz und Institutionalisierung',
@@ -88,5 +89,6 @@ indicator = {
     bestPractices: {},
     implementationHelp: {},
     moreinfo: {},
-    footnotes: {}
+    footnotes: {},
+    keyFigures: '<p>Wie hoch ist die Spreizung zwischen dem geringsten und höchsten Einkommen im Unternehmen (Bruttolohn inkl. aller Zulagen für Vollzeitäquivant)?: </p>'
 };

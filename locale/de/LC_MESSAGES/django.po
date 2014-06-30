@@ -187,7 +187,7 @@ msgstr "Max. Bewertung"
 #: ecg_balancing/models.py:81
 msgid "Only for an indicator, without a parent."
 msgstr ""
-"Nur für einen Subindikator eintragen, der keinen Elternteil-Indikator hat."
+"Nur für einen Indikator eintragen, der keinen Elternteil-Indikator hat."
 
 #: ecg_balancing/models.py:85
 msgid "Parent Indicator"
@@ -200,7 +200,7 @@ msgstr "Subindikator-Nummer"
 #: ecg_balancing/models.py:89 ecg_balancing/models.py:93
 msgid "Only for a subindicator, an indicator with a parent."
 msgstr ""
-"Nur für einen Subindikator eintragen, der keinen Elternteil-Indikator hat."
+"Nur für einen Subindikator eintragen, der einen Elternteil-Indikator hat."
 
 #: ecg_balancing/models.py:92
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:130

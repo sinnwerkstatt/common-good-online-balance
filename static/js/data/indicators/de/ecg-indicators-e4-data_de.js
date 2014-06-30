@@ -35,7 +35,8 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Wie hoch ist eine Gewinnausschüttung an externe EigentümerInnen im 5-Jahresschnitt in % (im Vergleich zur Inflation)?</p>'
             },
             {
                 title: 'Gemeinwohl-orientierte Gewinnverwendung: Ausschüttung and Arbeit-Gebende“, Stärkung des Eigenkapitals sowie ökosoziale Reinvestitionen',
@@ -63,7 +64,8 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Wieviel % des Gewinnes wird an Arbeitnehmer ausgeschüttet, wieviel % zur Stärkung des Eigenkapitals verwendet und wieviel % für sozial-ökologische Investitionen verwendet?</p>'
             }
         ]
     },

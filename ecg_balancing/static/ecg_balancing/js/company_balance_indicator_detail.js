@@ -27,6 +27,32 @@ if (!is_negative_criteria) {
     });
 }
 
+// add key figures HTML if existing
+// key-figures-container
+if (can_edit) {
+    $('.key-figures-container').each(function(e) {
+        var $keyFiguresContainer = $(this);
+        if ($keyFiguresContainer.html().trim().length == 0) { // if there is already content, don't add default content
+            var indicatorPosition = $keyFiguresContainer.data('indicator-position');
+            var indicatorData = null;
+            if (typeof indicatorPosition !== 'undefined') {
+                indicatorData = indicator.table.subindicators[indicatorPosition-1];
+            } else {
+                indicatorData = indicator;
+            }
+            if (typeof indicatorData.keyFigures !== 'undefined') {
+                $keyFiguresContainer.addClass('bubble-contents company-balance-indicator-keyfigures');
+                var indicatorSlug = $keyFiguresContainer.data('indicator-slug');
+                var keyFiguresHtml = '<textarea name="company-balance-indicator-'+indicatorSlug+'-keyfigures-editor" ' +
+                    'id="company-balance-indicator-'+indicatorSlug+'-keyfigures-editor">'
+                keyFiguresHtml += indicatorData.keyFigures;
+                keyFiguresHtml += '</textarea>';
+                $keyFiguresContainer.html(keyFiguresHtml);
+            }
+        }
+    });
+}
+
 //if (is_admin) {
 
 
@@ -119,6 +145,13 @@ var indicatorPrefixId = 'company-balance-indicator-' + indicatorShortCodeSlug;
 var editorId = indicatorPrefixId + '-editor';
 CKEDITOR.disableAutoInline = true;
 CKEDITOR.inline(editorId, ckeditor_config);
+
+// activate key figures for the main indicator
+var keyfiguresId = indicatorPrefixId + '-keyfigures' + '-editor';
+if (document.getElementById(keyfiguresId) !== null) {
+    CKEDITOR.disableAutoInline = true;
+    CKEDITOR.inline(keyfiguresId, ckeditor_config);
+}
 
 // activate indicator evaluation
 var touchSpinSettings = {

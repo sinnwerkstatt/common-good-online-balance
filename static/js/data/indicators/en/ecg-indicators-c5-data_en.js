@@ -119,7 +119,8 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<p>Wieviel Prozent des Eigentums liegt in MitarbeiterInnenhand?: </p>'
             }
         ]
     },

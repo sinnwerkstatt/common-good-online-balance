@@ -35,7 +35,26 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<thead><tr>'+
+	                '<th scope="col"></th>'+
+	                '<th scope="col">Teilweise vege-tarisch/vegan</th>'+
+	                '<th scope="col">Mehrheitlich veget./vegan</th>'+
+	                '<th scope="col">Überwiegend veget./vegan</th>'+
+	                '<th scope="col">Bio-Anteil(in%)</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td>Angebote im Unternehmen(% uale Verteilg)</td>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td></tr><tr>'+
+	                '<td>Tatsächliches Verhalten der MA (% uale Verteilung)</td>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr></tbody></table>'
             },
             {
                 title: 'Mobilität zum Arbeitsplatz',
@@ -63,7 +82,30 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<thead><tr>'+
+	                '<th scope="col"></th>'+
+	                '<th scope="col">Gesamt KM für das Unternehmen</th>'+
+	                '<th scope="col">Durchschnittlich pro MA</th>'+
+	                '</tr></thead>'+
+	                '<tbody>'+
+	                '<tr><td>Flugreisen</td>'+
+	                '<td></td>'+
+	                '<td></td></tr>'+
+	                '<tr><td>Auto/ PKW einzeln</td>'+
+	                '<td></td>'+
+	                '<td></td></tr>'+
+	                '<tr><td>Car-Sharing</td>'+
+	                '<td></td>'+
+	                '<td></td></tr>'+
+	                '<tr><td>ÖPNV</td>'+
+	                '<td></td>'+
+	                '<td></td></tr>'+
+	                '<tr><td>Fahrrad/ Fuß</td>'+
+	                '<td></td>'+
+	                '<td></td></tr>'+
+                    '</tbody></table>'
             },
             {
                 title: 'Organisationskultur, Sensibilisierung und unternehmensinterne Prozesse',

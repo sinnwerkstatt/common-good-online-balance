@@ -96,9 +96,6 @@ class Indicator(models.Model):
     sole_proprietorship = models.BooleanField(_('Applicable for sole proprietorship?'), default=True)
 
 
-    key_figures = models.TextField(_('Key figures'), blank=True, null=True)
-
-
     editor = models.CharField(_('Editor'),  max_length=30, blank=True, null=True)
     contact = fields.CommaSeparatedEmailField(_('Email(s)'),
                                               help_text=_('Multiple emails should be separated with a comma'),

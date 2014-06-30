@@ -35,7 +35,18 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Auflistung aller Ausgabenposten</caption>'+
+	                '<thead><tr>'+
+	                '<th scope="col">In % vom Umsatz</th>'+
+	                '<th scope="col">Abwicklung &uuml;ber folgenden Finanzdienstleister</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td>Ausgabenposten +&nbsp;% der Ausgaben</td>'+
+	                '<td>Erläuterung und (soziale, ökologische, regionale) Bewertung</td></tr><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr></tbody></table>'
             },
             {
                 title: 'Aktive Auseinandersetzung mit den Auswirkungen zugekaufter P/D und Prozesse zur Sicherstellung sowie Ausmaß und Form der Nachweisführung',

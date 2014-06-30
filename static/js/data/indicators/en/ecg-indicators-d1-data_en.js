@@ -35,7 +35,18 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Übersicht zur Einschätzung der Maßnahmen</caption>'+
+	                '<thead><tr>'+
+	                '<th scope="col">Marketing/ Verkaufsmaßnahme</th>'+
+	                '<th scope="col">% ualer Anteil am Marketing/ Verkaufsbudget</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr></tbody></table>'
             },
             {
                 title: 'Umfang der KundInnen-Mit­bestimmung/gemeinsame Produktentwicklung/Markt-forschung',
@@ -63,7 +74,21 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Auflistung KundInnen-Mitbestimmung</caption>'+
+	                '<thead><tr>'+
+	                '<th scope="col">Art der Entscheidung</th>'+
+	                '<th scope="col">Wer repräsentierte die KundInnengruppe?</th>'+
+	                '<th scope="col">Wer hat wie entschieden?</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td></tr><tr>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td></tr></tbody></table>'
             },
             {
                 title: 'Service-Management ',

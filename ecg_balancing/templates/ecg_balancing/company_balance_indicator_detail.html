@@ -32,7 +32,8 @@
 
 
   <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}">
-    <span class="js-indicator-page-title-inner"></span></h2></span>
+    <span class="js-indicator-page-title-inner"></span>
+  </h2>
 
 
 
@@ -106,6 +107,21 @@
       {% endif %}
     </div>
 
+    <div class="key-figures-container" data-indicator-slug="{{ object.indicator.slugify }}">
+      {% if object.indicator.key_figures %}
+          {% if can_edit %}
+            <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
+                id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor">
+                {{ object.indicator.key_figures }}
+            </textarea>
+          {% else %}
+            <div class="company-balance-indicator-text">
+              {{ object.indicator.key_figures|safe }}
+            </div>
+          {% endif %}
+      {% endif %}
+    </div>
+
   </div>
 </div>
 
@@ -169,18 +185,21 @@
           {% endif %}
         </div>
 
-        {% if subindicator.indicator.key_figures %}
-          <div class="bubble-contents" style="border-top: 1px solid black">
-              <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
-                  id="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor">
-                {% if subindicator.key_figures %}
-                  {{ subindicator.key_figures }}
-                {% else %}
-                  {{ subindicator.indicator.key_figures }}
-                {% endif %}
-              </textarea>
-          </div>
-        {% endif %}
+        <div class="key-figures-container" data-indicator-position="{{ subindicator.indicator.subindicator_number }}"
+                                            data-indicator-slug="{{ subindicator.indicator.slugify }}">
+          {% if subindicator.key_figures %}
+              {% if can_edit %}
+                <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
+                    id="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor">
+                    {{ subindicator.key_figures }}
+                </textarea>
+              {% else %}
+                <div class="company-balance-indicator-text">
+                  {{ subindicator.key_figures|safe }}
+                </div>
+              {% endif %}
+          {% endif %}
+        </div>
 
       </div>
 
@@ -213,6 +232,7 @@
 
   <script type="text/javascript">
     var is_admin = {% if is_admin %}true{% else %}false{% endif %};
+    var can_edit = {% if can_edit %}true{% else %}false{% endif %};
     var is_sole_proprietorship = '{{ is_sole_proprietorship }}' === 'True';
   </script>
   <script src="{% static 'ecg_balancing/js/company_balance_indicator_detail.js' %}"></script>

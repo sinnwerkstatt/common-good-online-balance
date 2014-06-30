@@ -63,7 +63,18 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Auflistung der Finanzdienstleister</caption>'+
+	                '<thead><tr>'+
+	                '<th scope="col">In % vom Umsatz</th>'+
+	                '<th scope="col">Abwicklung &uuml;ber folgenden Finanzdienstleister</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr></tbody></table>'
             },
             {
                 title: 'Gemeinwohlorientierte Veranlagung',
@@ -91,7 +102,18 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Auflistung der Kapitalanlagen</caption>'+
+	                '<thead><tr>'+
+	                '<th scope="col">In % der Veranlagung</th>'+
+	                '<th scope="col">Abwicklung über folgenden Finanzdienstleister</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr></tbody></table>'
             },
             {
                 title: 'Gemeinwohlorientierte Unternehmens-finanzierung',
@@ -119,7 +141,25 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Auflistung Eigen- und Fremdkapital-Anteil</caption>'+
+	                '<tr>'+
+	                '<td>Eigenkaptial</td>'+
+	                '<td>%-Anteil Gesamtkapital</td></tr><tr>'+
+	                '<td>Fremdkapital</td>'+
+	                '<td>%-Anteil Gesamtkapital</td></tr></tbody></table><br/>'+
+                    '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Auflistung Aufteilung der Finanzierungsformen/ Fremdkapitals</caption>'+
+	                '<thead><tr>'+
+	                '<th scope="col">In % der Finanzierung</th>'+
+	                '<th scope="col">Abwicklung über folgenden Finanzdienstleister</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr><tr>'+
+	                '<td>&nbsp;</td>'+
+	                '<td>&nbsp;</td></tr></tbody></table>'
             }
         ]
     },

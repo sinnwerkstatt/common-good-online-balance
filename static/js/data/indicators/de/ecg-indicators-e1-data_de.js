@@ -35,7 +35,35 @@ indicator = {
                             }
                         ]
                     }
-                ]
+                ],
+                keyFigures: '<table border="1" cellpadding="1" cellspacing="1" style="width:500px">'+
+	                '<caption>Hilfreiche Tabelle zur Übersicht</caption>'+
+	                '<thead><tr>'+
+	                '<th scope="col">Top 5 angebotene Produkte/ Dienstleistungen (in % des Umsatzes)</th>'+
+	                '<th scope="col">Deckt das P/D einen Grundbedarf (suffizient) und ist es lebens-notwendig? (Dient es dem einfachen Leben, einem guten Leben, oder ist es Luxus?)</th>'+
+	                '<th scope="col">Positive Wirkung auf Mensch/ Gemeinschaft/Erde</th>'+
+	                '<th scope="col">Negative mögliche/ tatsächliche Folgewirkung des P/D</th>'+
+	                '</tr></thead>'+
+	                '<tbody><tr>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td></tr><tr>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td></tr><tr>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td>'+
+	                '<td></td></tr></tbody></table>'+
+                    '<br/>'+
+                    '<p>Beschreibung des erfüllten Grundbedürfnisses je P/D und deren Erfüllung auf welcher Stufe (von einfach bis Luxus): </p>'+
+                    '<p></p>'+
+                    '<p>Bewertung des Grundbedarfs in Relation zu möglichen/tatsächlichen Folgewirkungen des P/D: </p>'+
+                    '<p></p>'+
+                    '<p>Beschreibung der Wirkung des P/D auf die Entwicklung des Menschen/ der Gemeinschaft bzw. auf die Regeneration/Schonung der Erde/Natur (falls relevant): </p>'+
+                    '<p></p>'
             },
             {
                 title: 'Ökologischer und sozialer Vergleich der Produkte/ Dienstleistungen mit Alternativen mit ähnlichem Endnutzen',
