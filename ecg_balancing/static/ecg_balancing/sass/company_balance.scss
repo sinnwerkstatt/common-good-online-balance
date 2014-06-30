@@ -110,7 +110,7 @@ $page-width: 980px;
 /* NEW STYLES */
 
 .ecg-matrix-header {
-  max-width: 600px;
+  max-width: 400px;
   margin-bottom: $distance-biggest;
   margin-left: auto;
   margin-right: auto;
@@ -122,6 +122,10 @@ $page-width: 980px;
 
 #ecg-matrix-container {
   padding-bottom: 50px;
+}
+
+.company-balance-header {
+  font-size: 2.2em;
 }
 
 .company-balance-indicator-points {

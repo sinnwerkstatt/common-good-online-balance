@@ -1,0 +1,24 @@
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail crispy_forms_tags %}
+{% load static from staticfiles %}
+
+<div class="ecg-matrix-header bubble">
+  <div class="bubble-inner unselectable">
+
+    <a href="{% url 'balance-detail' company_slug=company_balance.company.slug balance_year=company_balance.year %}"
+       class="no-decoration center">
+      <h2 class="company-balance-header">{% trans 'ECG Balance' %} {{ company_balance.year }}</h2>
+    </a>
+
+    <div class="center">{% trans "Points" %}: {{ company_balance.points }}</div>
+
+    <a href="{% url 'company-detail' company_balance.company.slug %}"
+       class="company-detail-link no-decoration center clearfix">
+
+      {% if company_balance.company.logo %}
+        <img class="" src="{% thumbnail company_balance.company.logo 50x0 crop=scale upscale %}" alt=""/>
+      {% endif %}
+      <span class="centered-text-to-img--smaller">{{ company_balance.company }}</span>
+    </a>
+
+  </div>
+</div>

@@ -19,24 +19,8 @@
       </a>
     {% endif %}
 
-    <div class="ecg-matrix-header bubble">
-      <div class="bubble-inner unselectable">
+  {% include 'ecg_balancing/includes/balance_header.html' with company_balance=object %}
 
-        <a href="{% url 'company-detail' object.company.slug %}"
-           class="company-detail-link no-decoration center clearfix">
-
-          {% if object.company.logo %}
-            <img class="" src="{% thumbnail object.company.logo 100x0 crop=scale upscale %}" alt=""/>
-          {% endif %}
-          <span class="centered-text-to-img">{{ object.company }}</span>
-        </a>
-        <a href="{% url 'balance-detail' company_slug=object.company.slug balance_year=object.year %}"
-           class="no-decoration center">
-          <span class="pull-right">({{ object.points }})</span>
-          <h2>{% trans 'ECG Balance' %} {{ object.year }}</h2>
-        </a>
-      </div>
-    </div>
 
     {% get_current_language as LANGUAGE_CODE %}
     <div id="ecg-matrix-container" class="container container-page">

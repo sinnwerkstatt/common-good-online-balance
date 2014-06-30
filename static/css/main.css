@@ -211,6 +211,12 @@ img.right {
   font-size: 2em;
 }
 
+.centered-text-to-img--smaller {
+  position: relative;
+  top: 2px;
+  font-size: 1.2em;
+}
+
 .centered-text-to-no-img {
   position: relative;
   top: 25px;
