@@ -217,12 +217,14 @@ class UserUpdateView(UpdateView):
 
     def get_form_kwargs( self ):
         kwargs = super(UserUpdateView, self ).get_form_kwargs()
-        kwargs['user'] = self.request.user
+        user = self.request.user
+        kwargs['user'] = user
         return kwargs
 
     def get_object(self, queryset=None):
         try:
-            return UserProfile.objects.get(user__pk=self.kwargs.get('pk'))
+            pk = self.kwargs.get('pk')
+            return UserProfile.objects.get(user__pk=pk)
         except:
             return None
 
