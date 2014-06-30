@@ -47,7 +47,7 @@
         {% if public_balance_exists or has_company_access %}
 
           {% if object.balance.all %}
-            <h3>{% trans "ECG Balances" %}</h3>
+            <h3>{% trans "ECG Balances" %}:</h3>
             <ul>
               {% for balance in object.balance.all %}
                 {% if is_guest and balance.visibility != 'public' %}

@@ -109,11 +109,15 @@ $page-width: 980px;
 
 /* NEW STYLES */
 
-.ecg-matrix-header {
+.ecg-balance-header {
   max-width: 400px;
   margin-bottom: $distance-biggest;
   margin-left: auto;
   margin-right: auto;
+}
+
+.ecg-balance-header__company {
+  padding: $distance-normal 0;
 }
 
 .company-detail-link {
