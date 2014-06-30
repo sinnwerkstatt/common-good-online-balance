@@ -377,27 +377,27 @@ msgstr "1 Mitarbeiter"
 
 #: ecg_balancing/models.py:231
 msgid "1-10 employees"
-msgstr ""
+msgstr "1-10 Mitarbeiter"
 
 #: ecg_balancing/models.py:232
 msgid "11-50 employees"
-msgstr ""
+msgstr "11-50 Mitarbeiter"
 
 #: ecg_balancing/models.py:233
 msgid "More than 50 employees"
-msgstr ""
+msgstr "Mehr als 50 Mitarbeiter"
 
 #: ecg_balancing/models.py:239
 msgid "0 - 100.000 USD"
-msgstr ""
+msgstr "0 - 100.000 €"
 
 #: ecg_balancing/models.py:240
 msgid "100.000 - 500.000 USD"
-msgstr ""
+msgstr "100.000 - 500.000 €"
 
 #: ecg_balancing/models.py:241
 msgid "More than 500.000 USD"
-msgstr ""
+msgstr "Mehr als 500.000 €"
 
 #: ecg_balancing/models.py:247
 msgid "Logo, Name, Website"
