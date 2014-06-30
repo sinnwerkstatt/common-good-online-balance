@@ -16,22 +16,7 @@
     {% trans "Back" %}
   </a>
 
-    <div class="ecg-matrix-header bubble">
-      <div class="bubble-inner unselectable">
-        <a href="{% url 'company-detail' object.company.slug %}"
-           class="company-detail-link no-decoration center clearfix">
-
-          {% if object.company.logo %}
-            <img class="" src="{% thumbnail object.company.logo 100x0 crop=scale upscale %}" alt=""/>
-          {% endif %}
-          <span class="centered-text-to-img">{{ object.company }}</span>
-        </a>
-        <a href="{% url 'balance-detail' company_slug=object.company.slug balance_year=object.year %}"
-           class="no-decoration center">
-          <h2>{% trans 'ECG Balance' %} {{ object.year }}</h2>
-        </a>
-      </div>
-    </div>
+  {% include 'ecg_balancing/includes/balance_header.html' with company_balance=object %}
 
     <h3>{% trans "Edit ECG Balance" %}</h3>
 
