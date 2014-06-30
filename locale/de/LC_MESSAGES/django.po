@@ -823,7 +823,7 @@ msgstr "Indikator-Infos"
 #: ecg_balancing/templates/ecg_balancing/company_balance_update.html:10
 #: ecg_balancing/templates/ecg_balancing/company_balance_update.html:36
 msgid "Edit ECG Balance"
-msgstr "GWÖ Bilanz editieren"
+msgstr "GWÖ-Bilanz editieren"
 
 #: ecg_balancing/templates/ecg_balancing/company_create.html:21
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:65
