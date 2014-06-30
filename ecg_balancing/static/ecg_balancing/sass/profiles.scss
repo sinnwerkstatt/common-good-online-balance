@@ -65,6 +65,13 @@ $company-logo-width: 100px;
 .profile-company-logo {
   float: left;
   height: 100px;
+  text-align: center;
+}
+
+.img-centered-helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .profile-company-details {

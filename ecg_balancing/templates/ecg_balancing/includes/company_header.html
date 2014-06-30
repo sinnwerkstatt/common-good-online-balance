@@ -3,6 +3,7 @@
 
 <div class="profile-company-logo">
   {% if company.logo %}
+    <span class="img-centered-helper"></span>
     <img src="{% thumbnail company.logo 100x0 crop=scale upscale %}" alt=""/>
   {% else %}
     <a href="{% url 'company-update' company.slug %}" class="glyphicon glyphicon-picture glyphicon-grey center"></a>
