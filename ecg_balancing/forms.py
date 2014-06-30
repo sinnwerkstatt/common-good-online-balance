@@ -150,8 +150,9 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
 
-    def __init__(self, *args, **kw):
+    def __init__(self, user, *args, **kw):
         super(UserProfileForm, self).__init__(*args, **kw)
+        self.user = user
         self.fields['first_name'].initial = self.instance.user.first_name
         self.fields['last_name'].initial = self.instance.user.last_name
         self.fields['email'].initial = self.instance.user.email
@@ -161,6 +162,20 @@ class UserProfileForm(forms.ModelForm):
             'email',
             'avatar',
         ]
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        try:
+            existing_user = User.objects.get(email=email)
+            if existing_user.pk is not self.user.pk:
+                raise forms.ValidationError(
+                    _('A user with that email already exists.'))
+        except User.DoesNotExist:
+            return email
+        except:
+                raise forms.ValidationError(
+                    _('A user with that email already exists.'))
+        return email
 
     def save(self, *args, **kw):
         super(UserProfileForm, self).save(*args, **kw)
@@ -188,7 +203,7 @@ class CompanyJoinForm(forms.ModelForm):
         model = UserRole
         exclude = ['role', 'user']
 
-    def __init__( self, user, *args, **kwargs ):
+    def __init__(self, user, *args, **kwargs):
         super(CompanyJoinForm, self ).__init__( *args, **kwargs )
         self.user = user
 
