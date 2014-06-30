@@ -666,6 +666,11 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
         if indicatorText:
             companyBalanceIndicator.description = indicatorText
 
+        # set main indicator key figures
+        indicatorKeyFiguresText = post.get(inputFieldFormat % (inputFieldPrefix, indicatorId, keyfiguresFieldSuffix))
+        if indicatorKeyFiguresText:
+            companyBalanceIndicator.key_figures = indicatorKeyFiguresText
+
         # set main indicator points, for negative indicators
         indicatorPoints = post.get(inputFieldFormat % (inputFieldPrefix, indicatorId, pointsFieldSuffix))
         if indicatorPoints:
@@ -690,10 +695,10 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
                     subindicatorsIds.append(subindicator.slugify())
                     subindicatorsPks.append(subindicator.pk)
 
-            companyBalanceSubIndicators = CompanyBalanceIndicator.objects.get_by_indicator_pks(subindicatorsPks)
+            companyBalanceSubIndicators = CompanyBalanceIndicator.objects.get_by_indicator_pks(subindicatorsPks, company)
             companyBalanceSubIndicatorsDict = dict([(obj.indicator.pk, obj) for obj in companyBalanceSubIndicators])
 
-            # save companyBalanceSubIndicator
+            # save companybalance_subindicator
             for subindicator in subindicators:
                 # skip for SP company and non-SP subindicators
                 if not (is_sole_proprietorship and not subindicator.sole_proprietorship):
@@ -704,22 +709,22 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
                     subindicatorPercentage = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, percentageFieldSuffix))
 
                     ## save the subindicator
-                    companyBalanceSubIndicator = companyBalanceSubIndicatorsDict[subindicator.pk]
-                    companyBalanceSubIndicator.description = subindicatorText
+                    companybalance_subindicator = companyBalanceSubIndicatorsDict[subindicator.pk]
+                    companybalance_subindicator.description = subindicatorText
                     if subindicatorKeyfiguresText:
-                        companyBalanceSubIndicator.key_figures = subindicatorKeyfiguresText
-                    companyBalanceSubIndicator.evaluation = subindicatorPercentage
-                    companyBalanceSubIndicator.save()
+                        companybalance_subindicator.key_figures = subindicatorKeyfiguresText
+                    companybalance_subindicator.evaluation = subindicatorPercentage
+                    companybalance_subindicator.save()
 
 
             # calculate the points for this subindicator
             subindicators_points_sum = 0
-            for companyBalanceSubIndicator in companyBalanceSubIndicators:
+            for companybalance_subindicator in companyBalanceSubIndicators:
                 # skip for SP company and non-SP subindicators
-                if not (is_sole_proprietorship and not companyBalanceSubIndicator.indicator.sole_proprietorship):
+                if not (is_sole_proprietorship and not companybalance_subindicator.indicator.sole_proprietorship):
 
                     companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(
-                        companyBalanceSubIndicator.evaluation, companyBalanceSubIndicator, companyBalanceSubIndicators, is_sole_proprietorship)
+                        companybalance_subindicator.evaluation, companybalance_subindicator, companyBalanceSubIndicators, is_sole_proprietorship)
 
                     subindicators_points_sum += companyBalanceSubIndicatorPoints
 

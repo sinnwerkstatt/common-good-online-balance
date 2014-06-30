@@ -91,15 +91,15 @@
     </div>
 
     <div class="key-figures-container" data-indicator-slug="{{ object.indicator.slugify }}">
-      {% if object.indicator.key_figures %}
+      {% if object.key_figures %}
           {% if can_edit %}
             <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
                 id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor">
-                {{ object.indicator.key_figures }}
+                {{ object.key_figures }}
             </textarea>
           {% else %}
             <div class="company-balance-indicator-text">
-              {{ object.indicator.key_figures|safe }}
+              {{ object.key_figures|safe }}
             </div>
           {% endif %}
       {% endif %}
