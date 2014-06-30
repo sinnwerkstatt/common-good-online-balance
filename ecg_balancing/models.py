@@ -260,7 +260,6 @@ class Company(models.Model):
     phone = models.CharField(_('Phone Number'), max_length=50, blank=True, null=True)
     fax = models.CharField(_('Fax Number'), max_length=50, blank=True, null=True)
 
-    # TODO: all 4 should be choices
     industry = models.CharField(_('Industry'), max_length=255, choices=INDUSTRY_CHOICES, blank=True, null=True)
     activities = models.CharField(_('Activities'), max_length=255, choices=ACTIVITY_CHOICES, blank=True, null=True)
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
