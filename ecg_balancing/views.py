@@ -222,11 +222,11 @@ class UserUpdateView(UpdateView):
         return kwargs
 
     def get_object(self, queryset=None):
+        pk = self.kwargs.get('pk')
         try:
-            pk = self.kwargs.get('pk')
             return UserProfile.objects.get(user__pk=pk)
         except:
-            return None
+            raise Exception(_('Cannot find the user with id "%s"')%(pk))
 
     def get_success_url(self):
         return reverse('user-detail', kwargs={'pk': self.request.user.pk})
