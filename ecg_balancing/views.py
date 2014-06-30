@@ -226,7 +226,8 @@ class UserUpdateView(UpdateView):
         try:
             return UserProfile.objects.get(user__pk=pk)
         except:
-            raise Exception(_('Cannot find the user with id "%s"')%(pk))
+            raise
+            # raise Exception(_('Cannot find the user with id "%s"')%(pk))
 
     def get_success_url(self):
         return reverse('user-detail', kwargs={'pk': self.request.user.pk})
