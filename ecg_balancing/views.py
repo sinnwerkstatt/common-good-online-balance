@@ -215,6 +215,16 @@ class UserUpdateView(UpdateView):
     form_class = UserProfileForm
     template_name = 'ecg_balancing/user_update.html'
 
+    def render_to_response(self, context, **response_kwargs):
+        user = self.request.user
+        pk = self.kwargs.get('pk')
+        if user.pk is not int(pk):
+            return render_to_response('ecg_balancing/user_no_edit.html',
+                                      context,
+                                      context_instance=RequestContext(self.request))
+        else:
+            return super(UserUpdateView, self).render_to_response(context, **response_kwargs)
+
     def get_form_kwargs( self ):
         kwargs = super(UserUpdateView, self ).get_form_kwargs()
         user = self.request.user

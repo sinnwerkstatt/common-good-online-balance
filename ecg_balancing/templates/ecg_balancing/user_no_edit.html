@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load static from staticfiles %}
+
+{% block page_title %}{% trans 'No Access' %}{% endblock %}
+
+{% block base_content %}
+
+  {% trans "You are not allowed to edit the profiles of other users." %}.
+  <a href="{% url 'user-detail' user.pk %}" class="button">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    {% trans "Back to profile" %}
+  </a>
+
+{% endblock base_content %}
