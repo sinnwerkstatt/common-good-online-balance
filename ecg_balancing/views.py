@@ -201,6 +201,7 @@ class UserDetailView(DetailView):
         context['companies_pending'] = companies_pending
         context['companies_member'] = companies_member
         context['companies_admin'] = companies_admin
+        context['is_same_user'] = self.request.user.pk == self.object.pk
 
         return context
 

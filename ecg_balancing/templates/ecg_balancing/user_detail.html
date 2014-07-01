@@ -16,6 +16,9 @@
       <div class="profile-user-avatar">
         {% if object.profile.avatar %}
           <img src="{% thumbnail object.profile.avatar 230x0 crop=scale upscale %}"/>
+        {% elif not is_same_user %}
+          <span class="glyphicon glyphicon-user glyphicon-grey__no_hover profile-user-avatar-empty">
+          </span>
         {% else %}
           <a class="glyphicon glyphicon-user glyphicon-grey profile-user-avatar-empty"
              href="{% url 'user-update' object.pk %}" title="{% trans "Upload profile photo" %}">
@@ -31,7 +34,7 @@
       </div>
     </div>
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-      {% if user.pk == object.pk %}
+      {% if is_same_user %}
         <a href="{% url 'user-update' object.pk %}" class="button pull-right">
           <span class="glyphicon glyphicon-pencil"></span>
           {% trans "Edit" %}
@@ -44,19 +47,23 @@
         <p>
         {% for company in companies_member %}
           <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
-          {% if company in companies_admin %}
+          {% if company in companies_admin and is_same_user%}
             (<a href="{% url 'company-admin' company.slug %}">Admin</a>)
           {% endif %}
           <br/>
         {% endfor %}
         {% for company in companies_pending %}
           <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
-          ({% trans "Membership pending" %})
+          {% if is_same_user %}
+            ({% trans "Membership pending" %})
+          {% endif %}
           <br/>
         {% endfor %}
         {% for company in companies_not_approved %}
           <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
-          ({% trans "Not approved" %})
+          {% if is_same_user %}
+            ({% trans "Not approved" %})
+          {% endif %}
         {% endfor %}
         </p>
       {% endif %}

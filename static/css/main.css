@@ -257,6 +257,11 @@ img.right {
   color: #a2a2a2;
 }
 
+.glyphicon.glyphicon-grey__no_hover {
+  color: #cccccc;
+  cursor: default;
+}
+
 .glyphicon.glyphicon-greyer {
   color: #a2a2a2;
 }
