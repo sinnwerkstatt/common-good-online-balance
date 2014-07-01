@@ -75,6 +75,9 @@
           <a href="{% url 'company-create' %}" class="button">{% trans "Create a company" %}</a>
         </div>
       {% endif %}
+      {% if not is_same_user and not companies_member %}
+        <div class="alert alert-warning pull-left">{% trans "No companies." %}</div>
+      {% endif %}
     </div>
   </div>
 
