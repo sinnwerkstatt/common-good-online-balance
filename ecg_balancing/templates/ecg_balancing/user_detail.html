@@ -31,10 +31,13 @@
       </div>
     </div>
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-      <a href="{% url 'user-update' object.pk %}" class="button pull-right">
-        <span class="glyphicon glyphicon-pencil"></span>
-        {% trans "Edit" %}
-      </a>
+      {% if user.pk == object.pk %}
+        <a href="{% url 'user-update' object.pk %}" class="button pull-right">
+          <span class="glyphicon glyphicon-pencil"></span>
+          {% trans "Edit" %}
+        </a>
+      {% endif %}
+
       <h4>{% trans "Companies" %}:</h4>
 
       {% if companies_member or companies_pending or companies_not_approved %}
