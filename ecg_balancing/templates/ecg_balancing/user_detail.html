@@ -41,7 +41,9 @@
         </a>
       {% endif %}
 
-      <h4>{% trans "Companies" %}:</h4>
+      {% if is_same_user or companies_member %}
+        <h4>{% trans "Companies" %}:</h4>
+      {% endif %}
 
       {% if companies_member or companies_pending or companies_not_approved %}
         <p>
