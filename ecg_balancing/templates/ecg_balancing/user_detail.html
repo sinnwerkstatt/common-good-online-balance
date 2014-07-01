@@ -68,7 +68,7 @@
         </p>
       {% endif %}
 
-      {% if not companies_member %}
+      {% if is_same_user and not companies_member %}
         <div class="alert alert-warning pull-left">{% trans "You are not a member of a company." %}</div>
         <div class="clearboth">
           <a href="{% url 'company-join' %}" class="button">{% trans "Join a company" %}</a>
