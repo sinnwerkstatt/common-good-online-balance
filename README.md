@@ -13,3 +13,12 @@ The ECG Balancing is a learning process involving ECG companies, peer companies,
 ## Economy for the Common Good
 
 * Official Website: https://www.ecogood.org/
+
+
+## Software
+
+For installation and administration of the web application read the [ADMIN.md](ADMIN.md) file.
+
+## Development
+
+If you want to develop the application read the [DEVELOPMENT.md](DEVELOPMENT.md) file.
