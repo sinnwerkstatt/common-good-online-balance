@@ -17,6 +17,7 @@ node_modules
 .idea/
 *.sublime-workspace
 *.sublime-project
+*~
 
 # Project files
 ecg_balancing/settings.py
