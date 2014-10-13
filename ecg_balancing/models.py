@@ -326,7 +326,6 @@ class CompanyBalance(models.Model):
     number_participated_employees = models.PositiveSmallIntegerField(_('Number of participated employees'), blank=True, null=True)
 
     peer_companies = models.ManyToManyField('ecg_balancing.Company', verbose_name=_('Peer Companies'), max_length=255, blank=True, null=True)
-    auditor = models.CharField(_('Auditor'), max_length=255, blank=True, null=True)
     common_good = models.TextField(_('The Company and Common Good'), blank=True, null=True)
     prospect = models.TextField(_('Prospect'), blank=True, null=True)
     process_description = models.TextField(_('Balance process description'), blank=True, null=True)
@@ -467,4 +466,3 @@ class FeedbackIndicator(models.Model):
 
     def __unicode__(self):
         return self.sender_name
-
