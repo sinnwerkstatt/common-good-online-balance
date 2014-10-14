@@ -10,6 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
 from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator, UserRole
 
+from bootstrap3_datetime.widgets import DateTimePicker
+
 
 class IndicatorForm(forms.ModelForm):
     class Meta:
@@ -190,6 +192,10 @@ class CompanyForm(forms.ModelForm):
     helper.label_class = 'clearboth text-right col-lg-2 col-md-2'
     helper.field_class = 'col-lg-5 col-md-5'
     helper.form_tag = False
+    
+    foundation_date = forms.DateField(
+        widget=DateTimePicker(options={"format": "YYYY-MM-DD",
+                                       "pickTime": False}))
 
     class Meta:
         model = Company

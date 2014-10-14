@@ -168,6 +168,7 @@ INSTALLED_APPS = (
     'embed_video',
     'cmsplugin_filer_image',
     'osm_field',
+    'bootstrap3_datetime',
 )
 
 LANGUAGES = [
