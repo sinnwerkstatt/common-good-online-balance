@@ -267,7 +267,7 @@ class Company(models.Model):
     profit = models.CharField(_('Profit'), max_length=255, choices=REVENUE_CHOICES, blank=True, null=True)
     affiliates = models.CharField(_('Affiliates'), max_length=255, blank=True, null=True)
 
-    foundation_date = models.DateTimeField(_('Foundation Date'), blank=True, null=True)
+    foundation_date = models.DateField(_('Foundation Date'), blank=True, null=True)
     owners = models.CharField(_('Owners'), max_length=255, blank=True, null=True)
     managing_directors = models.CharField(_('Managing Directors'), max_length=255, blank=True, null=True)
 

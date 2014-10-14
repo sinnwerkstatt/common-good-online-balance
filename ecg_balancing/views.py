@@ -858,4 +858,3 @@ class FeedbackIndicatorFormView(FormView):
 
 class FeedbackIndicatorSuccessView(TemplateView):
     template_name = 'ecg_balancing/feedback_indicator_success.html'
-
