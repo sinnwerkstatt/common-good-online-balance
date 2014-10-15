@@ -276,6 +276,18 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
     helper.field_class = 'col-lg-5 col-md-5'
     helper.form_tag = False
 
+    start_date = forms.DateField(
+        input_formats=['%Y-%m'],
+        widget=DateTimePicker(options={"format": "YYYY-MM",
+                                       "viewMode": "years",
+                                       "pickTime": False}))
+
+    end_date = forms.DateField(
+        input_formats=['%Y-%m'],
+        widget=DateTimePicker(options={"format": "YYYY-MM",
+                                       "viewMode": "years",
+                                       "pickTime": False}))
+
     class Meta:
         model = CompanyBalance
         fields = ('matrix', 'year', 'status', 'visibility', 'start_date', 'end_date', 'peer_companies', 'common_good',

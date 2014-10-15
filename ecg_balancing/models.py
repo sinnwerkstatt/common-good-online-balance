@@ -320,8 +320,8 @@ class CompanyBalance(models.Model):
     points = models.SmallIntegerField(_('Points'), max_length=4, default=0)
 
     year = models.SmallIntegerField(_('Year'), max_length=4)
-    start_date = models.DateTimeField(_('Start Date'), blank=True, null=True)
-    end_date = models.DateTimeField(_('End Date'), blank=True, null=True)
+    start_date = models.DateField(_('Start Date'), blank=True, null=True)
+    end_date = models.DateField(_('End Date'), blank=True, null=True)
     worked_hours = models.PositiveSmallIntegerField(_('Worked Hours'), blank=True, null=True)
     number_participated_employees = models.PositiveSmallIntegerField(_('Number of participated employees'), blank=True, null=True)
 
