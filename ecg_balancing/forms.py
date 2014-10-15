@@ -195,6 +195,7 @@ class CompanyForm(forms.ModelForm):
     
     foundation_date = forms.DateField(
         widget=DateTimePicker(options={"format": "YYYY-MM-DD",
+                                       "viewMode": "years",
                                        "pickTime": False}))
 
     class Meta:
