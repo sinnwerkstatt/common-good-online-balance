@@ -229,14 +229,6 @@ class Company(models.Model):
         (EMPLOYEES_NUMBER_CHOICE_MEDIUM, _('11-50 employees')),
         (EMPLOYEES_NUMBER_CHOICE_LARGE, _('More than 50 employees'))
     )
-    REVENUE_CHOICE_SMALL = 'small'
-    REVENUE_CHOICE_MEDIUM = 'medium'
-    REVENUE_CHOICE_LARGE = 'large'
-    REVENUE_CHOICES = (
-        (REVENUE_CHOICE_SMALL, _('0 - 100.000 USD')),
-        (REVENUE_CHOICE_MEDIUM, _('100.000 - 500.000 USD')),
-        (REVENUE_CHOICE_LARGE, _('More than 500.000 USD'))
-    )
 
     VISIBILITY_CHOICE_BASIC = 'basic'
     VISIBILITY_CHOICE_ALL = 'all'
@@ -263,8 +255,8 @@ class Company(models.Model):
     industry = models.CharField(_('Industry'), max_length=255, choices=INDUSTRY_CHOICES, blank=True, null=True)
     activities = models.CharField(_('Activities'), max_length=255, blank=True, null=True)
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
-    revenue = models.CharField(_('Revenue'), max_length=255, choices=REVENUE_CHOICES, blank=True, null=True)
-    profit = models.CharField(_('Profit'), max_length=255, choices=REVENUE_CHOICES, blank=True, null=True)
+    revenue = models.IntegerField(_('Revenue'), blank=False, null=True)
+    profit = models.IntegerField(_('Profit'), blank=False, null=True)
     affiliates = models.CharField(_('Affiliates'), max_length=255, blank=True, null=True)
 
     foundation_date = models.DateField(_('Foundation Date'), blank=True, null=True)
