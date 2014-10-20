@@ -305,9 +305,19 @@ class CompanyBalance(models.Model):
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='company_balances',
                               null=False,
                               blank=False)
+
+    EVALUATION_TYPE_CHOICE_SINGLE = 'single'
+    EVALUATION_TYPE_CHOICE_PEER = 'peer'
+    EVALUATION_TYPE_CHOICE = (
+        (EVALUATION_TYPE_CHOICE_SINGLE, _('Single (EPU)')),
+        (EVALUATION_TYPE_CHOICE_PEER, _('Peer-Evaluation'))
+    )
+    evaluation_type = models.CharField(_('Evaluation Type'), max_length=255, choices=EVALUATION_TYPE_CHOICE, null=True, blank=False)
+
     company = models.ForeignKey('ecg_balancing.Company', verbose_name=_(u'Company'), related_name='balance',
                               null=False,
                               blank=False)
+
     STATUS_CHOICE_STARTED = 'started'
     STATUS_CHOICE_FINISHED = 'finished'
     STATUS_CHOICE_AUDITED = 'audited'

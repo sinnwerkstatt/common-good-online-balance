@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 23:44+0200\n"
+"POT-Creation-Date: 2014-10-20 12:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,64 +31,64 @@ msgstr "Das Feld ist erforderlich."
 msgid "'%s' is not a valid e-mail address."
 msgstr "'%s' ist nicht valide E-Mail-Adresse."
 
-#: ecg_balancing/forms.py:25
+#: ecg_balancing/forms.py:27
 msgid "A user with that username already exists."
 msgstr ""
 
-#: ecg_balancing/forms.py:26
+#: ecg_balancing/forms.py:28
 msgid "The two password fields didn't match."
 msgstr ""
 
-#: ecg_balancing/forms.py:28
+#: ecg_balancing/forms.py:30
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:39
 msgid "Username"
 msgstr "Benutzer"
 
-#: ecg_balancing/forms.py:30
+#: ecg_balancing/forms.py:32
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
 
-#: ecg_balancing/forms.py:33
+#: ecg_balancing/forms.py:35
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
 
-#: ecg_balancing/forms.py:35
+#: ecg_balancing/forms.py:37
 msgid "Password"
 msgstr ""
 
-#: ecg_balancing/forms.py:37
+#: ecg_balancing/forms.py:39
 msgid "Password confirmation"
 msgstr ""
 
-#: ecg_balancing/forms.py:39
+#: ecg_balancing/forms.py:41
 msgid "Enter the same password as above, for verification."
 msgstr ""
 
-#: ecg_balancing/forms.py:66 ecg_balancing/forms.py:172
-#: ecg_balancing/forms.py:177
+#: ecg_balancing/forms.py:68 ecg_balancing/forms.py:174
+#: ecg_balancing/forms.py:179
 msgid "A user with that email already exists."
 msgstr "Ein Benutzer mit dieser E-Mail-Adresse existiert schon."
 
-#: ecg_balancing/forms.py:69 ecg_balancing/forms.py:141
+#: ecg_balancing/forms.py:71 ecg_balancing/forms.py:143
 msgid "First Name"
 msgstr "Vorname"
 
-#: ecg_balancing/forms.py:70 ecg_balancing/forms.py:142
+#: ecg_balancing/forms.py:72 ecg_balancing/forms.py:144
 msgid "Last Name"
 msgstr "Familienname"
 
-#: ecg_balancing/forms.py:71 ecg_balancing/forms.py:143
+#: ecg_balancing/forms.py:73 ecg_balancing/forms.py:145
 #: ecg_balancing/models.py:36 ecg_balancing/models.py:259
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:18
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_form.html:18
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:53
 msgid "Email"
 msgstr "E-Mail"
 
-#: ecg_balancing/forms.py:215
+#: ecg_balancing/forms.py:222
 msgid "You already requested membership or you are member of this company."
 msgstr "Sie sind nicht Mitglied eines Unternehmens."
 
-#: ecg_balancing/forms.py:261 ecg_balancing/forms.py:291
+#: ecg_balancing/forms.py:268 ecg_balancing/forms.py:310
 #, python-format
 msgid ""
 "There is an existing balance for the year %s. Please enter another year."
@@ -225,8 +225,8 @@ msgstr "E-Mail(s)"
 msgid "Multiple emails should be separated with a comma"
 msgstr "Mehrere E-Mails sollen mit Komma getrennt werden."
 
-#: ecg_balancing/models.py:105 ecg_balancing/models.py:401
-#: ecg_balancing/models.py:457
+#: ecg_balancing/models.py:105 ecg_balancing/models.py:410
+#: ecg_balancing/models.py:466
 msgid "Indicator"
 msgstr "Indikator"
 
@@ -408,7 +408,7 @@ msgstr "Alles"
 msgid "Slug"
 msgstr "Slug"
 
-#: ecg_balancing/models.py:250 ecg_balancing/models.py:425
+#: ecg_balancing/models.py:250 ecg_balancing/models.py:434
 msgid "Image"
 msgstr "Bild"
 
@@ -489,12 +489,12 @@ msgstr "Inhaber"
 msgid "Managing Directors"
 msgstr "Geschäftsführer"
 
-#: ecg_balancing/models.py:274 ecg_balancing/models.py:341
+#: ecg_balancing/models.py:274 ecg_balancing/models.py:350
 msgid "Visibility"
 msgstr "Sichtbarkeit"
 
 #: ecg_balancing/models.py:279
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:56
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:67
 msgid "Not approved"
 msgstr "Nicht akzeptiert"
 
@@ -502,7 +502,7 @@ msgstr "Nicht akzeptiert"
 msgid "Approved"
 msgstr "Akzeptiert"
 
-#: ecg_balancing/models.py:282 ecg_balancing/models.py:319
+#: ecg_balancing/models.py:282 ecg_balancing/models.py:329
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:33
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:49
 msgid "Status"
@@ -512,180 +512,190 @@ msgstr "Status"
 msgid "Model Creation Date"
 msgstr "Erstellungsdatum des Objekts"
 
-#: ecg_balancing/models.py:290 ecg_balancing/models.py:308
-#: ecg_balancing/models.py:440
+#: ecg_balancing/models.py:290 ecg_balancing/models.py:317
+#: ecg_balancing/models.py:449
 msgid "Company"
 msgstr "Unternehmen"
 
 #: ecg_balancing/models.py:291
 #: ecg_balancing/templates/ecg_balancing/companies_list.html:10
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:10
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:38
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:45
 #: templates/topmenu.html:11
 msgid "Companies"
 msgstr "Unternehmen"
 
+#: ecg_balancing/models.py:312
+msgid "Single (EPU)"
+msgstr "Einzel (EPU)"
+
+#: ecg_balancing/models.py:313
+#, fuzzy
+msgid "Peer-Evaluation"
+msgstr "Peer-Evaluierung"
+
 #: ecg_balancing/models.py:315
+#, fuzzy
+msgid "Evaluation Type"
+msgstr "Evaluierungstyp"
+
+#: ecg_balancing/models.py:325
 msgid "Started"
 msgstr "Angefangen"
 
-#: ecg_balancing/models.py:316
+#: ecg_balancing/models.py:326
 msgid "Finished"
 msgstr "Fertig"
 
-#: ecg_balancing/models.py:317
+#: ecg_balancing/models.py:327
 msgid "Audited"
 msgstr "Auditiert"
 
-#: ecg_balancing/models.py:320
+#: ecg_balancing/models.py:330
 #: ecg_balancing/templates/ecg_balancing/includes/balance_header.html:12
 msgid "Points"
 msgstr "Punkte"
 
-#: ecg_balancing/models.py:322
+#: ecg_balancing/models.py:332
 msgid "Year"
 msgstr "Jahr"
 
-#: ecg_balancing/models.py:323
+#: ecg_balancing/models.py:333
 msgid "Start Date"
 msgstr "Startdatum"
 
-#: ecg_balancing/models.py:324
+#: ecg_balancing/models.py:334
 msgid "End Date"
 msgstr "Enddatum"
 
-#: ecg_balancing/models.py:325
+#: ecg_balancing/models.py:335
 msgid "Worked Hours"
 msgstr "Arbeitsstunden für Bilanz-Erstellung"
 
-#: ecg_balancing/models.py:326
+#: ecg_balancing/models.py:336
 msgid "Number of participated employees"
 msgstr "Anzahl Personen für Bilanz-Erstellung"
 
-#: ecg_balancing/models.py:328
+#: ecg_balancing/models.py:338
 msgid "Peer Companies"
 msgstr "Peer-Unternehmen"
 
-#: ecg_balancing/models.py:329
-msgid "Auditor"
-msgstr "Auditor"
-
-#: ecg_balancing/models.py:330
+#: ecg_balancing/models.py:339
 msgid "The Company and Common Good"
 msgstr "Das Unternehmen und Gemeinwohl"
 
-#: ecg_balancing/models.py:331
+#: ecg_balancing/models.py:340
 msgid "Prospect"
 msgstr "Ausblick"
 
-#: ecg_balancing/models.py:332
+#: ecg_balancing/models.py:341
 msgid "Balance process description"
 msgstr "Beschreibung des Prozesses der Erstellung der GWÖ-Bilanz"
 
-#: ecg_balancing/models.py:333
+#: ecg_balancing/models.py:342
 msgid "How was the balance internally communicated?"
 msgstr "Wie wurde die Bilanz/der Bericht intern kommuniziert?"
 
-#: ecg_balancing/models.py:338
+#: ecg_balancing/models.py:347
 msgid "Internal"
 msgstr "Intern"
 
-#: ecg_balancing/models.py:339
+#: ecg_balancing/models.py:348
 msgid "Public"
 msgstr "Öffentlich"
 
-#: ecg_balancing/models.py:344
+#: ecg_balancing/models.py:353
 msgid "Year Balance"
 msgstr "Jahresbilanz"
 
-#: ecg_balancing/models.py:345
+#: ecg_balancing/models.py:354
 msgid "Year Balances"
 msgstr "Jahresbilanzen"
 
-#: ecg_balancing/models.py:397
+#: ecg_balancing/models.py:406
 msgid "Company Balance"
 msgstr "Unternehmensbilanz"
 
-#: ecg_balancing/models.py:405
+#: ecg_balancing/models.py:414
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ecg_balancing/models.py:406
+#: ecg_balancing/models.py:415
 msgid "Key figures"
 msgstr "Kennzahlen"
 
-#: ecg_balancing/models.py:407
+#: ecg_balancing/models.py:416
 msgid "Evaluation"
 msgstr "Bewertung"
 
-#: ecg_balancing/models.py:412
+#: ecg_balancing/models.py:421
 msgid "Company Balance Indicator"
 msgstr "Indikator der Jahresbilanz"
 
-#: ecg_balancing/models.py:413
+#: ecg_balancing/models.py:422
 msgid "Company Balance Indicators"
 msgstr "Indikatoren der Jahresbilanzen"
 
-#: ecg_balancing/models.py:434
+#: ecg_balancing/models.py:443
 msgid "Pending"
 msgstr "Anstehend"
 
-#: ecg_balancing/models.py:435
+#: ecg_balancing/models.py:444
 msgid "Not a member"
 msgstr "Kein Mitglied"
 
-#: ecg_balancing/models.py:436
+#: ecg_balancing/models.py:445
 msgid "Member"
 msgstr "Mitglied"
 
-#: ecg_balancing/models.py:437
+#: ecg_balancing/models.py:446
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:10
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:39
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:34
 msgid "Admin"
 msgstr "Admin"
 
-#: ecg_balancing/models.py:441
+#: ecg_balancing/models.py:450
 msgid "User"
 msgstr "Benutzer"
 
-#: ecg_balancing/models.py:442
+#: ecg_balancing/models.py:451
 msgid "Role"
 msgstr "Rolle"
 
-#: ecg_balancing/models.py:445
+#: ecg_balancing/models.py:454
 msgid "User Role"
 msgstr "Benutzerrolle"
 
-#: ecg_balancing/models.py:446
+#: ecg_balancing/models.py:455
 msgid "User Roles"
 msgstr "Benutzerrollen"
 
-#: ecg_balancing/models.py:458
+#: ecg_balancing/models.py:467
 msgid "Sender Name"
 msgstr "Absendername"
 
-#: ecg_balancing/models.py:459
+#: ecg_balancing/models.py:468
 msgid "Sender Email"
 msgstr "Absender E-Mail"
 
-#: ecg_balancing/models.py:460
+#: ecg_balancing/models.py:469
 msgid "Receiver Name"
 msgstr "Empfängername"
 
-#: ecg_balancing/models.py:461
+#: ecg_balancing/models.py:470
 msgid "Receiver Email"
 msgstr "Empfänger E-Mail"
 
-#: ecg_balancing/models.py:462
+#: ecg_balancing/models.py:471
 msgid "Feedback"
 msgstr "Feedback"
 
-#: ecg_balancing/models.py:465
+#: ecg_balancing/models.py:474
 msgid "Feedback Indicator"
 msgstr "Feedback-Indikator"
 
-#: ecg_balancing/models.py:466
+#: ecg_balancing/models.py:475
 msgid "Feedback Indicators"
 msgstr "Feedback-Indikatoren"
 
@@ -694,27 +704,27 @@ msgstr "Feedback-Indikatoren"
 msgid "[ECG] Company approved: %s"
 msgstr "[GWÖ] Unternehmen akzeptiert: %s"
 
-#: ecg_balancing/views.py:306
+#: ecg_balancing/views.py:320
 #, python-format
 msgid "[ECG] Membership request by %s"
 msgstr "[ECG] Mitgliedschaftsanfrage von %s"
 
-#: ecg_balancing/views.py:380
+#: ecg_balancing/views.py:394
 #, fuzzy, python-format
 msgid "[ECG] New company '%s' created by %s"
 msgstr "[GWÖ] Unternehmen akzeptiert: %s"
 
-#: ecg_balancing/views.py:455
+#: ecg_balancing/views.py:469
 #, python-format
 msgid "[ECG] Membership for '%s' accepted"
 msgstr "[ECG] Mitgliedschaft bei '%s' akzeptiert"
 
-#: ecg_balancing/views.py:459
+#: ecg_balancing/views.py:473
 #, python-format
 msgid "[ECG] Membership for '%s' rejected"
 msgstr "[ECG] Mitgliedschaft bei '%s' abgelehnt"
 
-#: ecg_balancing/views.py:823
+#: ecg_balancing/views.py:848
 #, python-format
 msgid "[ECG] New Feedback for Indicator %s"
 msgstr "[ECG] Neues Feedback für Indikator %s"
@@ -749,7 +759,7 @@ msgid "There are no new companies for approval."
 msgstr "Es gibt keine neue Unternehmen."
 
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:20
-#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:16
+#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:17
 #: ecg_balancing/templates/ecg_balancing/company_create.html:18
 #: ecg_balancing/templates/ecg_balancing/company_update.html:19
 #: ecg_balancing/templates/ecg_balancing/feedback_indicator_form.html:11
@@ -762,9 +772,9 @@ msgid "User roles were successfully updated."
 msgstr "Die Benutzerrollen wurden erfolgreich aktualisiert."
 
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:73
-#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:39
+#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:40
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:196
-#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:33
+#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:34
 #: ecg_balancing/templates/ecg_balancing/company_update.html:53
 #: ecg_balancing/templates/ecg_balancing/user_update.html:33
 msgid "Save"
@@ -778,18 +788,18 @@ msgstr "Es gibt keine Mitglieder im Unternehmen"
 msgid "You don't have admin rights for this company"
 msgstr "Sie haben nicht die Rechte das Unternehmen zu administrieren"
 
-#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:10
-#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:27
+#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:11
+#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:28
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:64
 msgid "Create ECG Balance"
 msgstr "GWÖ-Bilanz erstellen"
 
-#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:15
+#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:16
 msgid "You don't have the rights to create an ECG Balance"
 msgstr "Sie haben nicht die Rechte, eine GWÖ-Bilanz zu erstellen"
 
-#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:35
-#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:29
+#: ecg_balancing/templates/ecg_balancing/company_balance_create.html:36
+#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:30
 #: ecg_balancing/templates/ecg_balancing/company_create.html:33
 #: ecg_balancing/templates/ecg_balancing/company_update.html:49
 #: ecg_balancing/templates/ecg_balancing/feedback_indicator_form.html:22
@@ -808,7 +818,7 @@ msgstr "GWÖ-Bilanz"
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:30
 #: ecg_balancing/templates/ecg_balancing/company_update.html:11
 #: ecg_balancing/templates/ecg_balancing/company_update.html:41
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:36
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:40
 #: ecg_balancing/templates/ecg_balancing/user_update.html:10
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -822,13 +832,13 @@ msgstr "Feeback senden"
 msgid "Indicator Infos"
 msgstr "Indikator-Infos"
 
-#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:10
-#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:21
+#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:11
+#: ecg_balancing/templates/ecg_balancing/company_balance_update.html:22
 msgid "Edit ECG Balance"
 msgstr "GWÖ-Bilanz editieren"
 
 #: ecg_balancing/templates/ecg_balancing/company_create.html:21
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:65
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:77
 msgid "Create a company"
 msgstr "Unternehmen erstellen"
 
@@ -854,7 +864,7 @@ msgid "ECG Balances"
 msgstr "GWÖ-Bilanzen"
 
 #: ecg_balancing/templates/ecg_balancing/company_join.html:24
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:64
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:76
 msgid "Join a company"
 msgstr "Unternehmen beitreten"
 
@@ -876,6 +886,7 @@ msgstr "Unternehmen erstellen"
 
 #: ecg_balancing/templates/ecg_balancing/company_no_access.html:5
 #: ecg_balancing/templates/ecg_balancing/company_no_balance.html:5
+#: ecg_balancing/templates/ecg_balancing/user_no_edit.html:5
 msgid "No Access"
 msgstr "Kein Zugriff"
 
@@ -905,17 +916,31 @@ msgstr "Danke! Ihr Feedback wurde am GWÖ-Redaktionsteam gesendet."
 msgid "Back to ECG Balance"
 msgstr "Zurück zur GWÖ-Bilanz"
 
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:21
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:24
 msgid "Upload profile photo"
 msgstr "Profilbild hochladen"
 
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:51
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:60
 msgid "Membership pending"
 msgstr "ausstehende Zugehörigkeit"
 
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:62
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:74
 msgid "You are not a member of a company."
 msgstr "Sie sind nicht Mitglied eines Unternehmens."
+
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:81
+#, fuzzy
+msgid "No companies."
+msgstr "Unternehmen akzeptieren"
+
+#: ecg_balancing/templates/ecg_balancing/user_no_edit.html:9
+msgid "You are not allowed to edit the profiles of other users."
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/user_no_edit.html:12
+#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:10
+msgid "Back to profile"
+msgstr "Zurück zum Profil"
 
 #: ecg_balancing/templates/ecg_balancing/user_update.html:21
 msgid "Edit profile"
@@ -932,6 +957,7 @@ msgstr "Um Ihr Passwort zu ändern, klicken Sie bitte hier"
 
 #: ecg_balancing/templates/ecg_balancing/registration/login.html:6
 #: ecg_balancing/templates/ecg_balancing/registration/login.html:46
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:11
 #: templates/start.html:11 templates/topmenu.html:29
 msgid "Login"
 msgstr "Login"
@@ -976,10 +1002,6 @@ msgstr "Benutzerprofil öffnen"
 msgid "Password change"
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:10
-msgid "Back to profile"
-msgstr "Zurück zum Profil"
-
 #: ecg_balancing/templates/ecg_balancing/registration/password_change_form.html:18
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
@@ -1003,6 +1025,42 @@ msgstr ""
 msgid "Change my password"
 msgstr ""
 
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_done.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:8
+msgid "Password reset successful"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_done.html:8
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_form.html:4
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_form.html:9
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_form.html:29
+#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:4
+msgid "Password reset"
+msgstr ""
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_done.html:8
+msgid "Email sent"
+msgstr "E-Mail gesendet"
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_done.html:11
+msgid "Go to your profile"
+msgstr "Dein Profil öffnen"
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_done.html:14
+msgid "Please follow the instructions in the email you received."
+msgstr ""
+"Bitte die Anweisungen zum Zurücksetzen des Passworts in der erhaltenen E-"
+"Mail folgen."
+
+#: ecg_balancing/templates/ecg_balancing/registration/password_email_form.html:11
+msgid ""
+"Enter your email address and we'll email you instructions for setting a new "
+"passwort."
+msgstr ""
+"E-Mail-Adresse eingeben und den Anweisungen zum Zurücksetzen des Passworts "
+"in der E-Mail folgen."
+
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:4
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:8
 msgid "Password reset complete"
@@ -1015,14 +1073,6 @@ msgstr ""
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_complete.html:12
 msgid "Log in"
 msgstr "Erneut anmelden"
-
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:4
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:8
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:4
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:9
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:29
-msgid "Password reset"
-msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:10
 msgid "Enter new password"
@@ -1048,22 +1098,6 @@ msgid ""
 "used.  Please request a new password reset."
 msgstr ""
 
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:4
-msgid "Password reset successful"
-msgstr ""
-
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:8
-msgid "Email sent"
-msgstr "E-Mail gesendet"
-
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:11
-msgid "Go to your profile"
-msgstr "Dein Profil öffnen"
-
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:14
-msgid "Please follow the instructions in the email you received."
-msgstr "Bitte die Anweisungen zum Zurücksetzen des Passworts in der erhaltenen E-Mail folgen."
-
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_email.html:2
 #, python-format
 msgid ""
@@ -1087,14 +1121,6 @@ msgstr "Sie sind ausgeloggt."
 #, python-format
 msgid "The %(site_name)s team"
 msgstr ""
-
-#: ecg_balancing/templates/ecg_balancing/registration/password_reset_form.html:11
-msgid ""
-"Enter your email address and we'll email you instructions for setting a new "
-"passwort."
-msgstr ""
-"E-Mail-Adresse eingeben und den Anweisungen zum Zurücksetzen des Passworts "
-"in der E-Mail folgen."
 
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:4
 #: templates/start.html:12 templates/topmenu.html:30
@@ -1133,6 +1159,9 @@ msgstr "Profil"
 #: templates/topmenu.html:25
 msgid "Logout"
 msgstr "Ausloggen"
+
+#~ msgid "Auditor"
+#~ msgstr "Auditor"
 
 #~ msgid "Choose a company ..."
 #~ msgstr "Unternehmen auswählen ..."
