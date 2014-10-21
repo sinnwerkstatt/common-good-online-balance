@@ -244,8 +244,6 @@ class Company(models.Model):
 
     industry = models.CharField(_('Industry'), max_length=255, choices=INDUSTRY_CHOICES, blank=True, null=True)
     activities = models.CharField(_('Activities'), max_length=255, blank=True, null=True)
-    revenue = models.IntegerField(_('Revenue'), blank=False, null=True)
-    profit = models.IntegerField(_('Profit'), blank=False, null=True)
     affiliates = models.CharField(_('Affiliates'), max_length=255, blank=True, null=True)
 
     foundation_date = models.DateField(_('Foundation Date'), blank=True, null=True)
@@ -322,7 +320,9 @@ class CompanyBalance(models.Model):
         (EMPLOYEES_NUMBER_CHOICE_LARGE, _('More than 50 employees'))
     )
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
-
+    revenue = models.IntegerField(_('Revenue'), blank=False, null=True)
+    profit = models.IntegerField(_('Profit'), blank=False, null=True)
+    
     worked_hours = models.PositiveSmallIntegerField(_('Worked Hours'), blank=True, null=True)
     number_participated_employees = models.PositiveSmallIntegerField(_('Number of participated employees'), blank=True, null=True)
 
