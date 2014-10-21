@@ -322,15 +322,15 @@ class CompanyBalance(models.Model):
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
     revenue = models.IntegerField(_('Revenue'), blank=False, null=True)
     profit = models.IntegerField(_('Profit'), blank=False, null=True)
-    
-    worked_hours = models.PositiveSmallIntegerField(_('Worked Hours'), blank=True, null=True)
-    number_participated_employees = models.PositiveSmallIntegerField(_('Number of participated employees'), blank=True, null=True)
+
+    worked_hours = models.PositiveSmallIntegerField(_('Worked Hours'), blank=False, null=True)
+    number_participated_employees = models.PositiveSmallIntegerField(_('Number of participated employees'), blank=False, null=True)
 
     peer_companies = models.ManyToManyField('ecg_balancing.Company', verbose_name=_('Peer Companies'), max_length=255, blank=True, null=True)
     common_good = models.TextField(_('The Company and Common Good'), blank=True, null=True)
-    prospect = models.TextField(_('Prospect'), blank=True, null=True)
-    process_description = models.TextField(_('Balance process description'), blank=True, null=True)
-    internal_communication = models.TextField(_('How was the balance internally communicated?'), blank=True, null=True)
+    prospect = models.TextField(_('Prospect'), blank=False, null=True)
+    process_description = models.TextField(_('Balance process description'), blank=False, null=True)
+    internal_communication = models.TextField(_('How was the balance internally communicated?'), blank=False, null=True)
 
     VISIBILITY_CHOICE_INTERNAL = 'internal'
     VISIBILITY_CHOICE_PUBLIC = 'public'
