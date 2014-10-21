@@ -219,16 +219,6 @@ class Company(models.Model):
     ACTIVITY_CHOICES = (
         (ACTIVITY_CHOICE_EXAMPLE, _('Example')),
     )
-    EMPLOYEES_NUMBER_CHOICE_ONE = 'one'
-    EMPLOYEES_NUMBER_CHOICE_SMALL = 'small'
-    EMPLOYEES_NUMBER_CHOICE_MEDIUM = 'medium'
-    EMPLOYEES_NUMBER_CHOICE_LARGE = 'large'
-    EMPLOYEES_NUMBER_CHOICES = (
-        (EMPLOYEES_NUMBER_CHOICE_ONE, _('1 employee')),
-        (EMPLOYEES_NUMBER_CHOICE_SMALL, _('1-10 employees')),
-        (EMPLOYEES_NUMBER_CHOICE_MEDIUM, _('11-50 employees')),
-        (EMPLOYEES_NUMBER_CHOICE_LARGE, _('More than 50 employees'))
-    )
 
     VISIBILITY_CHOICE_BASIC = 'basic'
     VISIBILITY_CHOICE_ALL = 'all'
@@ -254,7 +244,6 @@ class Company(models.Model):
 
     industry = models.CharField(_('Industry'), max_length=255, choices=INDUSTRY_CHOICES, blank=True, null=True)
     activities = models.CharField(_('Activities'), max_length=255, blank=True, null=True)
-    employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
     revenue = models.IntegerField(_('Revenue'), blank=False, null=True)
     profit = models.IntegerField(_('Profit'), blank=False, null=True)
     affiliates = models.CharField(_('Affiliates'), max_length=255, blank=True, null=True)
@@ -289,9 +278,6 @@ class Company(models.Model):
         path = reverse('company-detail', args=[self.pk])
         return path
 
-    def is_sole_proprietorship(self):
-        return self.employees_number == 'one'
-
 
 class CompanyBalance(models.Model):
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='company_balances',
@@ -324,6 +310,19 @@ class CompanyBalance(models.Model):
     year = models.SmallIntegerField(_('Year'), max_length=4)
     start_date = models.DateField(_('Start Date'), blank=True, null=True)
     end_date = models.DateField(_('End Date'), blank=True, null=True)
+
+    EMPLOYEES_NUMBER_CHOICE_ONE = 'one'
+    EMPLOYEES_NUMBER_CHOICE_SMALL = 'small'
+    EMPLOYEES_NUMBER_CHOICE_MEDIUM = 'medium'
+    EMPLOYEES_NUMBER_CHOICE_LARGE = 'large'
+    EMPLOYEES_NUMBER_CHOICES = (
+        (EMPLOYEES_NUMBER_CHOICE_ONE, _('1 employee')),
+        (EMPLOYEES_NUMBER_CHOICE_SMALL, _('1-10 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_MEDIUM, _('11-50 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_LARGE, _('More than 50 employees'))
+    )
+    employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
+
     worked_hours = models.PositiveSmallIntegerField(_('Worked Hours'), blank=True, null=True)
     number_participated_employees = models.PositiveSmallIntegerField(_('Number of participated employees'), blank=True, null=True)
 
@@ -345,13 +344,15 @@ class CompanyBalance(models.Model):
         verbose_name = _('Year Balance')
         verbose_name_plural = _('Year Balances')
 
+    def is_sole_proprietorship(self):
+        return self.employees_number == 'one'
+
     def __unicode__(self):
         return '%s:%s:%s' % (
             unicode(self.company),
             unicode(self.matrix),
             unicode(self.year)
         )
-
 
     def recalculate_points(self):
         calculated_points = 0

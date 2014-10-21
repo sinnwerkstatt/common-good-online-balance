@@ -602,7 +602,7 @@ class CompanyBalanceIndicatorDetailView(UserRoleRedirectMixin, CompanyBalanceVie
                                                                indicator__parent=self.object.indicator).all().order_by(
             'indicator__subindicator_number').all()
         context['subindicators'] = subindicators
-        context['is_sole_proprietorship'] = self.object.company_balance.company.is_sole_proprietorship
+        context['is_sole_proprietorship'] = self.object.company_balance.is_sole_proprietorship
         return context
 
     def get_object(self, queryset=None):
@@ -661,7 +661,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
         companyBalanceIndicator = self.get_object()
         balance = companyBalanceIndicator.company_balance
         company = companyBalanceIndicator.company_balance.company
-        is_sole_proprietorship = company.is_sole_proprietorship()
+        is_sole_proprietorship = balance.is_sole_proprietorship()
         indicator = companyBalanceIndicator.indicator
         indicatorId = indicator.slugify()
 
