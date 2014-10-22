@@ -822,6 +822,8 @@ class FeedbackIndicatorFormView(FormView):
         initial = super(FeedbackIndicatorFormView, self).get_initial()
         if self.request.method == "GET":
             initial.update({
+                "sender_name": '%s %s'%(self.request.user.first_name, self.request.user.last_name),
+                "sender_email": self.request.user.email,
                 "indicator": self.indicator.pk,
             })
 

@@ -468,4 +468,4 @@ class FeedbackIndicator(models.Model):
         verbose_name_plural = _('Feedback Indicators')
 
     def __unicode__(self):
-        return self.sender_name
+        return "%s: %s"%(self.indicator, self.sender_name)

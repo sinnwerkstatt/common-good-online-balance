@@ -40,6 +40,13 @@ class CompanyBalanceIndicatorAdmin(admin.ModelAdmin):
 admin.site.register(CompanyBalanceIndicator, CompanyBalanceIndicatorAdmin)
 
 
+class FeedbackIndicatorAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(FeedbackIndicator, FeedbackIndicatorAdmin)
+
+
 class UserRoleAdmin(admin.ModelAdmin):
     pass
 

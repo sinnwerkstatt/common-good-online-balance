@@ -314,6 +314,8 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
 
 class FeedbackIndicatorForm(forms.ModelForm):
     indicator = forms.CharField(widget=forms.HiddenInput())
+    sender_name = forms.CharField(widget=forms.HiddenInput())
+    sender_email = forms.CharField(widget=forms.HiddenInput())
 
     helper = FormHelper()
     helper.label_class = 'clearboth text-right col-lg-2 col-md-2'
@@ -326,7 +328,7 @@ class FeedbackIndicatorForm(forms.ModelForm):
 
     class Meta:
         model = FeedbackIndicator
-        exclude = ['sender_name', 'sender_email', 'receiver_name', 'receiver_email']
+        exclude = ['receiver_name', 'receiver_email']
 
     def clean_indicator(self):
         data = self.cleaned_data['indicator']
