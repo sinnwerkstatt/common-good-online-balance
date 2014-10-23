@@ -200,6 +200,12 @@ table {
   font-weight: bold;
 }
 
+.indicator-points-postfix-percent {
+  padding: 4px;
+  background: #f5f5f5;
+  border-left: none;
+}
+
 .no-sole-proprietorship.active .indicator-title {
   color: #cccccc;
 }
@@ -361,7 +367,7 @@ table {
 }
 
 .company-balance-indicator-slider {
-  width: 145px;
+  width: 165px;
   padding-right: 25px;
 }
 .company-balance-indicator-slider .form-control:focus {

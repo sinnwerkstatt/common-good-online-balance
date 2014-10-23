@@ -160,7 +160,9 @@ var touchSpinSettings = {
     step: 1,
     decimals: 0,
     boostat: 3,
-    maxboostedstep: 10
+    maxboostedstep: 10,
+    postfix: "%",
+    postfix_extraclass: 'indicator-points-postfix-percent'
 };
 
 if (indicator.shortcodeSlug.indexOf('n') == 0) { // if negative criteria
@@ -181,7 +183,10 @@ var touchSpinSubindicatorSettings = {
     step: 10,
     decimals: 0,
     boostat: 3,
-    maxboostedstep: 10
+    maxboostedstep: 10,
+    postfix: "%",
+    postfix_extraclass: 'indicator-points-postfix-percent'
+
 };
 
 // if not negative criteria
