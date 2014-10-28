@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% load i18n cms_tags menu_tags sekizai_tags thumbnail %}
+{% load i18n l10n cms_tags menu_tags sekizai_tags thumbnail %}
 {% load static from staticfiles %}
+{% load leaflet_tags %}
 
 {% block css %}
   {{ block.super }}
   <link href="{% static 'ecg_balancing/css/profiles.css' %}" rel="stylesheet">
+  {% leaflet_css %}
 {% endblock css %}
 
 {% block page_title %}{% trans "Companies" %}{% endblock %}
@@ -19,17 +21,51 @@
     </a>
   {% endif %}
 
-  {% for company in object_list %}
-    <a href="{% url 'company-detail' company.slug %}" class="company-detail-link no-decoration center clearfix">
-      {% if company.logo %}
-        <img class="" src="{% thumbnail company.logo 100x0 crop=scale upscale %}" alt=""/>
-        <span class="centered-text-to-img space-left">{{ company }}</span>
-      {% else %}
-        <span class="no-logo-space">&nbsp;</span>
-        <span class="centered-text-to-no-img space-left">{{ company }}</span>
-      {% endif %}
-    </a>
-  {% endfor %}
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills pull-right" role="tablist">
+    <li class="active"><a href="#map" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-map-marker"></span> {% trans "Map" %}</a></li>
+    <li><a href="#list" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> {% trans "List" %}</a></li>
+  </ul>
 
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <!-- Map tab -->
+    <div class="tab-pane fade in active" id="map">
+      {% leaflet_map "company_map_overview" callback="company_map_overview_init" %}
+      <script type="text/javascript">
+        function company_map_overview_init (map, options) {
+          {% for company in object_list %}
+            var link = "{% url 'company-detail' company.slug %}";
+            {% if company.logo %}
+              L.marker([{{ company.location_lat|unlocalize }}, {{ company.location_lon|unlocalize }}]).addTo(map).bindPopup('<a href="' + link + '"><img class="" src="{% thumbnail company.logo 25x0 crop=scale upscale %}" alt=""/><span class="centered-text-to-img--smaller space-left">{{ company }}</span></a>');
+            {% else %}
+              L.marker([{{ company.location_lat|unlocalize }}, {{ company.location_lon|unlocalize }}]).addTo(map).bindPopup('<a href="' + link + '"><span class="centered-text-to-no-img--smaller">{{ company }}</span></a>');
+            {% endif %}
+          {% endfor %}
+        }
+      </script>
+    </div>
+    <!-- List tab -->
+    <div class="tab-pane fade" id="list">
+      {% for company in object_list %}
+        <a href="{% url 'company-detail' company.slug %}" class="company-detail-link no-decoration center clearfix">
+          {% if company.logo %}
+            <img class="" src="{% thumbnail company.logo 100x0 crop=scale upscale %}" alt=""/>
+            <span class="centered-text-to-img space-left">{{ company }}</span>
+          {% else %}
+            <span class="no-logo-space">&nbsp;</span>
+            <span class="centered-text-to-no-img space-left">{{ company }}</span>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
 
 {% endblock base_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  {% leaflet_js %}
+
+{% endblock javascript %}

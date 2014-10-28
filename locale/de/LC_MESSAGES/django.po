@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-21 17:29+0200\n"
+"POT-Creation-Date: 2014-10-28 17:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -475,7 +475,7 @@ msgid "Company"
 msgstr "Unternehmen"
 
 #: ecg_balancing/models.py:270
-#: ecg_balancing/templates/ecg_balancing/companies_list.html:10
+#: ecg_balancing/templates/ecg_balancing/companies_list.html:12
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:10
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:45
 #: templates/topmenu.html:11
@@ -710,15 +710,23 @@ msgstr "[ECG] Mitgliedschaft bei '%s' akzeptiert"
 msgid "[ECG] Membership for '%s' rejected"
 msgstr "[ECG] Mitgliedschaft bei '%s' abgelehnt"
 
-#: ecg_balancing/views.py:848
+#: ecg_balancing/views.py:850
 #, python-format
 msgid "[ECG] New Feedback for Indicator %s"
 msgstr "[ECG] Neues Feedback für Indikator %s"
 
-#: ecg_balancing/templates/ecg_balancing/companies_list.html:17
+#: ecg_balancing/templates/ecg_balancing/companies_list.html:19
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:14
 msgid "Approve companies"
 msgstr "Unternehmen akzeptieren"
+
+#: ecg_balancing/templates/ecg_balancing/companies_list.html:26
+msgid "Map"
+msgstr "Karte"
+
+#: ecg_balancing/templates/ecg_balancing/companies_list.html:27
+msgid "List"
+msgstr "Liste"
 
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:16
 msgid ""

@@ -168,6 +168,7 @@ INSTALLED_APPS = (
     'embed_video',
     'cmsplugin_filer_image',
     'osm_field',
+    'leaflet',
     'bootstrap3_datetime',
 )
 
@@ -232,3 +233,10 @@ ENDLESS_PAGINATION_PREVIOUS_LABEL = '<b>&#9001;</b> Zurück'
 ENDLESS_PAGINATION_NEXT_LABEL = 'Weiter <b>&#9002;</b>'
 
 #AUTH_USER_MODEL = 'ecg_balancing.UserProfile'
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (20.0, 40.0),
+    'DEFAULT_ZOOM': 2,
+    'MIN_ZOOM': 1,
+    'MAX_ZOOM': 17,
+}
