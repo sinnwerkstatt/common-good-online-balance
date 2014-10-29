@@ -294,13 +294,15 @@ class CompanyBalance(models.Model):
                               null=False,
                               blank=False)
 
-    STATUS_CHOICE_STARTED = 'started'
+    STATUS_CHOICE_DRAFT = 'draft'
     STATUS_CHOICE_FINISHED = 'finished'
-    STATUS_CHOICE_AUDITED = 'audited'
+    STATUS_CHOICE_CERTIFIED = 'certified'
+    STATUS_CHOICE_PUBLISHED = 'published'
     STATUS_CHOICE = (
-        (STATUS_CHOICE_STARTED, _('Started')),
-        (STATUS_CHOICE_FINISHED, _('Finished')),
-        (STATUS_CHOICE_AUDITED, _('Audited'))
+        (STATUS_CHOICE_DRAFT, _('Draft')),
+        (STATUS_CHOICE_FINISHED, _('Final / Finished')),
+        (STATUS_CHOICE_CERTIFIED, _('Certified / Not published')),
+        (STATUS_CHOICE_PUBLISHED, _('Published'))
     )
     status = models.CharField(_('Status'), max_length=255, choices=STATUS_CHOICE, null=False, blank=False)
     points = models.SmallIntegerField(_('Points'), max_length=4, default=0)

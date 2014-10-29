@@ -563,7 +563,7 @@ class CompanyBalanceCreateView(UserRoleRedirectMixin, CreateView):
 
     def form_valid(self, form, **kwargs):
         self.object = form.save(commit=False)
-        self.object.status = CompanyBalance.STATUS_CHOICE_STARTED
+        self.object.status = CompanyBalance.STATUS_CHOICE_DRAFT
         self.object.save()
 
         return HttpResponseRedirect(reverse_lazy('balance-detail',
