@@ -292,9 +292,9 @@ class CompanyUpdateView(UserRoleRedirectMixin, UpdateView):
             company.status = Company.STATUS_CHOICE_APPROVED
             company.save()
 
-        return HttpResponseRedirect(reverse_lazy('user-detail',
+        return HttpResponseRedirect(reverse('company-detail',
                                                  kwargs={
-                                                     'pk': self.request.user.pk,
+                                                     'slug': company.slug,
                                                  }))
 
 
