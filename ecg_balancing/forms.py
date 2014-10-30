@@ -193,7 +193,7 @@ class CompanyForm(forms.ModelForm):
     helper.field_class = 'col-lg-5 col-md-5'
     helper.form_tag = False
     
-    foundation_date = forms.DateField(
+    foundation_date = forms.DateField(label=_("Foundation Date"),
         widget=DateTimePicker(options={"format": "YYYY-MM-DD",
                                        "viewMode": "years",
                                        "pickTime": False}))
@@ -277,13 +277,13 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
     helper.form_tag = False
 
     start_date = forms.DateField(
-        input_formats=['%Y-%m'],
+        input_formats=['%Y-%m'], label=_("Start Date"),
         widget=DateTimePicker(options={"format": "YYYY-MM",
                                        "viewMode": "years",
                                        "pickTime": False}))
 
     end_date = forms.DateField(
-        input_formats=['%Y-%m'],
+        input_formats=['%Y-%m'], label=_("End Date"),
         widget=DateTimePicker(options={"format": "YYYY-MM",
                                        "viewMode": "years",
                                        "pickTime": False}))
