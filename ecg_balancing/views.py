@@ -273,6 +273,30 @@ class CompanyUpdateView(UserRoleRedirectMixin, UpdateView):
         else:
             return super(CompanyUpdateView, self).get_success_url()
 
+    def get_context_data(self, **kwargs):
+        context = super(CompanyUpdateView, self).get_context_data(**kwargs)
+        company = self.object
+
+        if company.status == Company.STATUS_CHOICE_APPROVED:
+            context['approved'] = True
+        else:
+            context['approved'] = False
+
+        return context
+
+    def form_valid(self, form, **kwargs):
+        self.object = form.save(commit=False)
+        company = self.object
+
+        if 'publish' in self.request.POST:
+            company.status = Company.STATUS_CHOICE_APPROVED
+            company.save()
+
+        return HttpResponseRedirect(reverse_lazy('user-detail',
+                                                 kwargs={
+                                                     'pk': self.request.user.pk,
+                                                 }))
+
 
 class CompanyJoinView(CreateView):
     model = UserRole
