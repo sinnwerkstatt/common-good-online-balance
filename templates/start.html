@@ -3,14 +3,18 @@
 
 {% block base_content %}
 
-  {% if user.is_authenticated %}
-    {% trans "Hi " %} <a href="{% url 'user-detail' user.pk %}">{{ user.first_name }} {{ user.last_name }}</a>
+  <div class="row clearfix">
+  	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+  	   {% placeholder "first-column" %}
+  	</div>
 
+  	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+  		{% placeholder "second-column" %}
+  	</div>
 
-  {% else %}
-    <a href="{% url 'login' %}" class="button primary">{% trans "Login" %}</a>
-    <a href="{% url 'register' %}" class="button primary">{% trans "Register" %}</a>
-  {% endif %}
-
+  	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+  		{% placeholder "third-column" %}
+  	</div>
+  </div>
 
 {% endblock %}
