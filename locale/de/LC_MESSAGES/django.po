@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-29 13:27+0100\n"
+"POT-Creation-Date: 2014-11-03 15:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,11 +78,16 @@ msgid "Last Name"
 msgstr "Familienname"
 
 #: ecg_balancing/forms.py:73 ecg_balancing/forms.py:145
-#: ecg_balancing/models.py:36 ecg_balancing/models.py:241
+#: ecg_balancing/models.py:36 ecg_balancing/models.py:242
 #: ecg_balancing/templates/ecg_balancing/registration/password_email_form.html:18
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:53
 msgid "Email"
 msgstr "E-Mail"
+
+#: ecg_balancing/forms.py:196 ecg_balancing/models.py:250
+#: ecg_balancing/templates/ecg_balancing/company_detail.html:130
+msgid "Foundation Date"
+msgstr "Gründungsdatum"
 
 #: ecg_balancing/forms.py:222
 msgid "You already requested membership or you are member of this company."
@@ -94,6 +99,14 @@ msgid ""
 "There is an existing balance for the year %s. Please enter another year."
 msgstr ""
 "Eine Bilanz für das Jahr %s existert schon. Bitte ein anderes Jahr eingeben."
+
+#: ecg_balancing/forms.py:280 ecg_balancing/models.py:312
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: ecg_balancing/forms.py:286 ecg_balancing/models.py:313
+msgid "End Date"
+msgstr "Enddatum"
 
 #: ecg_balancing/models.py:24
 msgid "Suppliers"
@@ -128,7 +141,7 @@ msgid "Version"
 msgstr "Version"
 
 #: ecg_balancing/models.py:39 ecg_balancing/models.py:73
-#: ecg_balancing/models.py:281
+#: ecg_balancing/models.py:282
 msgid "Matrix"
 msgstr "Matrix"
 
@@ -168,7 +181,7 @@ msgstr "Mittel"
 msgid "High"
 msgstr "Hoch"
 
-#: ecg_balancing/models.py:77 ecg_balancing/models.py:230
+#: ecg_balancing/models.py:77 ecg_balancing/models.py:231
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:48
 msgid "Name"
 msgstr "Name"
@@ -225,8 +238,8 @@ msgstr "E-Mail(s)"
 msgid "Multiple emails should be separated with a comma"
 msgstr "Mehrere E-Mails sollen mit Komma getrennt werden."
 
-#: ecg_balancing/models.py:105 ecg_balancing/models.py:405
-#: ecg_balancing/models.py:461
+#: ecg_balancing/models.py:105 ecg_balancing/models.py:406
+#: ecg_balancing/models.py:462
 msgid "Indicator"
 msgstr "Indikator"
 
@@ -235,246 +248,241 @@ msgid "Indicators"
 msgstr "Indikatoren"
 
 #: ecg_balancing/models.py:185
-msgid "Agriculture, forestry and fishing"
-msgstr "Land- und Forstwirtschaft, Fischerei"
+msgid "Construction"
+msgstr "Baugewerbe"
 
 #: ecg_balancing/models.py:186
 msgid "Mining and quarrying"
 msgstr "Bergbau, Gewinnung von Steinen und Erden"
 
 #: ecg_balancing/models.py:187
-msgid "Manufacturing"
-msgstr "Verarbeitendes Gewerbe, Herstellung von Waren"
+msgid "Professional, scientific and technical service activities"
+msgstr "Dienstleistungen (freiberuflich, wissenschaftlich und technisch)"
 
 #: ecg_balancing/models.py:188
+msgid "Other service activities"
+msgstr "Dienstleistungen (sonstige)"
+
+#: ecg_balancing/models.py:189
+msgid "Administrative and support service activities"
+msgstr "Dienstleistungen (sonstige wirtschaftliche)"
+
+#: ecg_balancing/models.py:190
 msgid "Electricity, gas, steam and air conditioning supply"
 msgstr "Energieversorgung"
 
-#: ecg_balancing/models.py:189
+#: ecg_balancing/models.py:191
+msgid "Education"
+msgstr "Erziehung und Unterricht"
+
+#: ecg_balancing/models.py:192
+msgid "Activities of extraterritorial organisations and bodies"
+msgstr "Exterritoriale Organisationen und Körperschaften"
+
+#: ecg_balancing/models.py:193
+msgid "Financial and insurance activities"
+msgstr "Finanz- und Versicherungsdienstleistungen"
+
+#: ecg_balancing/models.py:194
+msgid "Research and development"
+msgstr "Forschung und Entwicklung"
+
+#: ecg_balancing/models.py:195
+msgid "Gardeners and florists"
+msgstr "Gärtner und Florist"
+
+#: ecg_balancing/models.py:196
+msgid "Human health and social work activities"
+msgstr "Gesundheits- und Sozialwesen"
+
+#: ecg_balancing/models.py:197
+msgid "Wholesale and retail trade, repair of motor vehicles and motorcycles"
+msgstr "Handel (und Instandhaltung / Reparatur von Kraftfahrzeugen)"
+
+#: ecg_balancing/models.py:198
+msgid "Real estate activities"
+msgstr "Immobilien- und Vermögenstreuhänder"
+
+#: ecg_balancing/models.py:199
+msgid "Other industries"
+msgstr "Industrie (sonstige)"
+
+#: ecg_balancing/models.py:200
+msgid "Charitable organizations, NGOs"
+msgstr "Karitative Organisation, NGOs"
+
+#: ecg_balancing/models.py:201
+msgid "Church and religious institutions"
+msgstr "Kirchliche und Religiöse Institutionen"
+
+#: ecg_balancing/models.py:202
+msgid "Art and culture"
+msgstr "Kunst und Kultur"
+
+#: ecg_balancing/models.py:203
+msgid "Agriculture, forestry and fishing"
+msgstr "Land- und Forstwirtschaft, Fischerei"
+
+#: ecg_balancing/models.py:204
+msgid "Food industries"
+msgstr "Lebensmittelindustrie"
+
+#: ecg_balancing/models.py:205
+msgid "Media management, advertising and market communication"
+msgstr "Medienwirtschaft, Werbung und Marktkommunikation"
+
+#: ecg_balancing/models.py:206
+msgid "Metal and electrical industry"
+msgstr "Metall- und Elektroindustrie"
+
+#: ecg_balancing/models.py:207
+msgid "Public administration and defence, compulsory, social security"
+msgstr "Öffentliche Verwaltung, Verteidigung, Sozialversicherung"
+
+#: ecg_balancing/models.py:208
+msgid "Politics, political actions"
+msgstr "Politik, Politische Tätigkeit"
+
+#: ecg_balancing/models.py:209
+msgid "Activities of households as employers"
+msgstr "Private Haushalte (mit Hauspersonal)"
+
+#: ecg_balancing/models.py:210
+msgid "Law (lawyer, tax consultancy, ...)"
+msgstr "Recht (Rechts- und Steuerberatung)"
+
+#: ecg_balancing/models.py:211
+msgid "Textiles, clothing, shoe and leather industry"
+msgstr "Textil-, Bekleidungs-, Schuh- und Lederindustrie"
+
+#: ecg_balancing/models.py:212
+msgid "Accommodation and food service activities"
+msgstr "Tourismus und Freizeitwirtschaft"
+
+#: ecg_balancing/models.py:213
+msgid "Transportation and storage"
+msgstr "Transport, Verkehr und Lager"
+
+#: ecg_balancing/models.py:214
+msgid "Consulting and IT industry"
+msgstr "Unternehmensberatung und Informationstechnologie"
+
+#: ecg_balancing/models.py:215
+msgid "Manufacturing"
+msgstr "Verarbeitendes Gewerbe, Herstellung von Waren"
+
+#: ecg_balancing/models.py:216
 msgid "Water supply, sewerage waste management and remediation activities"
 msgstr ""
 "Wasserversorgung, Abwasser- und Abfallentsorgung, Beseitigung von "
 "Umweltverschmutzungen"
 
-#: ecg_balancing/models.py:190
-msgid "Construction"
-msgstr "Baugewerbe"
-
-#: ecg_balancing/models.py:191
-msgid "Wholesale and retail trade, repair of motor vehicles and motorcycles"
-msgstr "Handel (und Instandhaltung / Reparatur von Kraftfahrzeugen)"
-
-#: ecg_balancing/models.py:192
-msgid "Transportation and storage"
-msgstr "Transport, Verkehr und Lager"
-
-#: ecg_balancing/models.py:193
-msgid "Accommodation and food service activities"
-msgstr "Tourismus und Freizeitwirtschaft"
-
-#: ecg_balancing/models.py:194
-msgid "Consulting and IT industry"
-msgstr "Unternehmensberatung und Informationstechnologie"
-
-#: ecg_balancing/models.py:195
-msgid "Financial and insurance activities"
-msgstr "Finanz- und Versicherungsdienstleistungen"
-
-#: ecg_balancing/models.py:196
-msgid "Real estate activities"
-msgstr "Immobilien- und Vermögenstreuhänder"
-
-#: ecg_balancing/models.py:197
-msgid "Professional, scientific and technical service activities"
-msgstr "Dienstleistungen (freiberuflich, wissenschaftlich und technisch)"
-
-#: ecg_balancing/models.py:198
-msgid "Administrative and support service activities"
-msgstr "Dienstleistungen (sonstige wirtschaftliche)"
-
-#: ecg_balancing/models.py:199
-msgid "Public administration and defence, compulsory, social security"
-msgstr "Öffentliche Verwaltung, Verteidigung, Sozialversicherung"
-
-#: ecg_balancing/models.py:200
-msgid "Education"
-msgstr "Erziehung und Unterricht"
-
-#: ecg_balancing/models.py:201
-msgid "Human health and social work activities"
-msgstr "Gesundheits- und Sozialwesen"
-
-#: ecg_balancing/models.py:202
-msgid "Media management, advertising and market communication"
-msgstr "Medienwirtschaft, Werbung und Marktkommunikation"
-
-#: ecg_balancing/models.py:203
-msgid "Other service activities"
-msgstr "Dienstleistungen (sonstige)"
-
-#: ecg_balancing/models.py:204
-msgid "Activities of households as employers"
-msgstr "Private Haushalte (mit Hauspersonal)"
-
-#: ecg_balancing/models.py:205
-msgid "Activities of extraterritorial organisations and bodies"
-msgstr "Exterritoriale Organisationen und Körperschaften"
-
-#: ecg_balancing/models.py:206
-msgid "Textiles, clothing, shoe and leather industry"
-msgstr "Textil-, Bekleidungs-, Schuh- und Lederindustrie"
-
-#: ecg_balancing/models.py:207
-msgid "Food industries"
-msgstr "Lebensmittelindustrie"
-
-#: ecg_balancing/models.py:208
-msgid "Church and religious institutions"
-msgstr "Kirchliche und Religiöse Institutionen"
-
-#: ecg_balancing/models.py:209
-msgid "Art and culture"
-msgstr "Kunst und Kultur"
-
-#: ecg_balancing/models.py:210
-msgid "Research and development"
-msgstr "Forschung und Entwicklung"
-
-#: ecg_balancing/models.py:211
-msgid "Law (lawyer, tax consultancy, ...)"
-msgstr "Recht (Rechts- und Steuerberatung)"
-
-#: ecg_balancing/models.py:212
-msgid "Metal and electrical industry"
-msgstr "Metall- und Elektroindustrie"
-
-#: ecg_balancing/models.py:213
-msgid "Politics, political actions"
-msgstr "Politik, Politische Tätigkeit"
-
-#: ecg_balancing/models.py:214
-msgid "Gardeners and florists"
-msgstr "Gärtner und Florist"
-
-#: ecg_balancing/models.py:215
-msgid "Charitable organizations, NGOs"
-msgstr "Karitative Organisation, NGOs"
-
-#: ecg_balancing/models.py:216
-msgid "Others"
-msgstr "Andere"
-
-#: ecg_balancing/models.py:220
+#: ecg_balancing/models.py:221
 msgid "Example"
 msgstr "Beispiel"
 
-#: ecg_balancing/models.py:226
+#: ecg_balancing/models.py:227
 msgid "Logo, Name, Website"
 msgstr "Logo, Name, Webseite"
 
-#: ecg_balancing/models.py:227
+#: ecg_balancing/models.py:228
 msgid "Everything"
 msgstr "Alles"
 
-#: ecg_balancing/models.py:231
+#: ecg_balancing/models.py:232
 msgid "Slug"
 msgstr "Slug"
 
-#: ecg_balancing/models.py:232 ecg_balancing/models.py:429
+#: ecg_balancing/models.py:233 ecg_balancing/models.py:430
 msgid "Image"
 msgstr "Bild"
 
-#: ecg_balancing/models.py:234
+#: ecg_balancing/models.py:235
 msgid "Street"
 msgstr "Straße"
 
-#: ecg_balancing/models.py:235
+#: ecg_balancing/models.py:236
 msgid "ZIP code"
 msgstr "PLZ"
 
-#: ecg_balancing/models.py:236
+#: ecg_balancing/models.py:237
 msgid "City"
 msgstr "Stadt"
 
-#: ecg_balancing/models.py:237
+#: ecg_balancing/models.py:238
 msgid "Country"
 msgstr "Land"
 
-#: ecg_balancing/models.py:238
+#: ecg_balancing/models.py:239
 msgid "Location"
 msgstr "Standort"
 
-#: ecg_balancing/models.py:239
+#: ecg_balancing/models.py:240
 msgid "Website"
 msgstr "Webseite"
 
-#: ecg_balancing/models.py:242
+#: ecg_balancing/models.py:243
 msgid "Phone Number"
 msgstr "Telefonnummer"
 
-#: ecg_balancing/models.py:243
+#: ecg_balancing/models.py:244
 msgid "Fax Number"
 msgstr "Faxnummer"
 
-#: ecg_balancing/models.py:245
+#: ecg_balancing/models.py:246
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:109
 msgid "Industry"
 msgstr "Industrie"
 
-#: ecg_balancing/models.py:246
+#: ecg_balancing/models.py:247
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:112
 msgid "Activities"
 msgstr "Tätigkeiten"
 
-#: ecg_balancing/models.py:247
+#: ecg_balancing/models.py:248
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:124
 msgid "Affiliates"
 msgstr "Tochtergesellschaften"
 
-#: ecg_balancing/models.py:249
-#: ecg_balancing/templates/ecg_balancing/company_detail.html:130
-msgid "Foundation Date"
-msgstr "Gründungsdatum"
-
-#: ecg_balancing/models.py:250
+#: ecg_balancing/models.py:251
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:133
 msgid "Owners"
 msgstr "Inhaber"
 
-#: ecg_balancing/models.py:251
+#: ecg_balancing/models.py:252
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:136
 msgid "Managing Directors"
 msgstr "Geschäftsführer"
 
-#: ecg_balancing/models.py:253 ecg_balancing/models.py:343
+#: ecg_balancing/models.py:254 ecg_balancing/models.py:344
 msgid "Visibility"
 msgstr "Sichtbarkeit"
 
-#: ecg_balancing/models.py:258
+#: ecg_balancing/models.py:259
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:67
 msgid "Not approved"
 msgstr "Nicht akzeptiert"
 
-#: ecg_balancing/models.py:259
+#: ecg_balancing/models.py:260
 msgid "Approved"
 msgstr "Akzeptiert"
 
-#: ecg_balancing/models.py:261 ecg_balancing/models.py:307
+#: ecg_balancing/models.py:262 ecg_balancing/models.py:308
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:33
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:49
 msgid "Status"
 msgstr "Status"
 
-#: ecg_balancing/models.py:264
+#: ecg_balancing/models.py:265
 msgid "Model Creation Date"
 msgstr "Erstellungsdatum des Objekts"
 
-#: ecg_balancing/models.py:269 ecg_balancing/models.py:293
-#: ecg_balancing/models.py:444
+#: ecg_balancing/models.py:270 ecg_balancing/models.py:294
+#: ecg_balancing/models.py:445
 msgid "Company"
 msgstr "Unternehmen"
 
-#: ecg_balancing/models.py:270
+#: ecg_balancing/models.py:271
 #: ecg_balancing/templates/ecg_balancing/companies_list.html:12
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:10
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:45
@@ -482,210 +490,202 @@ msgstr "Unternehmen"
 msgid "Companies"
 msgstr "Unternehmen"
 
-#: ecg_balancing/models.py:288
+#: ecg_balancing/models.py:289
 msgid "Single (EPU)"
 msgstr "Einzel (EPU)"
 
-#: ecg_balancing/models.py:289
+#: ecg_balancing/models.py:290
 msgid "Peer-Evaluation"
 msgstr "Peer-Evaluierung"
 
-#: ecg_balancing/models.py:291
+#: ecg_balancing/models.py:292
 msgid "Evaluation Type"
 msgstr "Evaluierungstyp"
 
-#: ecg_balancing/models.py:302
+#: ecg_balancing/models.py:303
 msgid "Draft"
 msgstr "Entwurf"
 
-#: ecg_balancing/models.py:303
+#: ecg_balancing/models.py:304
 msgid "Final / Finished"
 msgstr "Final / Fertig"
 
-#: ecg_balancing/models.py:304
+#: ecg_balancing/models.py:305
 msgid "Certified / Not published"
 msgstr "Zertifiziert / Nicht veröffentlicht"
 
-#: ecg_balancing/models.py:305
+#: ecg_balancing/models.py:306
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: ecg_balancing/models.py:308
+#: ecg_balancing/models.py:309
 #: ecg_balancing/templates/ecg_balancing/includes/balance_header.html:12
 msgid "Points"
 msgstr "Punkte"
 
-#: ecg_balancing/models.py:310
+#: ecg_balancing/models.py:311
 msgid "Year"
 msgstr "Jahr"
 
-#: ecg_balancing/models.py:311
-msgid "Start Date"
-msgstr "Startdatum"
-
-#: ecg_balancing/models.py:312
-msgid "End Date"
-msgstr "Enddatum"
-
-#: ecg_balancing/models.py:319
+#: ecg_balancing/models.py:320
 msgid "1 employee"
 msgstr "1 Mitarbeiter"
 
-#: ecg_balancing/models.py:320
+#: ecg_balancing/models.py:321
 msgid "1-10 employees"
 msgstr "1-10 Mitarbeiter"
 
-#: ecg_balancing/models.py:321
+#: ecg_balancing/models.py:322
 msgid "11-50 employees"
 msgstr "11-50 Mitarbeiter"
 
-#: ecg_balancing/models.py:322
+#: ecg_balancing/models.py:323
 msgid "More than 50 employees"
 msgstr "Mehr als 50 Mitarbeiter"
 
-#: ecg_balancing/models.py:324
+#: ecg_balancing/models.py:325
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:115
 msgid "Number of employees"
 msgstr "Anzahl der Mitarbeiter"
 
-#: ecg_balancing/models.py:325
+#: ecg_balancing/models.py:326
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:118
 msgid "Revenue"
 msgstr "Umsatz"
 
-#: ecg_balancing/models.py:326
+#: ecg_balancing/models.py:327
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:121
 msgid "Profit"
 msgstr "Gewinn"
 
-#: ecg_balancing/models.py:328
+#: ecg_balancing/models.py:329
 msgid "Worked Hours"
 msgstr "Arbeitsstunden für Bilanz-Erstellung"
 
-#: ecg_balancing/models.py:329
+#: ecg_balancing/models.py:330
 msgid "Number of participated employees"
 msgstr "Anzahl Personen für Bilanz-Erstellung"
 
-#: ecg_balancing/models.py:331
+#: ecg_balancing/models.py:332
 msgid "Peer Companies"
 msgstr "Peer-Unternehmen"
 
-#: ecg_balancing/models.py:332
+#: ecg_balancing/models.py:333
 msgid "The Company and Common Good"
 msgstr "Das Unternehmen und Gemeinwohl"
 
-#: ecg_balancing/models.py:333
+#: ecg_balancing/models.py:334
 msgid "Prospect"
 msgstr "Ausblick"
 
-#: ecg_balancing/models.py:334
+#: ecg_balancing/models.py:335
 msgid "Balance process description"
 msgstr "Beschreibung des Prozesses der Erstellung der GWÖ-Bilanz"
 
-#: ecg_balancing/models.py:335
+#: ecg_balancing/models.py:336
 msgid "How was the balance internally communicated?"
 msgstr "Wie wurde die Bilanz/der Bericht intern kommuniziert?"
 
-#: ecg_balancing/models.py:340
+#: ecg_balancing/models.py:341
 msgid "Internal"
 msgstr "Intern"
 
-#: ecg_balancing/models.py:341
+#: ecg_balancing/models.py:342
 msgid "Public"
 msgstr "Öffentlich"
 
-#: ecg_balancing/models.py:346
+#: ecg_balancing/models.py:347
 msgid "Year Balance"
 msgstr "Jahresbilanz"
 
-#: ecg_balancing/models.py:347
+#: ecg_balancing/models.py:348
 msgid "Year Balances"
 msgstr "Jahresbilanzen"
 
-#: ecg_balancing/models.py:401
+#: ecg_balancing/models.py:402
 msgid "Company Balance"
 msgstr "Unternehmensbilanz"
 
-#: ecg_balancing/models.py:409
+#: ecg_balancing/models.py:410
 msgid "Description"
 msgstr "Beschreibung"
 
-#: ecg_balancing/models.py:410
+#: ecg_balancing/models.py:411
 msgid "Key figures"
 msgstr "Kennzahlen"
 
-#: ecg_balancing/models.py:411
+#: ecg_balancing/models.py:412
 msgid "Evaluation"
 msgstr "Bewertung"
 
-#: ecg_balancing/models.py:416
+#: ecg_balancing/models.py:417
 msgid "Company Balance Indicator"
 msgstr "Indikator der Jahresbilanz"
 
-#: ecg_balancing/models.py:417
+#: ecg_balancing/models.py:418
 msgid "Company Balance Indicators"
 msgstr "Indikatoren der Jahresbilanzen"
 
-#: ecg_balancing/models.py:438
+#: ecg_balancing/models.py:439
 msgid "Pending"
 msgstr "Anstehend"
 
-#: ecg_balancing/models.py:439
+#: ecg_balancing/models.py:440
 msgid "Not a member"
 msgstr "Kein Mitglied"
 
-#: ecg_balancing/models.py:440
+#: ecg_balancing/models.py:441
 msgid "Member"
 msgstr "Mitglied"
 
-#: ecg_balancing/models.py:441
+#: ecg_balancing/models.py:442
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:10
 #: ecg_balancing/templates/ecg_balancing/company_admin.html:39
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:34
 msgid "Admin"
 msgstr "Admin"
 
-#: ecg_balancing/models.py:445
+#: ecg_balancing/models.py:446
 msgid "User"
 msgstr "Benutzer"
 
-#: ecg_balancing/models.py:446
+#: ecg_balancing/models.py:447
 msgid "Role"
 msgstr "Rolle"
 
-#: ecg_balancing/models.py:449
+#: ecg_balancing/models.py:450
 msgid "User Role"
 msgstr "Benutzerrolle"
 
-#: ecg_balancing/models.py:450
+#: ecg_balancing/models.py:451
 msgid "User Roles"
 msgstr "Benutzerrollen"
 
-#: ecg_balancing/models.py:462
+#: ecg_balancing/models.py:463
 msgid "Sender Name"
 msgstr "Absendername"
 
-#: ecg_balancing/models.py:463
+#: ecg_balancing/models.py:464
 msgid "Sender Email"
 msgstr "Absender E-Mail"
 
-#: ecg_balancing/models.py:464
+#: ecg_balancing/models.py:465
 msgid "Receiver Name"
 msgstr "Empfängername"
 
-#: ecg_balancing/models.py:465
+#: ecg_balancing/models.py:466
 msgid "Receiver Email"
 msgstr "Empfänger E-Mail"
 
-#: ecg_balancing/models.py:466
+#: ecg_balancing/models.py:467
 msgid "Feedback"
 msgstr "Feedback"
 
-#: ecg_balancing/models.py:469
+#: ecg_balancing/models.py:470
 msgid "Feedback Indicator"
 msgstr "Feedback-Indikator"
 
-#: ecg_balancing/models.py:470
+#: ecg_balancing/models.py:471
 msgid "Feedback Indicators"
 msgstr "Feedback-Indikatoren"
 
@@ -694,27 +694,27 @@ msgstr "Feedback-Indikatoren"
 msgid "[ECG] Company approved: %s"
 msgstr "[GWÖ] Unternehmen akzeptiert: %s"
 
-#: ecg_balancing/views.py:320
+#: ecg_balancing/views.py:344
 #, python-format
 msgid "[ECG] Membership request by %s"
 msgstr "[ECG] Mitgliedschaftsanfrage von %s"
 
-#: ecg_balancing/views.py:394
+#: ecg_balancing/views.py:418
 #, fuzzy, python-format
 msgid "[ECG] New company '%s' created by %s"
 msgstr "[GWÖ] Unternehmen akzeptiert: %s"
 
-#: ecg_balancing/views.py:469
+#: ecg_balancing/views.py:493
 #, python-format
 msgid "[ECG] Membership for '%s' accepted"
 msgstr "[ECG] Mitgliedschaft bei '%s' akzeptiert"
 
-#: ecg_balancing/views.py:473
+#: ecg_balancing/views.py:497
 #, python-format
 msgid "[ECG] Membership for '%s' rejected"
 msgstr "[ECG] Mitgliedschaft bei '%s' abgelehnt"
 
-#: ecg_balancing/views.py:850
+#: ecg_balancing/views.py:874
 #, python-format
 msgid "[ECG] New Feedback for Indicator %s"
 msgstr "[ECG] Neues Feedback für Indikator %s"
@@ -899,6 +899,10 @@ msgstr "hat keine GWÖ-Bilanz für dieses Jahr."
 #: ecg_balancing/templates/ecg_balancing/company_update.html:38
 msgid "You don't have the rights to edit the company"
 msgstr "Sie haben nicht die Rechte, dieses Unternehmen zu bearbeiten"
+
+#: ecg_balancing/templates/ecg_balancing/company_update.html:55
+msgid "Publish"
+msgstr "Veröffentlichen"
 
 #: ecg_balancing/templates/ecg_balancing/feedback_indicator_form.html:5
 #: ecg_balancing/templates/ecg_balancing/feedback_indicator_form.html:14
@@ -1156,6 +1160,9 @@ msgstr "Profil"
 #: templates/topmenu.html:25
 msgid "Logout"
 msgstr "Ausloggen"
+
+#~ msgid "Others"
+#~ msgstr "Andere"
 
 #~ msgid "Started"
 #~ msgstr "Angefangen"
