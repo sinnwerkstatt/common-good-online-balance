@@ -5833,6 +5833,7 @@ button.close {
   /* 1 */
   display: table;
   /* 2 */
+  margin-bottom: 5px;
 }
 .clearfix:after {
   clear: both;
