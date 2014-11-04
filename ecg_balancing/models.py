@@ -365,7 +365,7 @@ class CompanyBalance(models.Model):
             if balance_indicator_evaluation != 0:
                 calculated_points += balance_indicator_evaluation
 
-        if self.company.is_sole_proprietorship:
+        if self.is_sole_proprietorship:
             calculated_points = int (round (calculated_points * (float (1000) / 790) ))
 
         self.points = calculated_points
