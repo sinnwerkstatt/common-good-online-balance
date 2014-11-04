@@ -42,6 +42,10 @@
               L.marker([{{ company.location_lat|unlocalize }}, {{ company.location_lon|unlocalize }}]).addTo(map).bindPopup('<a href="' + link + '"><span class="centered-text-to-no-img--smaller">{{ company }}</span></a>');
             {% endif %}
           {% endfor %}
+          L.tileLayer('http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
+            detectRetina: true,
+            attribution: '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://www.mapquest.com/">Mapquest</a>'
+          }).addTo(map);
         }
       </script>
     </div>
