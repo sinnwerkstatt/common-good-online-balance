@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-03 15:33+0100\n"
+"POT-Creation-Date: 2014-11-10 13:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -959,7 +959,7 @@ msgstr "Um Ihr Passwort zu ändern, klicken Sie bitte hier"
 #: ecg_balancing/templates/ecg_balancing/registration/login.html:6
 #: ecg_balancing/templates/ecg_balancing/registration/login.html:46
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_done.html:11
-#: templates/start.html:11 templates/topmenu.html:29
+#: templates/topmenu.html:29
 msgid "Login"
 msgstr "Login"
 
@@ -1124,14 +1124,14 @@ msgid "The %(site_name)s team"
 msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:4
-#: templates/start.html:12 templates/topmenu.html:30
+#: templates/topmenu.html:30
 msgid "Register"
-msgstr "Anmelden"
+msgstr "Registrieren"
 
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:12
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:93
 msgid "Register user"
-msgstr "Benutzer anmelden"
+msgstr "Benutzer registrieren"
 
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:16
 msgid "First and last name"
@@ -1145,10 +1145,6 @@ msgstr "GWÖ Online Bilanzierung"
 msgid "Legal notice"
 msgstr "Impressum"
 
-#: templates/start.html:7
-msgid "Hi "
-msgstr "Hallo "
-
 #: templates/topmenu.html:10
 msgid "ECG Online Bilanzierung"
 msgstr "GWÖ Online Bilanzierung"
@@ -1160,6 +1156,9 @@ msgstr "Profil"
 #: templates/topmenu.html:25
 msgid "Logout"
 msgstr "Ausloggen"
+
+#~ msgid "Hi "
+#~ msgstr "Hallo "
 
 #~ msgid "Others"
 #~ msgstr "Andere"
