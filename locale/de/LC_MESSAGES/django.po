@@ -491,7 +491,6 @@ msgid "Companies"
 msgstr "Unternehmen"
 
 #: ecg_balancing/models.py:289
-#, fuzzy
 msgid "Single"
 msgstr "Einzel"
 
