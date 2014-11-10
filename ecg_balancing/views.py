@@ -415,7 +415,7 @@ class CompanyCreateView(CreateView):
             "company_url": company_url,
             "companies_admin_url": companies_admin_url
         })
-        subject = _("[ECG] New company '%s' created by %s" % (company, user_name))
+        subject = _("[ECG] New company '%(company)s' created by %(user)s" % {"company": company, "user": user_name})
         from_email = settings.FEEDBACK_INDICATOR_SENDER_EMAIL
 
         send_mail(plaintext_template, html_template, context, subject, from_email, to_emails, None)
