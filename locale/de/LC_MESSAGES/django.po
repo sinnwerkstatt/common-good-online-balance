@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-10 13:42+0100\n"
+"POT-Creation-Date: 2014-11-10 14:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -491,12 +491,13 @@ msgid "Companies"
 msgstr "Unternehmen"
 
 #: ecg_balancing/models.py:289
-msgid "Single (EPU)"
-msgstr "Einzel (EPU)"
+#, fuzzy
+msgid "Single"
+msgstr "Einzel"
 
 #: ecg_balancing/models.py:290
-msgid "Peer-Evaluation"
-msgstr "Peer-Evaluierung"
+msgid "Peer"
+msgstr "Peer"
 
 #: ecg_balancing/models.py:292
 msgid "Evaluation Type"
@@ -836,7 +837,7 @@ msgid "Edit ECG Balance"
 msgstr "GWÖ-Bilanz editieren"
 
 #: ecg_balancing/templates/ecg_balancing/company_create.html:21
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:77
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:78
 msgid "Create a company"
 msgstr "Unternehmen erstellen"
 
@@ -862,7 +863,7 @@ msgid "ECG Balances"
 msgstr "GWÖ-Bilanzen"
 
 #: ecg_balancing/templates/ecg_balancing/company_join.html:24
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:76
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:77
 msgid "Join a company"
 msgstr "Unternehmen beitreten"
 
@@ -1156,6 +1157,9 @@ msgstr "Profil"
 #: templates/topmenu.html:25
 msgid "Logout"
 msgstr "Ausloggen"
+
+#~ msgid "Peer-Evaluation"
+#~ msgstr "Peer-Evaluierung"
 
 #~ msgid "Hi "
 #~ msgstr "Hallo "

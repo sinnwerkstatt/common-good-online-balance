@@ -286,8 +286,8 @@ class CompanyBalance(models.Model):
     EVALUATION_TYPE_CHOICE_SINGLE = 'single'
     EVALUATION_TYPE_CHOICE_PEER = 'peer'
     EVALUATION_TYPE_CHOICE = (
-        (EVALUATION_TYPE_CHOICE_SINGLE, _('Single (EPU)')),
-        (EVALUATION_TYPE_CHOICE_PEER, _('Peer-Evaluation'))
+        (EVALUATION_TYPE_CHOICE_SINGLE, _('Single')),
+        (EVALUATION_TYPE_CHOICE_PEER, _('Peer'))
     )
     evaluation_type = models.CharField(_('Evaluation Type'), max_length=255, choices=EVALUATION_TYPE_CHOICE, null=True, blank=False)
 
