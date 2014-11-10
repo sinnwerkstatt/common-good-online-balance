@@ -72,11 +72,11 @@
 
       {% if is_same_user and not companies_member %}
         <div class="alert alert-warning pull-left">{% trans "You are not a member of a company." %}</div>
-        <div class="clearboth">
-          <a href="{% url 'company-join' %}" class="button">{% trans "Join a company" %}</a>
-          <a href="{% url 'company-create' %}" class="button">{% trans "Create a company" %}</a>
-        </div>
       {% endif %}
+      <div class="clearboth">
+        <a href="{% url 'company-join' %}" class="button">{% trans "Join a company" %}</a>
+        <a href="{% url 'company-create' %}" class="button">{% trans "Create a company" %}</a>
+      </div>
       {% if not is_same_user and not companies_member %}
         <div class="alert alert-warning pull-left">{% trans "No companies." %}</div>
       {% endif %}
