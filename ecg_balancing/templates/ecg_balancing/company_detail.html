@@ -58,13 +58,12 @@
                 {% endif %}
               {% endfor %}
             </ul>
-          {% else %}
-            <a href="{% url 'balance-create' object.slug %}" class="button primary">
-              <span class="glyphicon glyphicon-plus"></span>
-              {% trans "Create ECG Balance" %}
-            </a>
           {% endif %}
 
+          <a href="{% url 'balance-create' object.slug %}" class="button primary">
+            <span class="glyphicon glyphicon-plus"></span>
+            {% trans "Create ECG Balance" %}
+          </a>
         {% endif %}
       {% endif %}
     </div>
