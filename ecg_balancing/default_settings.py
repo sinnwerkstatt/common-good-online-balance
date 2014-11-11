@@ -239,4 +239,6 @@ LEAFLET_CONFIG = {
     'DEFAULT_ZOOM': 2,
     'MIN_ZOOM': 1,
     'MAX_ZOOM': 17,
+    'RESET_VIEW': False,
+    'TILES': 'http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
 }
