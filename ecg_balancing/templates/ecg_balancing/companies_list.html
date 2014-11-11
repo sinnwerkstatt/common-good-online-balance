@@ -34,14 +34,16 @@
       {% leaflet_map "company_map_overview" callback="company_map_overview_init" %}
       <script type="text/javascript">
         function company_map_overview_init (map, options) {
+          var markers = new L.featureGroup();
           {% for company in object_list %}
             var link = "{% url 'company-detail' company.slug %}";
             {% if company.logo %}
-              L.marker([{{ company.location_lat|unlocalize }}, {{ company.location_lon|unlocalize }}]).addTo(map).bindPopup('<a href="' + link + '"><img class="" src="{% thumbnail company.logo 25x0 crop=scale upscale %}" alt=""/><span class="centered-text-to-img--smaller space-left">{{ company }}</span></a>');
+              markers.addLayer(L.marker([{{ company.location_lat|unlocalize }}, {{ company.location_lon|unlocalize }}]).addTo(map).bindPopup('<a href="' + link + '"><img class="" src="{% thumbnail company.logo 25x0 crop=scale upscale %}" alt=""/><span class="centered-text-to-img--smaller space-left">{{ company }}</span></a>'));
             {% else %}
-              L.marker([{{ company.location_lat|unlocalize }}, {{ company.location_lon|unlocalize }}]).addTo(map).bindPopup('<a href="' + link + '"><span class="centered-text-to-no-img--smaller">{{ company }}</span></a>');
+              markers.addLayer(L.marker([{{ company.location_lat|unlocalize }}, {{ company.location_lon|unlocalize }}]).addTo(map).bindPopup('<a href="' + link + '"><span class="centered-text-to-no-img--smaller">{{ company }}</span></a>'));
             {% endif %}
           {% endfor %}
+          map.fitBounds(markers.getBounds());
           L.tileLayer('http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
             detectRetina: true,
             attribution: '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://www.mapquest.com/">Mapquest</a>'
