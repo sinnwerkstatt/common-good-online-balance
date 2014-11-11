@@ -290,7 +290,7 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
 
     class Meta:
         model = CompanyBalance
-        fields = ('matrix', 'evaluation_type', 'year', 'status', 'visibility', 'start_date', 'end_date', 'employees_number', 'revenue', 'profit', 'peer_companies', 'common_good',
+        fields = ('matrix', 'evaluation_type', 'consultant', 'auditor', 'accompanying_consultant', 'year', 'status', 'visibility', 'start_date', 'end_date', 'employees_number', 'revenue', 'profit', 'peer_companies', 'common_good',
                   'worked_hours', 'number_participated_employees', 'process_description', 'internal_communication',
                   'prospect', 'company')
 

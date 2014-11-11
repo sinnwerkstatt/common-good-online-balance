@@ -291,6 +291,10 @@ class CompanyBalance(models.Model):
     )
     evaluation_type = models.CharField(_('Evaluation Type'), max_length=255, choices=EVALUATION_TYPE_CHOICE, null=True, blank=False)
 
+    consultant = models.CharField(_('Consultant'), max_length=60, blank=True, null=True)
+    auditor = models.CharField(_('Auditor'), max_length=60, blank=True, null=True)
+    accompanying_consultant = models.CharField(_('Accompanying Consultant'), max_length=60, blank=True, null=True)
+
     company = models.ForeignKey('ecg_balancing.Company', verbose_name=_(u'Company'), related_name='balance',
                               null=False,
                               blank=False)

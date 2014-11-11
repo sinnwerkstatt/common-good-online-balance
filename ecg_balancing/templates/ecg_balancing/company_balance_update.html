@@ -36,3 +36,8 @@
     </form>
 
 {% endblock base_content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static 'ecg_balancing/js/company_balance_update.js' %}"></script>
+{% endblock javascript %}
