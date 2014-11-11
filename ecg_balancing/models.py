@@ -295,6 +295,8 @@ class CompanyBalance(models.Model):
     auditor = models.CharField(_('Auditor'), max_length=60, blank=True, null=True)
     accompanying_consultant = models.CharField(_('Accompanying Consultant'), max_length=60, blank=True, null=True)
 
+    peer_companies = models.ManyToManyField('ecg_balancing.Company', verbose_name=_('Peer Companies'), max_length=255, blank=True, null=True)
+
     company = models.ForeignKey('ecg_balancing.Company', verbose_name=_(u'Company'), related_name='balance',
                               null=False,
                               blank=False)
@@ -333,7 +335,6 @@ class CompanyBalance(models.Model):
     worked_hours = models.PositiveSmallIntegerField(_('Worked Hours'), blank=False, null=True)
     number_participated_employees = models.PositiveSmallIntegerField(_('Number of participated employees'), blank=False, null=True)
 
-    peer_companies = models.ManyToManyField('ecg_balancing.Company', verbose_name=_('Peer Companies'), max_length=255, blank=True, null=True)
     common_good = models.TextField(_('The Company and Common Good'), blank=True, null=True)
     prospect = models.TextField(_('Prospect'), blank=False, null=True)
     process_description = models.TextField(_('Balance process description'), blank=False, null=True)
