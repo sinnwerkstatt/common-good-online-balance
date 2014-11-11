@@ -319,14 +319,35 @@ class CompanyBalance(models.Model):
     end_date = models.DateField(_('End Date'), blank=True, null=True)
 
     EMPLOYEES_NUMBER_CHOICE_ONE = 'one'
-    EMPLOYEES_NUMBER_CHOICE_SMALL = 'small'
-    EMPLOYEES_NUMBER_CHOICE_MEDIUM = 'medium'
-    EMPLOYEES_NUMBER_CHOICE_LARGE = 'large'
+    EMPLOYEES_NUMBER_CHOICE_TWO = 'two'
+    EMPLOYEES_NUMBER_CHOICE_THREE = 'three'
+    EMPLOYEES_NUMBER_CHOICE_FOUR = 'four'
+    EMPLOYEES_NUMBER_CHOICE_FIVE = 'five'
+    EMPLOYEES_NUMBER_CHOICE_SIX = 'six'
+    EMPLOYEES_NUMBER_CHOICE_SEVEN = 'seven'
+    EMPLOYEES_NUMBER_CHOICE_EIGHT = 'eight'
+    EMPLOYEES_NUMBER_CHOICE_NINE = 'nine'
+    EMPLOYEES_NUMBER_CHOICE_TEN = 'ten'
+    EMPLOYEES_NUMBER_CHOICE_ELEVEN = 'eleven'
+    EMPLOYEES_NUMBER_CHOICE_TWELVE = 'twelve'
+    EMPLOYEES_NUMBER_CHOICE_THIRTEEN = 'thirteen'
+    EMPLOYEES_NUMBER_CHOICE_FOURTEEN = 'fourteen'
+
     EMPLOYEES_NUMBER_CHOICES = (
         (EMPLOYEES_NUMBER_CHOICE_ONE, _('1 employee')),
-        (EMPLOYEES_NUMBER_CHOICE_SMALL, _('1-10 employees')),
-        (EMPLOYEES_NUMBER_CHOICE_MEDIUM, _('11-50 employees')),
-        (EMPLOYEES_NUMBER_CHOICE_LARGE, _('More than 50 employees'))
+        (EMPLOYEES_NUMBER_CHOICE_TWO, _('2 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_THREE, _('3-5 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_FOUR, _('6-10 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_FIVE, _('11-20 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_SIX, _('21-50 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_SEVEN, _('51-100 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_EIGHT, _('101-200 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_NINE, _('201-350 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_TEN, _('351-500 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_ELEVEN, _('501-750 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_TWELVE, _('751-1.000 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_THIRTEEN, _('1.001-1.500 employees')),
+        (EMPLOYEES_NUMBER_CHOICE_FOURTEEN, _('1.501-2.500 employees')),
     )
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
     revenue = models.IntegerField(_('Revenue'), blank=False, null=True)
