@@ -128,6 +128,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 CMS_TEMPLATES = (
     ('page.html', 'CMS Page'),
     ('start.html', 'Start Page'),
+    ('static.html', 'Static Page'),
 )
 
 CMS_REDIRECTS = True
