@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-11 17:57+0100\n"
+"POT-Creation-Date: 2014-11-12 11:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1007,6 +1007,10 @@ msgstr ""
 #: ecg_balancing/templates/ecg_balancing/user_update.html:45
 msgid "To change your password click here"
 msgstr "Um Ihr Passwort zu ändern, klicken Sie bitte hier"
+
+#: ecg_balancing/templates/ecg_balancing/includes/balance_header.html:12
+msgid "of 1000"
+msgstr "von 1000"
 
 #: ecg_balancing/templates/ecg_balancing/registration/login.html:6
 #: ecg_balancing/templates/ecg_balancing/registration/login.html:46

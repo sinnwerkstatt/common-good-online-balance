@@ -9,7 +9,7 @@
       <h2 class="company-balance-header">{% trans 'ECG Balance' %} {{ company_balance.year }}</h2>
     </a>
 
-    <div class="center">{% trans "Points" %}: {{ company_balance.points }}</div>
+    <div class="center">{% trans "Points" %}: {{ company_balance.points }} {% trans "of 1000" %}</div>
 
     <div class="ecg-balance-header__company">
       <a href="{% url 'company-detail' company_balance.company.slug %}"
