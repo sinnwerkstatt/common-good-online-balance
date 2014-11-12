@@ -45,6 +45,10 @@
   background-repeat: repeat-x;
 }
 
+.balance-status {
+  color: red;
+}
+
 .meta-left h3 {
   display: inline;
 }

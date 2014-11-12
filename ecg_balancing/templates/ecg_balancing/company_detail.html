@@ -54,6 +54,9 @@
                 {% else %}
                 <li class="company-balance-item">
                   <a href="{% url 'balance-detail' company_slug=object.slug balance_year=balance.year %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
+                  {% if balance.status == 'draft' %}
+                    <span class="balance-status">{{balance.get_status_display}}</span>
+                  {% endif %}
                 </li>
                 {% endif %}
               {% endfor %}

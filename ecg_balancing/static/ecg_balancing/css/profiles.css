@@ -115,3 +115,7 @@
 #specialbigmap {
   height: 800px;
 }
+
+.balance-status {
+  color: red;
+}

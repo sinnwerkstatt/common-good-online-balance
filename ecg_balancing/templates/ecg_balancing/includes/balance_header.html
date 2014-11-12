@@ -3,12 +3,13 @@
 
 <div class="ecg-balance-header bubble">
   <div class="bubble-inner unselectable">
-
     <a href="{% url 'balance-detail' company_slug=company_balance.company.slug balance_year=company_balance.year %}"
        class="no-decoration center">
       <h2 class="company-balance-header">{% trans 'ECG Balance' %} {{ company_balance.year }}</h2>
     </a>
-
+    {% if company_balance.status == 'draft' %}
+      <h4 class="center balance-status">{{ company_balance.get_status_display }}</h4>
+    {% endif %}
     <div class="center">{% trans "Points" %}: {{ company_balance.points }} {% trans "of 1000" %}</div>
 
     <div class="ecg-balance-header__company">
