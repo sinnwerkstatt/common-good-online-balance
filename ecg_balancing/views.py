@@ -290,12 +290,10 @@ class CompanyUpdateView(UserRoleRedirectMixin, UpdateView):
 
         if 'publish' in self.request.POST:
             company.status = Company.STATUS_CHOICE_APPROVED
-            company.save()
 
-        return HttpResponseRedirect(reverse('company-detail',
-                                                 kwargs={
-                                                     'slug': company.slug,
-                                                 }))
+        company.save()
+
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class CompanyJoinView(CreateView):
