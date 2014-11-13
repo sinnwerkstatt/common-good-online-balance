@@ -298,6 +298,26 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
         super(CompanyBalanceUpdateForm, self).__init__(*args, **kwargs)
         self.fields['company'].widget = forms.HiddenInput()
 
+        self.fields['status'].widget.attrs['disabled'] = 'disabled'
+        self.fields['status'].required = False
+
+        self.fields['visibility'].widget.attrs['disabled'] = 'disabled'
+        self.fields['visibility'].required = False
+
+    def clean_status(self):
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            return instance.status
+        else:
+            return self.cleaned_data['status']
+
+    def clean_visibility(self):
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            return instance.visibility
+        else:
+            return self.cleaned_data['visibility']
+
     def clean(self):
         cleaned_data = super(CompanyBalanceUpdateForm, self).clean()
         year = cleaned_data.get("year")
