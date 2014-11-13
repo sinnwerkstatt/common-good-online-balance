@@ -279,9 +279,39 @@ class Company(models.Model):
 
 
 class CompanyBalance(models.Model):
+    company = models.ForeignKey('ecg_balancing.Company', verbose_name=_(u'Company'), related_name='balance',
+                              null=False,
+                              blank=False)
+
+    points = models.SmallIntegerField(_('Points'), max_length=4, default=0)
+
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='company_balances',
                               null=False,
                               blank=False)
+
+    year = models.SmallIntegerField(_('Year'), max_length=4)
+    start_date = models.DateField(_('Start Date'), blank=True, null=True)
+    end_date = models.DateField(_('End Date'), blank=True, null=True)
+
+    STATUS_CHOICE_DRAFT = 'draft'
+    STATUS_CHOICE_FINISHED = 'finished'
+    STATUS_CHOICE_CERTIFIED = 'certified'
+    STATUS_CHOICE_PUBLISHED = 'published'
+    STATUS_CHOICE = (
+        (STATUS_CHOICE_DRAFT, _('Draft')),
+        (STATUS_CHOICE_FINISHED, _('Final / Finished')),
+        (STATUS_CHOICE_CERTIFIED, _('Certified / Not published')),
+        (STATUS_CHOICE_PUBLISHED, _('Published'))
+    )
+    status = models.CharField(_('Status'), max_length=255, choices=STATUS_CHOICE, null=False, blank=False)
+
+    VISIBILITY_CHOICE_INTERNAL = 'internal'
+    VISIBILITY_CHOICE_PUBLIC = 'public'
+    VISIBILITY_CHOICE = (
+        (VISIBILITY_CHOICE_INTERNAL, _('Internal')),
+        (VISIBILITY_CHOICE_PUBLIC, _('Public')),
+    )
+    visibility = models.CharField(_('Visibility'), max_length=15, choices=VISIBILITY_CHOICE, default=VISIBILITY_CHOICE_INTERNAL, null=False, blank=False)
 
     EVALUATION_TYPE_CHOICE_SINGLE = 'single'
     EVALUATION_TYPE_CHOICE_PEER = 'peer'
@@ -296,27 +326,6 @@ class CompanyBalance(models.Model):
     accompanying_consultant = models.CharField(_('Accompanying Consultant'), max_length=60, blank=True, null=True)
 
     peer_companies = models.ManyToManyField('ecg_balancing.Company', verbose_name=_('Peer Companies'), max_length=255, blank=True, null=True)
-
-    company = models.ForeignKey('ecg_balancing.Company', verbose_name=_(u'Company'), related_name='balance',
-                              null=False,
-                              blank=False)
-
-    STATUS_CHOICE_DRAFT = 'draft'
-    STATUS_CHOICE_FINISHED = 'finished'
-    STATUS_CHOICE_CERTIFIED = 'certified'
-    STATUS_CHOICE_PUBLISHED = 'published'
-    STATUS_CHOICE = (
-        (STATUS_CHOICE_DRAFT, _('Draft')),
-        (STATUS_CHOICE_FINISHED, _('Final / Finished')),
-        (STATUS_CHOICE_CERTIFIED, _('Certified / Not published')),
-        (STATUS_CHOICE_PUBLISHED, _('Published'))
-    )
-    status = models.CharField(_('Status'), max_length=255, choices=STATUS_CHOICE, null=False, blank=False)
-    points = models.SmallIntegerField(_('Points'), max_length=4, default=0)
-
-    year = models.SmallIntegerField(_('Year'), max_length=4)
-    start_date = models.DateField(_('Start Date'), blank=True, null=True)
-    end_date = models.DateField(_('End Date'), blank=True, null=True)
 
     EMPLOYEES_NUMBER_CHOICE_ONE = 'one'
     EMPLOYEES_NUMBER_CHOICE_TWO = 'two'
@@ -350,6 +359,7 @@ class CompanyBalance(models.Model):
         (EMPLOYEES_NUMBER_CHOICE_FOURTEEN, _('1.501-2.500 employees')),
     )
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
+    
     revenue = models.IntegerField(_('Revenue'), blank=False, null=True)
     profit = models.IntegerField(_('Profit'), blank=False, null=True)
 
@@ -360,14 +370,6 @@ class CompanyBalance(models.Model):
     prospect = models.TextField(_('Prospect'), blank=False, null=True)
     process_description = models.TextField(_('Balance process description'), blank=False, null=True)
     internal_communication = models.TextField(_('How was the balance internally communicated?'), blank=False, null=True)
-
-    VISIBILITY_CHOICE_INTERNAL = 'internal'
-    VISIBILITY_CHOICE_PUBLIC = 'public'
-    VISIBILITY_CHOICE = (
-        (VISIBILITY_CHOICE_INTERNAL, _('Internal')),
-        (VISIBILITY_CHOICE_PUBLIC, _('Public')),
-    )
-    visibility = models.CharField(_('Visibility'), max_length=15, choices=VISIBILITY_CHOICE, default=VISIBILITY_CHOICE_INTERNAL, null=False, blank=False)
 
     class Meta:
         verbose_name = _('Year Balance')

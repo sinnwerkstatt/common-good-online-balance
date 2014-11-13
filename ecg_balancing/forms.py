@@ -290,8 +290,8 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
 
     class Meta:
         model = CompanyBalance
-        fields = ('matrix', 'evaluation_type', 'consultant', 'auditor', 'accompanying_consultant', 'peer_companies', 'year', 'status', 'visibility', 'start_date', 'end_date', 'employees_number', 'revenue', 'profit', 'common_good',
-                  'worked_hours', 'number_participated_employees', 'process_description', 'internal_communication',
+        fields = ('matrix', 'year', 'start_date', 'end_date', 'status', 'visibility', 'evaluation_type', 'consultant', 'auditor', 'accompanying_consultant', 'peer_companies', 'employees_number', 'revenue', 'profit', 'worked_hours', 'number_participated_employees', 'common_good',
+                  'process_description', 'internal_communication',
                   'prospect', 'company')
 
     def __init__(self, *args, **kwargs):
