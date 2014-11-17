@@ -285,6 +285,9 @@ class CompanyBalance(models.Model):
 
     points = models.SmallIntegerField(_('Points'), max_length=4, default=0)
 
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Created by'), related_name='created_by', blank=True, null=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Updated by'), related_name='updated_by', blank=True, null=True)
+
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='company_balances',
                               null=False,
                               blank=False)

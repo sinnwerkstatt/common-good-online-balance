@@ -585,6 +585,7 @@ class CompanyBalanceCreateView(UserRoleRedirectMixin, CreateView):
 
     def form_valid(self, form, **kwargs):
         self.object = form.save(commit=False)
+        self.object.created_by = self.request.user
         self.object.status = CompanyBalance.STATUS_CHOICE_DRAFT
         self.object.visibility = CompanyBalance.VISIBILITY_CHOICE_INTERNAL
         self.object.save()
@@ -605,6 +606,13 @@ class CompanyBalanceUpdateView(UserRoleRedirectMixin, UpdateView):
         if queryset is None:
             queryset = self.get_queryset()
         return queryset.get(company__slug=self.kwargs.get('company_slug'), year=self.kwargs.get('balance_year'))
+
+    def form_valid(self, form, **kwargs):
+        self.object = form.save(commit=False)
+        self.object.updated_by = self.request.user
+        self.object.save()
+
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('balance-detail', kwargs={
