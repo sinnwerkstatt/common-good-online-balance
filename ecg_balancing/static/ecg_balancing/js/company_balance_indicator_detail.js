@@ -74,6 +74,10 @@ var ckeditor_config = {
             items: [ 'Format', 'Font', 'FontSize' ]
         },
         {
+            name: 'paste',
+            items: [ 'PasteFromWord' ]
+        },
+        {
             name: 'clipboard',
             groups: [ 'clipboard', 'undo' ],
             items: [ 'Undo', 'Redo' ]
@@ -88,6 +92,7 @@ var ckeditor_config = {
     toolbarGroups: [
         { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
         { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'paste' },
         { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ] },
         { name: 'forms' },
         '/',
