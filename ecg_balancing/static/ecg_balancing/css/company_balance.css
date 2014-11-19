@@ -53,6 +53,34 @@
   display: inline;
 }
 
+.collapse-header {
+  padding: .75em;
+  background: rgb(245, 245, 245);
+  border: none;
+  cursor: pointer;
+}
+
+.collapse-header:hover span, .collapse-header:active span {
+  color: silver;
+}
+
+.collapse-header:hover, .collapse-header:active {
+  background: #efefef !important;
+}
+
+.collapse-header span {
+  margin-left: 1em;
+}
+
+.collapse-header h4 {
+  display: inline;
+  padding-left: .5em;
+}
+
+.collapse-content {
+  border: none !important;
+}
+
 .vmiddle {
   vertical-align: middle;
 }
@@ -367,6 +395,7 @@ table {
 }
 
 .bubble-contents > .cke_textarea_inline {
+  border: none;
   margin-top: 42px;
 }
 

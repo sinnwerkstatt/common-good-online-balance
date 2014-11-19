@@ -438,8 +438,9 @@ class CompanyBalanceIndicator(models.Model):
                             null=False,
                             blank=False)
 
-    description = models.TextField(_('Description'), blank=True, null=True)
+    description = models.TextField(_('Target questions'), blank=True, null=True)
     key_figures = models.TextField(_('Key figures'), blank=True, null=True)
+    evaluation_table = models.TextField(_('Evaluation table'), blank=True, null=True)
     evaluation = models.IntegerField(_('Evaluation'), default=0)
 
     objects = CompanyBalanceIndicatorManager()

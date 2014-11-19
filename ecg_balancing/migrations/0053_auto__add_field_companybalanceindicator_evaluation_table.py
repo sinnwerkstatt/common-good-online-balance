@@ -8,23 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'CompanyBalance.created_by'
-        db.add_column(u'ecg_balancing_companybalance', 'created_by',
-                      self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'created_by', null=True, to=orm['auth.User']),
-                      keep_default=False)
-
-        # Adding field 'CompanyBalance.updated_by'
-        db.add_column(u'ecg_balancing_companybalance', 'updated_by',
-                      self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'updated_by', null=True, to=orm['auth.User']),
+        # Adding field 'CompanyBalanceIndicator.evaluation_table'
+        db.add_column(u'ecg_balancing_companybalanceindicator', 'evaluation_table',
+                      self.gf('django.db.models.fields.TextField')(null=True, blank=True),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting field 'CompanyBalance.created_by'
-        db.delete_column(u'ecg_balancing_companybalance', 'created_by_id')
-
-        # Deleting field 'CompanyBalance.updated_by'
-        db.delete_column(u'ecg_balancing_companybalance', 'updated_by_id')
+        # Deleting field 'CompanyBalanceIndicator.evaluation_table'
+        db.delete_column(u'ecg_balancing_companybalanceindicator', 'evaluation_table')
 
 
     models = {
@@ -124,6 +116,7 @@ class Migration(SchemaMigration):
             'company_balance': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'company_balance'", 'to': u"orm['ecg_balancing.CompanyBalance']"}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'evaluation': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'evaluation_table': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'indicator': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'company_balance'", 'to': u"orm['ecg_balancing.Indicator']"}),
             'key_figures': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'})

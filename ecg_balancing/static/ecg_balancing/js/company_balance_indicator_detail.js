@@ -8,25 +8,6 @@ $('.js-indicator-page-title-inner').html(indicator.shortcode + ' - ' + indicator
 //});
 
 
-var is_negative_criteria = indicator.shortcodeSlug.indexOf('n') == 0;
-
-// Add subindicator titles
-if (!is_negative_criteria) {
-
-    $('.subindicator-title').each(function (e) {
-        var $this = $(this);
-        var position = $this.data('position');
-        var title = indicator.shortcode + '.' + position;
-
-        $.each(indicator.table.subindicators, function (index, subindicator) {
-            if (subindicator.position === position + '' &&
-                (!(is_sole_proprietorship && !subindicator.soleProprietorship))) {
-                $this.html(title + ' - ' + subindicator.title);
-            }
-        });
-    });
-}
-
 // add key figures HTML if existing
 // key-figures-container
 if (can_edit) {
@@ -189,8 +170,49 @@ var touchSpinSubindicatorSettings = {
 
 };
 
+var is_negative_criteria = indicator.shortcodeSlug.indexOf('n') == 0;
+
 // if not negative criteria
 if (!is_negative_criteria) {
+
+    // add subindicator titles
+    $('.subindicator-title').each(function (e) {
+        var $this = $(this);
+        var position = $this.data('position');
+        var title = indicator.shortcode + '.' + position;
+
+        $.each(indicator.table.subindicators, function (index, subindicator) {
+            if (subindicator.position === position + '' &&
+                (!(is_sole_proprietorship && !subindicator.soleProprietorship))) {
+                $this.html(title + ' - ' + subindicator.title);
+            }
+        });
+    });
+
+    // add IDs to make them individually collapsable
+    $('.indicator-bubble').each(function () {
+        var $this = $(this);
+        var position = indicator.shortcode + '-' + $this.find('.subindicator-title').data('position');
+
+        $this.find($('.panel-group')).each(function () {
+            var collapse_header = $(this).find('.collapse-header');
+            var collapse_content = $(this).find('.collapse-content');
+            var glyphicon = collapse_header.find('.glyphicon');
+            var sub_position = position + "-" + $(this).data('position');
+
+            collapse_header.attr('id', sub_position + "-header");
+            collapse_content.attr('id', sub_position + "-content");
+            collapse_header.attr('href', "#" + sub_position + "-content");
+            glyphicon.attr('id', sub_position + "-glyphicon");
+
+            collapse_content.on('show.bs.collapse', function () {
+                $this.find('#' + sub_position + '-glyphicon').toggleClass('glyphicon-chevron-right glyphicon-chevron-down');
+            });
+            collapse_content.on('hide.bs.collapse', function () {
+                $this.find('#' + sub_position + '-glyphicon').toggleClass('glyphicon-chevron-right glyphicon-chevron-down');
+            });
+        });
+    });
 
     if (typeof indicator.table !== 'undefined') {
         // activate subindicators
@@ -200,7 +222,7 @@ if (!is_negative_criteria) {
             if (!(is_sole_proprietorship && !subindicator.soleProprietorship)) {
 
                 var subIdPrefix = 'company-balance-indicator-' + indicatorShortCodeSlug + '-' + subindicator.position;
-                console.log("subindicator " + index + ": " + subIdPrefix);
+                //console.log("subindicator " + index + ": " + subIdPrefix);
 
                 // activate editor
                 var editorId = subIdPrefix + '-editor';
@@ -224,5 +246,3 @@ if (!is_negative_criteria) {
         });
     }
 }
-
-//}
