@@ -786,6 +786,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
 
         ## update Balance Points
         balance.recalculate_points()
+        balance.updated_by = self.request.user
         balance.save()
 
         return HttpResponseRedirect(self.get_success_url())
