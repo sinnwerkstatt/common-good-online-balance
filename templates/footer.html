@@ -2,7 +2,10 @@
 
 <div id="footer">
   <div class="container">
-    <a href="{% page_url 'legal-notice' %}">{% trans "Legal notice" %}</a>
+    <div class="pull-left">
+      {% show_menu 0 100 100 100 %}
+      <br/>
+    </div>
     <div class="links-right pull-right">
       Open Source @ <a href="https://github.com/sinnwerkstatt/ecg-balancing">GitHub</a>
     </div>
