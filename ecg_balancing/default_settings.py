@@ -171,6 +171,7 @@ INSTALLED_APPS = (
     'osm_field',
     'leaflet',
     'bootstrap3_datetime',
+    'wkhtmltopdf',
 )
 
 LANGUAGES = [

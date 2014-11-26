@@ -12,11 +12,18 @@
 {% block base_content %}
 
     {% if can_edit %}
-      <a href="{% url 'balance-update' company_slug=object.company.slug balance_year=object.year %}"
-         class="button pull-right">
-        <span class="glyphicon glyphicon-pencil"></span>
-        {% trans "Edit" %}
-      </a>
+      <div class="pull-right">
+        <a href="{% url 'balance-update' company_slug=object.company.slug balance_year=object.year %}"
+           class="button">
+          <span class="glyphicon glyphicon-pencil"></span>
+          {% trans "Edit" %}
+        </a>
+        <a href="{% url 'balance-export' company_slug=object.company.slug balance_year=object.year %}"
+           class="button primary">
+          <span class="glyphicon glyphicon-export"></span>
+          {% trans "Export as PDF" %}
+        </a>
+      </div>
     {% endif %}
 
   {% include 'ecg_balancing/includes/balance_header.html' with company_balance=object %}

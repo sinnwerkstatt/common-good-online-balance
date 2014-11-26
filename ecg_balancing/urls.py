@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import RedirectView
 from django.core.urlresolvers import reverse_lazy
 from ecg_balancing.forms import UserAccountCreationForm
+from django.conf.urls.defaults import url, patterns
+from wkhtmltopdf.views import PDFTemplateView
 
 from ecg_balancing.views import *
 
@@ -49,7 +51,8 @@ urlpatterns = patterns('',
     # Balances: /company/balance_year
 	url(r'^company/(?P<company_slug>[\w-]*)/balance/create$', login_required(CompanyBalanceCreateView.as_view()), name='balance-create'),
 	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/$', CompanyBalanceDetailView.as_view(), name='balance-detail'),
-	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/update/$', login_required(CompanyBalanceUpdateView.as_view()), name='balance-update'),
+    url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/update/$', login_required(CompanyBalanceUpdateView.as_view()), name='balance-update'),
+	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/export/$', login_required(CompanyBalanceExportView.as_view()), name='balance-export'),
 
     # Indicators: /sinnwerkstatt/2014/c1
 	#url(r'^indicator/create$', login_required(CompanyBalanceIndicatorCreateView.as_view()), name='indicator-create'),

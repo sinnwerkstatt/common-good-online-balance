@@ -12,6 +12,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext, Context
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
+from wkhtmltopdf.views import PDFTemplateView
+from django.utils.text import slugify
 
 from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView, FormView, RedirectView
 from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceUpdateForm, FeedbackIndicatorForm, \
@@ -611,6 +613,7 @@ class CompanyBalanceUpdateView(UserRoleRedirectMixin, UpdateView):
         self.object = form.save(commit=False)
         self.object.updated_by = self.request.user
         self.object.save()
+        form.save_m2m()
 
         return HttpResponseRedirect(self.get_success_url())
 
@@ -891,3 +894,32 @@ class FeedbackIndicatorFormView(FormView):
 
 class FeedbackIndicatorSuccessView(TemplateView):
     template_name = 'ecg_balancing/feedback_indicator_success.html'
+
+class CompanyBalanceExportView(PDFTemplateView, UserRoleRedirectMixin, CompanyBalanceViewMixin, TemplateView):
+    model = CompanyBalanceIndicator
+    template_name = 'ecg_balancing/company_balance_export.html'
+    filename = "ECG-Balance-Export.pdf"
+
+    def get_filename(self):
+        return 'ECG-Balance-{0}-{1}.pdf'.format(self.balance_year, slugify(self.company.name))
+
+    def get_context_data(self, **kwargs):
+        context = super(CompanyBalanceExportView, self).get_context_data(**kwargs)
+
+        company_slug = self.kwargs.get('company_slug')
+        self.balance_year = self.kwargs.get('balance_year')
+
+        company_slug = self.kwargs.get('company_slug')
+        if company_slug is None:
+            company_slug = self.kwargs.get('slug')
+
+        self.company = Company.objects.get(slug=company_slug)
+        context['company'] = self.company
+
+        balance = CompanyBalance.objects.get(company__slug=company_slug, year=self.balance_year)
+        context['balance'] = balance
+
+        indicators = CompanyBalanceIndicator.objects.all().order_by('indicator__stakeholder').filter(company_balance=balance).order_by('indicator__subindicator_number').all()
+        context['indicators'] = indicators
+
+        return context

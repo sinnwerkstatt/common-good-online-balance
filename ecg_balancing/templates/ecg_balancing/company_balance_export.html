@@ -1,0 +1,283 @@
+{% load i18n cms_tags menu_tags sekizai_tags static %}
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta property="og:site_name" content="{% trans "ECG Balancing" %}"/>
+  <meta property="og:title"
+        content="{% if request.current_page.get_menu_title %} &raquo; {{ request.current_page.get_menu_title }}{% endif %}"/>
+  <meta property="og:description" content=""/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <title>Export - {% trans "ECG Balance" %} {{ balance_year }} - {{ company }}</title>
+
+  <link rel="icon" href="{% static 'images/ecg-seeds_30h.png' %}"/>
+  <!-- <script type="text/javascript" src="{% static 'js/vendor/jquery.min.js' %}"></script> -->
+
+  <link href="{% static 'css/bootstrap3-ecg.css' %}" rel="stylesheet">
+  <!--[if IE]>
+  <link href="{% static 'css/ie.css' %}" media="screen, projection" rel="stylesheet" type="text/css"/>
+  <![endif]-->
+
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  <link href="{% static 'ecg_balancing/css/company_balance_export.css' %}" rel="stylesheet">
+
+  <style>
+    .ecg-green {
+      color: #cccb98;
+    }
+
+    .balance-export h1, h2, h3, h4, h5 {
+      margin-top: 1.5em;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+
+    .todo {
+      color: red;
+    }
+
+    .balance-export table, tr {
+      width: 100%;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .balance-export th, td {
+      padding: .5em;
+    }
+
+    .company-general th, .company-activities th, .process-description th {
+      text-align: left;
+      width: 25%;
+    }
+
+    .subindicator-title {
+      font-weight: bold;
+    }
+
+    .company-commongood, .evaluation-table, .key-figures, .target-questions, .prospect {
+      width: 100%;
+    }
+
+    .timestamp {
+      margin-top: 5em;
+      color: gray;
+      border-bottom: 1px solid gray;
+    }
+  </style>
+</head>
+
+<body class="{% block body_class %}{% endblock body_class %}">
+  <div id="wrap">
+    <div class="container site-container">
+      <h1 class="indicator-page-title center ecg-green">
+        {% trans 'ECG Balance' %} {{ balance_year }} - {{ company }}
+      </h1>
+
+      <div class="balance-export">
+        {% if has_company_access or not visibility_basic %}
+
+          <h2 class="ecg-green">{% trans "Company" %}</h2>
+          <div class="company-general">
+            <h3 class="ecg-green">{% trans "General Informations" %}</h3>
+            <table>
+              <tr>
+                <th>{% trans "Company name" %}:</th>
+                <td>{% if company.name %}{{ company.name }}{% endif %}</td>
+              </tr>
+              <tr>
+                <th>{% trans "Eigentums- und Rechtsform, Eigentumsanteile" %}:</th>
+                <td class="todo">Existiert noch nicht in der Bilanz!</td>
+              </tr>
+              <tr>
+                <th>{% trans "Industry" %}:</th>
+                <td>{% if company.industry %}{{ company.get_industry_display }}{% endif %}</td>
+              </tr>
+              <tr>
+                <th>{% trans "Number of employees" %}:</th>
+                <td>{% if balance.get_employees_number_display %}{{ balance.get_employees_number_display }}{% endif %}</td>
+              </tr>
+              <tr>
+                <th>{% trans "Revenue" %}:</th>
+                <td>{% if balance.revenue %}{{ balance.revenue }}{% endif %}</td>
+              </tr>
+              <tr>
+                <th>{% trans "Profit" %}:</th>
+                <td>{% if balance.profit %}{{ balance.profit }}{% endif %}</td>
+              </tr>
+              <!--<tr>
+                <th>{% trans "Peer companies" %}:</th>
+                <td>
+                  {% for peer_company in balance.peer_companies.all %}
+                    &bull; {{ peer_company.name }}<br />
+                  {% endfor %}
+              </tr>-->
+              <tr>
+                <th>{% trans "Affiliates" %}:</th>
+                <td>
+                  {% if company.affiliates %}{{ company.affiliates }}{% endif %}
+              </tr>
+              <tr>
+                <th>{% trans "Office and Homepage" %}:</th>
+                <td>{{ company.name }}<br />
+                    {{ company.street }}<br />
+                    {{ company.zipcode }} {{ company.city }}<br />
+                    {{ company.country }}<br />
+                    <span class="glyphicon glyphicon-link glyphicon-greyer"></span>
+                    <a href="{{ company.website }}">{{ company.website }}</a><br/>
+                </td>
+              </tr>
+              <tr>
+                <th>{% trans "Balance period" %}:</th>
+                <td>{{ balance.start_date }} &ndash; {{ balance.end_date }}</td>
+              </tr>
+            </table>
+          </div>
+
+          <h3 class="ecg-green">{% trans "Area of activity" %}</h3>
+          <div class="company-activities">
+            <table>
+              <tr>
+                <th>{% trans "Company introduction" %}:</th>
+                <td class="todo">Existiert noch nicht in der Bilanz!</td>
+              </tr>
+              <tr>
+                <th>{% trans "Activities" %}:</th>
+                <td>{% if company.activities %}{{ company.activities }}{% endif %}</td>
+              </tr>
+              <tr>
+                <th>{% trans "Products and Services" %}:</th>
+                <td class="todo">
+                  Produkte/Dienstleistungen - Anteil am Umsatz<br />
+                  Existiert noch nicht in der Bilanz!
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <h3 class="ecg-green">{% trans "The Company and Common Good" %}</h3>
+          <div class="company-commongood">
+            {{ balance.common_good }}
+          </div>
+
+          <h2 class="ecg-green">{% trans "Self-assessment and attestation" %}</h2>
+          <div class="company-selfassessment">
+            <table>
+              <tr>
+                <th></th>
+                <th>{% trans "Indicator" %}</th>
+                <th class="align-right">Selbsteinschätzung <span class="todo">(in %?)</span></th>
+              </tr>
+              {% for indicator in indicators %}
+                {% if indicator.indicator.max_evaluation > 0 %}
+                  <tr>
+                    <td>{{ indicator.indicator|upper }}</td>
+                    <td>{{ indicator.indicator.title }}</td>
+                    <td class="align-right">{{ indicator.evaluation }} / {{ indicator.indicator.max_evaluation }}</td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
+          </div>
+
+          <h2 class="ecg-green">{% trans "Negative Criteria" %}</h2>
+          <div class="negative-criteria">
+            <table>
+              <tr>
+                <th>{% trans "Negative criteria" %}</th>
+                <th class="align-right">Bewertung <span class="todo">(Kann ich bestätigen Ja/Nein?)</span></th>
+              </tr>
+              {% for indicator in indicators %}
+                {% if 0 > indicator.indicator.max_evaluation %}
+                  <tr>
+                    <td>{{ indicator.indicator.title }}</td>
+                    <td class="align-right">{{ indicator.evaluation }} / {{ indicator.indicator.max_evaluation }}</td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
+          </div>
+
+          <h2 class="ecg-green">{% trans "Detailed description of each criteria" %}</h2>
+          <div class="detailed-criteria">
+            {% for indicator in indicators %}
+              {% if not indicator.indicator.parent and indicator.indicator.max_evaluation > 0 %}
+                <h3 class="ecg-green">{{ indicator.indicator|upper }} {{ indicator.indicator.title }}</h3>
+
+                <div class="criteria-description">
+                  {{ indicator.description|safe }}
+                </div>
+
+                {% for subindicator in indicators %}
+                  {% if subindicator.indicator.parent == indicator.indicator %}
+                    <h4 class="subindicator-title">{{ subindicator.indicator|upper }} {{ subindicator.indicator.title }} ({% trans "Relevance" %}: {{ subindicator.indicator.get_relevance_display|lower }})</h4>
+
+                    <h4 class="ecg-green">{% trans "Evaluation table" %}</h4>
+                    <div class="evaluation-table">
+                      {{ subindicator.evaluation_table|safe }}
+                    </div>
+
+                    <h4 class="ecg-green">{% trans "Key figures" %}</h4>
+                    <div class="key-figures">
+                      {{ subindicator.key_figures|safe }}
+                    </div>
+
+                    <h4 class="ecg-green">{% trans "Target questions" %}</h4>
+                    <div class="target-questions">
+                      {{ subindicator.description|safe }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <h2 class="ecg-green">{% trans "Prospect" %}</h2>
+          <div class="prospect">
+            {{ balance.prospect }}
+          </div>
+
+          <h2 class="ecg-green">{% trans "Balance process description" %}</h2>
+          <div class="process-description">
+            <p>{{ balance.process_description }}</p>
+
+            <table>
+              <!-- <tr>
+                <th>{% trans "Participated Stakeholders" %}</th>
+                <td>{{ balance.updated_by }}</td>
+              </tr> -->
+              <tr>
+                <th>{% trans "Number of participated employees" %}</th>
+                <td>{{ balance.number_participated_employees }}</td>
+              </tr>
+              <tr>
+                <th>{% trans "Worked Hours" %}</th>
+                <td>{{ balance.worked_hours }}</td>
+              </tr>
+              <tr>
+                <th>{% trans "How was the balance internally communicated?" %}</th>
+                <td>{{ balance.internal_communication }}</td>
+              </tr>
+            </table>
+          </div>
+
+        {% endif %}
+      </div>
+
+      <p class="timestamp">{% trans "Date" %}: {% now "SHORT_DATETIME_FORMAT" %}</p>
+    </div>
+  </div>
+</body>
+</html>
