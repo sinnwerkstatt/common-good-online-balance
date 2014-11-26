@@ -143,32 +143,17 @@
           </div>
         </div>
 
-        <div class="panel-group" data-position="target-questions">
+        <div class="panel-group" data-position="evaluation-table">
           <div class="row collapse-header" data-toggle="collapse" data-parent="panel-group">
             <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
-            <h4 class="subindicator-title ecg-green">{% trans "Target questions" %}</h4>
+            <h4 class="subindicator-title ecg-green">{% trans "Evaluation table" %}</h4>
           </div>
-          <div class="bubble-contents collapse-content collapse">
-            {% if can_edit %}
-              <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
-                {% if subindicator.description %}
-                  {{ subindicator.description|safe }}
-                {% else %}
-                  <p>Editieren Sie diesen Indikator</p>
-                  <ul>
-                    <li>darauf klicken</li>
-                    <li>editieren</li>
-                  </ul>
-                {% endif %}
-              </textarea>
-            {% else %}
-              <div class="company-balance-indicator-text">
-                {% if subindicator.description %}
-                  {{ subindicator.description|safe }}
-                {% else %}
-                  <br/>
-                {% endif %}
-              </div>
+
+          <div class="evaluation-table-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
+            {% if subindicator.evaluation_table %}
+                <div class="company-balance-indicator-text">
+                  {{ subindicator.evaluation_table|safe }}
+                </div>
             {% endif %}
           </div>
         </div>
@@ -196,17 +181,32 @@
           </div>
         </div>
 
-        <div class="panel-group" data-position="evaluation-table">
+        <div class="panel-group" data-position="target-questions">
           <div class="row collapse-header" data-toggle="collapse" data-parent="panel-group">
             <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
-            <h4 class="subindicator-title ecg-green">{% trans "Evaluation table" %}</h4>
+            <h4 class="subindicator-title ecg-green">{% trans "Target questions" %}</h4>
           </div>
-
-          <div class="evaluation-table-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
-            {% if subindicator.evaluation_table %}
-                <div class="company-balance-indicator-text">
-                  {{ subindicator.evaluation_table|safe }}
-                </div>
+          <div class="bubble-contents collapse-content collapse">
+            {% if can_edit %}
+              <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
+                {% if subindicator.description %}
+                  {{ subindicator.description|safe }}
+                {% else %}
+                  <p>Editieren Sie diesen Indikator</p>
+                  <ul>
+                    <li>darauf klicken</li>
+                    <li>editieren</li>
+                  </ul>
+                {% endif %}
+              </textarea>
+            {% else %}
+              <div class="company-balance-indicator-text">
+                {% if subindicator.description %}
+                  {{ subindicator.description|safe }}
+                {% else %}
+                  <br/>
+                {% endif %}
+              </div>
             {% endif %}
           </div>
         </div>
