@@ -111,11 +111,11 @@
               </tr>
               <tr>
                 <th>{% trans "Revenue" %}:</th>
-                <td>{% if balance.revenue %}{{ balance.revenue }}{% endif %}</td>
+                <td>{% if balance.revenue %}{{ balance.revenue }} €{% endif %}</td>
               </tr>
               <tr>
                 <th>{% trans "Profit" %}:</th>
-                <td>{% if balance.profit %}{{ balance.profit }}{% endif %}</td>
+                <td>{% if balance.profit %}{{ balance.profit }} €{% endif %}</td>
               </tr>
               <!--<tr>
                 <th>{% trans "Peer companies" %}:</th>
@@ -260,11 +260,11 @@
               </tr> -->
               <tr>
                 <th>{% trans "Number of participated employees" %}</th>
-                <td>{{ balance.number_participated_employees }}</td>
+                <td>{{ balance.number_participated_employees }} {% trans "Employees" %}</td>
               </tr>
               <tr>
                 <th>{% trans "Worked Hours" %}</th>
-                <td>{{ balance.worked_hours }}</td>
+                <td>{{ balance.worked_hours }} {% trans "Hours" %}</td>
               </tr>
               <tr>
                 <th>{% trans "How was the balance internally communicated?" %}</th>

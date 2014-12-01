@@ -11,7 +11,7 @@ from crispy_forms.helper import FormHelper
 from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator, UserRole
 
 from bootstrap3_datetime.widgets import DateTimePicker
-
+from suit.widgets import EnclosedInput
 
 class IndicatorForm(forms.ModelForm):
     class Meta:
@@ -293,6 +293,14 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
         fields = ('matrix', 'year', 'start_date', 'end_date', 'status', 'visibility', 'evaluation_type', 'consultant', 'auditor', 'accompanying_consultant', 'peer_companies', 'employees_number', 'revenue', 'profit', 'worked_hours', 'number_participated_employees', 'common_good',
                   'process_description', 'internal_communication',
                   'prospect', 'company')
+
+        widgets = {
+            'revenue': EnclosedInput(prepend='<div class="input-group">', append='<span class="input-group-addon">&euro;</span></div>'),
+            'profit': EnclosedInput(prepend='<div class="input-group">', append='<span class="input-group-addon">&euro;</span></div>'),
+
+            'worked_hours': EnclosedInput(prepend='<div class="input-group">', append=_('<span class="input-group-addon">%s</span></div>') %_("Hours")),
+            'number_participated_employees': EnclosedInput(prepend='<div class="input-group">', append=_('<span class="input-group-addon">%s</span></div>') %_("Employees")),
+        }
 
     def __init__(self, *args, **kwargs):
         super(CompanyBalanceUpdateForm, self).__init__(*args, **kwargs)
