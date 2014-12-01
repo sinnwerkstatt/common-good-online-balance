@@ -20,4 +20,4 @@ fabric-virtualenv==0.2.1
 psycopg2==2.5.2
 django-bootstrap3-datetimepicker==2.2.3
 django-leaflet==0.15.0
-django-wkhtmltopdf==0.12.1
+django-wkhtmltopdf==2.0.2
