@@ -169,7 +169,7 @@
 
           <h3 class="ecg-green">{% trans "The Company and Common Good" %}</h3>
           <div class="company-commongood">
-            {{ balance.common_good }}
+            {{ balance.common_good|safe }}
           </div>
 
           <h2 class="ecg-green">{% trans "Self-assessment and attestation" %}</h2>
@@ -246,12 +246,12 @@
 
           <h2 class="ecg-green">{% trans "Prospect" %}</h2>
           <div class="prospect">
-            {{ balance.prospect }}
+            {{ balance.prospect|safe }}
           </div>
 
           <h2 class="ecg-green">{% trans "Balance process description" %}</h2>
           <div class="process-description">
-            <p>{{ balance.process_description }}</p>
+            <p>{{ balance.process_description|safe}}</p>
 
             <table>
               <!-- <tr>
@@ -268,7 +268,7 @@
               </tr>
               <tr>
                 <th>{% trans "How was the balance internally communicated?" %}</th>
-                <td>{{ balance.internal_communication }}</td>
+                <td>{{ balance.internal_communication|safe }}</td>
               </tr>
             </table>
           </div>
