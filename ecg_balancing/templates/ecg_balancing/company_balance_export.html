@@ -41,21 +41,25 @@
     }
 
     .align-right {
-      text-align: right;
+      text-align: right !important;
     }
 
-    .todo {
-      color: red;
-    }
-
-    .balance-export table, tr {
+    .balance-export table, .balance-export tr {
       width: 100%;
       vertical-align: top;
       text-align: left;
+      border-collapse: collapse;
+      border-bottom: 1px solid #ddd;
     }
 
-    .balance-export th, td {
+    .balance-export table:last-child, .balance-export tr:last-child {
+      border: none;
+    }
+
+    .balance-export th, .balance-export td {
       padding: .5em;
+      vertical-align: top;
+      text-align: left;
     }
 
     .company-general th, .company-activities th, .process-description th {
@@ -69,6 +73,21 @@
 
     .company-commongood, .evaluation-table, .key-figures, .target-questions, .prospect {
       width: 100%;
+    }
+
+    .evaluation-table table, .evaluation-table tr,
+    .key-figures table, .key-figures tr,
+    .target-questions table, .target-questions tr {
+      width: 100% !important;
+    }
+
+    .evaluation-table th, .evaluation-table td,
+    .key-figures th, .key-figures td,
+    .key-figures th, .key-figures td {
+      border: 1px solid #ddd;
+      padding: 0.125em .5em !important;
+      vertical-align: top !important;
+      text-align: left !important;
     }
 
     .timestamp {
@@ -99,7 +118,7 @@
               </tr>
               <tr>
                 <th>{% trans "Eigentums- und Rechtsform, Eigentumsanteile" %}:</th>
-                <td class="todo">Existiert noch nicht in der Bilanz!</td>
+                <td></td>
               </tr>
               <tr>
                 <th>{% trans "Industry" %}:</th>
@@ -151,7 +170,7 @@
             <table>
               <tr>
                 <th>{% trans "Company introduction" %}:</th>
-                <td class="todo">Existiert noch nicht in der Bilanz!</td>
+                <td></td>
               </tr>
               <tr>
                 <th>{% trans "Activities" %}:</th>
@@ -159,10 +178,7 @@
               </tr>
               <tr>
                 <th>{% trans "Products and Services" %}:</th>
-                <td class="todo">
-                  Produkte/Dienstleistungen - Anteil am Umsatz<br />
-                  Existiert noch nicht in der Bilanz!
-                </td>
+                <td></td>
               </tr>
             </table>
           </div>
@@ -178,7 +194,7 @@
               <tr>
                 <th></th>
                 <th>{% trans "Indicator" %}</th>
-                <th class="align-right">Selbsteinschätzung <span class="todo">(in %?)</span></th>
+                <th class="align-right">{% trans "Self-assessment" %}</th>
               </tr>
               {% for indicator in indicators %}
                 {% if indicator.indicator.max_evaluation > 0 %}
@@ -197,7 +213,7 @@
             <table>
               <tr>
                 <th>{% trans "Negative criteria" %}</th>
-                <th class="align-right">Bewertung <span class="todo">(Kann ich bestätigen Ja/Nein?)</span></th>
+                <th class="align-right">Bewertung</span></th>
               </tr>
               {% for indicator in indicators %}
                 {% if 0 > indicator.indicator.max_evaluation %}
