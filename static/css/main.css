@@ -37,10 +37,16 @@ body {
   /* Set the fixed height of the footer here */
   /*height: 40px;*/
   padding-top: 10px;
+  padding-bottom: .75em;
   border-top: 1px solid #EEEEEE;
-  font-size: 0.75rem;
+  font-size: 0.9em;
   background-color: white;
   color: #a2a2a2;
+}
+
+#footer li {
+  display: inline;
+  margin-right: 1.5em;
 }
 
 /* Font-Sizes
