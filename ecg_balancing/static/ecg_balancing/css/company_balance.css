@@ -574,3 +574,9 @@ table {
 .affix, .affix-top {
   position: static;
 }
+
+#id_start_date_0, #id_start_date_1,
+#id_end_date_0, #id_end_date_1 {
+  width: 50%;
+  display: inline-block;
+}
