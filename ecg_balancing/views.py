@@ -935,7 +935,7 @@ class CompanyBalanceExportView(PDFTemplateView, UserRoleRedirectMixin, CompanyBa
                 else:
                     indicators.append(indicator);
 
-        context['indicators'] = sorted(indicators, key=lambda indicator__stakeholder: indicator__stakeholder)
+        context['indicators'] = sorted(indicators, key=lambda indicator: indicator.indicator.stakeholder)
         context['negative_indicators'] = negative_indicators
         context['subindicators'] = subindicators
 
