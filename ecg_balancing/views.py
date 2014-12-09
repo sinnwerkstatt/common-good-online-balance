@@ -921,8 +921,8 @@ class CompanyBalanceExportView(PDFTemplateView, UserRoleRedirectMixin, CompanyBa
         balance = CompanyBalance.objects.get(company__slug=company_slug, year=self.balance_year)
         context['balance'] = balance
 
-        balance_indicators = CompanyBalanceIndicator.objects.all().filter(company_balance=balance).order_by('indicator__stakeholder', 'indicator__subindicator_number')
-        # balance_indicators = sorted(balance_indicators, key=attrgetter('indicator.stakeholder', 'indicator.parent', 'indicator.subindicator_number'))
+        balance_indicators = CompanyBalanceIndicator.objects.all().filter(company_balance=balance, indicator__parent=None)
+        balance_indicators = sorted(balance_indicators, key=attrgetter('indicator.stakeholder', 'indicator.ecg_value'))
 
         indicators = []
         negative_indicators = []
