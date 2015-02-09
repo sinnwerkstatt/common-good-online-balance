@@ -180,6 +180,16 @@ var is_negative_criteria = indicator.shortcodeSlug.indexOf('n') == 0;
 // if not negative criteria
 if (!is_negative_criteria) {
 
+    // Display Relevance Comment textarea and make it requiered on relevance change
+    $('select.company-balance-indicator-relevance').each(function (e) {
+        var $this = $(this);
+
+        console.log($this.find($('.selected')).context.selectedIndex);
+        // $.each(indicator.table.subindicators, function (index, subindicator) {
+        //     console.log(subindicator.relevance.selected);
+        // });
+    });
+
     // add subindicator titles
     $('.subindicator-title').each(function (e) {
         var $this = $(this);

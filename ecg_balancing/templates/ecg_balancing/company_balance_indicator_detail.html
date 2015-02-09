@@ -131,12 +131,31 @@
             {% else %}
               <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
                    class="company-balance-indicator-slider pull-right">
+                {% if subindicator.evaluation.errors %}
+                  {{subindicator.evaluation.errors}}
+                {% endif %}
                 <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
                        value="{{ subindicator.evaluation }}"
                        name="company-balance-indicator-{{ subindicator.indicator.slugify }}-percentage"
                        class="center">
-                <div class="company-balance-indicator-relevance">
-                  ({% trans "Relevance" %}: {{ subindicator.indicator.get_relevance_display }})
+
+                <div class="company-balance-indicator-relevance
+                            company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance">
+                  {% if subindicator.relevance.errors %}
+                    {{subindicator.relevance.errors}}
+                  {% endif %}
+
+                  {% trans "Relevance" %}: <select class="select form-control company-balance-indicator-relevance" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance">
+                    {% for option in indicator_relevance_values %}
+                      <option value="{{ option.0 }}" {% if option.0 == subindicator.relevance %} selected="selected" {% endif %}>
+                        {{ option.1 }}
+                      </option>
+                    {% endfor %}
+                  </select>
+
+                  <div class="company-balance-indicator-relevance-comment company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment display-none">
+                    {% trans "Change reason" %}: <textarea id="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment" class="textarea form-control company-balance-indicator-relevance-comment" rows="2" cols="1" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment">{{subindicator.relevance_comment}}</textarea>
+                  </div>
                 </div>
               </div>
             {% endif %}

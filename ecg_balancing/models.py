@@ -89,7 +89,7 @@ class Indicator(models.Model):
                                                 help_text=_('Only for a subindicator, an indicator with a parent.'),
                                                 null=True,
                                                 blank=True)
-    relevance = models.CharField(_('Relevance'), max_length=10, choices=RELEVANCE_VALUES,
+    relevance = models.CharField(_('Relevance'), max_length=10, choices=RELEVANCE_VALUES, default=RELEVANCE_MIDDLE, 
                                         help_text=_('Only for a subindicator, an indicator with a parent.'),
                                                 null=True,
                                                 blank=True)
@@ -442,6 +442,8 @@ class CompanyBalanceIndicator(models.Model):
     key_figures = models.TextField(_('Key figures'), blank=True, null=True)
     evaluation_table = models.TextField(_('Evaluation table'), blank=True, null=True)
     evaluation = models.IntegerField(_('Evaluation'), default=0)
+    relevance = models.CharField(_('Relevance'), max_length=10, choices=Indicator.RELEVANCE_VALUES, blank=False, null=False)
+    relevance_comment = models.TextField(_('Relevance comment'), blank=True, null=True)
 
     objects = CompanyBalanceIndicatorManager()
 

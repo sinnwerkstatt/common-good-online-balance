@@ -638,6 +638,7 @@ class CompanyBalanceIndicatorDetailView(UserRoleRedirectMixin, CompanyBalanceVie
             'indicator__subindicator_number').all()
         context['subindicators'] = subindicators
         context['is_sole_proprietorship'] = self.object.company_balance.is_sole_proprietorship
+        context['indicator_relevance_values'] = Indicator.RELEVANCE_VALUES
         return context
 
     def get_object(self, queryset=None):
@@ -761,6 +762,17 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
                     if subindicatorKeyfiguresText:
                         companybalance_subindicator.key_figures = subindicatorKeyfiguresText
                     companybalance_subindicator.evaluation = subindicatorPercentage
+
+                    # indicator relevance
+                    subindicatorRelevance = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, "relevance"))
+                    if subindicatorRelevance:
+                        companybalance_subindicator.relevance = subindicatorRelevance
+
+                    # indicator relevance comment
+                    subindicatorRelevanceComment = post.get(inputFieldFormat % (inputFieldPrefix, subindicatorId, "relevance-comment"))
+                    if subindicatorRelevanceComment:
+                        companybalance_subindicator.relevance_comment = subindicatorRelevanceComment
+
                     companybalance_subindicator.save()
 
 
@@ -803,6 +815,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
         @return: @rtype: the calculated points for the subindicator
         """
         relevance_mapping = Indicator.RELEVANCE_MAPPING
+        # raise Exception, companyBalanceSubindicator.indicator.relevance
         subindicator_relevance = relevance_mapping[companyBalanceSubindicator.indicator.relevance]
         subindicators_relevances_sum = 0
 
