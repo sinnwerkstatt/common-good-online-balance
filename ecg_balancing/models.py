@@ -8,6 +8,7 @@ from django.db import models
 from django.db.models import signals
 from django.utils.translation import ugettext_lazy as _
 from osm_field.fields import OSMField
+from autoslug import AutoSlugField
 
 from ecg_balancing import fields
 
@@ -229,14 +230,14 @@ class Company(models.Model):
     )
 
     name = models.CharField(_('Name'), max_length=255)
-    slug = models.SlugField(_('Slug'), max_length=50, unique=True)
+    slug = AutoSlugField(_('Slug'), populate_from='name', unique=True)
     logo = models.ImageField(_('Image'), blank=True, null=True, upload_to='company-upload')
 
     street = models.CharField(_('Street'), max_length=50, blank=False)
     zipcode = models.PositiveIntegerField(_('ZIP code'), blank=False)
     city = models.CharField(_('City'), max_length=50, blank=False)
     country = models.CharField(_('Country'), max_length=50, blank=False)
-    location = OSMField(_('Location'), blank=True, null=True)
+    location = OSMField(_('Location'), blank=False, null=True)
     website = models.CharField(_('Website'), max_length=255, blank=False)
 
     email = models.EmailField(_('Email'), unique=True)

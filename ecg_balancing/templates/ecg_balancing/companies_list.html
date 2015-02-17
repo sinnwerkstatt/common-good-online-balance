@@ -20,6 +20,9 @@
       {% if not_approved_companies %} <span class="badge">{{ not_approved_companies|length }}</span>{% endif %}
     </a>
   {% endif %}
+  {% if request.user.is_authenticated %}
+    <a class="button m-bottom" href="{% url "company-create" %}"><span class="glyphicon glyphicon-plus"></span> {% trans "Create a company" %}</a>
+  {% endif %}
 
   <!-- Nav tabs -->
   <ul class="nav nav-pills pull-right" role="tablist">
@@ -65,7 +68,6 @@
         </a>
       {% endfor %}
     </div>
-
   </div>
 
 {% endblock base_content %}
