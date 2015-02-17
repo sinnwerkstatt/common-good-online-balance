@@ -14,6 +14,7 @@ from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from wkhtmltopdf.views import PDFTemplateView
 from django.utils.text import slugify
+from operator import attrgetter
 
 from django.views.generic import CreateView, DetailView, UpdateView, ListView, TemplateView, FormView, RedirectView
 from ecg_balancing.forms import UserProfileForm, CompanyForm, CompanyBalanceForm, CompanyBalanceUpdateForm, FeedbackIndicatorForm, \
@@ -918,7 +919,24 @@ class CompanyBalanceExportView(PDFTemplateView, UserRoleRedirectMixin, CompanyBa
         balance = CompanyBalance.objects.get(company__slug=company_slug, year=self.balance_year)
         context['balance'] = balance
 
-        indicators = CompanyBalanceIndicator.objects.all().order_by('indicator__subindicator_number').filter(company_balance=balance).order_by('indicator__stakeholder').all()
+        balance_indicators = CompanyBalanceIndicator.objects.all().filter(company_balance=balance)
+        balance_indicators = sorted(balance_indicators, key=attrgetter('indicator.stakeholder', 'indicator.ecg_value', 'indicator.subindicator_number'))
+
+        indicators = []
+        negative_indicators = []
+        subindicators = []
+
+        for indicator in balance_indicators:
+            if indicator.indicator.stakeholder.startswith('n'):
+                negative_indicators.append(indicator)
+            else:
+                if indicator.indicator.parent:
+                    subindicators.append(indicator)
+                else:
+                    indicators.append(indicator);
+
         context['indicators'] = indicators
+        context['negative_indicators'] = negative_indicators
+        context['subindicators'] = subindicators
 
         return context

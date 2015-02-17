@@ -10,6 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
 from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator, UserRole
 
+from datetime import date
+from .widgets import DateSelectorWidget
 from bootstrap3_datetime.widgets import DateTimePicker
 from suit.widgets import EnclosedInput
 
@@ -276,18 +278,6 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
     helper.field_class = 'col-lg-5 col-md-5'
     helper.form_tag = False
 
-    start_date = forms.DateField(
-        input_formats=['%Y-%m'], label=_("Start Date"),
-        widget=DateTimePicker(options={"format": "YYYY-MM",
-                                       "viewMode": "years",
-                                       "pickTime": False}))
-
-    end_date = forms.DateField(
-        input_formats=['%Y-%m'], label=_("End Date"),
-        widget=DateTimePicker(options={"format": "YYYY-MM",
-                                       "viewMode": "years",
-                                       "pickTime": False}))
-
     class Meta:
         model = CompanyBalance
         fields = ('matrix', 'year', 'start_date', 'end_date', 'status', 'visibility', 'evaluation_type', 'consultant', 'auditor', 'accompanying_consultant', 'peer_companies', 'employees_number', 'revenue', 'profit', 'worked_hours', 'number_participated_employees', 'common_good',
@@ -295,6 +285,8 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
                   'prospect', 'company')
 
         widgets = {
+            'start_date': DateSelectorWidget(),
+            'end_date': DateSelectorWidget(),
             'revenue': EnclosedInput(prepend='<div class="input-group">', append='<span class="input-group-addon">&euro;</span></div>'),
             'profit': EnclosedInput(prepend='<div class="input-group">', append='<span class="input-group-addon">&euro;</span></div>'),
 
@@ -336,7 +328,6 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
             if existing_balance.exists():
                 raise forms.ValidationError(
                     _('There is an existing balance for the year %s. Please enter another year.' % year))
-
         return cleaned_data
 
 

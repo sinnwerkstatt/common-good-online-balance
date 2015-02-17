@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-01 17:14+0100\n"
+"POT-Creation-Date: 2014-12-08 12:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,94 +31,86 @@ msgstr "Das Feld ist erforderlich."
 msgid "'%s' is not a valid e-mail address."
 msgstr "'%s' ist nicht valide E-Mail-Adresse."
 
-#: ecg_balancing/forms.py:27
+#: ecg_balancing/forms.py:29
 msgid "A user with that username already exists."
 msgstr ""
 
-#: ecg_balancing/forms.py:28
+#: ecg_balancing/forms.py:30
 msgid "The two password fields didn't match."
 msgstr ""
 
-#: ecg_balancing/forms.py:30
+#: ecg_balancing/forms.py:32
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:39
 msgid "Username"
 msgstr "Benutzer"
 
-#: ecg_balancing/forms.py:32
+#: ecg_balancing/forms.py:34
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
 
-#: ecg_balancing/forms.py:35
+#: ecg_balancing/forms.py:37
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
 
-#: ecg_balancing/forms.py:37
+#: ecg_balancing/forms.py:39
 msgid "Password"
 msgstr ""
 
-#: ecg_balancing/forms.py:39
+#: ecg_balancing/forms.py:41
 msgid "Password confirmation"
 msgstr ""
 
-#: ecg_balancing/forms.py:41
+#: ecg_balancing/forms.py:43
 msgid "Enter the same password as above, for verification."
 msgstr ""
 
-#: ecg_balancing/forms.py:68 ecg_balancing/forms.py:174
-#: ecg_balancing/forms.py:179
+#: ecg_balancing/forms.py:70 ecg_balancing/forms.py:176
+#: ecg_balancing/forms.py:181
 msgid "A user with that email already exists."
 msgstr "Ein Benutzer mit dieser E-Mail-Adresse existiert schon."
 
-#: ecg_balancing/forms.py:71 ecg_balancing/forms.py:143
+#: ecg_balancing/forms.py:73 ecg_balancing/forms.py:145
 msgid "First Name"
 msgstr "Vorname"
 
-#: ecg_balancing/forms.py:72 ecg_balancing/forms.py:144
+#: ecg_balancing/forms.py:74 ecg_balancing/forms.py:146
 msgid "Last Name"
 msgstr "Familienname"
 
-#: ecg_balancing/forms.py:73 ecg_balancing/forms.py:145
+#: ecg_balancing/forms.py:75 ecg_balancing/forms.py:147
 #: ecg_balancing/models.py:36 ecg_balancing/models.py:242
 #: ecg_balancing/templates/ecg_balancing/registration/password_email_form.html:18
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:53
 msgid "Email"
 msgstr "E-Mail"
 
-#: ecg_balancing/forms.py:196 ecg_balancing/models.py:250
+#: ecg_balancing/forms.py:198 ecg_balancing/models.py:250
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:132
 msgid "Foundation Date"
 msgstr "Gründungsdatum"
 
-#: ecg_balancing/forms.py:222
+#: ecg_balancing/forms.py:224
 msgid "You already requested membership or you are member of this company."
 msgstr "Sie sind nicht Mitglied eines Unternehmens."
 
-#: ecg_balancing/forms.py:268 ecg_balancing/forms.py:338
+#: ecg_balancing/forms.py:270 ecg_balancing/forms.py:330
 #, python-format
 msgid ""
 "There is an existing balance for the year %s. Please enter another year."
 msgstr ""
 "Eine Bilanz für das Jahr %s existert schon. Bitte ein anderes Jahr eingeben."
 
-#: ecg_balancing/forms.py:280 ecg_balancing/models.py:296
-msgid "Start Date"
-msgstr "Startdatum"
-
-#: ecg_balancing/forms.py:286 ecg_balancing/models.py:297
-msgid "End Date"
-msgstr "Enddatum"
-
-#: ecg_balancing/forms.py:301 ecg_balancing/forms.py:302
+#: ecg_balancing/forms.py:293 ecg_balancing/forms.py:294
 #, python-format
 msgid "<span class=\"input-group-addon\">%s</span></div>"
 msgstr ""
 
-#: ecg_balancing/forms.py:301
+#: ecg_balancing/forms.py:293
 #: ecg_balancing/templates/ecg_balancing/company_balance_export.html:283
 msgid "Hours"
 msgstr "Stunden"
 
-#: ecg_balancing/forms.py:302
+#: ecg_balancing/forms.py:294
 #: ecg_balancing/templates/ecg_balancing/company_balance_export.html:279
 msgid "Employees"
 msgstr "Mitarbeiter"
@@ -529,6 +521,14 @@ msgstr "Bearbeitet von"
 msgid "Year"
 msgstr "Jahr"
 
+#: ecg_balancing/models.py:296
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: ecg_balancing/models.py:297
+msgid "End Date"
+msgstr "Enddatum"
+
 #: ecg_balancing/models.py:304
 msgid "Draft"
 msgstr "Entwurf"
@@ -820,6 +820,58 @@ msgstr "[ECG] Mitgliedschaft bei '%s' abgelehnt"
 msgid "[ECG] New Feedback for Indicator %s"
 msgstr "[ECG] Neues Feedback für Indikator %s"
 
+#: ecg_balancing/widgets.py:12
+msgid "January"
+msgstr ""
+
+#: ecg_balancing/widgets.py:13
+msgid "February"
+msgstr ""
+
+#: ecg_balancing/widgets.py:14
+msgid "March"
+msgstr ""
+
+#: ecg_balancing/widgets.py:15
+msgid "April"
+msgstr ""
+
+#: ecg_balancing/widgets.py:16
+#, fuzzy
+msgid "May"
+msgstr "Karte"
+
+#: ecg_balancing/widgets.py:17
+msgid "June"
+msgstr ""
+
+#: ecg_balancing/widgets.py:18
+msgid "July"
+msgstr ""
+
+#: ecg_balancing/widgets.py:19
+msgid "August"
+msgstr ""
+
+#: ecg_balancing/widgets.py:20
+#, fuzzy
+msgid "September"
+msgstr "Mitglied"
+
+#: ecg_balancing/widgets.py:21
+msgid "October"
+msgstr ""
+
+#: ecg_balancing/widgets.py:22
+#, fuzzy
+msgid "November"
+msgstr "Mitglied"
+
+#: ecg_balancing/widgets.py:23
+#, fuzzy
+msgid "December"
+msgstr "Mitglied"
+
 #: ecg_balancing/templates/ecg_balancing/companies_list.html:19
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:14
 msgid "Approve companies"
@@ -997,7 +1049,7 @@ msgstr "Datum"
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:32
 #: ecg_balancing/templates/ecg_balancing/feedback_indicator_form.html:26
 msgid "Send Feedback"
-msgstr "Feeback senden"
+msgstr "Feedback senden"
 
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:36
 msgid "Indicator Infos"
