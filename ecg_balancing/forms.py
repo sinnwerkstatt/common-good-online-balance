@@ -8,7 +8,7 @@ from django.db.models import Model
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
-from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalance, FeedbackIndicator, UserRole
+from ecg_balancing.models import UserProfile, Company, Indicator, CompanyBalanceIndicator, CompanyBalance, FeedbackIndicator, UserRole
 
 from datetime import date
 from .widgets import DateSelectorWidget
@@ -329,6 +329,25 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
                 raise forms.ValidationError(
                     _('There is an existing balance for the year %s. Please enter another year.' % year))
         return cleaned_data
+
+
+class CompanyBalanceIndicatorForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.label_class = 'clearboth text-right col-lg-2 col-md-2'
+    helper.field_class = 'col-lg-5 col-md-5'
+    helper.form_tag = False
+
+    class Meta:
+        model = CompanyBalanceIndicator
+        fields = ('relevance', 'relevance_comment')
+
+    def __init__(self, *args, **kwargs):
+        if not self.relevance:
+            self.relevance = self.indicator.relevance
+        return super(CompanyBalanceIndicator, self).__init__(*args, **kwargs)
+
+    def clean_relevance_comment(self):
+        pass #fixme (existierendes Objekt aus DB --> Relevance Wert vergleichen und bei Änderung Comment prüfen, sonst Validation Error)
 
 
 class FeedbackIndicatorForm(forms.ModelForm):
