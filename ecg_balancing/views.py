@@ -124,9 +124,7 @@ class CompaniesAdminView(FormView):
                     company.save()
 
                 if old_status == Company.STATUS_CHOICE_NOT_APPROVED and new_status == Company.STATUS_CHOICE_APPROVED:
-                    user_role = UserRole.objects.get(company=company, role=UserRole.ROLE_CHOICE_ADMIN)
-                    user = user_role.user
-                    to_emails = [user.email]
+                    to_emails = [r.user.email for r in UserRole.objects.filter(company=company, role=UserRole.ROLE_CHOICE_ADMIN)]
                     reply_to_email = self.request.user.email
                     self.send_mail(company, user, to_emails, reply_to_email)
 
