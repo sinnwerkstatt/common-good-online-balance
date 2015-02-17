@@ -127,7 +127,7 @@ class CompaniesAdminView(FormView):
                 if old_status == Company.STATUS_CHOICE_NOT_APPROVED and new_status == Company.STATUS_CHOICE_APPROVED:
                     to_emails = [r.user.email for r in UserRole.objects.filter(company=company, role=UserRole.ROLE_CHOICE_ADMIN)]
                     reply_to_email = self.request.user.email
-                    self.send_mail(company, user, to_emails, reply_to_email)
+                    self.send_mail(company, request.user, to_emails, reply_to_email)
 
 
         return HttpResponseRedirect('%s%s' % (self.get_success_url(), urlArgs))
