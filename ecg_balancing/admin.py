@@ -13,9 +13,10 @@ admin.site.register(ECGMatrix, ECGMatrixAdmin)
 
 
 class IndicatorAdmin(admin.ModelAdmin):
-    #list_filter = ('parent',)
-    #search_fields = ('title', 'subindicator_number')
-    pass
+    list_filter = ('stakeholder', 'ecg_value')
+    search_fields = ('title', 'subindicator_number')
+    list_display = ('__unicode__', 'title', 'stakeholder')
+    ordering = ('stakeholder', 'subindicator_number')
 
 admin.site.register(Indicator, IndicatorAdmin)
 
