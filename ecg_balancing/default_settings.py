@@ -172,6 +172,8 @@ INSTALLED_APPS = (
     'leaflet',
     'bootstrap3_datetime',
     'wkhtmltopdf',
+
+    'ckeditor',
 )
 
 LANGUAGES = [
@@ -244,3 +246,5 @@ LEAFLET_CONFIG = {
     'RESET_VIEW': False,
     'TILES': 'http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
 }
+
+CKEDITOR_UPLOAD_PATH = "uploads/"

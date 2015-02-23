@@ -62,6 +62,7 @@ urlpatterns = patterns('',
     url(r'^feedback/indicator/(?P<indicator_id>[\w.]*)$', login_required(FeedbackIndicatorFormView.as_view()), name='feedback-indicator'),
     url(r'^feedback/success/$', login_required(FeedbackIndicatorSuccessView.as_view()), name='feedback-indicator-success'),
 
+    (r'^ckeditor/', include('ckeditor.urls')),
 
     # leave at the end
     url(r'^select2/', include('django_select2.urls')),

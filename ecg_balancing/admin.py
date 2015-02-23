@@ -13,8 +13,9 @@ admin.site.register(ECGMatrix, ECGMatrixAdmin)
 
 
 class IndicatorAdmin(admin.ModelAdmin):
+    #list_filter = ('parent',)
+    #search_fields = ('title', 'subindicator_number')
     pass
-
 
 admin.site.register(Indicator, IndicatorAdmin)
 

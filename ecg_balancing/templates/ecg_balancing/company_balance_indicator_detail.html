@@ -11,7 +11,6 @@
   {{ object.company_balance.year }}{% endblock %}
 
 {% block base_content %}
-
   {% include 'ecg_balancing/includes/balance_header.html' with company_balance=object.company_balance %}
 
   <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}">
@@ -69,20 +68,12 @@
     <div class="bubble-contents">
       {% if can_edit %}
         <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-editor">
-          {% if object.description %}
-            {{ object.description|safe }}
-          {% else %}
-            <p>Editieren Sie diesen Indikator</p>
-            <ul>
-              <li>darauf klicken</li>
-              <li>editieren</li>
-            </ul>
-          {% endif %}
+          {{ object.get_description|safe }}
         </textarea>
       {% else %}
         <div class="company-balance-indicator-text">
-          {% if object.description %}
-            {{ object.description|safe }}
+          {% if object.get_description %}
+            {{ object.get_description|safe }}
           {% else %}
             <br/>
           {% endif %}
@@ -91,17 +82,15 @@
     </div>
 
     <div class="key-figures-container" data-indicator-slug="{{ object.indicator.slugify }}">
-      {% if object.key_figures %}
-          {% if can_edit %}
-            <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
-                id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor">
-                {{ object.key_figures }}
-            </textarea>
-          {% else %}
-            <div class="company-balance-indicator-text">
-              {{ object.key_figures|safe }}
-            </div>
-          {% endif %}
+      {% if can_edit %}
+        <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
+            id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor">
+            {{ object.get_key_figures }}
+        </textarea>
+      {% else %}
+        <div class="company-balance-indicator-text">
+          {{ object.get_key_figures|safe }}
+        </div>
       {% endif %}
     </div>
 
@@ -131,9 +120,7 @@
             {% else %}
               <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
                    class="company-balance-indicator-slider pull-right">
-                {% if subindicator.evaluation.errors %}
                   {{subindicator.evaluation.errors}}
-                {% endif %}
                 <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
                        value="{{ subindicator.evaluation }}"
                        name="company-balance-indicator-{{ subindicator.indicator.slugify }}-percentage"
@@ -141,9 +128,7 @@
 
                 <div class="company-balance-indicator-relevance
                             company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance">
-                  {% if subindicator.relevance.errors %}
-                    {{subindicator.relevance.errors}}
-                  {% endif %}
+                  {{subindicator.relevance.errors}}
 
                   {% trans "Relevance" %}: <select class="select form-control company-balance-indicator-relevance" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance">
                     {% for option in indicator_relevance_values %}
@@ -153,8 +138,8 @@
                     {% endfor %}
                   </select>
 
-                  <div class="company-balance-indicator-relevance-comment company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment display-none">
-                    {% trans "Change reason" %}: <textarea id="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment" class="textarea form-control company-balance-indicator-relevance-comment" rows="2" cols="1" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment">{{subindicator.relevance_comment}}</textarea>
+                  <div class="company-balance-indicator-relevance-comment company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment{% if not subindicator.relevance_comment and not subindicator.relevance_comment.errors %} hidden{% endif %}">
+                    {% trans "Change reason" %}: <textarea id="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment" class="textarea form-control company-balance-indicator-relevance-comment" rows="2" cols="1" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment">{{subindicator.relevance_comment|default_if_none:""}}</textarea>
                   </div>
                 </div>
               </div>
@@ -169,11 +154,9 @@
           </div>
 
           <div class="evaluation-table-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
-            {% if subindicator.evaluation_table %}
-                <div class="company-balance-indicator-text">
-                  {{ subindicator.evaluation_table|safe }}
-                </div>
-            {% endif %}
+            <div class="company-balance-indicator-text">
+              {{ subindicator.get_evaluation_table|safe }}
+            </div>
           </div>
         </div>
 
@@ -183,19 +166,16 @@
             <h4 class="subindicator-title ecg-green">{% trans "Key figures" %}</h4>
           </div>
 
-          <div class="key-figures-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}"
-                                              data-indicator-slug="{{ subindicator.indicator.slugify }}">
-            {% if subindicator.key_figures %}
-                {% if can_edit %}
-                  <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
-                      id="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor">
-                      {{ subindicator.key_figures }}
-                  </textarea>
-                {% else %}
-                  <div class="company-balance-indicator-text">
-                    {{ subindicator.key_figures|safe }}
-                  </div>
-                {% endif %}
+          <div class="asdf key-figures-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
+            {% if can_edit %}
+              <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
+                  id="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor">
+                  {{ subindicator.get_key_figures }}
+              </textarea>
+            {% else %}
+              <div class="company-balance-indicator-text">
+                {{ subindicator.get_key_figures|safe }}
+              </div>
             {% endif %}
           </div>
         </div>
@@ -208,23 +188,11 @@
           <div class="bubble-contents collapse-content collapse">
             {% if can_edit %}
               <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
-                {% if subindicator.description %}
-                  {{ subindicator.description|safe }}
-                {% else %}
-                  <p>Editieren Sie diesen Indikator</p>
-                  <ul>
-                    <li>darauf klicken</li>
-                    <li>editieren</li>
-                  </ul>
-                {% endif %}
+                {{ subindicator.get_description|safe }}
               </textarea>
             {% else %}
               <div class="company-balance-indicator-text">
-                {% if subindicator.description %}
-                  {{ subindicator.description|safe }}
-                {% else %}
-                  <br/>
-                {% endif %}
+                {{ subindicator.get_description|safe }}
               </div>
             {% endif %}
           </div>

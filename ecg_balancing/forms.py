@@ -346,10 +346,6 @@ class CompanyBalanceIndicatorForm(forms.ModelForm):
             self.relevance = self.indicator.relevance
         return super(CompanyBalanceIndicator, self).__init__(*args, **kwargs)
 
-    def clean_relevance_comment(self):
-        pass #fixme (existierendes Objekt aus DB --> Relevance Wert vergleichen und bei Änderung Comment prüfen, sonst Validation Error)
-
-
 class FeedbackIndicatorForm(forms.ModelForm):
     indicator = forms.CharField(widget=forms.HiddenInput())
     sender_name = forms.CharField(widget=forms.HiddenInput())

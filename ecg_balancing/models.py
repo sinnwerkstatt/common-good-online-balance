@@ -9,6 +9,7 @@ from django.db.models import signals
 from django.utils.translation import ugettext_lazy as _
 from osm_field.fields import OSMField
 from autoslug import AutoSlugField
+from ckeditor.fields import RichTextField
 
 from ecg_balancing import fields
 
@@ -101,6 +102,10 @@ class Indicator(models.Model):
     contact = fields.CommaSeparatedEmailField(_('Email(s)'),
                                               help_text=_('Multiple emails should be separated with a comma'),
                                               max_length=255, blank=True, null=True)
+
+    description = RichTextField(_('Target questions'), blank=True, null=True)
+    key_figures = RichTextField(_('Key figures'), blank=True, null=True)
+    evaluation_table = RichTextField(_('Evaluation table'), blank=True, null=True)
 
     class Meta:
         verbose_name = _('Indicator')
@@ -286,8 +291,8 @@ class CompanyBalance(models.Model):
 
     points = models.SmallIntegerField(_('Points'), max_length=4, default=0)
 
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Created by'), related_name='created_by', blank=True, null=True)
-    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Updated by'), related_name='updated_by', blank=True, null=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Created by'), related_name='balances_created', blank=True, null=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Updated by'), related_name='balances_updated', blank=True, null=True)
 
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='company_balances',
                               null=False,
@@ -439,9 +444,9 @@ class CompanyBalanceIndicator(models.Model):
                             null=False,
                             blank=False)
 
-    description = models.TextField(_('Target questions'), blank=True, null=True)
-    key_figures = models.TextField(_('Key figures'), blank=True, null=True)
-    evaluation_table = models.TextField(_('Evaluation table'), blank=True, null=True)
+    description = RichTextField(_('Target questions'), blank=True, null=True)
+    key_figures = RichTextField(_('Key figures'), blank=True, null=True)
+    evaluation_table = RichTextField(_('Evaluation table'), blank=True, null=True)
     evaluation = models.IntegerField(_('Evaluation'), default=0)
     relevance = models.CharField(_('Relevance'), max_length=10, choices=Indicator.RELEVANCE_VALUES, blank=False, null=False)
     relevance_comment = models.TextField(_('Relevance comment'), blank=True, null=True)
@@ -458,6 +463,14 @@ class CompanyBalanceIndicator(models.Model):
             unicode(self.indicator)
         )
 
+    def get_description(self):
+        return self.description or self.indicator.description
+
+    def get_key_figures(self):
+        return self.key_figures or self.indicator.key_figures
+
+    def get_evaluation_table(self):
+        return self.evaluation_table or self.indicator.evaluation_table
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, editable=False, related_name='profile')

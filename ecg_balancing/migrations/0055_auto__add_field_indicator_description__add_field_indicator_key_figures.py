@@ -8,30 +8,32 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'CompanyBalanceIndicator.relevance'
-        db.add_column(u'ecg_balancing_companybalanceindicator', 'relevance',
-                      self.gf('django.db.models.fields.CharField')(default=2, max_length=10),
+        # Adding field 'Indicator.description'
+        db.add_column(u'ecg_balancing_indicator', 'description',
+                      self.gf('django.db.models.fields.TextField')(null=True, blank=True),
                       keep_default=False)
 
-        # Adding field 'CompanyBalanceIndicator.relevance_comment'
-        db.add_column(u'ecg_balancing_companybalanceindicator', 'relevance_comment',
+        # Adding field 'Indicator.key_figures'
+        db.add_column(u'ecg_balancing_indicator', 'key_figures',
+                      self.gf('django.db.models.fields.TextField')(null=True, blank=True),
+                      keep_default=False)
+
+        # Adding field 'Indicator.evaluation_table'
+        db.add_column(u'ecg_balancing_indicator', 'evaluation_table',
                       self.gf('django.db.models.fields.TextField')(null=True, blank=True),
                       keep_default=False)
 
 
-        # Changing field 'Company.slug'
-        db.alter_column(u'ecg_balancing_company', 'slug', self.gf('autoslug.fields.AutoSlugField')(unique=True, max_length=50, populate_from=u'name', unique_with=()))
-
     def backwards(self, orm):
-        # Deleting field 'CompanyBalanceIndicator.relevance'
-        db.delete_column(u'ecg_balancing_companybalanceindicator', 'relevance')
+        # Deleting field 'Indicator.description'
+        db.delete_column(u'ecg_balancing_indicator', 'description')
 
-        # Deleting field 'CompanyBalanceIndicator.relevance_comment'
-        db.delete_column(u'ecg_balancing_companybalanceindicator', 'relevance_comment')
+        # Deleting field 'Indicator.key_figures'
+        db.delete_column(u'ecg_balancing_indicator', 'key_figures')
 
+        # Deleting field 'Indicator.evaluation_table'
+        db.delete_column(u'ecg_balancing_indicator', 'evaluation_table')
 
-        # Changing field 'Company.slug'
-        db.alter_column(u'ecg_balancing_company', 'slug', self.gf('django.db.models.fields.SlugField')(max_length=50, unique=True))
 
     models = {
         u'auth.group': {
@@ -156,9 +158,12 @@ class Migration(SchemaMigration):
         u'ecg_balancing.indicator': {
             'Meta': {'object_name': 'Indicator'},
             'contact': ('ecg_balancing.fields.CommaSeparatedEmailField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'ecg_value': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
             'editor': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True', 'blank': 'True'}),
+            'evaluation_table': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'key_figures': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'matrix': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'indicators'", 'to': u"orm['ecg_balancing.ECGMatrix']"}),
             'max_evaluation': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'parent': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "u'parent_indicator'", 'null': 'True', 'to': u"orm['ecg_balancing.Indicator']"}),

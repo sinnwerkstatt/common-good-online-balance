@@ -10,29 +10,29 @@ $('.js-indicator-page-title-inner').html(indicator.shortcode + ' - ' + indicator
 
 // add key figures HTML if existing
 // key-figures-container
-if (can_edit) {
-    $('.key-figures-container').each(function(e) {
-        var $keyFiguresContainer = $(this);
-        $keyFiguresContainer.addClass('bubble-contents company-balance-indicator-keyfigures');
-        if ($keyFiguresContainer.html().trim().length == 0) { // if there is already content, don't add default content
-            var indicatorPosition = $keyFiguresContainer.data('indicator-position');
-            var indicatorData = null;
-            if (typeof indicatorPosition !== 'undefined') {
-                indicatorData = indicator.table.subindicators[indicatorPosition-1];
-            } else {
-                indicatorData = indicator;
-            }
-            if (typeof indicatorData.keyFigures !== 'undefined') {
-                var indicatorSlug = $keyFiguresContainer.data('indicator-slug');
-                var keyFiguresHtml = '<textarea name="company-balance-indicator-'+indicatorSlug+'-keyfigures-editor" ' +
-                    'id="company-balance-indicator-'+indicatorSlug+'-keyfigures-editor">'
-                keyFiguresHtml += indicatorData.keyFigures;
-                keyFiguresHtml += '</textarea>';
-                $keyFiguresContainer.html(keyFiguresHtml);
-            }
-        }
-    });
-}
+//if (can_edit) {
+//    $('.key-figures-container').each(function(e) {
+//        var $keyFiguresContainer = $(this);
+//        $keyFiguresContainer.addClass('bubble-contents company-balance-indicator-keyfigures');
+//        if ($keyFiguresContainer.html().trim().length == 0) { // if there is already content, don't add default content
+//            var indicatorPosition = $keyFiguresContainer.data('indicator-position');
+//            var indicatorData = null;
+//            if (typeof indicatorPosition !== 'undefined') {
+//                indicatorData = indicator.table.subindicators[indicatorPosition-1];
+//            } else {
+//                indicatorData = indicator;
+//            }
+//            if (typeof indicatorData.keyFigures !== 'undefined') {
+//                var indicatorSlug = $keyFiguresContainer.data('indicator-slug');
+//                var keyFiguresHtml = '<textarea name="company-balance-indicator-'+indicatorSlug+'-keyfigures-editor" ' +
+//                    'id="company-balance-indicator-'+indicatorSlug+'-keyfigures-editor">'
+//                keyFiguresHtml += indicatorData.keyFigures;
+//                keyFiguresHtml += '</textarea>';
+//                $keyFiguresContainer.html(keyFiguresHtml);
+//            }
+//        }
+//    });
+//}
 
 //if (is_admin) {
 
@@ -180,16 +180,6 @@ var is_negative_criteria = indicator.shortcodeSlug.indexOf('n') == 0;
 // if not negative criteria
 if (!is_negative_criteria) {
 
-    // Display Relevance Comment textarea and make it requiered on relevance change
-    $('select.company-balance-indicator-relevance').each(function (e) {
-        var $this = $(this);
-
-        console.log($this.find($('.selected')).context.selectedIndex);
-        // $.each(indicator.table.subindicators, function (index, subindicator) {
-        //     console.log(subindicator.relevance.selected);
-        // });
-    });
-
     // add subindicator titles
     $('.subindicator-title').each(function (e) {
         var $this = $(this);
@@ -261,3 +251,10 @@ if (!is_negative_criteria) {
         });
     }
 }
+
+$(document).ready(function() {
+    // Display Relevance Comment textarea and make it required on relevance change
+    $('.company-balance-indicator-relevance').change(function () {
+        $(this).parent().find('.company-balance-indicator-relevance-comment').removeClass('hidden');
+    });
+});
