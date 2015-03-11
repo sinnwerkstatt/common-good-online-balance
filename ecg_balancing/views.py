@@ -779,7 +779,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
             subindicators_points_sum = 0
             for companybalance_subindicator in companyBalanceSubIndicators:
                 # skip for SP company and non-SP subindicators
-                if not (is_sole_proprietorship and not companybalance_subindicator.indicator.sole_proprietorship):
+                if not (is_sole_proprietorship and not companybalance_subindicator.indicator.sole_proprietorship) and not companybalance_subindicator.relevance == Indicator.RELEVANCE_NONE:
 
                     companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(
                         companybalance_subindicator.evaluation, companybalance_subindicator, companyBalanceSubIndicators, is_sole_proprietorship)

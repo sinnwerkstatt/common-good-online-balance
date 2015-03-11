@@ -132,7 +132,7 @@
 
                   {% trans "Relevance" %}: <select class="select form-control company-balance-indicator-relevance" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance">
                     {% for option in indicator_relevance_values %}
-                      <option value="{{ option.0 }}" {% if option.0 == subindicator.relevance %} selected="selected" {% endif %}>
+                      <option value="{{ option.0 }}" {% if option.0 == subindicator.get_relevance %} selected="selected" {% endif %}>
                         {{ option.1 }}
                       </option>
                     {% endfor %}

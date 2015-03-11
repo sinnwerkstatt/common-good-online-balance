@@ -58,18 +58,21 @@ class Indicator(models.Model):
         (ECG_VALUE_4, _('Social Justice')),
         (ECG_VALUE_5, _('Democratic Co-determination and Transparency')),
     )
-    RELEVANCE_LOW = 'low'
-    RELEVANCE_MIDDLE = 'middle'
     RELEVANCE_HIGH = 'high'
+    RELEVANCE_MIDDLE = 'middle'
+    RELEVANCE_LOW = 'low'
+    RELEVANCE_NONE = 'none'
     RELEVANCE_VALUES = (
-        (RELEVANCE_LOW, _('Low')),
+        (RELEVANCE_HIGH, _('High')),
         (RELEVANCE_MIDDLE, _('Middle')),
-        (RELEVANCE_HIGH, _('High'))
+        (RELEVANCE_LOW, _('Low')),
+        (RELEVANCE_NONE, _('None'))
     )
     RELEVANCE_MAPPING = {
-        RELEVANCE_LOW: 1,
+        RELEVANCE_HIGH: 3,
         RELEVANCE_MIDDLE: 2,
-        RELEVANCE_HIGH: 3
+        RELEVANCE_LOW: 1,
+        RELEVANCE_NONE: 0,
     }
 
     matrix = models.ForeignKey('ecg_balancing.ECGMatrix', verbose_name=_(u'Matrix'), related_name='indicators',
@@ -146,7 +149,6 @@ class Indicator(models.Model):
                 unicode(self.ecg_value),
                 unicode(self.subindicator_number)
             )
-
 
 
 # -------------------------------- COMPANY MODELS --------------------------------
@@ -398,9 +400,8 @@ class CompanyBalance(models.Model):
         calculated_points = 0
         balance_indicators = CompanyBalanceIndicator.objects.filter(company_balance=self, indicator__parent=None)
         for balance_indicator in balance_indicators:
-            balance_indicator_evaluation = balance_indicator.evaluation
-            if balance_indicator_evaluation != 0:
-                calculated_points += balance_indicator_evaluation
+            if balance_indicator.get_relevance() != Indicator.RELEVANCE_NONE:
+                calculated_points += balance_indicator.evaluation
 
         if self.is_sole_proprietorship:
             calculated_points = int (round (calculated_points * (float (1000) / 790) ))
@@ -471,6 +472,9 @@ class CompanyBalanceIndicator(models.Model):
 
     def get_evaluation_table(self):
         return self.evaluation_table or self.indicator.evaluation_table
+
+    def get_relevance(self):
+        return self.relevance or self.indicator.relevance
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, editable=False, related_name='profile')
