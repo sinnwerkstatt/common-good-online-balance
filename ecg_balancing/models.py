@@ -403,7 +403,7 @@ class CompanyBalance(models.Model):
             calculated_points += balance_indicator.evaluation
 
         max_points = 0
-        for indicator in Indicator.objects.filter(parent__isnull=False):
+        for indicator in Indicator.objects.filter(parent__isnull=True):
             if not indicator.stakeholder.startswith('n'):
                 max_points += indicator.max_evaluation or 0
 
