@@ -66,7 +66,7 @@ class Indicator(models.Model):
         (RELEVANCE_HIGH, _('High')),
         (RELEVANCE_MIDDLE, _('Middle')),
         (RELEVANCE_LOW, _('Low')),
-        (RELEVANCE_NONE, _('None'))
+        (RELEVANCE_NONE, _('Doesn''t match'))
     )
     RELEVANCE_MAPPING = {
         RELEVANCE_HIGH: 3,
