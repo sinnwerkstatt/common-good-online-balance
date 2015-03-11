@@ -632,8 +632,7 @@ class CompanyBalanceIndicatorDetailView(UserRoleRedirectMixin, CompanyBalanceVie
         context = super(CompanyBalanceIndicatorDetailView, self).get_context_data(**kwargs)
         # TODO: simplify the query?
         # subindicators = Indicator.objects.filter(parent=self.object.indicator).all().order_by('subindicator_number').all()
-        subindicators = CompanyBalanceIndicator.objects.filter(company_balance=self.object.company_balance,
-                                                               indicator__parent=self.object.indicator).all().order_by(
+        subindicators = CompanyBalanceIndicator.objects.get_by_parent(self.object).all().order_by(
             'indicator__subindicator_number').all()
         context['subindicators'] = subindicators
         context['is_sole_proprietorship'] = self.object.company_balance.is_sole_proprietorship
@@ -742,7 +741,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
                     subindicatorsIds.append(subindicator.slugify())
                     subindicatorsPks.append(subindicator.pk)
 
-            companyBalanceSubIndicators = CompanyBalanceIndicator.objects.get_by_indicator_pks(subindicatorsPks, company)
+            companyBalanceSubIndicators = CompanyBalanceIndicator.objects.get_by_parent(companyBalanceIndicator)
             companyBalanceSubIndicatorsDict = dict([(obj.indicator.pk, obj) for obj in companyBalanceSubIndicators])
 
             # save companybalance_subindicator
@@ -779,12 +778,10 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
             subindicators_points_sum = 0
             for companybalance_subindicator in companyBalanceSubIndicators:
                 # skip for SP company and non-SP subindicators
-                if not (is_sole_proprietorship and not companybalance_subindicator.indicator.sole_proprietorship) and not companybalance_subindicator.relevance == Indicator.RELEVANCE_NONE:
-
-                    companyBalanceSubIndicatorPoints = self.calculate_subindicator_points(
+                if not (is_sole_proprietorship and not companybalance_subindicator.indicator.sole_proprietorship): 
+                    subindicators_points_sum += self.calculate_subindicator_points(
                         companybalance_subindicator.evaluation, companybalance_subindicator, companyBalanceSubIndicators, is_sole_proprietorship)
 
-                    subindicators_points_sum += companyBalanceSubIndicatorPoints
 
             sum_percentage = round (( float(subindicators_points_sum) / indicator.max_evaluation), 2) * 100
             rounded_sum_percentage = round(sum_percentage, -1)
@@ -815,7 +812,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
         """
         relevance_mapping = Indicator.RELEVANCE_MAPPING
         # raise Exception, companyBalanceSubindicator.indicator.relevance
-        subindicator_relevance = relevance_mapping[companyBalanceSubindicator.indicator.relevance]
+        subindicator_relevance = relevance_mapping[companyBalanceSubindicator.get_relevance()]
         subindicators_relevances_sum = 0
 
         # Subindicator Points = Prozent * Indicator MaxPoints * (high,3/middle,3/low,1,/no,0) / (3  + 2 + 1)
@@ -825,12 +822,10 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
             # skip for SP company and non-SP subindicators
             if not (is_sole_proprietorship and not companyBalanceSubIndicator.indicator.sole_proprietorship):
 
-                subindicators_relevances_sum += relevance_mapping[companyBalanceSubIndicator.indicator.relevance]
+                subindicators_relevances_sum += relevance_mapping[companyBalanceSubIndicator.get_relevance()]
 
-        parent = companyBalanceSubindicator.indicator.parent
-        subindicator_area_points = parent.max_evaluation * (float (subindicator_relevance) / float(subindicators_relevances_sum) )
+        subindicator_area_points = (companyBalanceSubindicator.indicator.parent.max_evaluation * (float (subindicator_relevance)) / float(subindicators_relevances_sum) )
         subindicator_calculated_points = int (round ((float(subindicatorPercentage) / 100) * subindicator_area_points))
-
         return subindicator_calculated_points
 
 
