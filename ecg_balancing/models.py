@@ -400,11 +400,15 @@ class CompanyBalance(models.Model):
         calculated_points = 0
         balance_indicators = CompanyBalanceIndicator.objects.filter(company_balance=self, indicator__parent=None)
         for balance_indicator in balance_indicators:
-            if balance_indicator.get_relevance() != Indicator.RELEVANCE_NONE:
-                calculated_points += balance_indicator.evaluation
+            calculated_points += balance_indicator.evaluation
+
+        max_points = 0
+        for indicator in Indicator.objects.filter(parent__isnull=False):
+            if not indicator.stakeholder.startswith('n'):
+                max_points += indicator.max_evaluation or 0
 
         if self.is_sole_proprietorship:
-            calculated_points = int (round (calculated_points * (float (1000) / 790) ))
+            calculated_points = int (round (calculated_points * 1000.0 / max_points) )
 
         self.points = calculated_points
 
