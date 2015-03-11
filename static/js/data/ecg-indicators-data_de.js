@@ -1288,7 +1288,7 @@ Data.indicators = {
                 shortcode : 'E1',
                 shortcodeSlug : 'e1',
                 name: 'Sinn und Gesellschaftliche Wirkung der Produkte / Dienstleistungen',
-                points: 50,
+                points: 90,
                 goals : {},
                 impulsQuestions : {},
                 table : {

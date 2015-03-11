@@ -131,7 +131,7 @@ Data.matrix = {
                     shortcodeSlug : 'e1',
                     title: 'Sinn und Gesell&#8203;schaftliche Wirkung der Produkte / Dienst&#8203;leistungen',
                     content: 'P/DL decken den Grundbedarf oder dienen der Entwicklung der Menschen / der Gemeinschaft / der Erde und generieren positiven Nutzen.',
-                    points: 50
+                    points: 90
                 },
                 {
                     shortcode : 'E2',
