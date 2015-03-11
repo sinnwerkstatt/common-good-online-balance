@@ -781,11 +781,12 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
                 if not (is_sole_proprietorship and not companybalance_subindicator.indicator.sole_proprietorship): 
                     subindicators_points_sum += self.calculate_subindicator_points(
                         companybalance_subindicator.evaluation, companybalance_subindicator, companyBalanceSubIndicators, is_sole_proprietorship)
+                    
 
 
-            sum_percentage = round (( float(subindicators_points_sum) / indicator.max_evaluation), 2) * 100
-            rounded_sum_percentage = round(sum_percentage, -1)
-            final_points = int ((rounded_sum_percentage * indicator.max_evaluation) / 100)
+            sum_percentage = round (( float(subindicators_points_sum) / indicator.max_evaluation), 1) * 100
+            #rounded_sum_percentage = round(sum_percentage, -1)
+            final_points = int ((sum_percentage * indicator.max_evaluation) / 100)
 
             # set the company balance indicator points
             companyBalanceIndicator.evaluation = final_points
@@ -825,7 +826,8 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
                 subindicators_relevances_sum += relevance_mapping[companyBalanceSubIndicator.get_relevance()]
 
         subindicator_area_points = (companyBalanceSubindicator.indicator.parent.max_evaluation * (float (subindicator_relevance)) / float(subindicators_relevances_sum) )
-        subindicator_calculated_points = int (round ((float(subindicatorPercentage) / 100) * subindicator_area_points))
+        subindicator_calculated_points = (float(subindicatorPercentage) / 100) * subindicator_area_points
+        
         return subindicator_calculated_points
 
 
