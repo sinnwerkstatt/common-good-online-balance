@@ -146,7 +146,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'suit', # must be before admin
+    #'suit', # must be before admin
     'django.contrib.admin',
 
     # Django CMS apps
@@ -248,6 +248,7 @@ LEAFLET_CONFIG = {
 }
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],
