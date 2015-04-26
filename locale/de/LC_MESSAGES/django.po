@@ -255,7 +255,7 @@ msgstr "Mehrere E-Mails sollen mit Komma getrennt werden."
 #: ecg_balancing/templates/ecg_balancing/company_balance_export.html:257
 #: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:186
 msgid "Target questions"
-msgstr "Zielfragen"
+msgstr "Impulsfragen"
 
 #: ecg_balancing/models.py:110 ecg_balancing/models.py:453
 #: ecg_balancing/templates/ecg_balancing/company_balance_export.html:250
