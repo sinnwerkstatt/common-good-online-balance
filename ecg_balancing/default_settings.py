@@ -248,3 +248,12 @@ LEAFLET_CONFIG = {
 }
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],
+                    ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter',
+                     'JustifyRight', 'JustifyBlock'],
+                    ["Image", "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], ['Undo', 'Redo'], ["Source"],
+                    ["Maximize"]],
+    }
+}
