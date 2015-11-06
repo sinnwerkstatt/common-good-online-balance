@@ -522,17 +522,14 @@ def getIndicatorValue(indicatorId):
 
 
 class CompanyBalanceViewMixin(object):
-    """provides the variables 'is_public' in the context. Requires the URL parameters 'company_slug' or 'balance_year' """
+    """provides the variables 'is_public' in the context."""
 
     def get_context_data(self, **kwargs):
         context = super(CompanyBalanceViewMixin, self).get_context_data(**kwargs)
 
-        company_slug = self.kwargs.get('company_slug')
-        balance_year = self.kwargs.get('balance_year')
-
         balance = None
         try:
-            balance = CompanyBalance.objects.get(company__slug=company_slug, year=balance_year)
+            balance = CompanyBalance.objects.get(pk=self.kwargs.get('pk'))
             context['is_public'] = (balance.visibility == CompanyBalance.VISIBILITY_CHOICE_PUBLIC)
         except:
             pass
@@ -551,17 +548,6 @@ class CompanyBalanceDetailView(UserRoleRedirectMixin, CompanyBalanceViewMixin, D
             context['indicators'] = self.object.company_balance.filter(indicator__parent=None).order_by('indicator__stakeholder')
 
         return context
-
-    def get_object(self, queryset=None):
-        # Use a custom queryset if provided; this is required for subclasses
-        # like DateDetailView
-        if queryset is None:
-            queryset = self.get_queryset()
-
-        try:
-            return queryset.get(company__slug=self.kwargs.get('company_slug'), year=self.kwargs.get('balance_year'))
-        except:
-            return None
 
     def render_to_response(self, context, **response_kwargs):
         if not self.object:
@@ -582,6 +568,8 @@ class CompanyBalanceCreateView(UserRoleRedirectMixin, CreateView):
         company = Company.objects.get(slug=self.kwargs.get('company_slug'))
         context['company'] = company
         context['form'].fields['company'].initial = company
+        # FIXME: This should be changed once there are multiple Matrix versions available
+        context['form'].fields['matrix'].initial = 1
         return context
 
     def form_valid(self, form, **kwargs):
@@ -592,22 +580,16 @@ class CompanyBalanceCreateView(UserRoleRedirectMixin, CreateView):
         self.object.visibility = CompanyBalance.VISIBILITY_CHOICE_INTERNAL
         self.object.save()
 
-        return HttpResponseRedirect(reverse_lazy('balance-detail',
-                                                 kwargs={
-                                                     'company_slug': self.object.company.slug,
-                                                     'balance_year': self.object.year
-                                                 }))
+        return HttpResponseRedirect(reverse_lazy('balance-detail', kwargs={
+            'company_slug': self.object.company.slug,
+            'pk': self.object.id,
+        }))
 
 
 class CompanyBalanceUpdateView(UserRoleRedirectMixin, UpdateView):
     model = CompanyBalance
     template_name = 'ecg_balancing/company_balance_update.html'
     form_class = CompanyBalanceUpdateForm
-
-    def get_object(self, queryset=None):
-        if queryset is None:
-            queryset = self.get_queryset()
-        return queryset.get(company__slug=self.kwargs.get('company_slug'), year=self.kwargs.get('balance_year'))
 
     def form_valid(self, form, **kwargs):
         self.object = form.save(commit=False)
@@ -620,7 +602,7 @@ class CompanyBalanceUpdateView(UserRoleRedirectMixin, UpdateView):
     def get_success_url(self):
         return reverse('balance-detail', kwargs={
             'company_slug': self.object.company.slug,
-            'balance_year': self.object.year
+            'pk': self.object.id,
         })
 
 
@@ -646,7 +628,7 @@ class CompanyBalanceIndicatorDetailView(UserRoleRedirectMixin, CompanyBalanceVie
             queryset = self.get_queryset()
 
         company_slug = self.kwargs.get('company_slug')
-        balance_year = self.kwargs.get('balance_year')
+        balance_id = self.kwargs.get('balance_id')
 
         indicatorId = self.kwargs.get('indicator_id')
         indicatorStakeholder = getIndicatorStakeholder(indicatorId)
@@ -655,7 +637,7 @@ class CompanyBalanceIndicatorDetailView(UserRoleRedirectMixin, CompanyBalanceVie
         if indicatorId.startswith('n'): # negative indicator
             return queryset.get(
                 company_balance__company__slug=company_slug,
-                company_balance__year=balance_year,
+                company_balance=balance_id,
                 indicator__stakeholder=indicatorStakeholder,
                 indicator__subindicator_number=indicatorValue,
                 indicator__parent=None
@@ -664,7 +646,7 @@ class CompanyBalanceIndicatorDetailView(UserRoleRedirectMixin, CompanyBalanceVie
         else:
             return queryset.get(
                 company_balance__company__slug=company_slug,
-                company_balance__year=balance_year,
+                company_balance=balance_id,
                 indicator__stakeholder=indicatorStakeholder,
                 indicator__ecg_value=indicatorValue,
                 indicator__parent=None
@@ -687,7 +669,7 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
 
         return reverse('indicator-detail', kwargs={
             'company_slug': self.object.company_balance.company.slug,
-            'balance_year': self.object.company_balance.year,
+            'balance_id': self.object.company_balance.id,
             'indicator_id': indicator
         })
 
@@ -912,14 +894,12 @@ class CompanyBalanceExportView(PDFTemplateView, UserRoleRedirectMixin, CompanyBa
     filename = "ECG-Balance-Export.pdf"
 
     def get_filename(self):
-        return 'ECG-Balance-{0}-{1}.pdf'.format(self.balance_year, slugify(self.company.name))
+        return 'ECG-Balance-{0}.pdf'.format(slugify(self.company.name))
 
     def get_context_data(self, **kwargs):
         context = super(CompanyBalanceExportView, self).get_context_data(**kwargs)
 
-        company_slug = self.kwargs.get('company_slug')
-        self.balance_year = self.kwargs.get('balance_year')
-
+        balance_id = self.kwargs.get('pk')
         company_slug = self.kwargs.get('company_slug')
         if company_slug is None:
             company_slug = self.kwargs.get('slug')
@@ -927,7 +907,7 @@ class CompanyBalanceExportView(PDFTemplateView, UserRoleRedirectMixin, CompanyBa
         self.company = Company.objects.get(slug=company_slug)
         context['company'] = self.company
 
-        balance = CompanyBalance.objects.get(company__slug=company_slug, year=self.balance_year)
+        balance = CompanyBalance.objects.get(pk=balance_id)
         context['balance'] = balance
 
         balance_indicators = CompanyBalanceIndicator.objects.all().filter(company_balance=balance)

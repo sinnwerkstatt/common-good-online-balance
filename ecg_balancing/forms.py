@@ -253,24 +253,11 @@ class CompanyBalanceForm(forms.ModelForm):
 
     class Meta:
         model = CompanyBalance
-        fields = ('matrix', 'year', 'company')
+        fields = ('matrix', 'company')
 
     def __init__(self, *args, **kwargs):
         super(CompanyBalanceForm, self).__init__(*args, **kwargs)
         self.fields['company'].widget = forms.HiddenInput()
-
-    def clean(self):
-        cleaned_data = super(CompanyBalanceForm, self).clean()
-        year = cleaned_data.get("year")
-        company = cleaned_data.get("company")
-
-        existing_balance = CompanyBalance.objects.filter(company=company, year=year)
-        if existing_balance.exists():
-            raise forms.ValidationError(
-                _('There is an existing balance for the year %s. Please enter another year.' % year))
-
-        return cleaned_data
-
 
 class CompanyBalanceUpdateForm(forms.ModelForm):
     helper = FormHelper()
@@ -280,7 +267,7 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
 
     class Meta:
         model = CompanyBalance
-        fields = ('matrix', 'year', 'start_date', 'end_date', 'status', 'visibility', 'evaluation_type', 'consultant', 'auditor', 'accompanying_consultant', 'peer_companies', 'employees_number', 'revenue', 'profit', 'worked_hours', 'number_participated_employees', 'common_good',
+        fields = ('matrix', 'start_date', 'end_date', 'status', 'visibility', 'evaluation_type', 'consultant', 'auditor', 'accompanying_consultant', 'peer_companies', 'employees_number', 'revenue', 'profit', 'worked_hours', 'number_participated_employees', 'common_good',
                   'process_description', 'internal_communication',
                   'prospect', 'company')
 
@@ -317,18 +304,6 @@ class CompanyBalanceUpdateForm(forms.ModelForm):
             return instance.visibility
         else:
             return self.cleaned_data['visibility']
-
-    def clean(self):
-        cleaned_data = super(CompanyBalanceUpdateForm, self).clean()
-        year = cleaned_data.get("year")
-        company = cleaned_data.get("company")
-
-        if (self.instance.year != year):
-            existing_balance = CompanyBalance.objects.filter(company=company, year=year)
-            if existing_balance.exists():
-                raise forms.ValidationError(
-                    _('There is an existing balance for the year %s. Please enter another year.' % year))
-        return cleaned_data
 
 
 class CompanyBalanceIndicatorForm(forms.ModelForm):

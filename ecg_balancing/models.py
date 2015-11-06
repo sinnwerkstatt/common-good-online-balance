@@ -300,7 +300,6 @@ class CompanyBalance(models.Model):
                               null=False,
                               blank=False)
 
-    year = models.SmallIntegerField(_('Year'), max_length=4)
     start_date = models.DateField(_('Start Date'), blank=True, null=True)
     end_date = models.DateField(_('End Date'), blank=True, null=True)
 
@@ -371,8 +370,8 @@ class CompanyBalance(models.Model):
     )
     employees_number = models.CharField(_('Number of employees'), max_length=255, choices=EMPLOYEES_NUMBER_CHOICES)
     
-    revenue = models.IntegerField(_('Revenue'), blank=False, null=True)
-    profit = models.IntegerField(_('Profit'), blank=False, null=True)
+    revenue = models.DecimalField(_('Revenue'), max_digits=12, decimal_places=2, blank=False, null=True)
+    profit = models.DecimalField(_('Profit'), max_digits=12, decimal_places=2, blank=False, null=True)
 
     worked_hours = models.PositiveSmallIntegerField(_('Worked Hours'), blank=False, null=True)
     number_participated_employees = models.PositiveSmallIntegerField(_('Number of participated employees'), blank=False, null=True)
@@ -390,10 +389,9 @@ class CompanyBalance(models.Model):
         return self.employees_number == 'one'
 
     def __unicode__(self):
-        return '%s:%s:%s' % (
+        return '%s:%s' % (
             unicode(self.company),
-            unicode(self.matrix),
-            unicode(self.year)
+            unicode(self.matrix)
         )
 
     def recalculate_points(self):

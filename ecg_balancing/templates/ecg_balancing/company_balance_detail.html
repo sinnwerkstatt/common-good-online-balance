@@ -7,18 +7,18 @@
   <link href="{% static 'ecg_balancing/css/company_balance.css' %}" rel="stylesheet">
 {% endblock css %}
 
-{% block page_title %}{% trans 'ECG Balance' %} {{ object.year }} - {{ object.company }}{% endblock %}
+{% block page_title %}{% trans 'ECG Balance' %} {{ object.company }}{% endblock %}
 
 {% block base_content %}
 
     {% if can_edit %}
       <div class="pull-right">
-        <a href="{% url 'balance-update' company_slug=object.company.slug balance_year=object.year %}"
+        <a href="{% url 'balance-update' company_slug=object.company.slug pk=object.id %}"
            class="btn btn-default">
           <span class="glyphicon glyphicon-pencil"></span>
           {% trans "Edit" %}
         </a>
-        <a href="{% url 'balance-export' company_slug=object.company.slug balance_year=object.year %}"
+        <a href="{% url 'balance-export' company_slug=object.company.slug pk=object.id %}"
            class="btn btn-primary">
           <span class="glyphicon glyphicon-export"></span>
           {% trans "Export as PDF" %}

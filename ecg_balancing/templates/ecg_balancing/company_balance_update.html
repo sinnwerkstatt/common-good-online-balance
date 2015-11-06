@@ -8,11 +8,11 @@
   <link href="{% static 'ecg_balancing/css/company_balance.css' %}" rel="stylesheet">
 {% endblock css %}
 
-{% block page_title %}{% trans "Edit ECG Balance" %} {{ object.year }} - {{ object.company }}{% endblock %}
+{% block page_title %}{% trans "Edit ECG Balance" %} {{ object.company }}{% endblock %}
 
 {% block base_content %}
 
-  <a href="{% url 'balance-detail' object.company.slug object.year %}" class="btn btn-default pull-right">
+  <a href="{% url 'balance-detail' company_slug=object.company.slug pk=object.id %}" class="btn btn-default pull-right">
     <span class="glyphicon glyphicon-chevron-left"></span>
     {% trans "Back" %}
   </a>
@@ -22,7 +22,7 @@
     <h3>{% trans "Edit ECG Balance" %}</h3>
 
     <form class="page-form" enctype="multipart/form-data" method="post"
-          action="{% url "balance-update" object.company.slug object.year %}">
+          action="{% url "balance-update" company_slug=object.company.slug pk=object.id %}">
       {% csrf_token %}
       {% crispy form %}
       <div class="clearboth textalignright col-lg-2 col-md-2">&nbsp;</div>

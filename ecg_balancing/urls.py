@@ -37,29 +37,28 @@ urlpatterns = patterns('',
 
 
 	url(r'^user/(?P<pk>.*)/$', login_required(UserDetailView.as_view()), name='user-detail'),
-	url(r'^user/(?P<pk>.*)/update$', login_required(UserUpdateView.as_view()), name='user-update'),
+	url(r'^user/(?P<pk>.*)/update/$', login_required(UserUpdateView.as_view()), name='user-update'),
 
-	url(r'^companies/$', CompanyListView.as_view(), name='companies'),
-	url(r'^companies/admin$', permission_required('is_staff')(CompaniesAdminView.as_view()), name='companies-admin'),
-	url(r'^company/join/$', login_required(CompanyJoinView.as_view()), name='company-join'),
-	url(r'^company/create/$', login_required(CompanyCreateView.as_view()), name='company-create'),
+	url(r'^c/$', CompanyListView.as_view(), name='companies'),
+	url(r'^c/admin/$', permission_required('is_staff')(CompaniesAdminView.as_view()), name='companies-admin'),
+	url(r'^c/join/$', login_required(CompanyJoinView.as_view()), name='company-join'),
+	url(r'^c/create/$', login_required(CompanyCreateView.as_view()), name='company-create'),
 
-	url(r'^company/(?P<slug>[\w-]*)/$', CompanyDetailView.as_view(), name='company-detail'),
-	url(r'^company/(?P<slug>[\w-]*)/update$', login_required(CompanyUpdateView.as_view()), name='company-update'),
-	url(r'^company/(?P<slug>[\w-]*)/admin$', login_required(CompanyAdminView.as_view()), name='company-admin'),
+	url(r'^c/(?P<slug>[\w-]*)/$', CompanyDetailView.as_view(), name='company-detail'),
+	url(r'^c/(?P<slug>[\w-]*)/update$', login_required(CompanyUpdateView.as_view()), name='company-update'),
+	url(r'^c/(?P<slug>[\w-]*)/admin$', login_required(CompanyAdminView.as_view()), name='company-admin'),
 
-    # Balances: /company/balance_year
-	url(r'^company/(?P<company_slug>[\w-]*)/balance/create$', login_required(CompanyBalanceCreateView.as_view()), name='balance-create'),
-	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/$', CompanyBalanceDetailView.as_view(), name='balance-detail'),
-    url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/update/$', login_required(CompanyBalanceUpdateView.as_view()), name='balance-update'),
-	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/export/$', login_required(CompanyBalanceExportView.as_view()), name='balance-export'),
+    #url(r'^i/create$', login_required(CompanyBalanceIndicatorCreateView.as_view()), name='indicator-create'),
+    url(r'^b/(?P<company_slug>[\w-]*)/(?P<balance_id>[0-9]*)/(?P<indicator_id>[a-z][0-9]*)/$', CompanyBalanceIndicatorDetailView.as_view(), name='indicator-detail'),
+    url(r'^b/(?P<company_slug>[\w-]*)/indicator/(?P<pk>[\d]*)/update/$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='indicator-update'),
 
-    # Indicators: /sinnwerkstatt/2014/c1
-	#url(r'^indicator/create$', login_required(CompanyBalanceIndicatorCreateView.as_view()), name='indicator-create'),
-	url(r'^company/(?P<company_slug>[\w-]*)/(?P<balance_year>[0-9]*)/(?P<indicator_id>[\w.]*)$', CompanyBalanceIndicatorDetailView.as_view(), name='indicator-detail'),
-	url(r'^company/(?P<company_slug>[\w-]*)/indicator/(?P<pk>[\d]*)/update$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='indicator-update'),
+	url(r'^b/(?P<company_slug>.*)/create/$', login_required(CompanyBalanceCreateView.as_view()), name='balance-create'),
+	url(r'^b/(?P<company_slug>.*)/(?P<pk>[0-9]*)/$', CompanyBalanceDetailView.as_view(), name='balance-detail'),
+    url(r'^b/(?P<company_slug>.*)/(?P<pk>[0-9]*)/update/$', login_required(CompanyBalanceUpdateView.as_view()), name='balance-update'),
+	url(r'^b/(?P<company_slug>.*)/(?P<pk>[0-9]*)/export/$', login_required(CompanyBalanceExportView.as_view()), name='balance-export'),
 
-    url(r'^feedback/indicator/(?P<indicator_id>[\w.]*)$', login_required(FeedbackIndicatorFormView.as_view()), name='feedback-indicator'),
+
+    url(r'^feedback/indicator/(?P<indicator_id>[\w.]*)/$', login_required(FeedbackIndicatorFormView.as_view()), name='feedback-indicator'),
     url(r'^feedback/success/$', login_required(FeedbackIndicatorSuccessView.as_view()), name='feedback-indicator-success'),
 
     (r'^ckeditor/', include('ckeditor.urls')),
