@@ -147,26 +147,13 @@
           </div>
         </div>
 
-        <div class="panel-group" data-position="evaluation-table">
-          <div class="row collapse-header" data-toggle="collapse" data-parent="panel-group">
-            <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
-            <h4 class="subindicator-title ecg-green">{% trans "Evaluation table" %}</h4>
-          </div>
-
-          <div class="evaluation-table-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
-            <div class="company-balance-indicator-text">
-              {{ subindicator.get_evaluation_table|safe }}
-            </div>
-          </div>
-        </div>
-
         <div class="panel-group" data-position="key-figures">
           <div class="row collapse-header" data-toggle="collapse" data-parent="panel-group">
             <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
             <h4 class="subindicator-title ecg-green">{% trans "Key figures" %}</h4>
           </div>
 
-          <div class="asdf key-figures-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
+          <div class="key-figures-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
             {% if can_edit %}
               <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
                   id="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor">
@@ -195,6 +182,19 @@
                 {{ subindicator.get_description|safe }}
               </div>
             {% endif %}
+          </div>
+        </div>
+
+        <div class="panel-group" data-position="evaluation-table">
+          <div class="row collapse-header" data-toggle="collapse" data-parent="panel-group">
+            <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
+            <h4 class="subindicator-title ecg-green">{% trans "Evaluation table" %}</h4>
+          </div>
+
+          <div class="evaluation-table-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
+            <div class="company-balance-indicator-text">
+              {{ subindicator.get_evaluation_table|safe }}
+            </div>
           </div>
         </div>
 
