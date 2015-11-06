@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-06 21:52+0100\n"
+"POT-Creation-Date: 2015-11-06 22:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgid "The two password fields didn't match."
 msgstr ""
 
 #: ecg_balancing/forms.py:32
-#: ecg_balancing/templates/ecg_balancing/registration/register.html:39
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:45
 msgid "Username"
 msgstr "Benutzer"
 
@@ -80,7 +80,7 @@ msgstr "Familienname"
 #: ecg_balancing/forms.py:75 ecg_balancing/forms.py:147
 #: ecg_balancing/models.py:38 ecg_balancing/models.py:250
 #: ecg_balancing/templates/ecg_balancing/registration/password_email_form.html:18
-#: ecg_balancing/templates/ecg_balancing/registration/register.html:53
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:59
 msgid "Email"
 msgstr "E-Mail"
 
@@ -1167,11 +1167,14 @@ msgstr "ausstehende Zugehörigkeit"
 
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:79
 msgid "If you have not already created a company profile, you can do it here"
-msgstr "Falls Sie noch kein Unternehmensprofil erstellt haben, können Sie es hier machen"
+msgstr ""
+"Falls Sie noch kein Unternehmensprofil erstellt haben, können Sie es hier "
+"machen"
 
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:81
 msgid "If you have already created a company profile, click"
-msgstr "Wenn Sie bereits eine Unternehmensprofil erstellt haben, klicken Sie auf"
+msgstr ""
+"Wenn Sie bereits eine Unternehmensprofil erstellt haben, klicken Sie auf"
 
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:83
 msgid ""
@@ -1179,9 +1182,10 @@ msgid ""
 "released by an administrator, the release you will receive within 3 days. If "
 "this is not done or the registration is urgent, please contact us at"
 msgstr ""
-"Wenn Sie erstmalig Ihr Unternehmensprofil erstellen, müssen Sie von einem Administrator"
-"freigegeben werden, die Freigabe bekommen Sie dann innerhalb von 3 Tagen. Falls dies nicht "
-"geschehen sollte oder die Eintragung dringlich ist, melden Sie sich bitte bei"
+"Wenn Sie erstmalig Ihr Unternehmensprofil erstellen, müssen Sie von einem "
+"Administratorfreigegeben werden, die Freigabe bekommen Sie dann innerhalb "
+"von 3 Tagen. Falls dies nicht geschehen sollte oder die Eintragung dringlich "
+"ist, melden Sie sich bitte bei"
 
 #: ecg_balancing/templates/ecg_balancing/user_detail.html:86
 msgid "You are not a member of a company."
@@ -1341,12 +1345,12 @@ msgid "Enter new password"
 msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:16
-#: ecg_balancing/templates/ecg_balancing/registration/register.html:67
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:73
 msgid "New password:"
 msgstr ""
 
 #: ecg_balancing/templates/ecg_balancing/registration/password_reset_confirm.html:29
-#: ecg_balancing/templates/ecg_balancing/registration/register.html:80
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:86
 msgid "Confirm password:"
 msgstr ""
 
@@ -1390,11 +1394,30 @@ msgid "Register"
 msgstr "Registrieren"
 
 #: ecg_balancing/templates/ecg_balancing/registration/register.html:12
-#: ecg_balancing/templates/ecg_balancing/registration/register.html:93
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:99
 msgid "Register user"
 msgstr "Benutzer registrieren"
 
-#: ecg_balancing/templates/ecg_balancing/registration/register.html:16
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:15
+msgid ""
+"\n"
+"<strong>Dear users, dear / r matrix prospects,</strong><br>\n"
+"At this step, you can create your personal profile related. It is "
+"independent of the company profile. Your person-related profile must or may "
+"connect at the next step with your company. The separation of company and "
+"person allows the assignment of more than one person from your company to "
+"the group of persons who takes care of the preparation of the balance "
+"sheet.\n"
+msgstr ""
+"\n"
+"<strong>Liebe/r Nutzer_in, Liebe/r Matrix Interessierte_r,</strong><br>\n"
+"bei diesem Schritt können Sie Ihr personenbezogenes Profil anlegen. Es ist "
+"unabhängig vom Firmenprofil. Ihr personenbezogenes Profil können bzw. müssen "
+"Sie bei dem nächsten Schritt mit Ihrer Firma verbinden. Die Trennung von Firma "
+"und Person ermöglicht eine Zuordnung von mehreren Personen aus ihrer Firma "
+"zu dem Personenkreis, der sich um die Erstellung der Bilanz kümmert.\n"
+
+#: ecg_balancing/templates/ecg_balancing/registration/register.html:22
 msgid "First and last name"
 msgstr "Vor- und Nachname"
 

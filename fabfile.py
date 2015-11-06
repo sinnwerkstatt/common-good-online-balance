@@ -3,10 +3,10 @@ from fabvenv import virtualenv
 
 
 def staging():
-    env.hosts = ['ecg@sinnwerkstatt.com']
+    env.hosts = ['ecg@server.sinnwerkstatt.com']
     env.path = '/srv/ecg.sinnwerkstatt.com/ecg-balancing'
     env.push_branch = 'master'
-    env.push_remote = 'origin'
+    env.push_remote = 'github'
     env.virtualenv_path = '/srv/ecg.sinnwerkstatt.com/ecgenv'
 
 

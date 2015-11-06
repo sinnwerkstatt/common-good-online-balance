@@ -11,6 +11,12 @@
 
     <h1>{% trans "Register user" %}</h1>
 
+    <p class="alert alert-info">
+{% blocktrans %}
+<strong>Dear users, dear / r matrix prospects,</strong><br>
+At this step, you can create your personal profile related. It is independent of the company profile. Your person-related profile must or may connect at the next step with your company. The separation of company and person allows the assignment of more than one person from your company to the group of persons who takes care of the preparation of the balance sheet.
+{% endblocktrans %}</a>
+
       <div id="div_first_name" class="clearboth p-top{% if form.first_name.errors or form.last_name.errors %} has-error{% endif %}">
         <label for="id_first_name" class="control-label clearboth text-right col-lg-3 col-md-3">
           <label for="id_first_name">{% trans 'First and last name' %}:</label>
