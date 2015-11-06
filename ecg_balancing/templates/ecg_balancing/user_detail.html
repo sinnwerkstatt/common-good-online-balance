@@ -76,11 +76,11 @@
         </ul>
       {% endif %}
 
-      <p class="alert alert-info">{% trans "If you have not already created a company profile, you can do it here" %}: <a href="{% url 'company-create' %}"><strong>{% trans "Create a company" %}</strong></a></p>
+      <p class="alert alert-info">{% trans "If you have not already created a company profile, you can do it here" %}: <a class="alert-link" href="{% url 'company-create' %}">{% trans "Create a company" %}</a></p>
 
-      <p class="alert alert-info">{% trans "If you have already created a company profile, click" %}: <a href="{% url 'company-join' %}"><strong>{% trans "Join a company" %}</strong></a></p>
+      <p class="alert alert-info">{% trans "If you have already created a company profile, click" %}: <a class="alert-link" href="{% url 'company-join' %}">{% trans "Join a company" %}</a></p>
 
-      <p class="alert alert-info">{% trans "When you create your company profile for the first time, you have to be released by an administrator, the release you will receive within 3 days. If this is not done or the registration is urgent, please contact us at" %}: <a href="maito:Susanne.Traumann@ecogood.org">Susanne.Traumann@ecogood.org</a></p>
+      <p class="alert alert-info">{% trans "When you create your company profile for the first time, you have to be released by an administrator, the release you will receive within 3 days. If this is not done or the registration is urgent, please contact us at" %}: <a class="alert-link" href="maito:Susanne.Traumann@ecogood.org">Susanne.Traumann@ecogood.org</a></p>
 
       {% if is_same_user and not companies_member %}
         <div class="alert alert-warning pull-left">{% trans "You are not a member of a company." %}</div>
