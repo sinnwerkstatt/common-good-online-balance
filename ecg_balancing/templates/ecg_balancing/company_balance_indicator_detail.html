@@ -26,11 +26,11 @@
   {% endif %}
 
 <div class="feedback-container clearfix">
-  <a href="{% url 'feedback-indicator' object.indicator %}?url={{ request.get_full_path }}" class="button pull-right space-left">
+  <a href="{% url 'feedback-indicator' object.indicator %}?url={{ request.get_full_path }}" class="btn btn-default pull-right space-left">
     <span class="glyphicon glyphicon-envelope"></span>
     {% trans "Send Feedback" %}
   </a>
-  <a href="http://sinnwerkstatt.github.io/gemeinwohl-oekonomie/#matrix-{{object.indicator}}-goals" target="_blank" class="button pull-right">
+  <a href="http://sinnwerkstatt.github.io/gemeinwohl-oekonomie/#matrix-{{object.indicator}}-goals" target="_blank" class="btn btn-default pull-right">
     <span class="glyphicon glyphicon-info-sign"></span>
     {% trans "Indicator Infos" %}
   </a>

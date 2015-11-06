@@ -15,7 +15,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
       {% if is_admin %}
-        <a href="{% url 'company-detail' object.company.slug %}" class="button pull-right">
+        <a href="{% url 'company-detail' object.company.slug %}" class="btn btn-default pull-right">
           <span class="glyphicon glyphicon-chevron-left"></span>
           {% trans "Back" %}
         </a>
@@ -70,7 +70,7 @@
               </tbody>
             </table>
 
-            <input id="submit-btn" type="submit" name="submit" value="{% trans "Save" %}" class="button primary pull-right"/>
+            <input id="submit-btn" type="submit" name="submit" value="{% trans "Save" %}" class="btn primary pull-right"/>
 
           </form>
 
