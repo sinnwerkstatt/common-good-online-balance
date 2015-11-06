@@ -7,7 +7,7 @@
 {% block base_content %}
 
   {% trans "You are not allowed to edit the profiles of other users." %}.
-  <a href="{% url 'user-detail' user.pk %}" class="button">
+  <a href="{% url 'user-detail' user.pk %}" class="btn btn-default">
     <span class="glyphicon glyphicon-chevron-left"></span>
     {% trans "Back to profile" %}
   </a>

@@ -4,7 +4,7 @@
 {% block base_content %}
   <p>{% trans "Thank you for using the site." %}</p>
   <p>
-    <a href="{% url 'login' %}" class="button primary">{% trans "Log in again" %}</a>
-    <a href="{% url 'pages-root' %}" class="button">{% trans "Return to the home page" %}</a>
+    <a href="{% url 'login' %}" class="btn btn-primary">{% trans "Log in again" %}</a>
+    <a href="{% url 'pages-root' %}" class="btn btn-default">{% trans "Return to the home page" %}</a>
   </p>
 {% endblock %}

@@ -14,12 +14,12 @@
     {% if can_edit %}
       <div class="pull-right">
         <a href="{% url 'balance-update' company_slug=object.company.slug balance_year=object.year %}"
-           class="button">
+           class="btn btn-default">
           <span class="glyphicon glyphicon-pencil"></span>
           {% trans "Edit" %}
         </a>
         <a href="{% url 'balance-export' company_slug=object.company.slug balance_year=object.year %}"
-           class="button primary">
+           class="btn btn-primary">
           <span class="glyphicon glyphicon-export"></span>
           {% trans "Export as PDF" %}
         </a>
