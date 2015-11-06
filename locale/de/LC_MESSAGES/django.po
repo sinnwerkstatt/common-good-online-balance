@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 13:46+0100\n"
+"POT-Creation-Date: 2015-11-06 21:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -253,19 +253,19 @@ msgstr "Mehrere E-Mails sollen mit Komma getrennt werden."
 
 #: ecg_balancing/models.py:109 ecg_balancing/models.py:452
 #: ecg_balancing/templates/ecg_balancing/company_balance_export.html:257
-#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:186
+#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:173
 msgid "Target questions"
 msgstr "Impulsfragen"
 
 #: ecg_balancing/models.py:110 ecg_balancing/models.py:453
 #: ecg_balancing/templates/ecg_balancing/company_balance_export.html:250
-#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:166
+#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:153
 msgid "Key figures"
 msgstr "Kennzahlen"
 
 #: ecg_balancing/models.py:111 ecg_balancing/models.py:454
 #: ecg_balancing/templates/ecg_balancing/company_balance_export.html:243
-#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:153
+#: ecg_balancing/templates/ecg_balancing/company_balance_indicator_detail.html:191
 msgid "Evaluation table"
 msgstr "Bewertungstabelle"
 
@@ -494,7 +494,7 @@ msgid "Visibility"
 msgstr "Sichtbarkeit"
 
 #: ecg_balancing/models.py:267
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:67
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:72
 msgid "Not approved"
 msgstr "Nicht akzeptiert"
 
@@ -521,7 +521,7 @@ msgstr "Unternehmen"
 #: ecg_balancing/models.py:279
 #: ecg_balancing/templates/ecg_balancing/companies_list.html:12
 #: ecg_balancing/templates/ecg_balancing/companies_list_admin.html:10
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:45
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:47
 #: templates/topmenu.html:11
 msgid "Companies"
 msgstr "Unternehmen"
@@ -888,7 +888,7 @@ msgstr "Unternehmen akzeptieren"
 
 #: ecg_balancing/templates/ecg_balancing/companies_list.html:24
 #: ecg_balancing/templates/ecg_balancing/company_create.html:21
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:78
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:79
 msgid "Create a company"
 msgstr "Unternehmen erstellen"
 
@@ -986,7 +986,7 @@ msgstr "GWÖ-Bilanz"
 #: ecg_balancing/templates/ecg_balancing/company_detail.html:30
 #: ecg_balancing/templates/ecg_balancing/company_update.html:11
 #: ecg_balancing/templates/ecg_balancing/company_update.html:41
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:40
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:41
 #: ecg_balancing/templates/ecg_balancing/user_update.html:10
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -1101,7 +1101,7 @@ msgid "ECG Balances"
 msgstr "GWÖ-Bilanzen"
 
 #: ecg_balancing/templates/ecg_balancing/company_join.html:24
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:77
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:81
 msgid "Join a company"
 msgstr "Unternehmen beitreten"
 
@@ -1161,15 +1161,33 @@ msgstr "Zurück zur GWÖ-Bilanz"
 msgid "Upload profile photo"
 msgstr "Profilbild hochladen"
 
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:60
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:64
 msgid "Membership pending"
 msgstr "ausstehende Zugehörigkeit"
 
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:74
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:79
+msgid "If you have not already created a company profile, you can do it here"
+msgstr "Falls Sie noch kein Unternehmensprofil erstellt haben, können Sie es hier machen"
+
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:81
+msgid "If you have already created a company profile, click"
+msgstr "Wenn Sie bereits eine Unternehmensprofil erstellt haben, klicken Sie auf"
+
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:83
+msgid ""
+"When you create your company profile for the first time, you have to be "
+"released by an administrator, the release you will receive within 3 days. If "
+"this is not done or the registration is urgent, please contact us at"
+msgstr ""
+"Wenn Sie erstmalig Ihr Unternehmensprofil erstellen, müssen Sie von einem Administrator"
+"freigegeben werden, die Freigabe bekommen Sie dann innerhalb von 3 Tagen. Falls dies nicht "
+"geschehen sollte oder die Eintragung dringlich ist, melden Sie sich bitte bei"
+
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:86
 msgid "You are not a member of a company."
 msgstr "Sie sind nicht Mitglied eines Unternehmens."
 
-#: ecg_balancing/templates/ecg_balancing/user_detail.html:81
+#: ecg_balancing/templates/ecg_balancing/user_detail.html:89
 msgid "No companies."
 msgstr "Keine Unternehmen."
 

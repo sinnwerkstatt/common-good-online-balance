@@ -35,10 +35,12 @@
     </div>
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
       {% if is_same_user %}
-        <a href="{% url 'user-update' object.pk %}" class="button pull-right">
+      <p class="clearfix">
+        <a href="{% url 'user-update' object.pk %}" class="btn btn-default pull-right">
           <span class="glyphicon glyphicon-pencil"></span>
           {% trans "Edit" %}
         </a>
+      </p>
       {% endif %}
 
       {% if is_same_user or companies_member %}
@@ -46,37 +48,43 @@
       {% endif %}
 
       {% if companies_member or companies_pending or companies_not_approved %}
-        <p>
+        <ul class="list-unstyled">
         {% for company in companies_member %}
-          <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
+          <li>
+            <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
           {% if company in companies_admin and is_same_user%}
             (<a href="{% url 'company-admin' company.slug %}">Admin</a>)
           {% endif %}
-          <br/>
+          </li>
         {% endfor %}
         {% for company in companies_pending %}
-          <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
+          <li>
+            <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
           {% if is_same_user %}
             ({% trans "Membership pending" %})
           {% endif %}
-          <br/>
+          </li>
         {% endfor %}
         {% for company in companies_not_approved %}
-          <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
-          {% if is_same_user %}
-            ({% trans "Not approved" %})
-          {% endif %}
+          <li>
+            <a href="{% url 'company-detail' company.slug %}">{{ company }}</a>
+            {% if is_same_user %}
+              ({% trans "Not approved" %})
+            {% endif %}
+          </li>
         {% endfor %}
-        </p>
+        </ul>
       {% endif %}
+
+      <p class="alert alert-info">{% trans "If you have not already created a company profile, you can do it here" %}: <a href="{% url 'company-create' %}"><strong>{% trans "Create a company" %}</strong></a></p>
+
+      <p class="alert alert-info">{% trans "If you have already created a company profile, click" %}: <a href="{% url 'company-join' %}"><strong>{% trans "Join a company" %}</strong></a></p>
+
+      <p class="alert alert-info">{% trans "When you create your company profile for the first time, you have to be released by an administrator, the release you will receive within 3 days. If this is not done or the registration is urgent, please contact us at" %}: <a href="maito:Susanne.Traumann@ecogood.org">Susanne.Traumann@ecogood.org</a></p>
 
       {% if is_same_user and not companies_member %}
         <div class="alert alert-warning pull-left">{% trans "You are not a member of a company." %}</div>
       {% endif %}
-      <div class="clearboth">
-        <a href="{% url 'company-join' %}" class="button">{% trans "Join a company" %}</a>
-        <a href="{% url 'company-create' %}" class="button">{% trans "Create a company" %}</a>
-      </div>
       {% if not is_same_user and not companies_member %}
         <div class="alert alert-warning pull-left">{% trans "No companies." %}</div>
       {% endif %}
