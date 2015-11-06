@@ -11,6 +11,11 @@
   {{ object.company_balance.year }}{% endblock %}
 
 {% block base_content %}
+  <a href="{% url 'balance-detail' company_slug=object.company_balance.company.slug pk=object.company_balance.id %}" class="btn btn-default pull-right">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    {% trans "Back to balance" %}
+  </a>
+
   {% include 'ecg_balancing/includes/balance_header.html' with company_balance=object.company_balance %}
 
   <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}">
