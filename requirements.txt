@@ -23,3 +23,6 @@ django-leaflet==0.15.0
 django-wkhtmltopdf==2.0.2
 django-autoslug==1.7.2
 django-ckeditor==4.4.7
+urllib2
+urllib
+simplejson
