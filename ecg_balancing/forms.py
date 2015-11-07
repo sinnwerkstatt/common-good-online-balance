@@ -203,7 +203,7 @@ class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
         #fields = ('user.first_name', 'user.last_name', 'user.email')
-        exclude = ['model_creation_date', 'status']
+        exclude = ['model_creation_date', 'status', 'location_lat', 'location_lon']
 
 
 class CompanyJoinForm(forms.ModelForm):

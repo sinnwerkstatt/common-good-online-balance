@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import datetime
+import urllib
+import urllib2
+import simplejson
 
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db import models
 from django.db.models import signals
 from django.utils.translation import ugettext_lazy as _
-from osm_field.fields import OSMField
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 
@@ -230,21 +232,24 @@ class Company(models.Model):
     )
 
     VISIBILITY_CHOICE_BASIC = 'basic'
+    VISIBILITY_CHOICE_CONTACT = 'contact'
     VISIBILITY_CHOICE_ALL = 'all'
     VISIBILITY_CHOICES = (
-        (VISIBILITY_CHOICE_BASIC, _('Logo, Name, Website')),
+        (VISIBILITY_CHOICE_BASIC, _('Logo, Name, Location, Website')),
+        (VISIBILITY_CHOICE_CONTACT, _('Logo, Name, Location, Website, Email, Phone Managing directors')),
         (VISIBILITY_CHOICE_ALL, _('Everything')),
     )
 
     name = models.CharField(_('Name'), max_length=255)
     slug = AutoSlugField(_('Slug'), populate_from='name', unique=True)
-    logo = models.ImageField(_('Image'), blank=True, null=True, upload_to='company-upload')
+    logo = models.ImageField(_('Logo'), blank=True, null=True, upload_to='company-upload')
 
     street = models.CharField(_('Street'), max_length=50, blank=False)
-    zipcode = models.PositiveIntegerField(_('ZIP code'), blank=False)
+    zipcode = models.CharField(_('Postal code'), max_length=50, blank=False)
     city = models.CharField(_('City'), max_length=50, blank=False)
     country = models.CharField(_('Country'), max_length=50, blank=False)
-    location = OSMField(_('Location'), blank=False, null=True)
+    location_lat = models.DecimalField(max_digits=10, decimal_places=6)
+    location_lon = models.DecimalField(max_digits=10, decimal_places=6)
     website = models.CharField(_('Website'), max_length=255, blank=False)
 
     email = models.EmailField(_('Email'), unique=True)
@@ -277,6 +282,41 @@ class Company(models.Model):
     class Meta:
         verbose_name = _('Company')
         verbose_name_plural = _('Companies')
+
+    def __init__(self, *args, **kwargs):
+        super(Company, self).__init__(*args, **kwargs)
+        self.__location_fields = ['street', 'zipcode', 'city', 'country']
+        for field in self.__location_fields:
+            setattr(self, '__original_%s' % field, getattr(self, field))
+
+    def location_changed(self):
+        for field in self.__location_fields:
+            orig = '__original_%s' % field
+            if getattr(self, orig) != getattr(self, field):
+                return True
+        return False
+
+    def save(self, force_insert=False, force_update=False, *args, **kwargs):
+        if self.location_changed():
+            # get coordinates for address
+            try:
+                encoded_args = urllib.urlencode({
+                    'street': self.street.encode('utf-8'),
+                    'postalcode': self.zipcode.encode('utf-8'),
+                    'city': self.city.encode('utf-8'),
+                    'country': self.country.encode('utf-8')
+                })
+                url = 'http://nominatim.openstreetmap.org/search?%s&format=json' % encoded_args
+                req = urllib2.Request(url)
+                opener = urllib2.build_opener()
+                location = simplejson.load(opener.open(req))
+                self.location_lat = location[0]['lat']
+                self.location_lon = location[0]['lon']
+            except:
+                self.location_lat = None
+                self.location_lon = None
+                pass
+        super(Company, self).save(force_insert, force_update, *args, **kwargs)
 
     def __unicode__(self):
         return self.name

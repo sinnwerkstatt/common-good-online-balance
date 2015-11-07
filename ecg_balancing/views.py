@@ -251,8 +251,6 @@ class CompanyDetailView(UserRoleMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
         company = self.object
-
-        context['visibility_basic'] = (company.visibility == Company.VISIBILITY_CHOICE_BASIC)
         context['not_approved'] = (company.status == Company.STATUS_CHOICE_NOT_APPROVED)
 
         for balance in company.balance.all():

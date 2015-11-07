@@ -55,7 +55,7 @@
                 <li class="company-balance-item">
                   <a href="{% url 'balance-detail' company_slug=balance.company.slug pk=balance.id %}">{% trans "ECG Balance" %} {{ balance.year }}</a>
                   {% if balance.status == 'draft' %}
-                    <span class="balance-status">{{balance.get_status_display}}</span>
+                    <span class="balance-status">{{ balance.get_status_display }}</span>
                   {% endif %}
                 </li>
                 {% endif %}
@@ -72,40 +72,27 @@
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-      {% if has_company_access or not visibility_basic %}
-
+        {% if has_company_access or company.visibility == company.VISIBILITY_CHOICE_ALL %}
         <div class="company-data-item">
-          {% if object.name %}
-            {{ object.name }}<br/>
-          {% endif %}
-          {% if object.name %}
-            {{ object.street }}<br/>
-          {% endif %}
-          {% if object.name %}
-            {{ object.zipcode }} {{ object.city }}<br/>
-          {% endif %}
-          {% if object.name %}
-            {{ object.country }}<br/>
-          {% endif %}
-          {% if object.name %}
-            <span class="glyphicon glyphicon-link glyphicon-greyer"></span>
-            <a href="{{ object.website }}">{{ object.website }}</a><br/>
-          {% endif %}
+            {% if object.name %}{{ object.name }}<br/>{% endif %}
+            {% if object.street %}{{ object.street }}<br/>{% endif %}
+            {% if object.zipcode %}{{ object.zipcode }} {{ object.city }}<br/>{% endif %}
+            {% if object.country %}{{ object.country }}<br/>{% endif %}
         </div>
+        {% endif %}
 
+        {% if has_company_access or company.visibility == company.VISIBILITY_CHOICE_ALL or company.visibility == company.VISIBILITY_CHOICE_CONTACT %}
         <div class="company-data-item">
-          {% if object.email %}
-            <span class="glyphicon glyphicon-envelope glyphicon-greyer"></span>
-            <a href="mailto:{{ object.email }}">{{ object.email }}</a><br/>
-          {% endif %}
-          {% if object.phone %}
-            <span class="glyphicon glyphicon-earphone glyphicon-greyer"></span>  {{ object.phone }}<br/>
-          {% endif %}
-          {% if object.fax %}
-            <span class="glyphicon glyphicon-print glyphicon-greyer"></span> {{ object.fax }}<br/>
-          {% endif %}
+            {% if object.phone %}
+              <span class="glyphicon glyphicon-earphone glyphicon-greyer"></span>  {{ object.phone }}<br/>
+            {% endif %}
+            {% if object.fax %}
+              <span class="glyphicon glyphicon-print glyphicon-greyer"></span> {{ object.fax }}<br/>
+            {% endif %}
         </div>
+        {% endif %}
 
+        {% if has_company_access or company.visibility == company.VISIBILITY_CHOICE_ALL %}
         <div class="company-data-item">
           {% if object.industry %}
             {% trans "Industry" %}: {{ object.get_industry_display }}<br/>
@@ -126,20 +113,23 @@
             {% trans "Affiliates" %}: {{ object.affiliates }}<br/>
           {% endif %}
         </div>
+        {% endif %}
 
+        {% if has_company_access or company.visibility == company.VISIBILITY_CHOICE_ALL or company.visibility == company.VISIBILITY_CHOICE_CONTACT %}
         <div class="company-data-item">
-          {% if object.foundation_date %}
-            {% trans "Foundation Date" %}: {{ object.foundation_date.year }}<br/>
-          {% endif %}
-          {% if object.owners %}
-            {% trans "Owners" %}: {{ object.owners }}<br/>
+          {% if has_company_access or company.visibility == company.VISIBILITY_CHOICE_ALL %}
+            {% if object.foundation_date %}
+              {% trans "Foundation Date" %}: {{ object.foundation_date.year }}<br/>
+            {% endif %}
+            {% if object.owners %}
+              {% trans "Owners" %}: {{ object.owners }}<br/>
+            {% endif %}
           {% endif %}
           {% if object.managing_directors %}
             {% trans "Managing Directors" %}: {{ object.managing_directors }}<br/>
           {% endif %}
         </div>
-
-      {% endif %}
+        {% endif %}
     </div>
   </div>
 

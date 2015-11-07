@@ -23,9 +23,11 @@
         <span class="glyphicon glyphicon-link"></span>
         <a href="{{ company.website }}">{{ company.website }}</a>
       </span>
+      {% if has_company_access or visibility_contact %}
       <span class="profile-company-details-item">
         <span class="glyphicon glyphicon-envelope"></span>
         <a href="mailto:{{ company.email }}">{{ company.email }}</a>
       </span>
+      {% endif %}
   </div>
 </div>
