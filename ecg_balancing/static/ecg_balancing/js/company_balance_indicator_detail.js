@@ -257,4 +257,25 @@ $(document).ready(function() {
     $('.company-balance-indicator-relevance').change(function () {
         $(this).parent().find('.company-balance-indicator-relevance-comment').removeClass('hidden');
     });
+    $(':submit').click(function (e) {
+        e.preventDefault();
+        var error = false;
+        // FIXME: Validation should happen with django forms instead
+        $('select.company-balance-indicator-relevance').each(function () {
+            var comment = $(this).next().find('textarea');
+            if ($(this).find(':selected').val() !== $(this).data('default')) {
+                if (comment.val() == '') {
+                    comment.addClass('error');
+                    error = true;
+                } else {
+                    comment.removeClass('error');
+                }
+            } else {
+                comment.removeClass('error');
+            }
+        });
+        if (!error) {
+            $('form').submit();
+        }
+    })
 });

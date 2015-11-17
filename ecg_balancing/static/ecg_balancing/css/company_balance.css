@@ -580,3 +580,7 @@ table {
   width: 50%;
   display: inline-block;
 }
+
+.error {
+  border: 1px solid red !important;
+}

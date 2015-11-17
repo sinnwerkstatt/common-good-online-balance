@@ -604,12 +604,18 @@ class CompanyBalanceUpdateView(UserRoleRedirectMixin, UpdateView):
         })
 
 
-class CompanyBalanceIndicatorDetailView(UserRoleRedirectMixin, CompanyBalanceViewMixin, DetailView):
+
+class CompanyBalanceIndicatorCreateView(UserRoleRedirectMixin, CreateView):
     model = CompanyBalanceIndicator
-    template_name = 'ecg_balancing/company_balance_indicator_detail.html'
+
+class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, CompanyBalanceViewMixin, UpdateView):
+    # FIXME: This view should use a form class, especially the post() method
+    # should make use of django features (forms and validation)
+    model = CompanyBalanceIndicator
+    template_name = 'ecg_balancing/company_balance_indicator_detail.html' # FIXME: Rename to „companybalanceindicator_form.html“
 
     def get_context_data(self, **kwargs):
-        context = super(CompanyBalanceIndicatorDetailView, self).get_context_data(**kwargs)
+        context = super(CompanyBalanceIndicatorUpdateView, self).get_context_data(**kwargs)
         # TODO: simplify the query?
         # subindicators = Indicator.objects.filter(parent=self.object.indicator).all().order_by('subindicator_number').all()
         subindicators = CompanyBalanceIndicator.objects.get_by_parent(self.object).all().order_by(
@@ -651,24 +657,16 @@ class CompanyBalanceIndicatorDetailView(UserRoleRedirectMixin, CompanyBalanceVie
             )
 
 
-class CompanyBalanceIndicatorCreateView(UserRoleRedirectMixin, CreateView):
-    model = CompanyBalanceIndicator
-
-
-class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, UpdateView):
-    model = CompanyBalanceIndicator
-
     def get_success_url(self):
-
         # if subindicator is updated, redirect to the parent indicator URL
         indicator = self.object.indicator
         if indicator.parent:
             indicator = indicator.parent
 
-        return reverse('indicator-detail', kwargs={
+        return reverse('indicator-update', kwargs={
             'company_slug': self.object.company_balance.company.slug,
             'balance_id': self.object.company_balance.id,
-            'indicator_id': indicator
+            'indicator_id': indicator.slugify()
         })
 
     def post(self, request, *args, **kwargs):

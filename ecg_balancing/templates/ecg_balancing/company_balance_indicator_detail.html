@@ -26,7 +26,7 @@
 
   {% if can_edit %}
     <form method="POST"
-          action="{% url 'indicator-update' company_slug=object.company_balance.company.slug pk=object.pk %}">
+          action="{% url 'indicator-update' company_slug=object.company_balance.company.slug balance_id=object.company_balance.id indicator_id=object.indicator.slugify %}">
     {% csrf_token %}
   {% endif %}
 
@@ -125,7 +125,7 @@
             {% else %}
               <div id="company-balance-indicator-{{ subindicator.indicator.slugify }}-slider"
                    class="company-balance-indicator-slider pull-right">
-                  {{subindicator.evaluation.errors}}
+                  {{ subindicator.evaluation.errors }}
                 <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
                        value="{{ subindicator.evaluation }}"
                        name="company-balance-indicator-{{ subindicator.indicator.slugify }}-percentage"
@@ -133,9 +133,8 @@
 
                 <div class="company-balance-indicator-relevance
                             company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance">
-                  {{subindicator.relevance.errors}}
 
-                  {% trans "Relevance" %}: <select class="select form-control company-balance-indicator-relevance" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance">
+                  {% trans "Relevance" %}: <select class="select form-control company-balance-indicator-relevance" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance" data-default="{{ subindicator.indicator.relevance }}">
                     {% for option in indicator_relevance_values %}
                       <option value="{{ option.0 }}" {% if option.0 == subindicator.get_relevance %} selected="selected" {% endif %}>
                         {{ option.1 }}
@@ -144,7 +143,7 @@
                   </select>
 
                   <div class="company-balance-indicator-relevance-comment company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment{% if not subindicator.relevance_comment and not subindicator.relevance_comment.errors %} hidden{% endif %}">
-                    {% trans "Change reason" %}: <textarea id="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment" class="textarea form-control company-balance-indicator-relevance-comment" rows="2" cols="1" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment">{{subindicator.relevance_comment|default_if_none:""}}</textarea>
+                    {% trans "Please explain why your assessment for your business is different, the relevance of the preset value." %} <textarea id="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment" class="textarea form-control company-balance-indicator-relevance-comment" rows="2" cols="1" name="company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance-comment">{{subindicator.relevance_comment|default_if_none:""}}</textarea>
                   </div>
                 </div>
               </div>

@@ -49,8 +49,8 @@ urlpatterns = patterns('',
 	url(r'^c/(?P<slug>[\w-]*)/admin$', login_required(CompanyAdminView.as_view()), name='company-admin'),
 
     #url(r'^i/create$', login_required(CompanyBalanceIndicatorCreateView.as_view()), name='indicator-create'),
-    url(r'^b/(?P<company_slug>[\w-]*)/(?P<balance_id>[0-9]*)/(?P<indicator_id>[a-z][0-9]*)/$', CompanyBalanceIndicatorDetailView.as_view(), name='indicator-detail'),
-    url(r'^b/(?P<company_slug>[\w-]*)/indicator/(?P<pk>[\d]*)/update/$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='indicator-update'),
+    url(r'^b/(?P<company_slug>[\w-]*)/(?P<balance_id>[0-9]*)/(?P<indicator_id>[a-z][0-9]*)/$', CompanyBalanceIndicatorUpdateView.as_view(), name='indicator-update'),
+    #url(r'^b/(?P<company_slug>[\w-]*)/(?P<pk>[\d]*)/update/$', login_required(CompanyBalanceIndicatorUpdateView.as_view()), name='indicator-update'),
 
 	url(r'^b/(?P<company_slug>.*)/create/$', login_required(CompanyBalanceCreateView.as_view()), name='balance-create'),
 	url(r'^b/(?P<company_slug>.*)/(?P<pk>[0-9]*)/$', CompanyBalanceDetailView.as_view(), name='balance-detail'),
