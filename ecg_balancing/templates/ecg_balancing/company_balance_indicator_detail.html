@@ -87,8 +87,8 @@
                 </div>
                 {% endif %}
                 {% if can_edit %}
-                  <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
-                      id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
+                  <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-editor"
+                      id="company-balance-indicator-{{ object.indicator.slugify }}-editor"
                       class="editor">
                       {{ object.description|default_if_none:"" }}
                   </textarea>
@@ -114,8 +114,7 @@
               </div>
               {% endif %}
               {% if can_edit %}
-                <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor    "
-                    id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"class="editor">
+                <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor" id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor" class="editor">
                     {{ object.key_figures|default_if_none:"" }}
                 </textarea>
               {% endif %}
@@ -189,14 +188,14 @@
               <div class="panel-body">
                 {% if subincidator.indicator.description %}
                 <div class="company-balance-indicator-text well">
-                  {{ subincidator.indicator.description|safe }}
+                  {{ subindicator.indicator.description|safe }}
                 </div>
                 {% endif %}
                 {% if can_edit %}
                   <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor"
-                      id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
+                      id="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor"
                       class="editor">
-                      {{ subincidator.description|default_if_none:"" }}
+                      {{ subindicator.description|default_if_none:"" }}
                   </textarea>
                 {% endif %}
               </div>
@@ -220,7 +219,7 @@
                 {% endif %}
                 {% if can_edit %}
                   <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
-                      id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"class="editor">
+                      id="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"class="editor">
                       {{ subindicator.key_figures|default_if_none:"" }}
                   </textarea>
                 {% endif %}
@@ -242,12 +241,6 @@
                 <div class="company-balance-indicator-text well">
                   {{ subindicator.indicator.evaluation_table|safe }}
                 </div>
-                {% endif %}
-                {% if can_edit %}
-                  <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
-                      id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"class="editor">
-                      {{ subindicator.evaluation_table|default_if_none:"" }}
-                  </textarea>
                 {% endif %}
               </div>
             </div>

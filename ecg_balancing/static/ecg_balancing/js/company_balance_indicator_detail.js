@@ -285,5 +285,5 @@ $(document).ready(function() {
         if (!error) {
             $('form').submit();
         }
-    })
+    });
 });

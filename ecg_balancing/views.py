@@ -694,7 +694,6 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, CompanyBalanceVie
         indicatorKeyFiguresText = post.get(inputFieldFormat % (inputFieldPrefix, indicatorId, keyfiguresFieldSuffix))
         if indicatorKeyFiguresText:
             companyBalanceIndicator.key_figures = indicatorKeyFiguresText
-
         # set main indicator points, for negative indicators
         indicatorPoints = post.get(inputFieldFormat % (inputFieldPrefix, indicatorId, pointsFieldSuffix))
         if indicatorPoints:
@@ -707,7 +706,6 @@ class CompanyBalanceIndicatorUpdateView(UserRoleRedirectMixin, CompanyBalanceVie
         # and calculate the indicator points
         subindicators = companyBalanceIndicator.indicator.parent_indicator.all()
         if subindicators:
-
             subindicatorsIds = []
             subindicatorsPks = []
 
