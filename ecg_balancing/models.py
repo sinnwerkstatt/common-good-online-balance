@@ -506,15 +506,6 @@ class CompanyBalanceIndicator(models.Model):
             unicode(self.indicator)
         )
 
-    def get_description(self):
-        return self.description or self.indicator.description
-
-    def get_key_figures(self):
-        return self.key_figures or self.indicator.key_figures
-
-    def get_evaluation_table(self):
-        return self.evaluation_table or self.indicator.evaluation_table
-
     def get_relevance(self):
         return self.relevance or self.indicator.relevance
 

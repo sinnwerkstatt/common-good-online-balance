@@ -1,5 +1,5 @@
 // set indicator name
-$('.js-indicator-page-title-inner').html(indicator.shortcode + ' - ' + indicator.name);
+//$('.js-indicator-page-title-inner').html(indicator.shortcode + ' - ' + indicator.name);
 
 //$('.save-button-container').affix({
 //      offset: {
@@ -125,19 +125,18 @@ var ckeditor_config = {
 };
 
 // activate indicator editor
-var indicatorShortCodeSlug = indicator.shortcodeSlug;
+//var indicatorShortCodeSlug = indicator.shortcodeSlug;
+//
+//var indicatorPrefixId = 'company-balance-indicator-' + indicatorShortCodeSlug;
+//var editorId = indicatorPrefixId + '-editor';
 
-var indicatorPrefixId = 'company-balance-indicator-' + indicatorShortCodeSlug;
-var editorId = indicatorPrefixId + '-editor';
-CKEDITOR.disableAutoInline = true;
-CKEDITOR.inline(editorId, ckeditor_config);
 
 // activate key figures for the main indicator
-var keyfiguresId = indicatorPrefixId + '-keyfigures' + '-editor';
-if (document.getElementById(keyfiguresId) !== null) {
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.inline(keyfiguresId, ckeditor_config);
-}
+//var keyfiguresId = indicatorPrefixId + '-keyfigures' + '-editor';
+//if (document.getElementById(keyfiguresId) !== null) {
+//    CKEDITOR.disableAutoInline = true;
+//    CKEDITOR.inline(keyfiguresId, ckeditor_config);
+//}
 
 // activate indicator evaluation
 var touchSpinSettings = {
@@ -148,119 +147,128 @@ var touchSpinSettings = {
     boostat: 3,
     maxboostedstep: 10,
     postfix: "%",
-    postfix_extraclass: 'indicator-points-postfix-percent'
+    postfix_extraclass: 'indicator-points-postfix-percent',
+    mousewheel: false
 };
 
-if (indicator.shortcodeSlug.indexOf('n') == 0) { // if negative criteria
-    touchSpinSettings.min = indicator.points;
-    touchSpinSettings.max = 0;
-    touchSpinSettings.step = 10;
-}
+//if (indicator.shortcodeSlug.indexOf('n') == 0) { // if negative criteria
+//    touchSpinSettings.min = indicator.points;
+//    touchSpinSettings.max = 0;
+//    touchSpinSettings.step = 10;
+//}
 
-var pointsEl = $('#' + indicatorPrefixId + '-points');
-pointsEl.TouchSpin(touchSpinSettings);
-pointsEl.on('change', function (e) {
-    console.log('new points: ' + e.target.value);
-});
+//var pointsEl = $('#' + indicatorPrefixId + '-points');
+//pointsEl.TouchSpin(touchSpinSettings);
+//pointsEl.on('change', function (e) {
+//    console.log('new points: ' + e.target.value);
+//});
 
-var touchSpinSubindicatorSettings = {
-    min: 0,
-    max: 100,
-    step: 10,
-    decimals: 0,
-    boostat: 3,
-    maxboostedstep: 10,
-    postfix: "%",
-    postfix_extraclass: 'indicator-points-postfix-percent'
+//var touchSpinSubindicatorSettings = {
+//    min: 0,
+//    max: 100,
+//    step: 10,
+//    decimals: 0,
+//    boostat: 3,
+//    maxboostedstep: 10,
+//    postfix: "%",
+//    postfix_extraclass: 'indicator-points-postfix-percent'
+//};
 
-};
 
-var is_negative_criteria = indicator.shortcodeSlug.indexOf('n') == 0;
-
-// if not negative criteria
-if (!is_negative_criteria) {
-
-    // add subindicator titles
-    $('.subindicator-title').each(function (e) {
-        var $this = $(this);
-        var position = $this.data('position');
-        var title = indicator.shortcode + '.' + position;
-
-        $.each(indicator.table.subindicators, function (index, subindicator) {
-            if (subindicator.position === position + '' &&
-                (!(is_sole_proprietorship && !subindicator.soleProprietorship))) {
-                $this.html(title + ' - ' + subindicator.title);
-            }
-        });
-    });
-
-    // add IDs to make them individually collapsable
-    $('.indicator-bubble').each(function () {
-        var $this = $(this);
-        var position = indicator.shortcode + '-' + $this.find('.subindicator-title').data('position');
-
-        $this.find($('.panel-group')).each(function () {
-            var collapse_header = $(this).find('.collapse-header');
-            var collapse_content = $(this).find('.collapse-content');
-            var glyphicon = collapse_header.find('.glyphicon');
-            var sub_position = position + "-" + $(this).data('position');
-
-            collapse_header.attr('id', sub_position + "-header");
-            collapse_content.attr('id', sub_position + "-content");
-            collapse_header.attr('href', "#" + sub_position + "-content");
-            glyphicon.attr('id', sub_position + "-glyphicon");
-
-            collapse_content.on('show.bs.collapse', function () {
-                $this.find('#' + sub_position + '-glyphicon').toggleClass('glyphicon-chevron-right glyphicon-chevron-down');
-            });
-            collapse_content.on('hide.bs.collapse', function () {
-                $this.find('#' + sub_position + '-glyphicon').toggleClass('glyphicon-chevron-right glyphicon-chevron-down');
-            });
-        });
-    });
-
-    if (typeof indicator.table !== 'undefined') {
-        // activate subindicators
-        $.each(indicator.table.subindicators, function (index, subindicator) {
-
-            // don't active non-SP subindicator for an SP company
-            if (!(is_sole_proprietorship && !subindicator.soleProprietorship)) {
-
-                var subIdPrefix = 'company-balance-indicator-' + indicatorShortCodeSlug + '-' + subindicator.position;
-                //console.log("subindicator " + index + ": " + subIdPrefix);
-
-                // activate editor
-                var editorId = subIdPrefix + '-editor';
-                CKEDITOR.disableAutoInline = true;
-                CKEDITOR.inline(editorId, ckeditor_config);
-
-                // activate key figures
-                var keyfiguresId = subIdPrefix + '-keyfigures' + '-editor';
-                if (document.getElementById(keyfiguresId) !== null) {
-                    CKEDITOR.disableAutoInline = true;
-                    CKEDITOR.inline(keyfiguresId, ckeditor_config);
-                }
-
-                // activate evaluation
-                pointsEl = $('#' + subIdPrefix + '-points');
-                pointsEl.TouchSpin(touchSpinSubindicatorSettings);
-                pointsEl.on('change', function (e) {
-                    console.log('new points: ' + e.target.value);
-                });
-            }
-        });
-    }
-}
+//var is_negative_criteria = indicator.shortcodeSlug.indexOf('n') == 0;
+//
+//// if not negative criteria
+//if (!is_negative_criteria) {
+//
+//    // add subindicator titles
+//    //$('.subindicator-title').each(function (e) {
+//    //    var $this = $(this);
+//    //    var position = $this.data('position');
+//    //    var title = indicator.shortcode + '.' + position;
+////
+//    //    $.each(indicator.table.subindicators, function (index, subindicator) {
+//    //        if (subindicator.position === position + '' &&
+//    //            (!(is_sole_proprietorship && !subindicator.soleProprietorship))) {
+//    //            $this.html(title + ' - ' + subindicator.title);
+//    //        }
+//    //    });
+//    //});
+//
+//    // add IDs to make them individually collapsable
+//    //$('.indicator-bubble').each(function () {
+//    //    var $this = $(this);
+//    //    var position = indicator.shortcode + '-' + $this.find('.subindicator-title').data('position');
+////
+//    //    $this.find($('.panel-group')).each(function () {
+//    //        var collapse_header = $(this).find('.collapse-header');
+//    //        var collapse_content = $(this).find('.collapse-content');
+//    //        var glyphicon = collapse_header.find('.glyphicon');
+//    //        var sub_position = position + "-" + $(this).data('position');
+////
+//    //        collapse_header.attr('id', sub_position + "-header");
+//    //        collapse_content.attr('id', sub_position + "-content");
+//    //        collapse_header.attr('href', "#" + sub_position + "-content");
+//    //        glyphicon.attr('id', sub_position + "-glyphicon");
+////
+//    //        collapse_content.on('show.bs.collapse', function () {
+//    //            $this.find('#' + sub_position + '-glyphicon').toggleClass('glyphicon-chevron-right glyphicon-chevron-down');
+//    //        });
+//    //        collapse_content.on('hide.bs.collapse', function () {
+//    //            $this.find('#' + sub_position + '-glyphicon').toggleClass('glyphicon-chevron-right glyphicon-chevron-down');
+//    //        });
+//    //    });
+//    //});
+//
+//    if (typeof indicator.table !== 'undefined') {
+//        // activate subindicators
+//        $.each(indicator.table.subindicators, function (index, subindicator) {
+//
+//            // don't active non-SP subindicator for an SP company
+//            if (!(is_sole_proprietorship && !subindicator.soleProprietorship)) {
+//
+//                var subIdPrefix = 'company-balance-indicator-' + indicatorShortCodeSlug + '-' + subindicator.position;
+//                //console.log("subindicator " + index + ": " + subIdPrefix);
+//
+//                // activate editor
+////                var editorId = subIdPrefix + '-editor';
+////                CKEDITOR.disableAutoInline = true;
+////                CKEDITOR.inline(editorId, ckeditor_config);
+////
+////                // activate key figures
+////                var keyfiguresId = subIdPrefix + '-keyfigures' + '-editor';
+////                if (document.getElementById(keyfiguresId) !== null) {
+////                    CKEDITOR.disableAutoInline = true;
+////                    CKEDITOR.inline(keyfiguresId, ckeditor_config);
+////                }
+////
+//                // activate evaluation
+//                pointsEl = $('#' + subIdPrefix + '-points');
+//                pointsEl.TouchSpin(touchSpinSubindicatorSettings);
+//                //pointsEl.on('change', function (e) {
+//                //    console.log('new points: ' + e.target.value);
+//                //});
+//            }
+//        });
+//    }
+//}
 
 $(document).ready(function() {
+    $('textarea.editor').each(function () {
+        CKEDITOR.disableAutoInline = true;
+        CKEDITOR.inline(this, ckeditor_config);
+    });
+    $('.points').each(function() {
+        $(this).TouchSpin(touchSpinSettings);
+    });
     // Display Relevance Comment textarea and make it required on relevance change
     $('.company-balance-indicator-relevance').change(function () {
         $(this).parent().find('.company-balance-indicator-relevance-comment').removeClass('hidden');
     });
+    // Validate relevance comment on submit
+    // FIXME: Validation should happen with django forms instead
     $(':submit').click(function (e) {
         e.preventDefault();
         var error = false;
-        // FIXME: Validation should happen with django forms instead
         $('select.company-balance-indicator-relevance').each(function () {
             var comment = $(this).next().find('textarea');
             if ($(this).find(':selected').val() !== $(this).data('default')) {

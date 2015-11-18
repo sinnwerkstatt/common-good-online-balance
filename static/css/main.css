@@ -34,6 +34,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
+  left: 0;
   /* Set the fixed height of the footer here */
   /*height: 40px;*/
   padding-top: 10px;
@@ -443,4 +444,15 @@ img.right {
 
 .button > .glyphicon {
   margin-right: 5px;
+}
+.panel-group .panel {
+  border: none;
+}
+.panel-group .panel + .panel {
+  margin-top: 0;
+}
+
+.cke_editable {
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
 }

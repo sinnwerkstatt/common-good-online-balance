@@ -7,8 +7,9 @@
   <link href="{% static 'ecg_balancing/css/company_balance.css' %}" rel="stylesheet">
 {% endblock css %}
 
-{% block page_title %}{{ object.indicator|upper }} - {{ object.company_balance.company }} - {% trans 'ECG Balance' %}
-  {{ object.company_balance.year }}{% endblock %}
+{% block page_title %}
+{{ object.indicator|upper }} - {{ object.company_balance.company }} - {% trans 'ECG Balance' %}
+{% endblock %}
 
 {% block base_content %}
   <a href="{% url 'balance-detail' company_slug=object.company_balance.company.slug pk=object.company_balance.id %}" class="btn btn-default pull-right">
@@ -19,7 +20,7 @@
   {% include 'ecg_balancing/includes/balance_header.html' with company_balance=object.company_balance %}
 
   <h2 class="indicator-page-title center {% ifnotequal object.indicator.stakeholder 'n' %}ecg-green{% else %}negative-color{% endifnotequal %}">
-    <span class="js-indicator-page-title-inner"></span>
+    {{ object.indicator|upper }} {{ object.indicator.title }}
   </h2>
 
 
@@ -40,7 +41,6 @@
     {% trans "Indicator Infos" %}
   </a>
 </div>
-
 
 <div class="indicator-editor-container bubble">
   <div class="bubble-inner">
@@ -63,42 +63,67 @@
               <input id="company-balance-indicator-{{ object.indicator.slugify }}-points" type="text"
                      value="{{ object.evaluation }}"
                      name="company-balance-indicator-{{ object.indicator.slugify }}-points"
-                     class="center">
+                     class="center points">
             </div>
           {% endif %}
         {% endifnotequal %}
       </div>
     </div>
-
-    <div class="bubble-contents">
-      {% if can_edit %}
-        <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-editor">
-          {{ object.get_description|safe }}
-        </textarea>
-      {% else %}
-        <div class="company-balance-indicator-text">
-          {% if object.get_description %}
-            {{ object.get_description|safe }}
-          {% else %}
-            <br/>
-          {% endif %}
+    <div id="indicator" class="panel-group" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading-description">
+              <h4 class="panel-title ecg-green">
+                <a role="button" data-toggle="collapse" data-parent="#indicator" href="#description" aria-expanded="true" aria-controls="description">
+                  <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
+                  {% trans "Target questions" %}
+                </a>
+              </h4>
+            </div>
+            <div id="description" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-description">
+              <div class="panel-body">
+                {% if object.indicator.description %}
+                <div class="company-balance-indicator-text well">
+                  {{ object.indicator.description|safe }}
+                </div>
+                {% endif %}
+                {% if can_edit %}
+                  <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
+                      id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
+                      class="editor">
+                      {{ object.description|default_if_none:"" }}
+                  </textarea>
+                {% endif %}
+              </div>
+          </div>
         </div>
-      {% endif %}
-    </div>
 
-    <div class="key-figures-container" data-indicator-slug="{{ object.indicator.slugify }}">
-      {% if can_edit %}
-        <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
-            id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor">
-            {{ object.get_key_figures }}
-        </textarea>
-      {% else %}
-        <div class="company-balance-indicator-text">
-          {{ object.get_key_figures|safe }}
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading-key-figures">
+            <h4 class="panel-title ecg-green">
+              <a role="button" data-toggle="collapse" data-parent="#indicator" href="#key-figures" aria-expanded="true" aria-controls="key-figures">
+                <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
+                {% trans "Key figures" %}
+              </a>
+            </h4>
+          </div>
+          <div id="key-figures" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-key-figures">
+            <div class="panel-body">
+              {% if object.indicator.key_figures %}
+              <div class="company-balance-indicator-text well">
+                {{ object.indicator.key_figures|safe }}
+              </div>
+              {% endif %}
+              {% if can_edit %}
+                <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor    "
+                    id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"class="editor">
+                    {{ object.key_figures|default_if_none:"" }}
+                </textarea>
+              {% endif %}
+            </div>
+          </div>
         </div>
-      {% endif %}
-    </div>
 
+    </div>
   </div>
 </div>
 
@@ -111,8 +136,7 @@
       <div class="bubble-inner indicator-bubble">
         <div class="row meta">
           <div class="meta-left col-lg-9 col-md-9 col-sm-12 col-xs-12">
-            <h3 class="subindicator-title ecg-green"
-                data-position="{{ subindicator.indicator.subindicator_number }}"></h3>
+            <h3 class="subindicator-title ecg-green">{{ subindicator.indicator|upper }} {{ subindicator.indicator.title }}</h3>
           </div>
           <div class="meta-right col-lg-3 col-md-3 col-sm-12 col-xs-12">
             {% if not can_edit %}
@@ -129,7 +153,7 @@
                 <input id="company-balance-indicator-{{ subindicator.indicator.slugify }}-points" type="text"
                        value="{{ subindicator.evaluation }}"
                        name="company-balance-indicator-{{ subindicator.indicator.slugify }}-percentage"
-                       class="center">
+                       class="center points">
 
                 <div class="company-balance-indicator-relevance
                             company-balance-indicator-{{ subindicator.indicator.slugify }}-relevance">
@@ -151,53 +175,81 @@
           </div>
         </div>
 
-        <div class="panel-group" data-position="key-figures">
-          <div class="row collapse-header" data-toggle="collapse" data-parent="panel-group">
-            <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
-            <h4 class="subindicator-title ecg-green">{% trans "Key figures" %}</h4>
-          </div>
-
-          <div class="key-figures-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
-            {% if can_edit %}
-              <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
-                  id="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor">
-                  {{ subindicator.get_key_figures }}
-              </textarea>
-            {% else %}
-              <div class="company-balance-indicator-text">
-                {{ subindicator.get_key_figures|safe }}
+        <div id="subindicator-{{ subindicator.indicator.slugify }}" class="panel-group" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading-description">
+              <h4 class="panel-title ecg-green">
+                <a role="button" data-toggle="collapse" data-parent="#subindicator-{{ subindicator.indicator.slugify }}" href="#subindicator-{{ subindicator.indicator.slugify }}-description" aria-expanded="true" aria-controls="subindicator-{{ subindicator.indicator.slugify }}-description">
+                  <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
+                  {% trans "Target questions" %}
+                </a>
+              </h4>
+            </div>
+            <div id="subindicator-{{ subindicator.indicator.slugify }}-description" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-description">
+              <div class="panel-body">
+                {% if subincidator.indicator.description %}
+                <div class="company-balance-indicator-text well">
+                  {{ subincidator.indicator.description|safe }}
+                </div>
+                {% endif %}
+                {% if can_edit %}
+                  <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor"
+                      id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
+                      class="editor">
+                      {{ subincidator.description|default_if_none:"" }}
+                  </textarea>
+                {% endif %}
               </div>
-            {% endif %}
+            </div>
           </div>
-        </div>
-
-        <div class="panel-group" data-position="target-questions">
-          <div class="row collapse-header" data-toggle="collapse" data-parent="panel-group">
-            <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
-            <h4 class="subindicator-title ecg-green">{% trans "Target questions" %}</h4>
-          </div>
-          <div class="bubble-contents collapse-content collapse">
-            {% if can_edit %}
-              <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-editor">
-                {{ subindicator.get_description|safe }}
-              </textarea>
-            {% else %}
-              <div class="company-balance-indicator-text">
-                {{ subindicator.get_description|safe }}
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading-key-figures">
+              <h4 class="panel-title ecg-green">
+                <a role="button" data-toggle="collapse" data-parent="#subindicator-{{ subindicator.indicator.slugify }}" href="#subindicator-{{ subindicator.indicator.slugify }}-key-figures" aria-expanded="true" aria-controls="subindicator-{{ subindicator.indicator.slugify }}-key-figures">
+                  <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
+                  {% trans "Key figures" %}
+                </a>
+              </h4>
+            </div>
+            <div id="subindicator-{{ subindicator.indicator.slugify }}-key-figures" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-key-figures">
+              <div class="panel-body">
+                {% if subindicator.indicator.key_figures %}
+                <div class="company-balance-indicator-text well">
+                  {{ subindicator.indicator.key_figures|safe }}
+                </div>
+                {% endif %}
+                {% if can_edit %}
+                  <textarea name="company-balance-indicator-{{ subindicator.indicator.slugify }}-keyfigures-editor"
+                      id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"class="editor">
+                      {{ subindicator.key_figures|default_if_none:"" }}
+                  </textarea>
+                {% endif %}
               </div>
-            {% endif %}
+            </div>
           </div>
-        </div>
-
-        <div class="panel-group" data-position="evaluation-table">
-          <div class="row collapse-header" data-toggle="collapse" data-parent="panel-group">
-            <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
-            <h4 class="subindicator-title ecg-green">{% trans "Evaluation table" %}</h4>
-          </div>
-
-          <div class="evaluation-table-container collapse-content collapse" data-indicator-position="{{ subindicator.indicator.subindicator_number }}" data-indicator-slug="{{ subindicator.indicator.slugify }}">
-            <div class="company-balance-indicator-text">
-              {{ subindicator.get_evaluation_table|safe }}
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading-evaluation-table">
+              <h4 class="panel-title ecg-green">
+                <a role="button" data-toggle="collapse" data-parent="#subindicator-{{ subindicator.indicator.slugify }}" href="#subindicator-{{ subindicator.indicator.slugify }}-evaluation-table" aria-expanded="true" aria-controls="subindicator-{{ subindicator.indicator.slugify }}-evaluation-table">
+                  <span class="glyphicon glyphicon-chevron-right glyphicon-grey"></span>
+                  {% trans "Evaluation table" %}
+                </a>
+              </h4>
+            </div>
+            <div id="subindicator-{{ subindicator.indicator.slugify }}-evaluation-table" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-evaluation-table">
+              <div class="panel-body">
+                {% if subindicator.indicator.evaluation_table %}
+                <div class="company-balance-indicator-text well">
+                  {{ subindicator.indicator.evaluation_table|safe }}
+                </div>
+                {% endif %}
+                {% if can_edit %}
+                  <textarea name="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"
+                      id="company-balance-indicator-{{ object.indicator.slugify }}-keyfigures-editor"class="editor">
+                      {{ subindicator.evaluation_table|default_if_none:"" }}
+                  </textarea>
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
@@ -225,16 +277,12 @@
 {% block javascript %}
   {{ block.super }}
   <script src="{% static 'ecg_balancing/js/vendor/ckeditor/ckeditor.js' %}"></script>
-  <!--<script src="{% static 'ecg_balancing/js/vendor/ctl.singlefile.experimental.min.js' %}"></script>-->
   <script src="{% static 'ecg_balancing/js/vendor/bootstrap.touchspin.js' %}"></script>
   {% get_current_language as LANGUAGE_CODE %}
-  <script
-      src="{% static 'js/data/indicators' %}/{{ LANGUAGE_CODE }}/ecg-indicators-{{ object.indicator }}-data_{{ LANGUAGE_CODE }}.js"></script>
-
+  <script src="{% static 'js/data/indicators' %}/{{ LANGUAGE_CODE }}/ecg-indicators-{{ object.indicator }}-data_{{ LANGUAGE_CODE }}.js"></script>
   <script type="text/javascript">
     var is_admin = {% if is_admin %}true{% else %}false{% endif %};
     var can_edit = {% if can_edit %}true{% else %}false{% endif %};
-    var is_sole_proprietorship = '{{ is_sole_proprietorship }}' === 'True';
   </script>
   <script src="{% static 'ecg_balancing/js/company_balance_indicator_detail.js' %}"></script>
 {% endblock javascript %}
